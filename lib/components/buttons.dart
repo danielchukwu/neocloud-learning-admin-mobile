@@ -72,6 +72,50 @@ class WelcomeButton extends StatelessWidget {
   }
 }
 
+class SubmitButton extends StatelessWidget {
+  const SubmitButton({
+    super.key,
+    required this.title,
+    required this.press,
+  });
+
+  final String title;
+  final press;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: press,
+      style: buildButtonStyle(),
+      child: Container(
+        // width: defaultSize * 22,
+        padding: EdgeInsets.symmetric(vertical: defaultSize * 1),
+        child: Stack(
+          children: [
+            Center(
+              child: TextSmall(
+                  title: title, color: Colors.white, weight: FontWeight.w500),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  ButtonStyle buildButtonStyle() {
+    return ButtonStyle(
+      backgroundColor: MaterialStatePropertyAll<Color>(kBlueLight),
+      shape: const MaterialStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(30),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class TextLink extends StatelessWidget {
   const TextLink({
     super.key,
