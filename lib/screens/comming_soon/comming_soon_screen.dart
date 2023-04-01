@@ -8,17 +8,16 @@ class ComingSoonScreen extends StatelessWidget {
   const ComingSoonScreen({Key? key}) : super(key: key);
   final String _lottie_1 =
       'https://assets7.lottiefiles.com/packages/lf20_nqztfA5gKq.json';
-  final String _lottie_2 =
+  final String _lottie2 =
       'https://assets8.lottiefiles.com/packages/lf20_1mA0i9a3PH.json';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: defaultSize * 2),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Lottie.network(_lottie_1, width: defaultSize * 20),
               SizedBox(height: defaultSize * 5),
