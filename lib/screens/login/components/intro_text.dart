@@ -20,7 +20,7 @@ class IntroText extends StatelessWidget {
           ),
           TextMedium(
             title:
-            'We are happy to see you again. To use your account you should first login.',
+            'We are happy to see you again. To use your account you must first login.',
             textAlign: TextAlign.center,
             color: kBlack60,
           ),
