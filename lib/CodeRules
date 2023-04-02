@@ -1,0 +1,11 @@
+Functions
+- callback functions should be abstracted into their own functions (improves readability)
+- the names of functions that help us navigate to other pages (screens) should follow the below format
+  e.g navigateTo<ScreenName>
+
+Widgets
+- Each Widget line should not contain over 70 lines of code (for sake of readability)
+  - Best case    (less than 50 lines of code)
+  - Average case (less than 60 lines of code)
+  - Hmm case     (less than 70 lines of code)
+  - Worst case   (above 70 lines of code)
