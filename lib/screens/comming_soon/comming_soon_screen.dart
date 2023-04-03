@@ -6,10 +6,8 @@ import 'package:neocloud_mobile/constraints.dart';
 
 class ComingSoonScreen extends StatelessWidget {
   const ComingSoonScreen({Key? key}) : super(key: key);
-  final String _lottie_1 =
-      'https://assets7.lottiefiles.com/packages/lf20_nqztfA5gKq.json';
-  final String _lottie2 =
-      'https://assets8.lottiefiles.com/packages/lf20_1mA0i9a3PH.json';
+
+  final String lottieFile = 'assets/lottiefiles/132660-basketball.json';
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,7 @@ class ComingSoonScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: defaultSize * 2),
           child: Column(
             children: <Widget>[
-              Lottie.network(_lottie_1, width: defaultSize * 20),
+              Lottie.asset(lottieFile, width: defaultSize * 20),
               SizedBox(height: defaultSize * 5),
               TextCustom(
                 title: 'Coming Soon',

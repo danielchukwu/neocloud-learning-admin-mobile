@@ -16,29 +16,26 @@ class ListProfileSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: screenPadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          // Section Header
-          SizedBox(height: defaultSize * 3),
-          buildSectionHeader(context),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        // Section Header
+        SizedBox(height: defaultSize * 3),
+        buildSectionHeader(context),
 
-          // Section Content - list of users (students, educators or admin)
-          SizedBox(height: defaultSize * 2),
-          buildSectionList(),
-          
-          // Section Count - total users count
-          SizedBox(height: defaultSize * 2),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              TextSmall(title: '${data.length - 2}+ $title', color: kBlack60),
-            ],
-          )
-        ],
-      ),
+        // Section Content - list of users (students, educators or admin)
+        SizedBox(height: defaultSize * 2),
+        buildSectionList(),
+
+        // Section Count - total users count
+        SizedBox(height: defaultSize * 2),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            TextSmall(title: '${data.length - 2}+ $title', color: kBlack60),
+          ],
+        )
+      ],
     );
   }
 
