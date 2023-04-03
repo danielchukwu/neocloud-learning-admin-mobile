@@ -72,24 +72,28 @@ class WelcomeButton extends StatelessWidget {
   }
 }
 
-class SubmitButton extends StatelessWidget {
-  const SubmitButton({
+class AppsButton extends StatelessWidget {
+  const AppsButton({
     super.key,
     required this.title,
+    required this.color,
     required this.press,
+    this.padTopBottom = 10,
   });
 
   final String title;
-  final press;
+  final Color color;
+  final Function(BuildContext? context) press;
+  final double padTopBottom;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: press,
+      onPressed: () => press(context),
       style: buildButtonStyle(),
       child: Container(
         // width: defaultSize * 22,
-        padding: EdgeInsets.symmetric(vertical: defaultSize * 1),
+        padding: EdgeInsets.symmetric(vertical: padTopBottom),
         child: Stack(
           children: [
             Center(
@@ -104,7 +108,7 @@ class SubmitButton extends StatelessWidget {
 
   ButtonStyle buildButtonStyle() {
     return ButtonStyle(
-      backgroundColor: MaterialStatePropertyAll<Color>(kBlueLight),
+      backgroundColor: MaterialStatePropertyAll<Color>(color),
       shape: const MaterialStatePropertyAll(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.all(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
 import 'package:neocloud_mobile/screens/login/components/input_fields.dart';
 
 class LoginForm extends StatefulWidget {
@@ -18,6 +19,8 @@ class _LoginFormState extends State<LoginForm> {
 
   Future<void> submitForm() async {
     // Make API POST request to authenticate student user
+    // ...
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardScreen(),));
   }
 
   @override
@@ -49,9 +52,10 @@ class _LoginFormState extends State<LoginForm> {
 
           // Button - used for submitting form
           SizedBox(height: defaultSize * 4),
-          SubmitButton(
+          AppsButton(
               title: 'Login',
-              press: () {
+              color: kBlueLight,
+              press: (context) {
                 if (_formkey.currentState!.validate()) {
                   _formkey.currentState!.save();
                   debugPrint("Email: $email\nPassword: $password");
