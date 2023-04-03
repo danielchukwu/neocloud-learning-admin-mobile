@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/buttons.dart';
+import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/students.dart';
 import 'package:neocloud_mobile/screens/dashboard/components/profile_section.dart';
 import 'package:neocloud_mobile/screens/dashboard/components/title_count_section.dart';
 
-class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+class Body extends StatefulWidget {
+  Body({Key? key}) : super(key: key);
+
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  final ScrollController _controller = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    // _controller.jumpTo(100.0);
+  }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      controller: _controller,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -17,7 +33,7 @@ class Body extends StatelessWidget {
           SizedBox(height: defaultSize * 2),
           buildSectionOne(),
 
-          // Section 2 - Students, Educators, Admin
+          // Section 2 - Students, Educators, Admin, Grant Permission
           SizedBox(height: defaultSize * 3),
           buildSectionTwo(context)
         ],
@@ -49,7 +65,8 @@ class Body extends StatelessWidget {
   Container buildSectionTwo(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.only(bottom: defaultSize * 12),
+      padding: EdgeInsets.fromLTRB(
+          defaultSize * 2, 0, defaultSize * 2, defaultSize * 12),
       // Background
       decoration: BoxDecoration(
         color: kWhite,
@@ -62,21 +79,66 @@ class Body extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          // Students Section
           ListProfileSection(
             title: 'Students',
             data: users,
           ),
+
+          // Educators Section
           ListProfileSection(
             title: 'Educators',
             data: users,
           ),
+
+          // Admin Section
           ListProfileSection(
             title: 'Admin',
             data: users,
           ),
+
+          // Grant Permission
+          SizedBox(height: defaultSize * 3),
+          TextCustom(
+            title: "Grant Permission",
+            fontSize: defaultSize * 2.2,
+            color: kBlack80,
+            weight: FontWeight.w600,
+          ),
+          SizedBox(height: defaultSize * 2),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(width: defaultSize * 2),
+              Image(
+                  image: AssetImage('assets/icons/thumbs-up.png'),
+                  width: defaultSize * 5),
+              SizedBox(width: defaultSize * 2),
+              Expanded(
+                child: Column(
+                  children: <Widget>[
+                    TextMedium(
+                      title:
+                          'Grant Permission for Students or Educators to be able to take certain courses at NCT',
+                      color: kBlack60,
+                    ),
+                    SizedBox(height: defaultSize * 2),
+                    AppsButton(
+                      title: 'Grant',
+                      press: (context) =>
+                          navigateToComingSoon(context: context),
+                      color: kBlue,
+                      padTopBottom: defaultSize * .5,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: defaultSize * 2),
+            ],
+          ),
+          SizedBox(height: defaultSize * 2),
         ],
       ),
     );
   }
-
 }
