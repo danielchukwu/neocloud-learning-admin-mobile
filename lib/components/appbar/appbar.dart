@@ -5,28 +5,75 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 
 class AppsAppBar extends StatelessWidget {
-  const AppsAppBar({
+  AppsAppBar({
     super.key,
-    required this.screenName,
-    this.isDark = false,
+    required this.title,
+    this.bgColor = Colors.white,
+    this.isDark = true,
+    this.actionIcon,
+    this.actionSvg,
+    this.showLeading = true,
+    this.showAction = true,
+    this.pressAction,
   });
 
-  final String screenName;
+  // Title of the appbar
+  final String title;
+
+  // the background color of the appbar
+  final Color bgColor;
+
+  // this decides what the color of the title and the icons of the appbar
+  // are going to be.
+  // if isDark=true then the title, left icon and right icon are going to
+  // be {black}, else if isDark=false then they are all going to be {white}
   final bool isDark;
+
+  // if this is true then the right icon is displayed, else it is not displayed
+  final bool showAction;
+
+  // if this is true then the left icon is displayed, else it is not displayed
+  final bool showLeading;
+
+  // this is an IconData and it can be null or not, if it isn't null then
+  // we display an Icon() to the right
+  final IconData? actionIcon;
+
+  // this can be null or not, if it isn't then we display an svg using
+  // SvgPicture.asset() and
+  // We expect either <actionIcon> field above or the <actionSvg> field to be
+  // null, so that the other can render
+  final String? actionSvg;
+
+  // this is a callback function that is called when the action icon or svg
+  Function(BuildContext context)? pressAction;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: kBlue,
+      backgroundColor: bgColor,
       leadingWidth: defaultSize * 6,
-      leading: LeadingBackButton(isDark: isDark),
+      leading:
+          showLeading ? LeadingBackButton(isDark: isDark) : const SizedBox(),
       title: TextExtraLarge(
-        title: screenName,
+        title: title,
         weight: FontWeight.w600,
-        color: isDark ? kBlack80 : Colors.white,
+        color: isDark ? kBlack70 : Colors.white,
       ),
       actions: <Widget>[
-        actionUserButton(isDark: isDark),
+        showAction
+            ? actionUserButton(
+                icon: actionIcon,
+                svg: actionSvg,
+                isDark: isDark,
+                press: (context) {
+                  if (pressAction != null){
+                    return pressAction!(context);
+                  }
+                  navigateToProfile(context: context);
+                },
+              )
+            : SizedBox(),
         SizedBox(width: defaultSize * 1.5),
       ],
     );
