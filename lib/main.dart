@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/controllers/NavItem.dart';
+import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
+import 'package:neocloud_mobile/screens/back_office/back_office_screen.dart';
+import 'package:neocloud_mobile/screens/class_works/class_works_screen.dart';
+import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
+import 'package:neocloud_mobile/screens/finance/finance_screen.dart';
 import 'package:neocloud_mobile/screens/loading/loading_screen.dart';
 import 'package:neocloud_mobile/screens/login/login_screen.dart';
 import 'package:neocloud_mobile/screens/welcome/welcome_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => NavItems()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,33 +31,34 @@ class MyApp extends StatelessWidget {
     // SizeConfig().init(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Neo Cloud Technologies',
       theme: buildTheme(),
       initialRoute: '/welcome',
       routes: {
-        '/':(context) => const LoadingScreen(),
+        '/': (context) => const LoadingScreen(),
         '/login': (context) => const LoginScreen(),
         '/welcome': (context) => const WelcomeScreen(),
-        '/loading':(context) => const LoadingScreen(),
+        '/loading': (context) => const LoadingScreen(),
+        '/class-works': (context) => const ClassWorksScreen(),
+        '/academic': (context) => const AcademicScreen(),
+        '/dashboard': (context) => const DashboardScreen(),
+        '/back-office': (context) => const BackOfficeScreen(),
+        '/finance': (context) => const FinanceScreen(),
       },
     );
   }
 
   ThemeData buildTheme() {
     return ThemeData(
-      primarySwatch: Colors.blue,
-      appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        elevation: 0.0,
-      ),
-      textTheme: const TextTheme(
-        bodyLarge: TextStyle(
-          fontFamily: 'Poppins',
-          fontSize: 16
+        primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          elevation: 0.0,
         ),
-      ),
-      scaffoldBackgroundColor: Colors.white
-    );
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(fontFamily: 'Poppins', fontSize: 16),
+        ),
+        scaffoldBackgroundColor: Colors.white);
   }
 }
