@@ -21,7 +21,7 @@ class NavItem {
 }
 
 class NavItems extends ChangeNotifier {
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   void changeNavIndex(int index) {
     // if (index >= 5){
@@ -32,10 +32,9 @@ class NavItems extends ChangeNotifier {
     notifyListeners();
   }
 
+  int getSelectedIndex() => _selectedIndex;
 
-  
-
-  static List<NavItem> items = [
+  List<NavItem> items = [
     NavItem(
       iconActive: Icon(Icons.book, color: kWhite),
       iconInactive: Icon(Icons.book_outlined, color: kBlack.withOpacity(.4)),
@@ -47,9 +46,9 @@ class NavItems extends ChangeNotifier {
       iconInactive: Icon(
         Icons.school_outlined,
         color: kBlack.withOpacity(.4),
-        size: 27,
+        size: 28,
       ),
-      itemLabel: "Academic", 
+      itemLabel: "Academic",
       destination: const AcademicScreen(),
     ),
     NavItem(
@@ -57,9 +56,9 @@ class NavItems extends ChangeNotifier {
       iconInactive: Icon(
         Icons.home_outlined,
         color: kBlack.withOpacity(.4),
-        size: 27,
+        size: 28,
       ),
-      itemLabel: "Dashboard", 
+      itemLabel: "Dashboard",
       destination: const DashboardScreen(),
     ),
     NavItem(
@@ -67,7 +66,7 @@ class NavItems extends ChangeNotifier {
       iconInactive: Icon(
         Icons.folder_outlined,
         color: kBlack.withOpacity(.4),
-        size: 27,
+        size: 28,
       ),
       itemLabel: "Back Office",
       destination: const BackOfficeScreen(),
