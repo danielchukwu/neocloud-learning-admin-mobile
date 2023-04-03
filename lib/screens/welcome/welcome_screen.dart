@@ -21,15 +21,16 @@ class WelcomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+
                 // Logo - neocloud logo icon
                 SizedBox(height: defaultSize * 20),
-                Logo(icon: neocloudLogo, size: defaultSize * 25),
+                DisplayAssetImage(icon: neocloudLogo, size: defaultSize * 25),
 
                 // Button - takes us to the login page
                 SizedBox(height: defaultSize * 25),
                 WelcomeButton(
                   title: 'Student Login',
-                  press: pressNavigateLogin,
+                  press: navigateToLogin,
                   iconIsLeading: false,
                 ),
 
@@ -37,13 +38,13 @@ class WelcomeScreen extends StatelessWidget {
                 SizedBox(height: defaultSize * 5),
                 TextLink(
                     title: 'Access Virtual Course',
-                    press: pressAccessVirtualCourse),
+                    press: (context) => navigateToComingSoon(context: context)),
 
                 // Link - certificate validation
                 SizedBox(height: defaultSize),
                 TextLink(
                   title: 'Certificate Validation',
-                  press: pressAccessVirtualCourse,
+                  press: (context) => navigateToComingSoon(context: context),
                 ),
               ],
             ),
@@ -53,20 +54,12 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 
-  void pressNavigateLogin(BuildContext context) {
+  void navigateToLogin(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => LoginScreen(),
       ),
     );
-  }
-
-  void pressAccessVirtualCourse(BuildContext context) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ComingSoonScreen(),
-        ));
   }
 }
