@@ -14,7 +14,7 @@ class AppsBottomNavBar extends StatelessWidget {
     return Consumer<NavItems>(
       builder: (context, navItems, child) =>
           AnimatedNotchBottomBar(
-            color: kWhite,
+            color: Color(0xFFF9F9F9),
             showLabel: false,
             notchColor: kBlue,
             onTap: (int value) {

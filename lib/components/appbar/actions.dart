@@ -30,7 +30,7 @@ class actionUserButton extends StatelessWidget {
               )
             : Icon(
                 icon != null ? icon : Icons.cancel,
-                color: isDark ? kBlack90 : kWhite,
+                color: isDark ? kBlack.withOpacity(.7) : kWhite,
               ),
       ),
     );

@@ -19,7 +19,7 @@ class LeadingBackButton extends StatelessWidget {
       children: <Widget>[
         SizedBox(width: defaultSize * 1.5),
         CircleAvatar(
-          backgroundColor: (isDark ? kBlack90 : kWhite).withOpacity(.2),
+          backgroundColor: (isDark ? kBlack : kWhite).withOpacity(.1),
           child: Padding(
             padding: EdgeInsets.only(left: defaultSize * .5),
             child: IconButton(

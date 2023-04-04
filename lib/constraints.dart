@@ -50,6 +50,10 @@ void navigateToProfile({BuildContext? context}) {
   );
 }
 
+void navigateToScreen({required BuildContext context, required String routeName}){
+  Navigator.pushNamed(context, routeName);
+}
+
 // - Build Widgets
 PreferredSize buildAppBar({
   required String title,
