@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/login/login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
+  static String screenName = 'Welcome';
 
   @override
   Widget build(BuildContext context) {

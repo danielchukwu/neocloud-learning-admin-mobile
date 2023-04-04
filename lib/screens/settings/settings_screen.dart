@@ -4,7 +4,7 @@ import 'package:neocloud_mobile/constraints.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
-  final String screenName = "Settings";
+  static String screenName = "Settings";
 
   @override
   Widget build(BuildContext context) {

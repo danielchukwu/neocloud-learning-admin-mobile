@@ -63,7 +63,8 @@ PreferredSize buildAppBar({
   bool showLeading = true,
   IconData? actionIcon,
   String? actionSvg,
-  Function(BuildContext context)? press,
+  String routeName = '',
+  // Function(BuildContext context)? press,
 }) {
   // give <kBlue> to <bgColor> if it is null
   bgColor ??= kBlue;
@@ -83,7 +84,7 @@ PreferredSize buildAppBar({
       actionSvg: actionSvg,
       showAction: showAction,
       showLeading: showLeading,
-      pressAction: press,
+      routeName: routeName,
     ),
   );
 }

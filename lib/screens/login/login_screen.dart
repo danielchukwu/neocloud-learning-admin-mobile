@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/screens/login/components/appbar_leading_icon.dart';
 import 'package:neocloud_mobile/screens/login/components/intro_text.dart';
@@ -7,6 +6,7 @@ import 'package:neocloud_mobile/screens/login/components/login_form.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+  static String screenName = 'Login';
 
   @override
   Widget build(BuildContext context) {

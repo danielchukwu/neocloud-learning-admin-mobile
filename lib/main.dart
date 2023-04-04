@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/controllers/NavItem.dart';
+import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/back_office/back_office_screen.dart';
 import 'package:neocloud_mobile/screens/class_works/class_works_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
 import 'package:neocloud_mobile/screens/finance/finance_screen.dart';
-import 'package:neocloud_mobile/screens/loading/loading_screen.dart';
 import 'package:neocloud_mobile/screens/login/login_screen.dart';
+import 'package:neocloud_mobile/screens/settings/settings_screen.dart';
+import 'package:neocloud_mobile/screens/splash/splash_screen.dart';
 import 'package:neocloud_mobile/screens/welcome/welcome_screen.dart';
-import 'package:neocloud_mobile/size_config.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -35,15 +36,16 @@ class MyApp extends StatelessWidget {
       theme: buildTheme(),
       initialRoute: '/welcome',
       routes: {
-        '/': (context) => const LoadingScreen(),
+        '/': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/welcome': (context) => const WelcomeScreen(),
-        '/loading': (context) => const LoadingScreen(),
         '/class-works': (context) => const ClassWorksScreen(),
         '/academic': (context) => const AcademicScreen(),
         '/dashboard': (context) => const DashboardScreen(),
         '/back-office': (context) => const BackOfficeScreen(),
         '/finance': (context) => const FinanceScreen(),
+        '/profile': (context) => const ProfileScreen(),
+        '/settings': (context) => const SettingsScreen(),
       },
     );
   }

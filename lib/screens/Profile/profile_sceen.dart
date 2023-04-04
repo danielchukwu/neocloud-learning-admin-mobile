@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/screens/settings/settings_screen.dart';
+import 'package:neocloud_mobile/utils.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
-  final String screenName = "Profile";
+  static String screenName = "Profile";
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
         bgColor: kWhite,
         isDark: true,
         actionIcon: Icons.settings,
-        // pressRoute: const SettingsScreen().screenName,
+        routeName: getRouteName(SettingsScreen.screenName),
       ),
       body: Container(
         color: Colors.red,

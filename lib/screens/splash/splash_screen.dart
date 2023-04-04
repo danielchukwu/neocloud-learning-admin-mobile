@@ -3,10 +3,10 @@ import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
-class LoadingScreen extends StatelessWidget {
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
   final String iconAsset = 'assets/images/logo-light-sm.png';
-
-  const LoadingScreen({super.key});
+  static String screenName = 'Loading';
 
   @override
   Widget build(BuildContext context) {

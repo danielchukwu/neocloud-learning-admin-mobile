@@ -14,7 +14,8 @@ class AppsAppBar extends StatelessWidget {
     this.actionSvg,
     this.showLeading = true,
     this.showAction = true,
-    this.pressAction,
+    this.routeName = '',
+    // this.pressAction,
   });
 
   // Title of the appbar
@@ -45,8 +46,13 @@ class AppsAppBar extends StatelessWidget {
   // null, so that the other can render
   final String? actionSvg;
 
+  // Replacement
   // this is a callback function that is called when the action icon or svg
-  Function(BuildContext context)? pressAction;
+  // Function(BuildContext context)? pressAction;
+
+  // routeName to be navigated to when the actionIcon or Svg is clicked on
+  final String routeName;
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +72,13 @@ class AppsAppBar extends StatelessWidget {
                 icon: actionIcon,
                 svg: actionSvg,
                 isDark: isDark,
-                press: (context) {
-                  if (pressAction != null){
-                    return pressAction!(context);
-                  }
-                  navigateToProfile(context: context);
-                },
+                routeName: routeName,
+                // press: (context) {
+                //   if (pressAction != null){
+                //     return pressAction!(context);
+                //   }
+                //   navigateToProfile(context: context);
+                // },
               )
             : SizedBox(),
         SizedBox(width: defaultSize * 1.5),
