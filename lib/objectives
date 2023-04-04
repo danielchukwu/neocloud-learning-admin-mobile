@@ -1,8 +1,9 @@
 Objectives
-- Change the navbar action press from a callback function to the routeName ...
+- Change the navbar action press from a callback function to the routeName ✅
 - instead of adding navbar screens to the stack when clicked they should replace current navbar screen ✅
 - remove back button from all navbar screens ✅
 - remove navbar from profile screen ✅
+- fix navbar icons widths ✅
 
 
 Improvements

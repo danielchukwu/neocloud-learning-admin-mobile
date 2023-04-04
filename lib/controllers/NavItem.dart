@@ -74,7 +74,7 @@ class NavItems extends ChangeNotifier {
     NavItem(
       iconActive: Icon(Icons.monetization_on, color: kWhite),
       iconInactive:
-          Icon(Icons.monetization_on_outlined, color: kBlack.withOpacity(.4)),
+          Icon(Icons.monetization_on_outlined, color: kBlack.withOpacity(.4), size: 27,),
       itemLabel: "Finance",
       destination: const FinanceScreen(),
     ),
