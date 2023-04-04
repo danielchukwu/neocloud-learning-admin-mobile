@@ -1,0 +1,14 @@
+Objectives
+- Change the navbar action press from a callback function to the routeName ...
+- instead of adding navbar screens to the stack when clicked they should replace current navbar screen ✅
+- remove back button from all navbar screens ✅
+- remove navbar from profile screen ✅
+
+
+Improvements
+- WelcomeScreen
+  - for the button, animate the the icon >
+- DashboardScreen
+  - Change the color of the Navbar when it gets to a certain point (the white background)
+- Navbar
+  - Test out a different navbar
