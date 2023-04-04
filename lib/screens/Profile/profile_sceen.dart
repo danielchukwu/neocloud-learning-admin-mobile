@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/screens/settings/settings_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -16,14 +14,14 @@ class ProfileScreen extends StatelessWidget {
         bgColor: kWhite,
         isDark: true,
         actionIcon: Icons.settings,
-        press: (context) => const SettingsScreen(),
+        // pressRoute: const SettingsScreen().screenName,
       ),
       body: Container(
         color: Colors.red,
         child: TextMedium(title: screenName, color: Colors.white),
       ),
-      extendBody: true,
-      bottomNavigationBar: const AppsBottomNavBar(),
+      // extendBody: true,
+      // bottomNavigationBar: const AppsBottomNavBar(),
     );
   }
 }

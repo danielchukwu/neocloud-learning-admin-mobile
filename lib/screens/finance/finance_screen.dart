@@ -10,7 +10,7 @@ class FinanceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(title: screenName, bgColor: kWhite, isDark: true),
+      appBar: buildAppBar(title: screenName, bgColor: kWhite, isDark: true, showLeading: false,),
       body: Container(
         color: Colors.red,
         child: TextMedium(title: screenName, color: Colors.white),
