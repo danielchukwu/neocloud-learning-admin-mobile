@@ -18,7 +18,7 @@ class AppsBottomNavBar extends StatelessWidget {
             showLabel: false,
             notchColor: kBlue,
             onTap: (int value) {
-              Navigator.push(context, MaterialPageRoute(
+              Navigator.pushReplacement(context, MaterialPageRoute(
                 builder: (context) => navItems.items[value].destination,));
               navItems.changeNavIndex(value);
             },
