@@ -5,6 +5,19 @@ Objectives
 - remove navbar from profile screen ✅
 - fix navbar icons widths ✅
 
+--- Profile
+- Add First section of the profile screen (cover, profile image, rectangle with curved edges) ✅
+- Add profile name, role, and ratings
+- Add Info Cards section
+- Add Profile Navbar
+- Make Navbar animate
+- Implement Courses Section - create cards
+- Implement Activities Section
+- Implement Information Section
+
+
+
+
 
 Improvements
 - WelcomeScreen
@@ -13,3 +26,8 @@ Improvements
   - Change the color of the Navbar when it gets to a certain point (the white background)
 - Navbar
   - Test out a different navbar
+
+
+UI DEsigns
+- course view screen
+-
