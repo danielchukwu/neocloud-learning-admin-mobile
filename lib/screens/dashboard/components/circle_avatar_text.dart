@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 
@@ -28,7 +29,7 @@ class CircleAvatarAndText extends StatelessWidget {
         InkWell(
           onTap: () => press(context),
           child: image != null
-              ? RoundBoxAvatar(width: width, height: height, image: image)
+              ? RoundBoxAvatar(width: width, height: height, image: image!)
               : RoundBoxIcon(width: width, height: height, icon: Icons.add),
         ),
 
@@ -36,60 +37,6 @@ class CircleAvatarAndText extends StatelessWidget {
         SizedBox(height: defaultSize * .7),
         TextSmall(title: firstName = text!.split(' ')[0], color: kBlack50),
       ],
-    );
-  }
-}
-
-class RoundBoxAvatar extends StatelessWidget {
-  const RoundBoxAvatar({
-    super.key,
-    required this.width,
-    required this.height,
-    required this.image,
-  });
-
-  final double width;
-  final double height;
-  final String? image;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      margin: EdgeInsets.symmetric(horizontal: defaultSize * .75),
-      decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(image!)),
-        color: kBlack.withOpacity(.05),
-        borderRadius: BorderRadius.circular(defaultSize * 5),
-      ),
-    );
-  }
-}
-
-class RoundBoxIcon extends StatelessWidget {
-  const RoundBoxIcon({
-    super.key,
-    required this.width,
-    required this.height,
-    required this.icon,
-  });
-
-  final double width;
-  final double height;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      margin: EdgeInsets.symmetric(horizontal: defaultSize * .75),
-      decoration: BoxDecoration(
-        color: kBlack.withOpacity(.05),
-        borderRadius: BorderRadius.circular(defaultSize * 5),
-      ),
-      child: Icon(icon, color: kBlack50),
     );
   }
 }

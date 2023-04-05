@@ -1,16 +1,20 @@
 class Account {
-  final String fullName;
-  final String email;
-  final int phone;
   final String avatar;
+  final String fullName;
+  final int phone;
+  final String email;
   final String password;
+  final String role;
+  final double ratings;
 
   const Account({
     required this.avatar,
     required this.fullName,
-    required this.email,
     required this.phone,
+    required this.email,
     required this.password,
+    required this.role,
+    required this.ratings,
   });
 }
 
@@ -23,7 +27,8 @@ class Student extends Account {
     required super.fullName,
     required super.email,
     required super.phone,
-    required super.password,
+    required super.role,
+    required super.password, required super.ratings,
   });
 }
 
@@ -38,7 +43,8 @@ class Educator extends Account {
     required super.fullName,
     required super.email,
     required super.phone,
-    required super.password,
+    required super.role,
+    required super.password, required super.ratings,
   });
 }
 
@@ -49,9 +55,13 @@ class Admin extends Account {
     required super.email,
     required super.phone,
     required super.password,
+    required super.role,
+    required super.ratings,
   });
 }
 
+// Ratings
+//
 String imagePath = 'assets/dps/';
   List<Account> users = [
   Student(
@@ -61,6 +71,7 @@ String imagePath = 'assets/dps/';
     email: "charllie@yahoo.com",
     phone: 09031440494,
     password: 'abc',
+    role: 'Educator', ratings:100,
   ),
   Student(
     avatar: '${imagePath}2.jpg',
@@ -69,6 +80,7 @@ String imagePath = 'assets/dps/';
     email: "obidient@yahoo.com",
     phone: 09031440494,
     password: 'abc',
+    role: 'Student', ratings: 80,
   ),
   Student(
     avatar: '${imagePath}3.jpg',
@@ -77,6 +89,7 @@ String imagePath = 'assets/dps/';
     email: "nwosu_@gmail.com",
     phone: 09031440494,
     password: 'abc',
+    role: 'Student', ratings: 60,
   ),
   Student(
     avatar: '${imagePath}4.jpg',
@@ -85,6 +98,8 @@ String imagePath = 'assets/dps/';
     email: "sunday22@gmail.com",
     phone: 09031440494,
     password: 'abc',
+    role: 'Educator',
+    ratings: 40
   ),
   Student(
     avatar: '${imagePath}5.jpg',
@@ -93,21 +108,7 @@ String imagePath = 'assets/dps/';
     email: "samuel@yahoo.com",
     phone: 09031440494,
     password: 'abc',
-  ),
-  Student(
-    avatar: '${imagePath}5.jpg',
-    accessId: "NCT/SP/23/0042",
-    fullName: "Samuel Nuhu",
-    email: "samuel@yahoo.com",
-    phone: 09031440494,
-    password: 'abc',
-  ),
-  Student(
-    avatar: '${imagePath}5.jpg',
-    accessId: "NCT/SP/23/0042",
-    fullName: "Samuel Nuhu",
-    email: "samuel@yahoo.com",
-    phone: 09031440494,
-    password: 'abc',
+    role: 'SuperAdmin',
+    ratings: 20
   ),
 ];
