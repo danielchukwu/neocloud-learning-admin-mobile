@@ -15,8 +15,10 @@ EdgeInsets screenPadding =
     EdgeInsets.symmetric(horizontal: defaultSize * 2); // 20px
 
 // Colors
-Color kBlue = const Color(0xFF1679F7);
-Color kBlueLight = const Color(0xFF1679F7).withOpacity(.7);
+// Color kBlue = const Color(0xFF1679F7);
+// Color kBlueLight = const Color(0xFF1679F7).withOpacity(.7);
+Color kBlue = const Color(0xFF6699FF);
+Color kBlueLight = const Color(0xFF6699FF).withOpacity(.7);
 
 Color kWhite = const Color(0xFFFFFFFF);
 Color kBlack = const Color(0xFF000000);
@@ -28,6 +30,11 @@ Color kBlack90 = const Color(0xFF000000).withOpacity(.9);
 
 const kTextColor = Color(0xFF202E2E);
 const kTextLigntColor = Color(0xFF7286A5);
+
+// - Secondary
+Color kOrange = const Color(0xFFF7941D);
+Color kGreen  = const Color(0xFF2B5D18);
+Color kRed    = const Color(0xFFD0102B);
 
 // FUNCTIONS
 
