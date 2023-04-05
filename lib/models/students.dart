@@ -1,4 +1,5 @@
 class Account {
+  final int id;
   final String avatar;
   final String fullName;
   final int phone;
@@ -6,8 +7,12 @@ class Account {
   final String password;
   final String role;
   final double ratings;
+  final int students_count;
+  final int courses_count;
+  final int reviews_count;
 
   const Account({
+    required this.id,
     required this.avatar,
     required this.fullName,
     required this.phone,
@@ -15,6 +20,9 @@ class Account {
     required this.password,
     required this.role,
     required this.ratings,
+    required this.students_count,
+    required this.courses_count,
+    required this.reviews_count,
   });
 }
 
@@ -30,6 +38,10 @@ class Student extends Account {
     required super.role,
     required super.password,
     required super.ratings,
+    required super.id,
+    required super.students_count,
+    required super.courses_count,
+    required super.reviews_count,
   });
 }
 
@@ -47,6 +59,10 @@ class Educator extends Account {
     required super.role,
     required super.password,
     required super.ratings,
+    required super.id,
+    required super.students_count,
+    required super.courses_count,
+    required super.reviews_count,
   });
 }
 
@@ -59,6 +75,10 @@ class Admin extends Account {
     required super.password,
     required super.role,
     required super.ratings,
+    required super.id,
+    required super.students_count,
+    required super.courses_count,
+    required super.reviews_count,
   });
 }
 
@@ -75,8 +95,13 @@ List<Account> users = [
     password: 'abc',
     role: 'Educator',
     ratings: 100,
+    id: 1,
+    students_count: 16,
+    courses_count: 3,
+    reviews_count: 12,
   ),
   Student(
+    id: 2,
     avatar: '${imagePath}2.jpg',
     accessId: "NCT/SP/23/0042",
     fullName: "Obi Nwanemm",
@@ -85,8 +110,12 @@ List<Account> users = [
     password: 'abc',
     role: 'Student',
     ratings: 80,
+    students_count: 11,
+    courses_count: 5,
+    reviews_count: 23,
   ),
   Student(
+    id: 3,
     avatar: '${imagePath}3.jpg',
     accessId: "NCT/SP/23/0042",
     fullName: "Emmanuel Nwosu",
@@ -95,8 +124,12 @@ List<Account> users = [
     password: 'abc',
     role: 'Student',
     ratings: 60,
+    students_count: 6,
+    courses_count: 7,
+    reviews_count: 10,
   ),
   Student(
+    id: 4,
     avatar: '${imagePath}4.jpg',
     accessId: "NCT/SP/23/0042",
     fullName: "Sunday Habbakuk",
@@ -105,8 +138,12 @@ List<Account> users = [
     password: 'abc',
     role: 'Educator',
     ratings: 40,
+    students_count: 12,
+    courses_count: 1,
+    reviews_count: 5,
   ),
   Student(
+    id: 5,
     avatar: '${imagePath}5.jpg',
     accessId: "NCT/SP/23/0042",
     fullName: "Samuel Nuhu",
@@ -115,5 +152,8 @@ List<Account> users = [
     password: 'abc',
     role: 'SuperAdmin',
     ratings: 20,
+    students_count: 19,
+    courses_count: 5,
+    reviews_count: 23,
   ),
 ];
