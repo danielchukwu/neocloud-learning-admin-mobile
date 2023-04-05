@@ -7,13 +7,16 @@ Objectives
 
 --- Profile
 - Add First section of the profile screen (cover, profile image, rectangle with curved edges) ✅
-- Add profile name, role, and ratings
+- Add profile name, role, and ratings ✅
 - Add Info Cards section
 - Add Profile Navbar
 - Make Navbar animate
 - Implement Courses Section - create cards
 - Implement Activities Section
 - Implement Information Section
+
+- Fixes
+- update login email to access id
 
 
 

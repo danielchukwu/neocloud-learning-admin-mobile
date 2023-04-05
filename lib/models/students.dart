@@ -28,7 +28,8 @@ class Student extends Account {
     required super.email,
     required super.phone,
     required super.role,
-    required super.password, required super.ratings,
+    required super.password,
+    required super.ratings,
   });
 }
 
@@ -44,7 +45,8 @@ class Educator extends Account {
     required super.email,
     required super.phone,
     required super.role,
-    required super.password, required super.ratings,
+    required super.password,
+    required super.ratings,
   });
 }
 
@@ -63,7 +65,7 @@ class Admin extends Account {
 // Ratings
 //
 String imagePath = 'assets/dps/';
-  List<Account> users = [
+List<Account> users = [
   Student(
     avatar: '${imagePath}1.jpg',
     accessId: "NCT/SP/23/0042",
@@ -71,7 +73,8 @@ String imagePath = 'assets/dps/';
     email: "charllie@yahoo.com",
     phone: 09031440494,
     password: 'abc',
-    role: 'Educator', ratings:100,
+    role: 'Educator',
+    ratings: 100,
   ),
   Student(
     avatar: '${imagePath}2.jpg',
@@ -80,7 +83,8 @@ String imagePath = 'assets/dps/';
     email: "obidient@yahoo.com",
     phone: 09031440494,
     password: 'abc',
-    role: 'Student', ratings: 80,
+    role: 'Student',
+    ratings: 80,
   ),
   Student(
     avatar: '${imagePath}3.jpg',
@@ -89,7 +93,8 @@ String imagePath = 'assets/dps/';
     email: "nwosu_@gmail.com",
     phone: 09031440494,
     password: 'abc',
-    role: 'Student', ratings: 60,
+    role: 'Student',
+    ratings: 60,
   ),
   Student(
     avatar: '${imagePath}4.jpg',
@@ -99,7 +104,7 @@ String imagePath = 'assets/dps/';
     phone: 09031440494,
     password: 'abc',
     role: 'Educator',
-    ratings: 40
+    ratings: 40,
   ),
   Student(
     avatar: '${imagePath}5.jpg',
@@ -109,6 +114,6 @@ String imagePath = 'assets/dps/';
     phone: 09031440494,
     password: 'abc',
     role: 'SuperAdmin',
-    ratings: 20
+    ratings: 20,
   ),
 ];
