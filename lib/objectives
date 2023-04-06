@@ -15,8 +15,15 @@ Objectives
 - Implement Activities Section
 - Implement Information Section
 
-- Fixes
-- update login email to access id
+--- Fixes
+- change the email label to access id in LoginScreen
+- fix the logos with what was sent to you by Mr. J
+- abstract the color usage of the star color
+
+--- Pages
+- Course view Page
+- Notifications Page
+- Virtual Students Feed
 
 
 
