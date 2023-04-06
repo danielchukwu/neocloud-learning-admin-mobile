@@ -21,16 +21,14 @@ class IntroNameRoleRatings extends StatelessWidget {
         children: <Widget>[
           // User Name
           TextExtraLarge(
-            title: user.fullName,
-            color: kBlack80,
-            weight: FontWeight.w600,
-          ),
+              title: user.fullName, color: kBlack80, weight: FontWeight.w600),
+
           // User Role
           TextMedium(title: "NCT " + user.role, color: kBlack70),
+
           // User Ratings
-          Row(
-            children: getRatings(rating: user.ratings),
-          ),
+          SizedBox(height: defaultSize * .3),
+          Row(children: getRatings(rating: user.ratings)),
         ],
       ),
     );
@@ -44,20 +42,26 @@ List<Widget> getRatings({required double rating}) {
   List<Widget> result = [];
 
   // Add full stars
-  addRatingIcon(count: ratingsMap['full_stars'], icon: Icons.star, list: result);
+  addRatingIcon(
+      count: ratingsMap['full_stars'], icon: Icons.star, list: result);
   // Add half stars
-  addRatingIcon(count: ratingsMap['half_stars'], icon: Icons.star_half, list: result);
+  addRatingIcon(
+      count: ratingsMap['half_stars'], icon: Icons.star_half, list: result);
   // Add empty stars
-  addRatingIcon(count: ratingsMap['empty_stars'], icon: Icons.star_outline, list: result);
+  addRatingIcon(
+      count: ratingsMap['empty_stars'], icon: Icons.star_outline, list: result);
 
   // Add ratings text. e.g (4.7 stars)
   double convertedRatings = rating / 20;
-  result.add(TextMedium(title: " (${convertedRatings} stars)", color: kBlack70,));
+  result.add(TextMedium(
+    title: " (${convertedRatings} stars)",
+    color: kBlack70,
+  ));
 
   return result;
 }
 
-// Add a specified icon <icon>, n-times <count> into the Array ds <list>
+// Add a specified icon <icon>, n-times <count> into the List <list>
 void addRatingIcon({
   required int count,
   required List<Widget> list,
