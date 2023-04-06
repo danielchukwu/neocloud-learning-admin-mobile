@@ -73,12 +73,6 @@ class AppsAppBar extends StatelessWidget {
                 svg: actionSvg,
                 isDark: isDark,
                 routeName: routeName,
-                // press: (context) {
-                //   if (pressAction != null){
-                //     return pressAction!(context);
-                //   }
-                //   navigateToProfile(context: context);
-                // },
               )
             : SizedBox(),
         SizedBox(width: defaultSize * 1.5),
