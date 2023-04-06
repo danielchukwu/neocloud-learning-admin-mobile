@@ -11,8 +11,9 @@ const neocloudLogo = 'assets/images/logo-dark.png';
 var defaultSize = SizeConfig.defaultSize!;
 
 // Paddings
+double appsBodyPadding = defaultSize * 2;
 EdgeInsets screenPadding =
-    EdgeInsets.symmetric(horizontal: defaultSize * 2); // 20px
+    EdgeInsets.symmetric(horizontal: appsBodyPadding); // 20px
 
 // Colors
 // Color kBlue = const Color(0xFF1679F7);
@@ -33,8 +34,8 @@ const kTextLigntColor = Color(0xFF7286A5);
 
 // - Secondary
 Color kOrange = const Color(0xFFF7941D);
-Color kGreen  = const Color(0xFF2B5D18);
-Color kRed    = const Color(0xFFD0102B);
+Color kGreen = const Color(0xFF2B5D18);
+Color kRed = const Color(0xFFD0102B);
 
 // FUNCTIONS
 
@@ -57,7 +58,8 @@ void navigateToProfile({BuildContext? context}) {
   );
 }
 
-void navigateToScreen({required BuildContext context, required String routeName}){
+void navigateToScreen(
+    {required BuildContext context, required String routeName}) {
   Navigator.pushNamed(context, routeName);
 }
 
