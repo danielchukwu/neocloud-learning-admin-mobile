@@ -1,7 +1,8 @@
 class ProfileNavbarItem {
+  final String title;
   final String iconSrc;
 
-  ProfileNavbarItem({required this.iconSrc});
+  ProfileNavbarItem({required this.title, required this.iconSrc});
 }
 
 class ProfileNavbarItems {
@@ -11,8 +12,23 @@ class ProfileNavbarItems {
   static int get selectedIndex => _selectedIndex;
 
   static List<ProfileNavbarItem> items = [
-    ProfileNavbarItem(iconSrc: "assets/icons/courses.svg"),
-    ProfileNavbarItem(iconSrc: "assets/icons/activities.svg"),
-    ProfileNavbarItem(iconSrc: "assets/icons/about.svg"),
+    ProfileNavbarItem(title: "courses", iconSrc: "assets/icons/courses.svg"),
+    ProfileNavbarItem(title: "activities", iconSrc: "assets/icons/activities.svg"),
+    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/about.svg"),
+  ];
+  static List<ProfileNavbarItem> studentItems = [
+    ProfileNavbarItem(title: "courses", iconSrc: "assets/icons/courses.svg"),
+    ProfileNavbarItem(title: "activities", iconSrc: "assets/icons/activities.svg"),
+    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/about.svg"),
+  ];
+  static List<ProfileNavbarItem> educatorItems = [
+    ProfileNavbarItem(title: "courses", iconSrc: "assets/icons/courses.svg"),
+    ProfileNavbarItem(title: "activities", iconSrc: "assets/icons/activities.svg"),
+    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/about.svg"),
+  ];
+  static List<ProfileNavbarItem> adminItems = [
+    ProfileNavbarItem(title: "courses", iconSrc: "assets/icons/courses.svg"),
+    ProfileNavbarItem(title: "activities", iconSrc: "assets/icons/activities.svg"),
+    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/about.svg"),
   ];
 }

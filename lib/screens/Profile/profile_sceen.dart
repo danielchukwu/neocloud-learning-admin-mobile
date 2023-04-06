@@ -51,7 +51,7 @@ class ProfileScreen extends StatelessWidget {
 
             // Profile Navbar and Profiles Content (Courses, Activity, Info)
             SizedBox(height: defaultSize * 3),
-            ProfileNavbarAndContent(items: ProfileNavbarItems.studentItems),
+            ProfileNavbarAndContent(navItems: ProfileNavbarItems.studentItems),
           ],
         ),
       ),
