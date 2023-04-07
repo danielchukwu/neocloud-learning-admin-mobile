@@ -14,6 +14,7 @@ Objectives
 - Implement Courses Section - create cards ✅
 - Implement Activities Section
 - Implement Information Section
+- Fix the NavbarSelector to make it work with any navbar count
 
 --- Fixes
 - change the email label to access id in LoginScreen
