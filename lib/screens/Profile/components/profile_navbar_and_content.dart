@@ -26,7 +26,7 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
   final List<ClassWork> classWorkData = classWorksData;
 
   // Tip: <appsBodyPadding> stands for both left padding and right padding
-  // values for our apps official padding
+  // values for our apps official screen paddings
   late double selectorWidth =
       (SizeConfig.screenWidth! - (appsBodyPadding * 2)) /
           widget.navItems.length;
@@ -46,14 +46,14 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
           buildNavbarSelector(),
 
           // Display content
-          buildChosenContent(
+          getChosenContent(
               widget.navItems[ProfileNavbarItems.selectedIndex].title)
         ],
       ),
     );
   }
 
-  Widget buildChosenContent(String name) {
+  Widget getChosenContent(String name) {
     switch (name) {
       case "courses":
         return Column(
