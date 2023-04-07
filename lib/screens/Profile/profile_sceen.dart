@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/ProfileNavbarItem.dart';
 import 'package:neocloud_mobile/models/students.dart';
@@ -48,10 +49,14 @@ class ProfileScreen extends StatelessWidget {
 
             // Profile Navbar and Profiles Content (Courses, Activity, Info)
             SizedBox(height: defaultSize * 3),
-            ProfileNavbarAndContent(navItems: ProfileNavbarItems.studentItems),
+            ProfileNavbarAndContent(navItems: ProfileNavbarItems.educatorItems),
+
+            SizedBox(height: defaultSize * 3),
           ],
         ),
       ),
+      extendBody: true,
+      bottomNavigationBar: AppsBottomNavBar(),
     );
   }
 }
