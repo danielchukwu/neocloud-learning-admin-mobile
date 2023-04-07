@@ -4,17 +4,16 @@ import 'package:neocloud_mobile/components/cards.dart';
 import 'package:neocloud_mobile/components/cards/class_works_card.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/models/AccountInfo.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/models/ProfileNavbarItem.dart';
 import 'package:neocloud_mobile/models/class_work.dart';
+import 'package:neocloud_mobile/screens/Profile/components/account_info_tile.dart';
+import 'package:neocloud_mobile/screens/Profile/components/profile_content.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
 class ProfileNavbarAndContent extends StatefulWidget {
-  ProfileNavbarAndContent({
-    super.key,
-    required this.navItems,
-  });
-
+  ProfileNavbarAndContent({ super.key, required this.navItems });
   final List<ProfileNavbarItem> navItems;
 
   @override
@@ -38,6 +37,7 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+
           // Icon Buttons - courses, activities & info
           buildNavbarIconButtons(),
 
@@ -45,30 +45,13 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
           SizedBox(height: defaultSize),
           buildNavbarSelector(),
 
-          // Display content
-          getChosenContent(
-              widget.navItems[ProfileNavbarItems.selectedIndex].title)
+          // Display content - based on the navbar button clicked, this changes
+          ProfileContent(type: widget.navItems[ProfileNavbarItems.selectedIndex].title),
+
+          SizedBox(height: defaultSize * 10),
         ],
       ),
     );
-  }
-
-  Widget getChosenContent(String name) {
-    switch (name) {
-      case "courses":
-        return Column(
-            children: List.generate(
-                courses.length, (index) => CourseCard(course: courses[index])));
-      case "activities":
-        // return Container(child: TextSmall(title: 'Activities'));
-        return Column(
-          children: List.generate(
-              classWorkData.length,
-              (index) => ClassWorkCard(data: classWorkData[index]),
-        ));
-      default:
-        return Container(child: TextSmall(title: 'Info'));
-    }
   }
 
   Stack buildNavbarSelector() {
@@ -82,7 +65,6 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
             thickness: defaultSize * .1,
           ),
         ),
-
         // Selector
         AnimatedPositioned(
           width: selectorWidth,
@@ -98,6 +80,7 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
     );
   }
 
+  // Navbar Icons
   Row buildNavbarIconButtons() {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

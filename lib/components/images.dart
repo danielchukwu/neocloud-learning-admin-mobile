@@ -95,6 +95,7 @@ class RectangularBoxImage extends StatelessWidget {
     return Container(
       height: height,
       decoration: BoxDecoration(
+        color: kBlack.withOpacity(.2),
         image: DecorationImage(
           image: AssetImage(img),
           fit: BoxFit.cover,
