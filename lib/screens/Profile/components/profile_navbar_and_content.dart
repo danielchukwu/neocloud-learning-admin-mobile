@@ -91,7 +91,7 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
             child: Container(
               // color: Colors.red,
               color: Colors.white,
-              padding: EdgeInsets.only(top: index == 0 ? 5 : 0, bottom: index == 0 ? 10 : 10),
+              padding: EdgeInsets.only(top: index == 0 ? 3 : 0, bottom: index == 0 ? 12 : 10),
               child: SvgPicture.asset(
                 widget.navItems[index].iconSrc,
                 color: index == ProfileNavbarItems.selectedIndex
