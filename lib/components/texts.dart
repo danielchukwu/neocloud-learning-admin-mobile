@@ -143,8 +143,45 @@ class TextCustom extends StatelessWidget {
         color: color,
         fontSize: fontSize,
         fontWeight: weight,
-
       ),
+    );
+  }
+}
+
+
+class TextCustomMaxLine extends StatelessWidget{
+  const TextCustomMaxLine({
+    super.key,
+    required this.title,
+    required this.fontSize,
+    this.color = Colors.black,
+    this.weight = FontWeight.w400,
+    this.textAlign = TextAlign.start,
+    this.maxLines = 1,
+    this.overflow = TextOverflow.ellipsis,
+  });
+
+  final TextAlign textAlign;
+  final String title;
+  final double fontSize;
+  final Color color;
+  final FontWeight weight;
+  final int maxLines;
+  final TextOverflow overflow;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      textAlign: textAlign,
+      style: TextStyle(
+        fontFamily: 'Poppins',
+        color: color,
+        fontSize: fontSize,
+        fontWeight: weight,
+      ),
+      maxLines: maxLines,
+      overflow: overflow,
     );
   }
 }

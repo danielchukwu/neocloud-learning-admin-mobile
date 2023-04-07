@@ -109,13 +109,16 @@ class _BodyState extends State<Body> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              // Image
               SizedBox(width: defaultSize * 2),
               Image(
                   image: AssetImage('assets/icons/thumbs-up.png'),
                   width: defaultSize * 5),
               SizedBox(width: defaultSize * 2),
+              // Text
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     TextMedium(
                       title:
@@ -127,8 +130,9 @@ class _BodyState extends State<Body> {
                       title: 'Grant',
                       press: (context) =>
                           navigateToComingSoon(context: context),
-                      color: kBlue,
+                      bgColor: kBlue,
                       padTopBottom: defaultSize * .5,
+                      borderRadius: defaultSize * 4,
                     ),
                   ],
                 ),

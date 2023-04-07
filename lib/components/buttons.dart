@@ -76,15 +76,27 @@ class AppsButton extends StatelessWidget {
   const AppsButton({
     super.key,
     required this.title,
-    required this.color,
     required this.press,
+    this.icon,
+    this.color = Colors.white,
+    this.iconColor = Colors.white,
+    this.bgColor = Colors.blueAccent,
+    this.borderRadius = 10,
+    this.textIconSeperationSize = 5,
     this.padTopBottom = 10,
+    this.padLeftRight = 10,
   });
 
   final String title;
   final Color color;
+  final Color bgColor;
+  final Color iconColor;
+  final IconData? icon;
+  final double borderRadius;
+  final double textIconSeperationSize;
   final Function(BuildContext? context) press;
   final double padTopBottom;
+  final double padLeftRight;
 
   @override
   Widget build(BuildContext context) {
@@ -92,27 +104,32 @@ class AppsButton extends StatelessWidget {
       onPressed: () => press(context),
       style: buildButtonStyle(),
       child: Container(
-        // width: defaultSize * 22,
-        padding: EdgeInsets.symmetric(vertical: padTopBottom),
-        child: Stack(
-          children: [
-            Center(
-              child: TextSmall(
-                  title: title, color: Colors.white, weight: FontWeight.w500),
+        padding: EdgeInsets.symmetric(
+          vertical: padTopBottom,
+          horizontal: padLeftRight,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            icon != null ? Icon(icon, color: iconColor) : SizedBox(),
+            icon != null ? SizedBox(width: textIconSeperationSize) : SizedBox(),
+            TextMedium(
+              title: title,
+              color: kWhite,
             ),
           ],
-        ),
+        )
       ),
     );
   }
 
   ButtonStyle buildButtonStyle() {
     return ButtonStyle(
-      backgroundColor: MaterialStatePropertyAll<Color>(color),
-      shape: const MaterialStatePropertyAll(
+      backgroundColor: MaterialStatePropertyAll<Color>(bgColor),
+      shape: MaterialStatePropertyAll(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(30),
+            Radius.circular(borderRadius),
           ),
         ),
       ),

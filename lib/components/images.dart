@@ -80,3 +80,27 @@ class RoundBoxIcon extends StatelessWidget {
     );
   }
 }
+
+class RectangularBoxImage extends StatelessWidget {
+  final String img;
+  final double height;
+  final double borderRadius;
+
+  const RectangularBoxImage(
+      {Key? key, required this.img, this.height = 200, this.borderRadius = 00,})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(img),
+          fit: BoxFit.cover,
+        ),
+        borderRadius: BorderRadius.circular(borderRadius),
+      ),
+    );
+  }
+}
