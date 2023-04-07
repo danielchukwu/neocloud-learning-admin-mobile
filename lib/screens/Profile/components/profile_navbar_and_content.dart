@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:neocloud_mobile/components/cards.dart';
-import 'package:neocloud_mobile/components/cards/class_works_card.dart';
-import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/AccountInfo.dart';
-import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/models/ProfileNavbarItem.dart';
 import 'package:neocloud_mobile/models/class_work.dart';
-import 'package:neocloud_mobile/screens/Profile/components/account_info_tile.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_content.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
 class ProfileNavbarAndContent extends StatefulWidget {
-  ProfileNavbarAndContent({ super.key, required this.navItems });
+  ProfileNavbarAndContent({super.key, required this.navItems});
+
   final List<ProfileNavbarItem> navItems;
 
   @override
@@ -37,16 +32,16 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-
           // Icon Buttons - courses, activities & info
           buildNavbarIconButtons(),
 
           // Selector - used to select the currently chosen navbar item
-          SizedBox(height: defaultSize),
+          // SizedBox(height: defaultSize),
           buildNavbarSelector(),
 
           // Display content - based on the navbar button clicked, this changes
-          ProfileContent(type: widget.navItems[ProfileNavbarItems.selectedIndex].title),
+          ProfileContent(
+              type: widget.navItems[ProfileNavbarItems.selectedIndex].title),
 
           SizedBox(height: defaultSize * 10),
         ],
@@ -83,16 +78,20 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
   // Navbar Icons
   Row buildNavbarIconButtons() {
     return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: List.generate(
-          widget.navItems.length,
-          (index) => Expanded(
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  ProfileNavbarItems.selectedIndex = index;
-                });
-              },
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: List.generate(
+        widget.navItems.length,
+        (index) => Expanded(
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                ProfileNavbarItems.selectedIndex = index;
+              });
+            },
+            child: Container(
+              // color: Colors.red,
+              color: Colors.white,
+              padding: EdgeInsets.only(top: index == 0 ? 5 : 0, bottom: index == 0 ? 10 : 10),
               child: SvgPicture.asset(
                 widget.navItems[index].iconSrc,
                 color: index == ProfileNavbarItems.selectedIndex
@@ -102,7 +101,9 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
               ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   // Returns the position horizontally where the selector should be
