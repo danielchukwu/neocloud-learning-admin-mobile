@@ -97,3 +97,34 @@ PreferredSize buildAppBar({
     ),
   );
 }
+
+AppsSliverAppBar buildSliverAppBar({
+  required String title,
+  bool isDark = false,
+  Color? bgColor,
+  bool showAction = true,
+  bool showLeading = true,
+  IconData? actionIcon,
+  String? actionSvg,
+  String routeName = '',
+  // Function(BuildContext context)? press,
+}) {
+  // give <kBlue> to <bgColor> if it is null
+  bgColor ??= kBlue;
+  // if neither actionSvg or actionIcon was provided, then we want to
+  // set a default actionSvg value (to be displayed)
+  actionSvg = actionSvg == null && actionIcon == null
+      ? 'assets/icons/account.svg'
+      : null;
+
+  return AppsSliverAppBar(
+    title: title,
+    isDark: isDark,
+    bgColor: bgColor!,
+    actionIcon: actionIcon,
+    actionSvg: actionSvg,
+    showAction: showAction,
+    showLeading: showLeading,
+    routeName: routeName,
+  );
+}
