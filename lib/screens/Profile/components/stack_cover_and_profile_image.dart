@@ -9,6 +9,8 @@ class StackCoverAndProfileImage extends StatelessWidget {
     this.coverSize = 280,
     this.profileImgBorderSize = 3,
     this.coverOverlay = Colors.green,
+    this.profileImageVerticalPosition = 68,
+    this.bgCurveVerticalPosition = 130,
   });
 
   final String coverImg;
@@ -16,6 +18,8 @@ class StackCoverAndProfileImage extends StatelessWidget {
   final double coverSize;
   final double profileImgBorderSize;
   final Color coverOverlay;
+  final double profileImageVerticalPosition;
+  final double bgCurveVerticalPosition;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,7 @@ class StackCoverAndProfileImage extends StatelessWidget {
     return Positioned(
           height: defaultSize * 5,
           width: MediaQuery.of(context).size.width,
-          top: defaultSize * 23,
+          top: bgCurveVerticalPosition,
           child: Container(
             decoration: BoxDecoration(
               color: kWhite,
@@ -54,7 +58,7 @@ class StackCoverAndProfileImage extends StatelessWidget {
     return Positioned(
           height: defaultSize * 11,
           width: defaultSize * 11,
-          top: defaultSize * 16,
+          top: profileImageVerticalPosition,
           left: defaultSize * 2,
           child: Container(
             decoration: BoxDecoration(
