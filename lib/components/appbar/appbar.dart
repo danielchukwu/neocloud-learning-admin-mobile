@@ -53,7 +53,6 @@ class AppsAppBar extends StatelessWidget {
   // routeName to be navigated to when the actionIcon or Svg is clicked on
   final String routeName;
 
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -74,6 +73,48 @@ class AppsAppBar extends StatelessWidget {
                 isDark: isDark,
                 routeName: routeName,
               )
+            : SizedBox(),
+        SizedBox(width: defaultSize * 1.5),
+      ],
+    );
+  }
+}
+
+class AppsSliverAppBar extends AppsAppBar {
+  AppsSliverAppBar({
+    required super.title,
+    super.bgColor,
+    super.isDark,
+    super.actionIcon,
+    super.actionSvg,
+    super.showLeading,
+    super.showAction,
+    super.routeName,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      backgroundColor: bgColor,
+      leadingWidth: defaultSize * 6,
+      expandedHeight: defaultSize * 6.5,
+      floating: true,
+      snap: true,
+      leading:
+      showLeading ? LeadingBackButton(isDark: isDark) : const SizedBox(),
+      title: TextExtraLarge(
+        title: title,
+        weight: FontWeight.w600,
+        color: isDark ? kBlack70 : Colors.white,
+      ),
+      actions: <Widget>[
+        showAction
+            ? actionUserButton(
+          icon: actionIcon,
+          svg: actionSvg,
+          isDark: isDark,
+          routeName: routeName,
+        )
             : SizedBox(),
         SizedBox(width: defaultSize * 1.5),
       ],
