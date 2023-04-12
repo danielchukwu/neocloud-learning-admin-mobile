@@ -81,6 +81,7 @@ class AppsButton extends StatelessWidget {
     this.color = Colors.white,
     this.iconColor = Colors.white,
     this.bgColor = Colors.blueAccent,
+    this.border = 0,
     this.borderRadius = 10,
     this.textIconSeperationSize = 5,
     this.padTopBottom = 10,
@@ -92,6 +93,7 @@ class AppsButton extends StatelessWidget {
   final Color bgColor;
   final Color iconColor;
   final IconData? icon;
+  final double border;
   final double borderRadius;
   final double textIconSeperationSize;
   final Function(BuildContext? context) press;
@@ -115,10 +117,10 @@ class AppsButton extends StatelessWidget {
             icon != null ? SizedBox(width: textIconSeperationSize) : SizedBox(),
             TextMedium(
               title: title,
-              color: kWhite,
+              color: color,
             ),
           ],
-        )
+        ),
       ),
     );
   }
@@ -128,6 +130,9 @@ class AppsButton extends StatelessWidget {
       backgroundColor: MaterialStatePropertyAll<Color>(bgColor),
       shape: MaterialStatePropertyAll(
         RoundedRectangleBorder(
+          side: border > 0
+              ? BorderSide(width: border, color: kBlack50)
+              : BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.all(
             Radius.circular(borderRadius),
           ),
@@ -155,6 +160,32 @@ class TextLink extends StatelessWidget {
         title: title,
         color: kBlack70,
       ),
+    );
+  }
+}
+
+class OptionButton extends StatelessWidget {
+  const OptionButton({
+    Key? key,
+    required this.title,
+    required this.press,
+    this.bgColor = Colors.transparent,
+  }) : super(key: key);
+
+  final String title;
+  final Color bgColor;
+  final Function() press;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppsButton(
+      title: title,
+      borderRadius: defaultSize * .5,
+      bgColor: bgColor,
+      color: bgColor == Colors.transparent ? kBlack70 : kWhite,
+      border: buttonBorderWidth,
+      press: (context) => press(),
+      padTopBottom: .5,
     );
   }
 }
