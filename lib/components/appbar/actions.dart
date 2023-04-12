@@ -25,7 +25,8 @@ class actionUserButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: (isDark ? kBlack : kWhite).withOpacity(.1),
+      // backgroundColor: (isDark ? kBlack : kWhite).withOpacity(.1),
+      backgroundColor: Colors.transparent,
       child: IconButton(
         onPressed: () => navigateToScreen(context: context, routeName: routeName),
         icon: svg != null
