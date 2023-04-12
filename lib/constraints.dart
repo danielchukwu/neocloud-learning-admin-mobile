@@ -13,13 +13,16 @@ var defaultSize = SizeConfig.defaultSize!;
 // Paddings
 double appsBodyPadding = defaultSize * 2;
 EdgeInsets screenPadding =
-    EdgeInsets.symmetric(horizontal: appsBodyPadding); // 20px
+    EdgeInsets.symmetric(horizontal: appsBodyPadding); // 20px 20px
+
+// Border
+double buttonBorderWidth = .5;
 
 // Colors
-// Color kBlue = const Color(0xFF1679F7);
-// Color kBlueLight = const Color(0xFF1679F7).withOpacity(.7);
-Color kBlue = const Color(0xFF6699FF);
-Color kBlueLight = const Color(0xFF6699FF).withOpacity(.7);
+Color kBlue = const Color(0xFF1679F7);
+Color kBlueLight = const Color(0xFF1679F7).withOpacity(.7);
+// Color kBlue = const Color(0xFF6699FF);
+// Color kBlueLight = const Color(0xFF6699FF).withOpacity(.7);
 
 Color kWhite = const Color(0xFFFFFFFF);
 Color kBlack = const Color(0xFF000000);
