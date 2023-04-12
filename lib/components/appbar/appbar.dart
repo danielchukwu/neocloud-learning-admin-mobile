@@ -65,17 +65,24 @@ class AppsAppBar extends StatelessWidget {
         weight: FontWeight.w600,
         color: isDark ? kBlack70 : Colors.white,
       ),
-      actions: <Widget>[
-        showAction
-            ? actionUserButton(
-                icon: actionIcon,
-                svg: actionSvg,
-                isDark: isDark,
-                routeName: routeName,
-              )
-            : SizedBox(),
+      actions: showAction
+          ? <Widget>[
+        // actionUserButton(
+        //   icon: Icons.search,
+        //   svg: actionSvg,
+        //   isDark: isDark,
+        //   routeName: routeName,
+        // ),
         SizedBox(width: defaultSize * 1.5),
-      ],
+        actionUserButton(
+          icon: actionIcon,
+          svg: actionSvg,
+          isDark: isDark,
+          routeName: routeName,
+        ),
+        SizedBox(width: defaultSize * 1.5),
+      ]
+          : [],
     );
   }
 }
@@ -97,27 +104,34 @@ class AppsSliverAppBar extends AppsAppBar {
     return SliverAppBar(
       backgroundColor: bgColor,
       leadingWidth: defaultSize * 6,
-      expandedHeight: defaultSize * 6.5,
+      // expandedHeight: defaultSize * 6.5,
       floating: true,
       snap: true,
       leading:
-      showLeading ? LeadingBackButton(isDark: isDark) : const SizedBox(),
+          showLeading ? LeadingBackButton(isDark: isDark) : const SizedBox(),
       title: TextExtraLarge(
         title: title,
         weight: FontWeight.w600,
         color: isDark ? kBlack70 : Colors.white,
       ),
-      actions: <Widget>[
-        showAction
-            ? actionUserButton(
-          icon: actionIcon,
-          svg: actionSvg,
-          isDark: isDark,
-          routeName: routeName,
-        )
-            : SizedBox(),
-        SizedBox(width: defaultSize * 1.5),
-      ],
+      actions: showAction
+          ? <Widget>[
+              actionUserButton(
+                icon: Icons.search,
+                svg: actionSvg,
+                isDark: isDark,
+                routeName: routeName,
+              ),
+              SizedBox(width: defaultSize * 1.5),
+              actionUserButton(
+                icon: actionIcon,
+                svg: actionSvg,
+                isDark: isDark,
+                routeName: routeName,
+              ),
+              SizedBox(width: defaultSize * 1.5),
+            ]
+          : [],
     );
   }
 }
