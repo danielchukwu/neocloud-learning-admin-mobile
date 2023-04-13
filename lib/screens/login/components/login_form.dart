@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
-import 'package:neocloud_mobile/screens/login/components/input_fields.dart';
+import 'package:neocloud_mobile/components/input/input_fields.dart';
 
 class LoginForm extends StatefulWidget {
   LoginForm({Key? key})
