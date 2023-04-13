@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/appbar/appbar.dart';
+import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
@@ -16,7 +17,8 @@ EdgeInsets screenPadding =
     EdgeInsets.symmetric(horizontal: appsBodyPadding); // 20px 20px
 
 // Border
-double buttonBorderWidth = .5;
+double buttonBorderWidth = defaultSize * .02;
+double buttonBorderRadius = defaultSize * .5;
 
 // Colors
 Color kBlue = const Color(0xFF1679F7);
@@ -41,6 +43,22 @@ Color kGreen = const Color(0xFF2B5D18);
 Color kRed = const Color(0xFFD0102B);
 
 // FUNCTIONS
+
+// - Styles
+
+TextStyle getAppsTextStyle({
+  String fontFamily = "Poppins",
+  Color color = Colors.black87,
+  double fontSize = 16,
+  FontWeight fontWeight = FontWeight.w600,
+}) {
+  return TextStyle(
+    fontFamily: fontFamily,
+    color: color,
+    fontSize: fontSize,
+    fontWeight: fontWeight,
+  );
+}
 
 // - Navigations
 void navigateToComingSoon({BuildContext? context}) {
@@ -129,5 +147,30 @@ AppsSliverAppBar buildSliverAppBar({
     showAction: showAction,
     showLeading: showLeading,
     routeName: routeName,
+  );
+}
+
+// Build AppsDropdownButton
+Container buildAppsDropdownButton(
+    {required List<String> list, String? selected}) {
+  return Container(
+    height: defaultSize * 4,
+    decoration: BoxDecoration(
+      border: Border.all(width: buttonBorderWidth, color: kBlack50),
+      borderRadius: BorderRadius.circular(buttonBorderRadius),
+    ),
+    padding: EdgeInsets.symmetric(horizontal: defaultSize),
+    child: AppsDropdownButton(list: list, selected: selected),
+  );
+}
+
+// build Filter Button
+AppsButton buildFilterButton() {
+  return AppsButton(
+    title: "Filter",
+    press: (context) {},
+    bgColor: kBlack80,
+    borderRadius: buttonBorderRadius,
+    padTopBottom: 2,
   );
 }

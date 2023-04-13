@@ -5,6 +5,7 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/screens/login/login_screen.dart';
 
+// Welcome Button
 class WelcomeButton extends StatelessWidget {
   const WelcomeButton({
     super.key,
@@ -72,6 +73,7 @@ class WelcomeButton extends StatelessWidget {
   }
 }
 
+// Apps Main Button
 class AppsButton extends StatelessWidget {
   const AppsButton({
     super.key,
@@ -142,6 +144,7 @@ class AppsButton extends StatelessWidget {
   }
 }
 
+// Link Button
 class TextLink extends StatelessWidget {
   const TextLink({
     super.key,
@@ -164,6 +167,7 @@ class TextLink extends StatelessWidget {
   }
 }
 
+// Option Button
 class OptionButton extends StatelessWidget {
   const OptionButton({
     Key? key,
@@ -180,7 +184,7 @@ class OptionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppsButton(
       title: title,
-      borderRadius: defaultSize * .5,
+      borderRadius: buttonBorderRadius,
       bgColor: bgColor,
       color: bgColor == Colors.transparent ? kBlack70 : kWhite,
       border: buttonBorderWidth,
@@ -189,3 +193,50 @@ class OptionButton extends StatelessWidget {
     );
   }
 }
+
+// Dropdown Button
+class AppsDropdownButton extends StatefulWidget {
+  const AppsDropdownButton({
+    super.key,
+    required this.list,
+    this.selected,
+  });
+
+  final List<String> list;
+  final String? selected;
+
+  @override
+  State<AppsDropdownButton> createState() => _AppsDropdownButtonState();
+}
+
+class _AppsDropdownButtonState extends State<AppsDropdownButton> {
+  String? dropdownValue;
+
+  @override
+  void initState() {
+    super.initState();
+    dropdownValue = widget.selected != null ? widget.selected : widget.list.first;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton(
+      onChanged: (String? pick) {
+        setState(() {
+          dropdownValue = pick!;
+        });
+      },
+      value: dropdownValue,
+      isExpanded: true,
+      underline: Container(height: 0),
+      items: widget.list.map((String month) {
+        return DropdownMenuItem(
+          child:
+          TextSmall(title: month, color: kBlack50, weight: FontWeight.w500),
+          value: month,
+        );
+      }).toList(),
+    );
+  }
+}
+
