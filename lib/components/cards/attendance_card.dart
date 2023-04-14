@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/components/card_intro.dart';
+import 'package:neocloud_mobile/components/cards/components/card_sections.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/class_work.dart';
+import 'package:neocloud_mobile/models/card_data.dart';
+import 'package:neocloud_mobile/utils.dart';
 
 class AttendanceCard extends StatelessWidget {
   const AttendanceCard({
@@ -9,7 +11,7 @@ class AttendanceCard extends StatelessWidget {
     required this.data,
   });
 
-  final ClassWork data;
+  final Attendance data;
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +23,48 @@ class AttendanceCard extends StatelessWidget {
     // Software Deve.. | May 3
     // without label
     //   27  |  March  |  2023
-    final sections = [ "27", "March", "2023"];
+    List<String> date =
+        data.createdAt.split('-'); // 2022-04-11 -> ['2022', '04', '11'];
+    final sections = [
+      {"title": date[2], "flex": 1},
+      {"title": date[1], "flex": 1},
+      {"title": date[0], "flex": 1},
+    ];
 
     return Container(
       margin: cardTopMargin,
       padding: cardPadding,
       decoration: buildCardDecoration(),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           // Card Into
-          CardIntro(label: "Class", title: data.title),
+          CardIntro(label: "Class", title: data.clas),
 
-          // Course and Date
+          // Student count
+          SizedBox(height: defaultSize * .5),
+          RichText(
+            text: TextSpan(
+              style: getAppsTextStyle(
+                fontWeight: FontWeight.w200,
+                fontSize: defaultSize * 5,
+              ),
+              children: [
+                TextSpan(text: '${data.attendance} ${getPluralOrSingular(count: data.attendance, word: "Student")}'),
+                TextSpan(
+                  text: '   Att.',
+                  style: getAppsTextStyle(
+                      fontWeight: FontWeight.w500, fontSize: defaultSize * 1.4),
+                ),
+              ],
+            ),
+          ),
+
+          // Dates
           SizedBox(height: defaultSize * 2),
-          // CardSections(data: sections),
-
+          CardSections(data: sections, showLabel: false, centralize: true),
         ],
       ),
     );
   }
-
 }
