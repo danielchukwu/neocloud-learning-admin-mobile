@@ -17,7 +17,7 @@ EdgeInsets screenPadding =
     EdgeInsets.symmetric(horizontal: appsBodyPadding); // 20px 20px
 
 // Border
-double buttonBorderWidth = defaultSize * .02;
+double buttonBorderWidth = defaultSize * .05;
 double buttonBorderRadius = defaultSize * .5;
 
 // Colors
@@ -170,7 +170,36 @@ AppsButton buildFilterButton() {
     title: "Filter",
     press: (context) {},
     bgColor: kBlack80,
+    icon: null,
     borderRadius: buttonBorderRadius,
     padTopBottom: 2,
+  );
+}
+
+AppsButton buildAddButton({
+  String title = "add",
+  Function(BuildContext? context)? press,
+}) {
+  return AppsButton(
+    title: title,
+    press: press != null ? press! : (context) {},
+    icon: Icons.add,
+    bgColor: kBlack80,
+    padTopBottom: defaultSize * 0.3,
+    borderRadius: buttonBorderRadius,
+  );
+}
+
+
+// Cards
+// - cards related utils
+EdgeInsets cardTopMargin = EdgeInsets.only(top: defaultSize * 2);
+EdgeInsets cardPadding = EdgeInsets.all(defaultSize * 2);
+
+BoxDecoration buildCardDecoration() {
+  return BoxDecoration(
+    border:
+    Border.all(color: kBlack.withOpacity(.2), width: defaultSize * .1),
+    borderRadius: BorderRadius.circular(defaultSize * 3),
   );
 }
