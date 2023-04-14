@@ -3,14 +3,14 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Filters.dart';
 
-class FilterSection extends StatefulWidget {
-  const FilterSection({Key? key}) : super(key: key);
+class AcademicFilterSection extends StatefulWidget {
+  const AcademicFilterSection({Key? key}) : super(key: key);
 
   @override
-  State<FilterSection> createState() => _FilterSectionState();
+  State<AcademicFilterSection> createState() => _AcademicFilterSectionState();
 }
 
-class _FilterSectionState extends State<FilterSection> {
+class _AcademicFilterSectionState extends State<AcademicFilterSection> {
   double turns = 0;
   bool displayFilter = false;
 
