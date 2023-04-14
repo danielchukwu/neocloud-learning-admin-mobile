@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/cards/components/seperator.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/utils.dart';
 
 // This displays a <label and a title - in a column> more if we want
 // It takes in a a List containing Maps that hold the data to be displayed
@@ -15,33 +17,40 @@ class CardSections extends StatelessWidget {
     super.key,
     required this.data,
     this.showLabel = true,
+    this.showSeperator = true,
+    this.centralize = false,
   });
 
   final List<Map> data;
   final bool showLabel;
+  final bool showSeperator;
+  final bool centralize;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-        children: List.generate(data.length, (index) {
-      if (index == 0) {
+      children: List.generate(data.length, (index) {
         return Expanded(
           flex: data[index]["flex"],
-          child: buildCardSection(index),
+          child: Row(
+            children: <Widget>[
+              // Seperator
+              index > 0
+                  ? Seperator(
+                      height: showLabel ? defaultSize * 4 : defaultSize * 2.1,
+                    )
+                  : SizedBox(),
+              // Card Section
+              centralize ? Spacer() : SizedBox(),
+              !centralize && index > 0 ? SizedBox(width: 20) : SizedBox(),
+              buildCardSection(index),
+              centralize ? Spacer() : SizedBox(),
+
+            ],
+          ),
         );
-      }
-      return Expanded(
-        flex: data[index]["flex"],
-        child: Row(
-          children: <Widget>[
-            // Seperator
-            Seperator(),
-            // Card Section
-            buildCardSection(index),
-          ],
-        ),
-      );
-    }));
+      }),
+    );
   }
 
   Column buildCardSection(int index) {
@@ -57,26 +66,11 @@ class CardSections extends StatelessWidget {
               )
             : SizedBox(),
         // Course Title
-        TextCustomMaxLine(
-          title: data[index]["title"],
-          fontSize: defaultSize * 1.6,
+        TextMedium(
+          title: shortenText(text: '${data[index]["title"]}', limit: 15),
           color: kBlack70,
         ),
       ],
-    );
-  }
-}
-
-class Seperator extends StatelessWidget {
-  const Seperator({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: defaultSize * 2),
-      height: defaultSize * 4,
-      width: defaultSize * .2,
-      color: kBlack50,
     );
   }
 }
