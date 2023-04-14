@@ -21,7 +21,7 @@ class CardIntro extends StatelessWidget {
         TextMedium(
           title: label,
           color: kBlack70,
-          weight: FontWeight.w500,
+          weight: FontWeight.w600,
         ),
 
         // Card Title
