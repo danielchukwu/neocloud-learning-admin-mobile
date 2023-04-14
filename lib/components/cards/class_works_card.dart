@@ -6,7 +6,7 @@ import 'package:neocloud_mobile/components/cards/components/card_sections.dart';
 import 'package:neocloud_mobile/components/cards/components/display_filename.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/class_work.dart';
+import 'package:neocloud_mobile/models/card_data.dart';
 
 class ClassWorkCard extends StatelessWidget {
   const ClassWorkCard({
@@ -27,8 +27,8 @@ class ClassWorkCard extends StatelessWidget {
     // without label
     //   27  |  March  |  2023
     final sections = [
-      {"label": "Course", "title": data.course, "flex": 2},
-      {"label": "Date", "title": data.created_at, "flex": 1},
+      {"label": "Course", "title": data.course, "flex": 3},
+      {"label": "Date", "title": data.date, "flex": 2},
     ];
 
     return Container(
@@ -36,7 +36,7 @@ class ClassWorkCard extends StatelessWidget {
       padding: cardPadding,
       decoration: buildCardDecoration(),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           // Card Into
           CardIntro(label: "Class Work", title: data.title),
