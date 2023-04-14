@@ -18,14 +18,22 @@ class ClassWorkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // The below list of objects get displayed side by side in the card
+    // and we provide a flex to tell determine the amount of flex an item takes up
+    // e.g
+    // with label
+    // Course          | Date
+    // Software Deve.. | May 3
+    // without label
+    //   27  |  March  |  2023
     final sections = [
       {"label": "Course", "title": data.course, "flex": 2},
       {"label": "Date", "title": data.created_at, "flex": 1},
     ];
 
     return Container(
-      margin: EdgeInsets.only(top: defaultSize * 2),
-      padding: EdgeInsets.all(defaultSize * 2),
+      margin: cardTopMargin,
+      padding: cardPadding,
       decoration: buildCardDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,14 +74,6 @@ class ClassWorkCard extends StatelessWidget {
             ),
           ],
         );
-  }
-
-  BoxDecoration buildCardDecoration() {
-    return BoxDecoration(
-      border:
-          Border.all(color: kBlack.withOpacity(.2), width: defaultSize * .1),
-      borderRadius: BorderRadius.circular(defaultSize * 3),
-    );
   }
 
   Widget getImageOrFileName() {
