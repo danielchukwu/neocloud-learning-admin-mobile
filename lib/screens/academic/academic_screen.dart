@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
+import 'package:neocloud_mobile/components/cards/attendance_card.dart';
 import 'package:neocloud_mobile/components/options/DisplayOptions.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Options.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
-import 'package:neocloud_mobile/screens/academic/components/FilterSection.dart';
+import 'package:neocloud_mobile/screens/academic/components/academic_filter_section.dart';
 import 'package:neocloud_mobile/utils.dart';
 
 class AcademicScreen extends StatefulWidget {
@@ -33,6 +34,8 @@ class _AcademicScreenState extends State<AcademicScreen> {
           child: Column(
             children: [
               // Academic Options (Attendance, Class routine, Courses, etc...)
+              SizedBox(height: defaultSize),
+
               DisplayOptions(
                 items: AcademicOptions.items,
                 getSelectedIndex: AcademicOptions.getSelectedIndex,
@@ -42,24 +45,26 @@ class _AcademicScreenState extends State<AcademicScreen> {
                   });
                 },
               ),
-              SizedBox(height: defaultSize * 3),
 
               // Filter Section
-              const FilterSection(),
-
-              // + Take Attendance and create Attendance Cards
               SizedBox(height: defaultSize * 3),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  AppsButton(
-                    title: "Take Attendance",
-                    press: (context) {},
-                    icon: Icons.add,
-                    bgColor: kBlack80,
-                    padTopBottom: defaultSize * 0.5,
-                    borderRadius: defaultSize * .5,
+              const AcademicFilterSection(),
+
+              // + Take Attendance and Create Attendance Cards
+              SizedBox(height: defaultSize * 3),
+              Column(
+                children: <Widget>[
+                  // + Take Attendance Button
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      buildAddButton(title: "Take Attendance", press: (context) {}),
+                    ],
                   ),
+
+                  // Cards
+                  // AttendanceCard(data: data)
+
                 ],
               )
             ],
