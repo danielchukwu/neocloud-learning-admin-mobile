@@ -5,12 +5,14 @@ String getRouteName(String value) =>
     "/" + value.replaceAll(" ", "_").toLowerCase();
 
 
-// This function is used to get the amount of stars set with a provided ratings number
+// This function is used to get the amount of stars set with a provided
+// ratings number
 // e.g 100 => {full_stars: 5, half_stars: 0, empty_stars: 0}
 // e.g 90  => {full_stars: 4, half_stars: 1, empty_stars: 0}
 // e.g 72  => {full_stars: 3, half_stars: 0, empty_stars: 2}
 Map<String, int> getStarsForRating({required double ratings}) {
-  // Our final result object containing the amount of full_stars, half_stars, empty_stars to be displayed
+  // Our final result object containing the amount of full_stars, half_stars,
+  // empty_stars to be displayed
   Map<String, int> stars = {"full_stars": 0, "half_stars": 0, "empty_stars": 0};
   // In a range of 100 where we have only 5 stars. A full star is worth
   // 20 in that range
@@ -26,7 +28,8 @@ Map<String, int> getStarsForRating({required double ratings}) {
   int full_stars = (half_stars / 2).floor();
   stars['full_stars'] = full_stars;
 
-  // Final: is half star present in final ratings (if half star total is not divisible by 2 then their exists a half star in our final result)
+  // Final: is half star present in final ratings (if half star total is not
+  // divisible by 2 then their exists a half star in our final result)
   bool is_half_star_present = (half_stars % 2) == 1;
   int half_star = is_half_star_present ? 1 : 0;
   stars['half_stars'] = half_star;
@@ -36,4 +39,21 @@ Map<String, int> getStarsForRating({required double ratings}) {
   stars['empty_stars'] = empty_stars;
 
   return stars;
+}
+
+
+// takes `count` and `a singular word` then based on the count it either
+// pluralizes the singular word or returns the singular word like this
+String getPluralOrSingular({required int count, required String word}) {
+  return count == 0 || count >= 2 ? "${word}s" : word;
+}
+
+// if a text is longer than a specified number this func shortens it
+// and adds an ellipse e.g  text: daniel, limit: 3  => dan...
+String shortenText({required String text, required int limit}){
+  if (text.length > limit){
+    // shorten the text and return with ellipse
+    return text.substring(0, limit) + "...";
+  }
+  return text;
 }
