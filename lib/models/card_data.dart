@@ -1,15 +1,17 @@
 // CLASS WORK
-class ClassWork {
+class AppData {
+  AppData({required this.id});
+  final String id;
+}
+class ClassWork extends AppData {
   ClassWork({
-    required this.id,
+    required super.id,
     required this.title,
     required this.description,
     required this.course,
     required this.file,
     required this.date,
   });
-
-  final String id;
   final String title;
   final String description;
   final String course;
@@ -67,15 +69,14 @@ List<ClassWork> classWorksList = [
 
 
 // ATTENDANCE
-class Attendance {
+class Attendance extends AppData {
   Attendance({
-    required this.id,
+    required super.id,
     required this.clas,
     required this.attendance,
     required this.createdAt,
   });
 
-  final String id;
   final String clas;
   final int attendance;
   final String createdAt;
@@ -91,9 +92,9 @@ List<Attendance> attendanceList = [
 
 
 // CLASS ROUTINE
-class ClassRoutine {
+class ClassRoutine extends AppData {
   ClassRoutine({
-    required this.id,
+    required super.id,
     required this.clas,
     required this.subject,
     required this.startTime,
@@ -101,7 +102,6 @@ class ClassRoutine {
     required this.createdAt,
   });
 
-  final String id;
   final String clas;
   final String subject;
   final String startTime;
@@ -119,14 +119,13 @@ List<ClassRoutine> classRoutineList = [
 
 
 // COURSE
-class Course {
+class Course extends AppData {
   Course({
-    required this.id,
+    required super.id,
     required this.clas,
     required this.course,
   });
 
-  final String id;
   final String clas;
   final String course;
 }
@@ -141,15 +140,15 @@ List<Course> coursesList = [
 
 
 // SYLLABUS
-class Syllabus {
+class Syllabus extends AppData {
   Syllabus({
-    required this.id,
+    required super.id,
     required this.clas,
     required this.title,
     required this.subject,
     required this.file,
   });
-  final String id;
+
   final String clas;
   final String title;
   final String subject;
@@ -167,9 +166,9 @@ List<Syllabus> syllabiList = [
 
 
 // CERTIFICATE
-class Certificate {
+class Certificate extends AppData {
   Certificate({
-    required this.id,
+    required super.id,
     required this.fullName,
     required this.faculty,
     required this.department,
@@ -177,8 +176,8 @@ class Certificate {
     required this.certificateNo,
     required this.issuesOn,
     required this.file,
-});
-  final String id;
+  });
+
   final String fullName;
   final String faculty;
   final String department;
@@ -243,14 +242,14 @@ List<Certificate> certificatesList = [
 
 
 // FACULTY
-class Faculty {
+class Faculty extends AppData {
   Faculty({
-    required this.id,
+    required super.id,
     required this.faculty,
     required this.hod,
     required this.studentsCount,
   });
-  final String id;
+
   final String faculty;
   final String hod;
   final int studentsCount;
@@ -291,14 +290,14 @@ final List<Faculty> faculties = [
 
 
 // CLASS
-class Class {
+class Class extends AppData {
   Class({
-    required this.id,
+    required super.id,
     required this.name,
     required this.faculty,
     required this.clas,
   });
-  final String id;
+
   final String name;
   final String faculty;
   final String clas;
@@ -339,9 +338,9 @@ final List<Class> classesList = [
 
 
 // FINANCE
-class Finance {
+class Finance extends AppData {
   Finance({
-    required this.id,
+    required super.id,
     required this.invoiceTitle,
     required this.educator,
     required this.avatar,
@@ -351,7 +350,6 @@ class Finance {
     required this.paidAmount,
   });
 
-  final String id;
   final String invoiceTitle;
   final String educator;
   final String avatar;
@@ -416,15 +414,15 @@ final List<Finance> finances = [
 
 
 // BOOK
-class Book {
+class Book extends AppData {
   Book({
-    required this.id,
+    required super.id,
     required this.title,
     required this.availableCopies,
     required this.educator,
     required this.avatar,
   });
-  final String id;
+
   final String title;
   final String availableCopies;
   final String educator;
@@ -466,9 +464,9 @@ List<Book> books = [
 
 
 // BOOK ISSUE
-class BookIssue {
+class BookIssue extends AppData {
   BookIssue({
-    required this.id,
+    required super.id,
     required this.book,
     required this.educator,
     required this.avatar,
@@ -476,7 +474,7 @@ class BookIssue {
     required this.student,
     required this.createdAt,
   });
-  final String id;
+
   final String book;
   final String educator;
   final String avatar;
@@ -530,16 +528,16 @@ List<BookIssue> bookIssues = [
 
 
 // ENQUIRIES
-class Enquiries {
+class Enquiries extends AppData {
   Enquiries({
-    required this.id,
+    required super.id,
     required this.purpose,
     required this.comments,
     required this.info,
     required this.howYouFoundUs,
     required this.createdAt,
   });
-  final String id;
+
   final String purpose;
   final String comments;
   final String info;
