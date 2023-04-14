@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/ProfileNavbarItem.dart';
-import 'package:neocloud_mobile/models/class_work.dart';
+import 'package:neocloud_mobile/models/card_data.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_content.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
@@ -17,7 +17,7 @@ class ProfileNavbarAndContent extends StatefulWidget {
 }
 
 class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
-  final List<ClassWork> classWorkData = classWorksData;
+  final List<ClassWork> classWorkData = classWorksList;
 
   // Tip: <appsBodyPadding> stands for both left padding and right padding
   // values for our apps official screen paddings

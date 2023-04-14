@@ -5,7 +5,7 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/AccountInfo.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
-import 'package:neocloud_mobile/models/class_work.dart';
+import 'package:neocloud_mobile/models/card_data.dart';
 import 'package:neocloud_mobile/screens/Profile/components/account_info_tile.dart';
 
 class ProfileContent extends StatelessWidget {
@@ -23,8 +23,8 @@ class ProfileContent extends StatelessWidget {
       case "activities":
         return Column(
             children: List.generate(
-              classWorksData.length,
-                  (index) => ClassWorkCard(data: classWorksData[index]),
+              classWorksList.length,
+                  (index) => ClassWorkCard(data: classWorksList[index]),
             ));
       case "info":
         return Column(
