@@ -199,10 +199,12 @@ class AppsDropdownButton extends StatefulWidget {
   const AppsDropdownButton({
     super.key,
     required this.list,
+    required this.press,
     this.selected,
   });
 
   final List<String> list;
+  final Function(String value) press;
   final String? selected;
 
   @override
@@ -224,6 +226,7 @@ class _AppsDropdownButtonState extends State<AppsDropdownButton> {
       onChanged: (String? pick) {
         setState(() {
           dropdownValue = pick!;
+          widget.press(pick);
         });
       },
       value: dropdownValue,
