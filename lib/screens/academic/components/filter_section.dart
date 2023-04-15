@@ -7,9 +7,19 @@ class FilterSection extends StatefulWidget {
   const FilterSection({
     Key? key,
     required this.press,
+    this.showMonthYear = false,
+    this.showRange = false,
+    this.showStatus = false,
+    this.showClass = false,
+    this.showSection = false,
   }) : super(key: key);
 
   final Function(Map<String, String> filterData) press;
+  final bool showMonthYear;
+  final bool showRange;
+  final bool showStatus;
+  final bool showClass;
+  final bool showSection;
 
   @override
   State<FilterSection> createState() => _FilterSectionState();
@@ -31,28 +41,40 @@ class _FilterSectionState extends State<FilterSection> {
             ? Column(
                 children: <Widget>[
                   // Month, Year
-                  SizedBox(height: defaultSize),
-                  buildMonthYearField(),
+                  widget.showMonthYear ? SizedBox(height: defaultSize) : SizedBox(),
+                  widget.showMonthYear ? buildMonthYearField() : SizedBox(),
+
+                  // range
+                  widget.showRange ? SizedBox(height: defaultSize) : SizedBox(),
+                  widget.showRange ? buildAppsDropdownButton(
+                    list: dateRangeFilters,
+                    press: updateFilter(k: "range"),
+                  ) : SizedBox(),
+
+                  // Status
+                  widget.showStatus ? SizedBox(height: defaultSize) : SizedBox(),
+                  widget.showStatus ? buildAppsDropdownButton(
+                    list: statusFilters,
+                    press: updateFilter(k: "status"),
+                  ) : SizedBox(),
 
                   // Class
-                  SizedBox(height: defaultSize),
-                  buildAppsDropdownButton(
+                  widget.showClass ? SizedBox(height: defaultSize) : SizedBox(),
+                  widget.showClass ? buildAppsDropdownButton(
                     list: coursesFilter,
                     press: updateFilter(k: "class"),
-                  ),
+                  ) : SizedBox(),
 
                   // Section
-                  SizedBox(height: defaultSize),
-                  buildAppsDropdownButton(
+                  widget.showSection ? SizedBox(height: defaultSize) : SizedBox(),
+                  widget.showSection ? buildAppsDropdownButton(
                     list: sectionFilters,
                     press: updateFilter(k: "section"),
-                  ),
+                  ): SizedBox(),
 
                   // Button
                   SizedBox(height: defaultSize),
-                  buildFilterButton(press: (context) {
-                    widget.press(filter);
-                  }),
+                  buildFilterButton(press: (context) { widget.press(filter); }),
                 ],
               )
             : SizedBox(),
