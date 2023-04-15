@@ -19,12 +19,16 @@ class CardSections extends StatelessWidget {
     this.showLabel = true,
     this.showSeperator = true,
     this.centralize = false,
+    this.textOverflowLimit = 15,
+    // this.labelFontWeight = FontWeight.w500,
+    // this.labelFontWeight = FontWeight.w400,
   });
 
   final List<Map> data;
   final bool showLabel;
   final bool showSeperator;
   final bool centralize;
+  final int  textOverflowLimit;
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +39,14 @@ class CardSections extends StatelessWidget {
           child: Row(
             children: <Widget>[
               // Seperator
-              index > 0
+              index > 0 && showSeperator
                   ? Seperator(
                       height: showLabel ? defaultSize * 4 : defaultSize * 2.1,
                     )
                   : SizedBox(),
               // Card Section
               centralize ? Spacer() : SizedBox(),
-              !centralize && index > 0 ? SizedBox(width: 20) : SizedBox(),
+              !centralize && index > 0 ? SizedBox(width: defaultSize * 2) : SizedBox(),
               buildCardSection(index),
               centralize ? Spacer() : SizedBox(),
 
@@ -60,14 +64,14 @@ class CardSections extends StatelessWidget {
         // Course Label
         showLabel
             ? TextMedium(
-                title: data[index]["label"],
+                title: shortenText(text: '${data[index]["label"]}', limit: textOverflowLimit),
                 color: kBlack70,
                 weight: FontWeight.w500,
               )
             : SizedBox(),
         // Course Title
         TextMedium(
-          title: shortenText(text: '${data[index]["title"]}', limit: 15),
+          title: shortenText(text: '${data[index]["title"]}', limit: textOverflowLimit),
           color: kBlack70,
         ),
       ],
