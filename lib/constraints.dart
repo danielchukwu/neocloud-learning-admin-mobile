@@ -151,24 +151,31 @@ AppsSliverAppBar buildSliverAppBar({
 }
 
 // Build AppsDropdownButton
-Container buildAppsDropdownButton(
-    {required List<String> list, String? selected}) {
+Container buildAppsDropdownButton({
+  required List<String> list,
+  required Function(String value) press,
+  String? selected,
+}) {
   return Container(
     height: defaultSize * 4,
-    decoration: BoxDecoration(
-      border: Border.all(width: buttonBorderWidth, color: kBlack50),
-      borderRadius: BorderRadius.circular(buttonBorderRadius),
-    ),
+    decoration: getDropDownBoxDecoration(),
     padding: EdgeInsets.symmetric(horizontal: defaultSize),
-    child: AppsDropdownButton(list: list, selected: selected),
+    child: AppsDropdownButton(list: list, selected: selected, press: press),
+  );
+}
+
+BoxDecoration getDropDownBoxDecoration() {
+  return BoxDecoration(
+    border: Border.all(width: buttonBorderWidth, color: kBlack50),
+    borderRadius: BorderRadius.circular(buttonBorderRadius),
   );
 }
 
 // build Filter Button
-AppsButton buildFilterButton() {
+AppsButton buildFilterButton({required Function(BuildContext? context) press}) {
   return AppsButton(
     title: "Filter",
-    press: (context) {},
+    press: press,
     bgColor: kBlack80,
     icon: null,
     borderRadius: buttonBorderRadius,
@@ -190,7 +197,6 @@ AppsButton buildAddButton({
   );
 }
 
-
 // Cards
 // - cards related utils
 EdgeInsets cardTopMargin = EdgeInsets.only(top: defaultSize * 2);
@@ -198,8 +204,7 @@ EdgeInsets cardPadding = EdgeInsets.all(defaultSize * 2);
 
 BoxDecoration buildCardDecoration() {
   return BoxDecoration(
-    border:
-    Border.all(color: kBlack.withOpacity(.2), width: defaultSize * .1),
+    border: Border.all(color: kBlack.withOpacity(.2), width: defaultSize * .1),
     borderRadius: BorderRadius.circular(defaultSize * 3),
   );
 }
