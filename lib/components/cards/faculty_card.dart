@@ -29,7 +29,7 @@ class FacultyCard extends StatelessWidget {
     ];
     List<String> facultyList = data.faculty.split(" ");
 
-    String smallText = facultyList.length > 1 ? ' ' + facultyList.sublist(1,).join() : '';
+    String smallText = facultyList.length > 1 ? ' ' + facultyList.sublist(1,).join(' ') : '';
     String bigText = facultyList[0];
 
     return Container(

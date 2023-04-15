@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/models/card_data.dart';
+import 'package:neocloud_mobile/screens/academic/components/certificate_list.dart';
 
 
 class CertificateBody extends StatelessWidget {
@@ -9,9 +11,9 @@ class CertificateBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        // + Add Certificate and List of CARDS
+        // + Add Button and List of CARDS
         SizedBox(height: defaultSize * 3),
-        // AttendanceList(data: attendanceList),
+        CertificateList(data: certificatesList),
       ],
     );
   }

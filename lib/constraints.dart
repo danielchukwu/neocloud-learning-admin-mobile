@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/appbar/appbar.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
+import 'package:neocloud_mobile/components/cards/components/card_intro.dart';
+import 'package:neocloud_mobile/components/cards/components/display_filename.dart';
+import 'package:neocloud_mobile/components/images.dart';
+import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
@@ -197,14 +201,67 @@ AppsButton buildAddButton({
   );
 }
 
-// Cards
-// - cards related utils
+
+// CARDS
+
+// variables
 EdgeInsets cardTopMargin = EdgeInsets.only(top: defaultSize * 2);
 EdgeInsets cardPadding = EdgeInsets.all(defaultSize * 2);
 
+// card decoration
 BoxDecoration buildCardDecoration() {
   return BoxDecoration(
     border: Border.all(color: kBlack.withOpacity(.2), width: defaultSize * .1),
     borderRadius: BorderRadius.circular(defaultSize * 3),
+  );
+}
+
+// - e.g label
+//       text
+CardHeader buildLabelAndText({required String label, required String text}) {
+  return CardHeader(
+    label: label,
+    title: text,
+    textSize: defaultSize * 1.6,
+    labelSize: defaultSize * 1.4,
+  );
+}
+
+// - image or file display
+
+Widget buildImageOrFileName({required String file}) {
+  if (file.contains(".jpg") || file.contains(".png")) {
+    return RectangularBoxImage(img: file);
+  } else {
+    return DisplayFileName(title: file);
+  }
+}
+
+// - download button
+
+Row buildDownloadButton({required Function(BuildContext? context) press}) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: <Widget>[
+      // Download Button
+      AppsButton(
+        title: "download",
+        bgColor: kBlack80,
+        padTopBottom: defaultSize * .5,
+        icon: Icons.download,
+        press: press,
+      ),
+    ],
+  );
+}
+
+// - Avatar: Username
+// e.g 😎 john doe
+Row buildAvatarAndName({required String avatar, required String name}) {
+  return Row(
+    children: <Widget>[
+      RoundBoxAvatar(width: defaultSize * 3, height: defaultSize * 3, image: avatar,),
+      Column(children: [TextMedium(title: name, color: kBlack70,)],)
+    ],
   );
 }

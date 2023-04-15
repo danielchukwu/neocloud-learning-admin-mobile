@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/models/card_data.dart';
+import 'package:neocloud_mobile/screens/academic/components/courses_list.dart';
 import 'package:neocloud_mobile/screens/academic/components/filter_section.dart';
 
 class CoursesBody extends StatefulWidget {
@@ -25,9 +27,9 @@ class _CoursesBodyState extends State<CoursesBody> {
           showClass: true,
         ),
 
-        // + Create Routing and List of CARDS
+        // + Add button and List of CARDS
         SizedBox(height: defaultSize * 3),
-        // AttendanceList(data: attendanceList),
+        CoursesList(data: coursesList),
       ],
     );
   }

@@ -38,8 +38,9 @@ class ClassWorkCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+
           // Card Into
-          CardIntro(label: "Class Work", title: data.title),
+          CardHeader(label: "Class Work", title: data.title),
 
           // Description Label
           CardDescription(label: "Description", content: data.description),
@@ -50,37 +51,14 @@ class ClassWorkCard extends StatelessWidget {
 
           // Classworks Image or File name
           SizedBox(height: defaultSize * 3),
-          getImageOrFileName(),
+          buildImageOrFileName(file: data.file),
 
           // Download button
           SizedBox(height: defaultSize * 2),
-          buildDownloadButton()
+          buildDownloadButton(press: (context) {}),
+
         ],
       ),
     );
-  }
-
-  Row buildDownloadButton() {
-    return Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
-            // Download Button
-            AppsButton(
-              title: "download",
-              bgColor: kBlack80,
-              padTopBottom: defaultSize * .5,
-              icon: Icons.download,
-              press: (context) {},
-            ),
-          ],
-        );
-  }
-
-  Widget getImageOrFileName() {
-    if (data.file.contains(".jpg") || data.file.contains(".png")) {
-      return RectangularBoxImage(img: data.file);
-    } else {
-      return DisplayFileName(title: data.file);
-    }
   }
 }

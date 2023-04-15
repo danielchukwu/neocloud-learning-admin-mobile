@@ -34,7 +34,7 @@ class TextMedium extends StatelessWidget {
   const TextMedium({
     super.key,
     required this.title,
-    this.color = Colors.black,
+    this.color = Colors.black87,
     this.weight = FontWeight.w400,
     this.textAlign = TextAlign.start
   });

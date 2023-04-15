@@ -83,11 +83,11 @@ class Attendance extends AppData {
 }
 // Attendance objects
 List<Attendance> attendanceList = [
-  Attendance(id: '1', clas: 'Maths', attendance: 90, createdAt: '2022-04-11'),
-  Attendance(id: '2', clas: 'Science', attendance: 80, createdAt: '2022-04-10'),
-  Attendance(id: '3', clas: 'English', attendance: 95, createdAt: '2022-04-09'),
-  Attendance(id: '4', clas: 'Social Studies', attendance: 85, createdAt: '2022-04-08'),
-  Attendance(id: '5', clas: 'History', attendance: 75, createdAt: '2022-04-07'),
+  Attendance(id: '1', clas: 'Maths', attendance: 90, createdAt: '2023-04-11'),
+  Attendance(id: '2', clas: 'Science', attendance: 80, createdAt: '2023-03-10'),
+  Attendance(id: '3', clas: 'English', attendance: 95, createdAt: '2022-09-09'),
+  Attendance(id: '4', clas: 'Social Studies', attendance: 85, createdAt: '2022-05-08'),
+  Attendance(id: '5', clas: 'History', attendance: 75, createdAt: '2022-03-07'),
 ];
 
 
@@ -97,6 +97,7 @@ class ClassRoutine extends AppData {
     required super.id,
     required this.clas,
     required this.subject,
+    required this.educator,
     required this.startTime,
     required this.endTime,
     required this.createdAt,
@@ -104,17 +105,18 @@ class ClassRoutine extends AppData {
 
   final String clas;
   final String subject;
+  final String educator;
   final String startTime;
   final String endTime;
   final String createdAt;
 }
 // Class routine objects
 List<ClassRoutine> classRoutineList = [
-  ClassRoutine(id: '1', clas: 'Maths', subject: 'Algebra', startTime: '9:00 AM', endTime: '10:30 AM', createdAt: '2023-03-15'),
-  ClassRoutine(id: '2', clas: 'Science', subject: 'Biology', startTime: '10:45 AM', endTime: '12:15 PM', createdAt: '2022-09-09'),
-  ClassRoutine(id: '3', clas: 'English', subject: 'Grammar', startTime: '1:00 PM', endTime: '2:30 PM', createdAt: '2023-03-28'),
-  ClassRoutine(id: '4', clas: 'Social Studies', subject: 'History', startTime: '2:45 PM', endTime: '4:15 PM', createdAt: '2022-04-04'),
-  ClassRoutine(id: '4', clas: 'Social Studies', subject: 'History', startTime: '12:45 PM', endTime: '2:15 PM', createdAt: '2023-04-11'),
+  ClassRoutine(id: '1', clas: 'Maths', subject: 'Algebra', educator: 'Faith Okeke', startTime: '9:00 AM', endTime: '10:30 AM', createdAt: '2023-03-15'),
+  ClassRoutine(id: '2', clas: 'Science', subject: 'Biology', educator: 'Paul Okocha', startTime: '10:45 AM', endTime: '12:15 PM', createdAt: '2022-09-09'),
+  ClassRoutine(id: '3', clas: 'English', subject: 'Grammar', educator: 'Jason Osimeh', startTime: '1:00 PM', endTime: '2:30 PM', createdAt: '2023-03-28'),
+  ClassRoutine(id: '4', clas: 'Social Studies', subject: 'History', educator: 'Thomas Tuchel', startTime: '2:45 PM', endTime: '4:15 PM', createdAt: '2022-04-04'),
+  ClassRoutine(id: '5', clas: 'Data Analysis', subject: 'Data Migration', educator: 'Samuel Nuhu', startTime: '12:45 PM', endTime: '2:15 PM', createdAt: '2023-04-11'),
 ];
 
 
@@ -158,9 +160,9 @@ class Syllabus extends AppData {
 // Syllabus objects
 List<Syllabus> syllabiList = [
   Syllabus(id: '1', clas: 'Class A', title: 'Unit 1', subject: 'Mathematics', file: 'maths_unit1.pdf'),
-  Syllabus(id: '2', clas: 'Class B', title: 'Chapter 3', subject: 'English', file: 'english_chapter3.pdf'),
+  Syllabus(id: '2', clas: 'Class B', title: 'Chapter 3', subject: 'English', file: "assets/images/nct-meeting.png",),
   Syllabus(id: '3', clas: 'Class C', title: 'Topic 2', subject: 'Science', file: 'science_topic2.pdf'),
-  Syllabus(id: '4', clas: 'Class D', title: 'Unit 4', subject: 'Social Studies', file: 'social_studies_unit4.pdf'),
+  Syllabus(id: '4', clas: 'Class D', title: 'Unit 4', subject: 'Social Studies', file: "assets/images/nct-meeting.png",),
   Syllabus(id: '5', clas: 'Class E', title: 'Lesson 5', subject: 'History', file: 'history_lesson5.pdf'),
 ];
 
@@ -255,7 +257,7 @@ class Faculty extends AppData {
   final int studentsCount;
 }
 // Faculty objects
-final List<Faculty> faculties = [
+final List<Faculty> facultiesList = [
   Faculty(
     id: '1',
     faculty: 'Engineering',
@@ -338,73 +340,67 @@ final List<Class> classesList = [
 
 
 // FINANCE
-class Finance extends AppData {
-  Finance({
+class Invoice extends AppData {
+  Invoice({
     required super.id,
-    required this.invoiceTitle,
-    required this.educator,
-    required this.avatar,
+    required this.title,
+    required this.name,
+    // required this.avatar,
     required this.clas,
     required this.status,
     required this.totalAmount,
     required this.paidAmount,
   });
 
-  final String invoiceTitle;
-  final String educator;
-  final String avatar;
+  final String title;
+  final String name;
   final String clas;
   final String status;
   final double totalAmount;
   final double paidAmount;
 }
 // Finance objects
-final List<Finance> finances = [
-  Finance(
+final List<Invoice> InvoiceList = [
+  Invoice(
     id: '1',
-    invoiceTitle: 'Tuition fees',
-    educator: 'John Doe',
-    avatar: 'https://example.com/johndoe.jpg',
+    title: 'Tuition fees',
+    name: 'John Doe',
     clas: 'E101',
     status: 'Unpaid',
     totalAmount: 5000.0,
     paidAmount: 0.0,
   ),
-  Finance(
+  Invoice(
     id: '2',
-    invoiceTitle: 'Library fees',
-    educator: 'Jane Smith',
-    avatar: 'https://example.com/janesmith.jpg',
+    title: 'Library fees',
+    name: 'Jane Smith',
     clas: 'B101',
     status: 'Paid',
     totalAmount: 1000.0,
     paidAmount: 1000.0,
   ),
-  Finance(
+  Invoice(
     id: '3',
-    invoiceTitle: 'Lab fees',
-    educator: 'Sarah Johnson',
-    avatar: 'https://example.com/sarahjohnson.jpg',
+    title: 'Lab fees',
+    name: 'Sarah Johnson',
     clas: 'H101',
     status: 'Unpaid',
     totalAmount: 2500.0,
     paidAmount: 0.0,
   ),
-  Finance(
+  Invoice(
     id: '4',
-    invoiceTitle: 'Exam fees',
-    educator: 'David Lee',
-    avatar: 'https://example.com/davidlee.jpg',
+    title: 'Exam fees',
+    name: 'David Lee',
     clas: 'L101',
     status: 'Unpaid',
     totalAmount: 2000.0,
     paidAmount: 0.0,
   ),
-  Finance(
+  Invoice(
     id: '5',
-    invoiceTitle: 'Lab equipment fees',
-    educator: 'Mary Brown',
-    avatar: 'https://example.com/marybrown.jpg',
+    title: 'Lab equipment fees',
+    name: 'Mary Brown',
     clas: 'S101',
     status: 'Paid',
     totalAmount: 500.0,
@@ -429,7 +425,7 @@ class Book extends AppData {
   final String avatar;
 }
 // Book objects
-List<Book> books = [
+List<Book> booksList = [
   Book(
       id: "1",
       title: "The Great Gatsby",
@@ -483,7 +479,7 @@ class BookIssue extends AppData {
   final String createdAt;
 }
 // BookIssue objects
-List<BookIssue> bookIssues = [
+List<BookIssue> bookIssuesList = [
   BookIssue(
       id: "1",
       book: "The Great Gatsby",
@@ -531,16 +527,14 @@ List<BookIssue> bookIssues = [
 class Enquiries extends AppData {
   Enquiries({
     required super.id,
-    required this.purpose,
+    required this.enquiry,
     required this.comments,
-    required this.info,
     required this.howYouFoundUs,
     required this.createdAt,
   });
 
-  final String purpose;
+  final String enquiry;
   final String comments;
-  final String info;
   final String howYouFoundUs;
   final String createdAt;
 }
@@ -548,43 +542,91 @@ class Enquiries extends AppData {
 List<Enquiries> enquiriesList = [
   Enquiries(
     id: '1',
-    purpose: 'Admission Enquiry',
+    enquiry: 'Admission Enquiry',
     comments: 'I am interested in pursuing a degree in Computer Science',
-    info: 'John Doe',
     howYouFoundUs: 'Friend referral',
     createdAt: '2022-03-21',
   ),
   Enquiries(
     id: '2',
-    purpose: 'Course Enquiry',
+    enquiry: 'Course Enquiry',
     comments: 'I would like more information on the Software Engineering course',
-    info: 'Jane Smith',
     howYouFoundUs: 'Google Search',
     createdAt: '2022-04-01',
   ),
   Enquiries(
     id: '3',
-    purpose: 'General Enquiry',
+    enquiry: 'General Enquiry',
     comments: 'Can you provide me with the campus address?',
-    info: 'Bob Johnson',
     howYouFoundUs: 'Brochure',
     createdAt: '2022-02-10',
   ),
   Enquiries(
     id: '4',
-    purpose: 'Financial Aid Enquiry',
+    enquiry: 'Financial Aid Enquiry',
     comments: 'I am wondering what financial aid options are available for international students',
-    info: 'Sarah Lee',
     howYouFoundUs: 'School Website',
     createdAt: '2022-03-17',
   ),
   Enquiries(
     id: '5',
-    purpose: 'Career Services Enquiry',
+    enquiry: 'Career Services Enquiry',
     comments: 'I would like to learn more about the career services provided by the school',
-    info: 'David Kim',
     howYouFoundUs: 'College Fair',
     createdAt: '2022-04-07',
+  ),
+];
+
+// Event Calender
+// - title
+// - startDate
+// - endDate
+
+
+// EventCalendar
+class EventCalendar extends AppData {
+  EventCalendar({
+    required super.id,
+    required this.title,
+    required this.startDate,
+    required this.endDate,
+  });
+
+  final String title;
+  final String startDate;
+  final String endDate;
+}
+// EventCalendar objects
+List<EventCalendar> eventList = [
+  EventCalendar(
+    id: "1",
+    title: "Conference",
+    startDate: "2023-04-20",
+    endDate: "2023-04-22",
+  ),
+  EventCalendar(
+    id: "2",
+    title: "Concert",
+    startDate: "2023-05-15",
+    endDate: "2023-05-16",
+  ),
+  EventCalendar(
+    id: "3",
+    title: "Birthday Party",
+    startDate: "2023-06-01",
+    endDate: "2023-06-01",
+  ),
+  EventCalendar(
+    id: "4",
+    title: "Wedding",
+    startDate: "2023-07-10",
+    endDate: "2023-07-12",
+  ),
+  EventCalendar(
+    id: "5",
+    title: "Holiday",
+    startDate: "2023-08-20",
+    endDate: "2023-08-26",
   ),
 ];
 
@@ -626,6 +668,11 @@ List<Enquiries> enquiriesList = [
 // - faculty
 // - hod
 // - students_count
+//
+// Event Calender
+// - title
+// - startDate
+// - endDate
 //
 // Class
 // - name

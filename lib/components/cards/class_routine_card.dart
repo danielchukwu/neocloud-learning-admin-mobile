@@ -24,7 +24,7 @@ class ClassRoutineCard extends StatelessWidget {
     //   27  |  March  |  2023
     final subjectAndTeacher = [
       {"label": "Subject", "title": data.subject, "flex": 1},
-      {"label": "Teacher", "title": "Faith Okeke",   "flex": 1},
+      {"label": "Teacher", "title": data.educator,   "flex": 1},
     ];
 
     final sections = [
@@ -41,10 +41,10 @@ class ClassRoutineCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           // Card Into
-          CardIntro(label: "Class", title: data.clas),
+          CardHeader(label: "Class", title: data.clas),
 
           // Subject and Teacher
-          SizedBox(height: defaultSize * 2),
+          SizedBox(height: defaultSize * 1.5),
           CardSections(data: subjectAndTeacher, showLabel: true, showSeperator: false),
 
           // Dates

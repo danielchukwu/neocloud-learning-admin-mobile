@@ -24,7 +24,7 @@ class _ClassRoutineBodyState extends State<ClassRoutineBody> {
         SizedBox(height: defaultSize * 3),
         FilterSection(press: updateFilter, showClass: true, showSection: true),
 
-        // + Create Routing and List of CARDS
+        // + Add button and List of CARDS
         SizedBox(height: defaultSize * 3),
         ClassRoutineList(data: classRoutineList),
       ],

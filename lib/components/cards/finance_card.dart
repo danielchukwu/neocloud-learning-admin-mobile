@@ -11,7 +11,7 @@ class FinanceCard extends StatelessWidget {
     required this.data,
   });
 
-  final Finance data;
+  final Invoice data;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class FinanceCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           // Card Into
-          CardHeader(label: "Invoice", title: data.invoiceTitle),
+          CardHeader(label: "Invoice", title: data.title),
 
           // label: text
           SizedBox(height: defaultSize * .5),
