@@ -11,7 +11,7 @@ List<String> monthsFilter = [
   'September',
   'October',
   'November',
-  'December'
+  'December',
 ];
 String currentMonth = monthsFilter[DateTime.now().month - 1];  // e.g monthsFilter[4]
 
@@ -25,28 +25,43 @@ List<String> yearsFilter = List.generate(range, (index) => ("${index + startYear
 /// Class
 List<String> coursesFilter = [
   'Select a class',
-  'autocad',
-  'basic',
-  'branding',
-  'cloud computing',
-  'cyber policy and governance',
-  'cybersecurity',
-  'data analytics',
-  'data science',
-  'digital marketing',
-  'digital media',
-  'ethical hacking',
-  'graphic design',
-  'networking',
-  'social media marketing',
-  'software development',
-  'ui/ux design',
-  'web design',
-  'web development',
+  'Autocad',
+  'Basic',
+  'Branding',
+  'Cloud Computing',
+  'Cyber Policy And Governance',
+  'Cyber Security',
+  'Data Analytics',
+  'Data Science',
+  'Digital Marketing',
+  'Digital Media',
+  'Ethical Hacking',
+  'Graphic Design',
+  'Networking',
+  'Social Media Marketing',
+  'Software Development',
+  'UI/UX Design',
+  'Web Design',
+  'Web Development',
 ];
 
 List<String> sectionFilters = [
   'Select section',
   'First',
   'Second',
+];
+
+List<String> statusFilters = [
+  'Select status',
+  'Paid',
+  'Partially Paid',
+];
+
+List<String> dateRangeFilters = [
+  'Select range',
+  'Today',
+  'This Week',
+  'This Month',
+  'This Year',
+  'Old',
 ];
