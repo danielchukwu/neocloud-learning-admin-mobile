@@ -55,6 +55,7 @@ class _LoginFormState extends State<LoginForm> {
           AppsButton(
               title: 'Login',
               bgColor: kBlueLight,
+              borderRadius: defaultSize * 2,
               press: (context) {
                 if (_formkey.currentState!.validate()) {
                   _formkey.currentState!.save();
