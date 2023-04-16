@@ -25,7 +25,8 @@ class CoursesCard extends StatelessWidget {
           CardHeader(label: "Class", title: data.clas),
 
           // label & Data
-          buildLabelAndText(label: "Course Name", text: data.course),
+          SizedBox(height: defaultSize * 2,),
+          buildLabelAndText(label: "Course", text: data.course),
         ],
       ),
     );

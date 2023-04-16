@@ -16,10 +16,10 @@ class DisplayFileName extends StatelessWidget {
       Expanded(
         child: Container(
           padding: EdgeInsets.symmetric(
-              vertical: defaultSize * 2, horizontal: defaultSize * 2),
+              vertical: defaultSize * 1.5, horizontal: defaultSize * 1.5),
           decoration: BoxDecoration(
             color: kBlack.withOpacity(.1),
-            borderRadius: BorderRadius.circular(defaultSize * 2),
+            // borderRadius: BorderRadius.circular(defaultSize * .5),
           ),
           child: TextCustomMaxLine(
             title: title,
