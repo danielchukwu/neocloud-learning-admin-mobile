@@ -260,31 +260,31 @@ class Faculty extends AppData {
 final List<Faculty> facultiesList = [
   Faculty(
     id: '1',
-    faculty: 'Engineering',
+    faculty: 'Data Science',
     hod: 'John Doe',
     studentsCount: 1200,
   ),
   Faculty(
     id: '2',
-    faculty: 'Business',
+    faculty: 'Digital Marketing',
     hod: 'Jane Smith',
     studentsCount: 800,
   ),
   Faculty(
     id: '3',
-    faculty: 'Arts',
+    faculty: 'Cyber Policy And Governance',
     hod: 'Sarah Johnson',
     studentsCount: 600,
   ),
   Faculty(
     id: '4',
-    faculty: 'Law',
+    faculty: 'Ethical Hacking',
     hod: 'David Lee',
     studentsCount: 400,
   ),
   Faculty(
     id: '5',
-    faculty: 'Sciences',
+    faculty: 'Graphical Design',
     hod: 'Mary Brown',
     studentsCount: 1000,
   ),
