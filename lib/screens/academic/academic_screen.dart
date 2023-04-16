@@ -70,6 +70,8 @@ class _AcademicScreenState extends State<AcademicScreen> {
               // Event Calendar
               AcademicOptions.selectedIndex == 7 ? const EventCalendarBody() : const SizedBox(),
 
+              // Bottom Padding
+              pageBottomPadding(height: defaultSize * 12),
             ],
           ),
         ),

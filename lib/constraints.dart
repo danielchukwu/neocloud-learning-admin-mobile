@@ -19,6 +19,7 @@ var defaultSize = SizeConfig.defaultSize!;
 double appsBodyPadding = defaultSize * 2;
 EdgeInsets screenPadding =
     EdgeInsets.symmetric(horizontal: appsBodyPadding); // 20px 20px
+SizedBox pageBottomPadding ({double height = 30}) => SizedBox(height: height);
 
 // Border
 double buttonBorderWidth = defaultSize * .05;
@@ -247,7 +248,8 @@ Row buildDownloadButton({required Function(BuildContext? context) press}) {
       AppsButton(
         title: "download",
         bgColor: kBlack80,
-        padTopBottom: defaultSize * .5,
+        padTopBottom: defaultSize * .2,
+        // borderRadius: defaultSize * .5,
         icon: Icons.download,
         press: press,
       ),
