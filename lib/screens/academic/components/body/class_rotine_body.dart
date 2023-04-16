@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/card_data.dart';
-import 'package:neocloud_mobile/screens/academic/components/class_routine_list.dart';
 import 'package:neocloud_mobile/screens/academic/components/filter_section.dart';
+import 'package:neocloud_mobile/screens/academic/components/list/class_routine_list.dart';
 
 class ClassRoutineBody extends StatefulWidget {
   const ClassRoutineBody({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class _ClassRoutineBodyState extends State<ClassRoutineBody> {
 
   @override
   Widget build(BuildContext context) {
-    print("filter: ${filter}");
+    print("filter: $filter");
 
     return Column(
       children: <Widget>[
