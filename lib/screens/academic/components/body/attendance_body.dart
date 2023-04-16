@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/card_data.dart';
 import 'package:neocloud_mobile/screens/academic/components/filter_section.dart';
-import 'package:neocloud_mobile/screens/academic/components/attendance_list.dart';
+import 'package:neocloud_mobile/screens/academic/components/list/attendance_list.dart';
 
 class AttendanceBody extends StatefulWidget {
   const AttendanceBody({Key? key}) : super(key: key);
