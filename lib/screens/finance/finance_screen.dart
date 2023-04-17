@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
-import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
+import 'package:neocloud_mobile/screens/finance/components/finance_body.dart';
 import 'package:neocloud_mobile/utils.dart';
 
 class FinanceScreen extends StatelessWidget {
@@ -19,10 +19,7 @@ class FinanceScreen extends StatelessWidget {
         showLeading: false,
         routeName: getRouteName(ProfileScreen.screenName),
       ),
-      body: Container(
-        color: Colors.red,
-        child: TextMedium(title: screenName, color: Colors.white),
-      ),
+      body: FinanceBody(),
       extendBody: true,
       bottomNavigationBar: const AppsBottomNavBar(),
     );
