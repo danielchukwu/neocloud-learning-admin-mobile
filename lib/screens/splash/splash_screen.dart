@@ -5,6 +5,7 @@ import 'package:neocloud_mobile/size_config.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
+
   final String iconAsset = 'assets/images/logo-light-sm.png';
   static String screenName = 'Loading';
 
@@ -12,14 +13,11 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      body: SafeArea(
-        child: Center(
+      body: Center(
           child: Container(
-            margin: EdgeInsets.only(bottom: defaultSize * 5),
-            child: DisplayAssetImage(icon: iconAsset, size: defaultSize * 4),
-          )
-        ),
-      ),
+        margin: EdgeInsets.only(bottom: defaultSize * 5),
+        child: DisplayAssetImage(icon: iconAsset, size: defaultSize * 4),
+      )),
     );
   }
 }
