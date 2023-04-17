@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:neocloud_mobile/components/cards/event_calendar_card.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/card_data.dart';
-import 'package:neocloud_mobile/screens/academic/components/list/event_calendar_list.dart';
 
 class EventCalendarBody extends StatelessWidget {
   const EventCalendarBody({Key? key}) : super(key: key);
@@ -10,9 +10,20 @@ class EventCalendarBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        // + Add Event and List of CARDS
+        // + Add Event Button
         SizedBox(height: defaultSize * 3),
-        EventCalendarList(data: eventList),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            buildAddButton(title: "Add Event", press: (context) {}),
+          ],
+        ),
+
+        // Cards
+        SizedBox(height: defaultSize),
+        Column(
+          children: List.generate(eventList.length, (index) => EventCalendarCard(data: eventList[index])),
+        ),
       ],
     );
   }

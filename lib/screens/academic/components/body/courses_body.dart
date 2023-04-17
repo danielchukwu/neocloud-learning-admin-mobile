@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:neocloud_mobile/components/cards/components/courses_card.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/card_data.dart';
-import 'package:neocloud_mobile/screens/academic/components/list/courses_list.dart';
 import 'package:neocloud_mobile/screens/academic/components/filter_section.dart';
 
 class CoursesBody extends StatefulWidget {
@@ -27,9 +27,20 @@ class _CoursesBodyState extends State<CoursesBody> {
           showClass: true,
         ),
 
-        // + Add button and List of CARDS
+        // + Add Course Button
         SizedBox(height: defaultSize * 3),
-        CoursesList(data: coursesList),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            buildAddButton(title: "Add Course", press: (context) {}),
+          ],
+        ),
+
+        // Cards
+        SizedBox(height: defaultSize),
+        Column(
+          children: List.generate(coursesList.length, (index) => CoursesCard(data: coursesList[index])),
+        ),
       ],
     );
   }

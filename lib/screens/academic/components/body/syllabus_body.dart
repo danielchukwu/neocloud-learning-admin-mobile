@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:neocloud_mobile/components/cards/syllabus_card.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/card_data.dart';
 import 'package:neocloud_mobile/screens/academic/components/filter_section.dart';
-import 'package:neocloud_mobile/screens/academic/components/list/syllabus_list.dart';
 
 class SyllabusBody extends StatefulWidget {
   const SyllabusBody({Key? key}) : super(key: key);
@@ -26,9 +26,20 @@ class _SyllabusBodyState extends State<SyllabusBody> {
           showSection: true,
         ),
 
-        // + Add Syllabus and List of CARDS
+        // + Add Syllabus Button
         SizedBox(height: defaultSize * 3),
-        SyllabusList(data: syllabiList),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            buildAddButton(title: "Add Syllabus", press: (context) {}),
+          ],
+        ),
+
+        // Cards
+        SizedBox(height: defaultSize),
+        Column(
+          children: List.generate(syllabiList.length, (index) => SyllabusCard(data: syllabiList[index])),
+        ),
       ],
     );
   }

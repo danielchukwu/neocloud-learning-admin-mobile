@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:neocloud_mobile/components/cards/class_card.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/card_data.dart';
-import 'package:neocloud_mobile/screens/academic/components/list/class_list.dart';
 
 class ClassBody extends StatelessWidget {
   const ClassBody({Key? key}) : super(key: key);
@@ -10,9 +10,20 @@ class ClassBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        // + Add Button and List of CARDS
+        // + Add Class Button
         SizedBox(height: defaultSize * 3),
-        ClassList(data: classesList),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            buildAddButton(title: "Add Class", press: (context) {}),
+          ],
+        ),
+
+        // Cards
+        SizedBox(height: defaultSize),
+        Column(
+          children: List.generate(classesList.length, (index) => ClassCard(data: classesList[index])),
+        ),
       ],
     );
   }
