@@ -11,7 +11,7 @@ class FinanceCard extends StatelessWidget {
     required this.data,
   });
 
-  final Invoice data;
+  final Finance data;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,8 @@ class FinanceCard extends StatelessWidget {
     // without label
     //   27  |  March  |  2023
     final sections = [
-      {"label": "Total Amount(NGN)", "title": "${data.totalAmount}", "flex": 1},
-      {"label": "Paid Amount(NGN)",   "title": "${data.paidAmount}", "flex": 1},
+      {"label": "Total Amount", "title": "${data.totalAmount}", "flex": 1},
+      {"label": "Paid Amount",   "title": "${data.paidAmount}", "flex": 1},
     ];
 
     return Container(
@@ -39,7 +39,7 @@ class FinanceCard extends StatelessWidget {
           CardHeader(label: "Invoice", title: data.title),
 
           // label: text
-          SizedBox(height: defaultSize * .5),
+          SizedBox(height: defaultSize),
           LabelText(label: "Name", text: data.name),
           LabelText(label: "Class", text: data.clas),
           LabelText(label: "Status", text: data.status),
