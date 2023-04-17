@@ -32,7 +32,7 @@ class _FinanceBodyState extends State<FinanceBody> {
     _searchController.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     print('finance filter: $_filter');
@@ -75,7 +75,7 @@ class _FinanceBodyState extends State<FinanceBody> {
             ),
 
             // Bottom Padding
-            pageBottomPadding(height: defaultSize * 12),
+            pageBottomPadding(),
           ],
         ),
       ),

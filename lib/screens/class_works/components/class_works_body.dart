@@ -60,7 +60,7 @@ class _ClassWorkBodyState extends State<ClassWorkBody> {
             ),
 
             // Bottom Padding
-            pageBottomPadding(height: defaultSize * 12),
+            pageBottomPadding(),
           ],
         ),
       ),

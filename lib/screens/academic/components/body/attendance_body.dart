@@ -12,11 +12,11 @@ class AttendanceBody extends StatefulWidget {
 }
 
 class _AttendanceBodyState extends State<AttendanceBody> {
-  Map<String, String> filter = {};
+  Map<String, String> _filter = {};
 
   @override
   Widget build(BuildContext context) {
-    print("filter: ${filter}");
+    print("filter: ${_filter}");
 
     return Column(
       children: <Widget>[
@@ -48,7 +48,7 @@ class _AttendanceBodyState extends State<AttendanceBody> {
 
   void updateFilter(Map<String, String> filterData) {
     setState(() {
-      filter = filterData;
+      _filter = filterData;
     });
   }
 }

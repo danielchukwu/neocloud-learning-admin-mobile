@@ -12,7 +12,7 @@ class SyllabusBody extends StatefulWidget {
 }
 
 class _SyllabusBodyState extends State<SyllabusBody> {
-  Map<String, String> filter = {};
+  Map<String, String> _filter = {};
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _SyllabusBodyState extends State<SyllabusBody> {
 
   void updateFilter(Map<String, String> filterData) {
     setState(() {
-      filter = filterData;
+      _filter = filterData;
     });
   }
 }
