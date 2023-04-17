@@ -4,6 +4,7 @@ import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/cards/components/card_intro.dart';
 import 'package:neocloud_mobile/components/cards/components/display_filename.dart';
 import 'package:neocloud_mobile/components/images.dart';
+import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
@@ -265,5 +266,14 @@ Row buildAvatarAndName({required String avatar, required String name}) {
       RoundBoxAvatar(width: defaultSize * 3, height: defaultSize * 3, image: avatar,),
       Column(children: [TextMedium(title: name, color: kBlack70,)],)
     ],
+  );
+}
+
+// - Search TextField
+Widget buildSearchTextField({required Function(String value) press}) {
+  return AppsTextField(
+    prefixIcon: Icons.search,
+    hintText: "Search",
+    onSubmitPress: press,
   );
 }
