@@ -90,7 +90,6 @@ class _LoginInputFieldState extends State<LoginInputField> {
   }
 }
 
-
 // TextField
 class AppsTextField extends StatefulWidget {
   const AppsTextField({
@@ -132,6 +131,8 @@ class _AppsTextFieldState extends State<AppsTextField> {
     super.dispose();
   }
 
+  late bool hideCancel = true;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -140,6 +141,7 @@ class _AppsTextFieldState extends State<AppsTextField> {
       textInputAction: TextInputAction.search,
       style: getAppsTextStyle(fontWeight: FontWeight.w400, color: kBlack80),
       onSubmitted: widget.onSubmitPress,
+      onChanged: hideOrRevealCancel,
       decoration: buildDecoration(),
     );
   }
@@ -147,17 +149,40 @@ class _AppsTextFieldState extends State<AppsTextField> {
   InputDecoration buildDecoration() {
     return InputDecoration(
       contentPadding: EdgeInsets.symmetric(vertical: defaultSize),
-      prefixIcon: widget.prefixIcon != null ? Icon(widget.prefixIcon) : SizedBox(),
-      suffixIcon: widget.showCancel != null ? IconButton(icon: Icon(Icons.cancel_outlined), onPressed: _controller.clear,) : SizedBox(),
+      prefixIcon:
+          widget.prefixIcon != null ? Icon(widget.prefixIcon) : SizedBox(),
+      suffixIcon: widget.showCancel != null && !hideCancel
+          ? IconButton(
+              icon: Icon(Icons.cancel, size: defaultSize * 2),
+              onPressed: () {
+                _controller.clear();
+                setState(() {
+                  hideCancel = true;
+                });
+              },
+            )
+          : SizedBox(),
       prefixIconColor: kBlack50,
       suffixIconColor: kBlack50,
       hintText: widget.hintText,
       fillColor: kBlack.withOpacity(.05),
       filled: true,
       border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(widget.borderRadius),
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(widget.borderRadius),
       ),
     );
+  }
+
+  void hideOrRevealCancel(String value) {
+    if (_controller.text.length != 0) {
+      setState(() {
+        hideCancel = false;
+      });
+    } else {
+      setState(() {
+        hideCancel = true;
+      });
+    }
   }
 }
