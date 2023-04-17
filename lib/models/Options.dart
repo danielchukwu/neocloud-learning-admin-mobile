@@ -26,3 +26,19 @@ class AcademicOptions extends OptionsObject {
     Option(title: "Event Calendar"),
   ];
 }
+
+class BackOfficeOptions extends OptionsObject {
+  static int selectedIndex = 0;
+
+  static setSelectedIndex(int index) => selectedIndex = index;
+  static int getSelectedIndex() => selectedIndex;
+  // static int get selectedOption => _selectedOption;
+
+  // Try to make sure the items are always divisible by 2
+  static List<Option> items = [
+    Option(title: "Books"),
+    Option(title: "Session Manager"),
+    Option(title: "Noticeboard"),
+    Option(title: "Enquires"),
+  ];
+}
