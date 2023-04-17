@@ -3,6 +3,7 @@ import 'package:neocloud_mobile/controllers/NavItem.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/back_office/back_office_screen.dart';
+import 'package:neocloud_mobile/screens/book_issues/books_issue_screen.dart';
 import 'package:neocloud_mobile/screens/class_works/class_works_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
 import 'package:neocloud_mobile/screens/finance/finance_screen.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         '/academic': (context) => const AcademicScreen(),
         '/dashboard': (context) => const DashboardScreen(),
         '/back-office': (context) => const BackOfficeScreen(),
+        '/book-issues': (context) => const BookIssuesScreen(),
         '/finance': (context) => const FinanceScreen(),
         '/profile': (context) => ProfileScreen(),
         '/settings': (context) => const SettingsScreen(),
