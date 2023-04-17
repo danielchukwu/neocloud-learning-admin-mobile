@@ -1,73 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/cards/class_works_card.dart';
 import 'package:neocloud_mobile/components/cards/finance_card.dart';
-import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/card_data.dart';
 
-class FinanceList extends StatefulWidget {
+class FinanceList extends StatelessWidget {
   FinanceList({
     super.key,
     required this.data,
   });
-
   final List<Finance> data;
-
-  @override
-  State<FinanceList> createState() => _FinanceList();
-}
-
-class _FinanceList extends State<FinanceList> {
-  late TextEditingController _searchController;
-
-  @override
-  void initState() {
-    super.initState();
-    _searchController = TextEditingController(text: "");
-
-    _searchController.addListener(() {
-      // Filter and fetch data if necessary
-      print(_searchController.text);
-    });
-  }
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        // Search Text Field
-        buildSearchTextField(press: updateSearchController),
-
-        // + Add Button
-        SizedBox(height: defaultSize * 3),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            buildAddButton(title: "Add Invoice", press: (context) {}),
-          ],
-        ),
-
-        // Cards
-        SizedBox(height: defaultSize),
-        Column(
           children: List.generate(
-            widget.data.length,
-            (index) => FinanceCard(data: widget.data[index]),
-          ),
-        ),
-      ],
+            data.length,
+            (index) => FinanceCard(data: data[index]),
+          )
     );
-  }
-
-  updateSearchController(String value) {
-    setState(() {
-      _searchController.text = value;
-    });
   }
 }

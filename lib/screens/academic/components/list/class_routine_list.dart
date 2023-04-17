@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/class_routine_card.dart';
-import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/card_data.dart';
 
 class ClassRoutineList extends StatelessWidget {
@@ -14,23 +13,7 @@ class ClassRoutineList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        // + Create Routing Button
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            buildAddButton(title: "Create Routing", press: (context) {}),
-          ],
-        ),
-
-        // Cards
-        SizedBox(height: defaultSize),
-        Column(
-          children: List.generate(attendanceList.length, (index) => ClassRoutineCard(data: data[index])),
-        ),
-
-      ],
-    );
+          children: List.generate(data.length, (index) => ClassRoutineCard(data: data[index]))
+        );
   }
 }
