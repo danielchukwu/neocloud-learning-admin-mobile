@@ -51,6 +51,14 @@ List<String> sectionFilters = [
   'Second',
 ];
 
+List<String> sessionFilters = [
+  'Select session',
+  '2020',
+  '2021',
+  '2022',
+  '2023',
+];
+
 List<String> statusFilters = [
   'Select status',
   'Paid',
