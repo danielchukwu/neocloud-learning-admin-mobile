@@ -58,7 +58,7 @@ List<String> statusFilters = [
 ];
 
 List<String> dateRangeFilters = [
-  'Select range',
+  'Select time period',
   'Today',
   'This Week',
   'This Month',
