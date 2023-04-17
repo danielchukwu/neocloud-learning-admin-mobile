@@ -340,8 +340,8 @@ final List<Class> classesList = [
 
 
 // FINANCE
-class Invoice extends AppData {
-  Invoice({
+class Finance extends AppData {
+  Finance({
     required super.id,
     required this.title,
     required this.name,
@@ -360,8 +360,8 @@ class Invoice extends AppData {
   final double paidAmount;
 }
 // Finance objects
-final List<Invoice> InvoiceList = [
-  Invoice(
+final List<Finance> financeList = [
+  Finance(
     id: '1',
     title: 'Tuition fees',
     name: 'John Doe',
@@ -370,7 +370,7 @@ final List<Invoice> InvoiceList = [
     totalAmount: 5000.0,
     paidAmount: 0.0,
   ),
-  Invoice(
+  Finance(
     id: '2',
     title: 'Library fees',
     name: 'Jane Smith',
@@ -379,7 +379,7 @@ final List<Invoice> InvoiceList = [
     totalAmount: 1000.0,
     paidAmount: 1000.0,
   ),
-  Invoice(
+  Finance(
     id: '3',
     title: 'Lab fees',
     name: 'Sarah Johnson',
@@ -388,7 +388,7 @@ final List<Invoice> InvoiceList = [
     totalAmount: 2500.0,
     paidAmount: 0.0,
   ),
-  Invoice(
+  Finance(
     id: '4',
     title: 'Exam fees',
     name: 'David Lee',
@@ -397,7 +397,7 @@ final List<Invoice> InvoiceList = [
     totalAmount: 2000.0,
     paidAmount: 0.0,
   ),
-  Invoice(
+  Finance(
     id: '5',
     title: 'Lab equipment fees',
     name: 'Mary Brown',
