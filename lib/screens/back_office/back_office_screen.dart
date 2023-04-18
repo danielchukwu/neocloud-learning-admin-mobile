@@ -4,7 +4,10 @@ import 'package:neocloud_mobile/components/options/DisplayOptions.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Options.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
+import 'package:neocloud_mobile/screens/back_office/components/SessionManagerBody.dart';
 import 'package:neocloud_mobile/screens/back_office/components/books_body.dart';
+import 'package:neocloud_mobile/screens/back_office/components/enquires_body.dart';
+import 'package:neocloud_mobile/screens/back_office/components/noticeboard_body.dart';
 import 'package:neocloud_mobile/utils.dart';
 
 class BackOfficeScreen extends StatefulWidget {
@@ -39,19 +42,21 @@ class _BackOfficeScreenState extends State<BackOfficeScreen> {
                 press: updateSelectedOption,
               ),
 
-              // Attendance - show this if selected
-              SizedBox(height: defaultSize),
+              // Books - show this if selected
               BackOfficeOptions.selectedIndex == 0 ? const BooksBody() : const SizedBox(),
 
-              // // ClassRoutine - show if selected
-              // AcademicOptions.selectedIndex == 1 ? const ClassRoutineBody() : const SizedBox(),
-              //
-              // // Courses
-              // AcademicOptions.selectedIndex == 2 ? const CoursesBody() : const SizedBox(),
-              //
-              // // Syllabus
-              // AcademicOptions.selectedIndex == 3 ? const SyllabusBody() : const SizedBox(),
+              // Session - show if selected
 
+              BackOfficeOptions.selectedIndex == 1 ? const SessionManagerBody() : const SizedBox(),
+
+              // NoticeBoard
+              BackOfficeOptions.selectedIndex == 2 ? const NoticeboardBody() : const SizedBox(),
+
+              // Enquires
+              BackOfficeOptions.selectedIndex == 3 ? const EnquiriesBody() : const SizedBox(),
+
+
+              pageBottomPadding(),
             ],
           ),
         ),
