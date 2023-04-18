@@ -24,7 +24,7 @@ class EnquiryCard extends StatelessWidget {
     // without label
     //   27  |  March  |  2023
     final sections = [
-      {"label": "How did you find us?", "title": data.howYouFoundUs, "flex": 1},
+      {"label": "How you found us?", "title": data.howYouFoundUs, "flex": 1},
       {"label": "Date", "title": data.createdAt, "flex": 1},
     ];
 
@@ -44,7 +44,7 @@ class EnquiryCard extends StatelessWidget {
 
           // How you found us | Date
           SizedBox(height: defaultSize * 2),
-          CardSections(data: sections),
+          CardSections(data: sections, textOverflowLimit: 17),
 
         ],
       ),
