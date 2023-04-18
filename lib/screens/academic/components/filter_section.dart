@@ -12,6 +12,9 @@ class FilterSection extends StatefulWidget {
     this.showStatus = false,
     this.showClass = false,
     this.showSection = false,
+    this.showSession = false,
+    this.label = "Filter",
+    this.buttonText = "Filter",
   }) : super(key: key);
 
   final Function(Map<String, String> filterData) press;
@@ -20,6 +23,9 @@ class FilterSection extends StatefulWidget {
   final bool showStatus;
   final bool showClass;
   final bool showSection;
+  final bool showSession;
+  final String label;
+  final String buttonText;
 
   @override
   State<FilterSection> createState() => _FilterSectionState();
@@ -72,9 +78,20 @@ class _FilterSectionState extends State<FilterSection> {
                     press: updateFilter(k: "section"),
                   ): SizedBox(),
 
+                  // Session
+                  widget.showSession ? SizedBox(height: defaultSize) : SizedBox(),
+                  widget.showSession ? buildAppsDropdownButton(
+                    list: sessionFilters,
+                    press: updateFilter(k: "session"),
+                    selected: sessionFilters.last,
+                  ): SizedBox(),
+
                   // Button
                   SizedBox(height: defaultSize),
-                  buildFilterButton(press: (context) { widget.press(filter); }),
+                  buildFilterButton(
+                      press: (context) { widget.press(filter); },
+                      buttonText: widget.buttonText,
+                  ),
                 ],
               )
             : SizedBox(),
@@ -126,7 +143,7 @@ class _FilterSectionState extends State<FilterSection> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           TextLarge(
-            title: "Filter",
+            title: widget.label,
             color: kBlack70,
             weight: FontWeight.w500,
           ),
