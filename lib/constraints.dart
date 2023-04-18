@@ -20,7 +20,7 @@ var defaultSize = SizeConfig.defaultSize!;
 double appsBodyPadding = defaultSize * 2;
 EdgeInsets screenPadding =
     EdgeInsets.symmetric(horizontal: appsBodyPadding); // 20px 20px
-SizedBox pageBottomPadding ({double height = 30}) => SizedBox(height: height);
+SizedBox pageBottomPadding ({double height = 120}) => SizedBox(height: height);
 
 // Border
 double buttonBorderWidth = defaultSize * .05;
@@ -178,9 +178,12 @@ BoxDecoration getDropDownBoxDecoration() {
 }
 
 // build Filter Button
-AppsButton buildFilterButton({required Function(BuildContext? context) press}) {
+AppsButton buildFilterButton({
+  required Function(BuildContext? context) press,
+  String buttonText = "Filter",
+}) {
   return AppsButton(
-    title: "Filter",
+    title: buttonText,
     press: press,
     bgColor: kBlack80,
     icon: null,
