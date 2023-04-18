@@ -80,22 +80,13 @@ class _BodyState extends State<Body> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           // Students Section
-          ListProfileSection(
-            title: 'Students',
-            data: users,
-          ),
+          ListProfileSection(title: 'Students', data: users),
 
           // Educators Section
-          ListProfileSection(
-            title: 'Educators',
-            data: users,
-          ),
+          ListProfileSection(title: 'Educators', data: users),
 
           // Admin Section
-          ListProfileSection(
-            title: 'Admin',
-            data: users,
-          ),
+          ListProfileSection(title: 'Admin', data: users),
 
           // Grant Permission
           SizedBox(height: defaultSize * 3),
@@ -106,16 +97,17 @@ class _BodyState extends State<Body> {
             weight: FontWeight.w600,
           ),
           SizedBox(height: defaultSize * 2),
+
+          // Thumbs up and Text
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Image
               SizedBox(width: defaultSize * 2),
               Image(
                   image: AssetImage('assets/icons/thumbs-up.png'),
-                  width: defaultSize * 5),
+                  width: defaultSize * 5,
+              ),
               SizedBox(width: defaultSize * 2),
-              // Text
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
