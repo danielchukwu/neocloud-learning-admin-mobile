@@ -15,6 +15,7 @@ class AppsAppBar extends StatelessWidget {
     this.showLeading = true,
     this.showAction = true,
     this.routeName = '',
+    this.elevation = 0,
     // this.pressAction,
   });
 
@@ -53,26 +54,24 @@ class AppsAppBar extends StatelessWidget {
   // routeName to be navigated to when the actionIcon or Svg is clicked on
   final String routeName;
 
+  // the elevation of the appBar
+  final double elevation;
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: bgColor,
       leadingWidth: defaultSize * 6,
+      elevation: elevation,
       leading:
           showLeading ? LeadingBackButton(isDark: isDark) : const SizedBox(),
-      title: TextExtraLarge(
+      title: TextLarge(
         title: title,
         weight: FontWeight.w600,
-        color: isDark ? kBlack70 : Colors.white,
+        color: isDark ? kBlack80 : Colors.white,
       ),
       actions: showAction
           ? <Widget>[
-        // actionUserButton(
-        //   icon: Icons.search,
-        //   svg: actionSvg,
-        //   isDark: isDark,
-        //   routeName: routeName,
-        // ),
         SizedBox(width: defaultSize * 1.5),
         actionUserButton(
           icon: actionIcon,
@@ -97,6 +96,7 @@ class AppsSliverAppBar extends AppsAppBar {
     super.showLeading,
     super.showAction,
     super.routeName,
+    super.elevation,
   });
 
   @override
@@ -105,14 +105,15 @@ class AppsSliverAppBar extends AppsAppBar {
       backgroundColor: bgColor,
       leadingWidth: defaultSize * 6,
       // expandedHeight: defaultSize * 6.5,
+      elevation: elevation,
       floating: true,
       snap: true,
       leading:
           showLeading ? LeadingBackButton(isDark: isDark) : const SizedBox(),
-      title: TextExtraLarge(
+      title: TextLarge(
         title: title,
         weight: FontWeight.w600,
-        color: isDark ? kBlack70 : Colors.white,
+        color: isDark ? kBlack80 : Colors.white,
       ),
       actions: showAction
           ? <Widget>[
