@@ -100,6 +100,7 @@ PreferredSize buildAppBar({
   IconData? actionIcon,
   String? actionSvg,
   String routeName = '',
+  double elevation = 0,
   // Function(BuildContext context)? press,
 }) {
   // give <kBlue> to <bgColor> if it is null
@@ -121,6 +122,7 @@ PreferredSize buildAppBar({
       showAction: showAction,
       showLeading: showLeading,
       routeName: routeName,
+      elevation: elevation,
     ),
   );
 }
@@ -134,6 +136,7 @@ AppsSliverAppBar buildSliverAppBar({
   IconData? actionIcon,
   String? actionSvg,
   String routeName = '',
+  double elevation = 0,
   // Function(BuildContext context)? press,
 }) {
   // give <kBlue> to <bgColor> if it is null
@@ -153,6 +156,7 @@ AppsSliverAppBar buildSliverAppBar({
     showAction: showAction,
     showLeading: showLeading,
     routeName: routeName,
+    elevation: elevation,
   );
 }
 
