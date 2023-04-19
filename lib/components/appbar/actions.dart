@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/constraints.dart';
 
 class actionUserButton extends StatelessWidget {
@@ -30,15 +30,8 @@ class actionUserButton extends StatelessWidget {
       child: IconButton(
         onPressed: () => navigateToScreen(context: context, routeName: routeName),
         icon: svg != null
-            ? SvgPicture.asset(
-                svg!,
-                width: 20,
-                color: isDark ? kBlack.withOpacity(.7) : kWhite,
-              )
-            : Icon(
-                icon != null ? icon : Icons.cancel,
-                color: isDark ? kBlack.withOpacity(.7) : kWhite,
-              ),
+            ? IconOrSvg(svg: svg!, color: isDark ? kBlack80 : kWhite, size: defaultSize * 2,)
+            : IconOrSvg(icon: icon!, color: isDark ? kBlack80 : kWhite, size: defaultSize * 2,)
       ),
     );
   }
