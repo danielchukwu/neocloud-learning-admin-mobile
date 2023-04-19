@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neocloud_mobile/constraints.dart';
 
 class DisplayAssetImage extends StatelessWidget {
@@ -105,3 +106,23 @@ class RectangularBoxImage extends StatelessWidget {
     );
   }
 }
+
+
+class IconOrSvg extends StatelessWidget {
+  const IconOrSvg({Key? key, this.svg, this.icon, this.color = Colors.black87, this.size = 20}) : super(key: key);
+
+  final String? svg;
+  final IconData? icon;
+  final Color color;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    if (svg != null) {
+      return SvgPicture.asset(svg!, width: size, color: color);
+    } else {
+      return Icon(icon, color: color, size: size);
+    }
+  }
+}
+
