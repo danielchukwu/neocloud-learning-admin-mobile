@@ -27,7 +27,7 @@ class LeadingBackButton extends StatelessWidget {
               // splashRadius: defaultSize * 2,
               icon: Icon(
                 Icons.arrow_back_ios,
-                color: isDark ? kBlack70 : kWhite,
+                color: isDark ? kBlack80 : kWhite,
                 size: 20,
               ),
               onPressed: () {
