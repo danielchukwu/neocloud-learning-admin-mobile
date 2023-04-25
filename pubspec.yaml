@@ -67,6 +67,7 @@ flutter:
     - assets/images/
     - assets/dps/
     - assets/icons/
+    - assets/icons/settings/
     - assets/lottiefiles/
   #   - images/a_dot_ham.jpeg
 
