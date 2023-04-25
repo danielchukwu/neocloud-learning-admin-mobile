@@ -8,6 +8,7 @@ class ComingSoonScreen extends StatelessWidget {
   const ComingSoonScreen({Key? key}) : super(key: key);
 
   final String lottieFile = 'assets/lottiefiles/132660-basketball.json';
+  static String screenName = 'Coming Soon';
 
   @override
   Widget build(BuildContext context) {

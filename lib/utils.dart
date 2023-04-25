@@ -2,7 +2,7 @@
 // returns a lowercase version of the new string and then prepends a forward
 // slash "/" e.g Back Office => /back_office, Profile => /profile
 String getRouteName(String value) =>
-    "/" + value.replaceAll(" ", "_").toLowerCase();
+    "/" + value.replaceAll(" ", "-").toLowerCase();
 
 
 // This function is used to get the amount of stars set with a provided
