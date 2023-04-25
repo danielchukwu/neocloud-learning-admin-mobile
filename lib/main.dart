@@ -5,9 +5,15 @@ import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/back_office/back_office_screen.dart';
 import 'package:neocloud_mobile/screens/book_issues/books_issue_screen.dart';
 import 'package:neocloud_mobile/screens/class_works/class_works_screen.dart';
+import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
 import 'package:neocloud_mobile/screens/finance/finance_screen.dart';
 import 'package:neocloud_mobile/screens/login/login_screen.dart';
+import 'package:neocloud_mobile/screens/settings/screens/language_screen.dart';
+import 'package:neocloud_mobile/screens/settings/screens/manage_account_screen.dart';
+import 'package:neocloud_mobile/screens/settings/screens/payment_screen.dart';
+import 'package:neocloud_mobile/screens/settings/screens/smtp_screen.dart';
+import 'package:neocloud_mobile/screens/settings/screens/system_screen.dart';
 import 'package:neocloud_mobile/screens/settings/settings_screen.dart';
 import 'package:neocloud_mobile/screens/splash/splash_screen.dart';
 import 'package:neocloud_mobile/screens/welcome/welcome_screen.dart';
@@ -40,14 +46,22 @@ class MyApp extends StatelessWidget {
         '/': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/welcome': (context) => const WelcomeScreen(),
-        '/class_works': (context) => const ClassWorksScreen(),
+        '/coming-soon': (context) => const ComingSoonScreen(),
+        '/class-works': (context) => const ClassWorksScreen(),
         '/academic': (context) => const AcademicScreen(),
         '/dashboard': (context) => const DashboardScreen(),
         '/back-office': (context) => const BackOfficeScreen(),
         '/book-issues': (context) => const BookIssuesScreen(),
         '/finance': (context) => const FinanceScreen(),
         '/profile': (context) => ProfileScreen(),
+
+        // Settings
         '/settings': (context) => const SettingsScreen(),
+        '/manage-account': (context) => const ManageAccountScreen(),
+        '/system': (context) => const SystemScreen(),
+        '/payment': (context) => const PaymentScreen(),
+        '/language': (context) => const LanguageScreen(),
+        '/smtp': (context) => SmtpScreen(),
       },
     );
   }
