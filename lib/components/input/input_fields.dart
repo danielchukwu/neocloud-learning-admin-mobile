@@ -3,6 +3,8 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 
 // TextFormField
+
+// Login
 class LoginInputField extends StatefulWidget {
   final bool obsureText;
   final String labelText;
@@ -87,6 +89,32 @@ class _LoginInputFieldState extends State<LoginInputField> {
     if (value!.isEmpty) {
       return "Please enter your ${widget.labelText}";
     }
+  }
+}
+
+// Settings
+class InputFieldSettings extends StatelessWidget {
+  const InputFieldSettings({
+    Key? key,
+    this.maxLines = 1,
+    this.hintText = "",
+  }) : super(key: key);
+
+  final int maxLines;
+  final String hintText;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      obscureText: false,
+      maxLines: maxLines,
+      decoration: InputDecoration(
+        hintText: hintText,
+      ),
+      style: TextStyle(),
+      validator: (value) {},
+      onSaved: (value) {},
+    );
   }
 }
 
