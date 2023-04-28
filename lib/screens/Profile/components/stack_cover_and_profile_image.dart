@@ -48,7 +48,7 @@ class StackCoverAndProfileImage extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               color: kWhite,
-              borderRadius: BorderRadius.circular(defaultSize * 2),
+              // borderRadius: BorderRadius.circular(defaultSize * 2),
             ),
           ),
         );
