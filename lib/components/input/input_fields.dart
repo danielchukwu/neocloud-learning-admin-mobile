@@ -93,27 +93,38 @@ class _LoginInputFieldState extends State<LoginInputField> {
 }
 
 // Settings
-class InputFieldSettings extends StatelessWidget {
+class InputFieldSettings extends StatefulWidget {
   const InputFieldSettings({
     Key? key,
+    this.fieldName = "",
     this.maxLines = 1,
-    this.hintText = "",
+    required this.press,
   }) : super(key: key);
 
   final int maxLines;
-  final String hintText;
+  final String fieldName;
+  final Function(String key, String value) press;
 
+  @override
+  State<InputFieldSettings> createState() => _InputFieldSettingsState();
+}
+
+class _InputFieldSettingsState extends State<InputFieldSettings> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: false,
-      maxLines: maxLines,
+      maxLines: widget.maxLines,
       decoration: InputDecoration(
-        hintText: hintText,
+        hintText: widget.fieldName,
       ),
       style: TextStyle(),
       validator: (value) {},
-      onSaved: (value) {},
+      onSaved: (value) {
+        if (value != null && value.isNotEmpty) {
+          widget.press(widget.fieldName, value!.trim());
+        }
+      },
     );
   }
 }
