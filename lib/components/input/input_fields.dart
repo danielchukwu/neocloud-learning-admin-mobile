@@ -157,11 +157,6 @@ class _AppsTextFieldState extends State<AppsTextField> {
   void initState() {
     super.initState();
     _controller = TextEditingController(text: "");
-
-    _controller.addListener(() {
-      // Filter and fetch data if necessary
-      print(_controller.text);
-    });
   }
 
   @override
