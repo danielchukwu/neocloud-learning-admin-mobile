@@ -24,6 +24,12 @@ class _ClassWorkBodyState extends State<ClassWorkBody> {
     });
   }
 
+  updateSearchController(String value) {
+    setState(() {
+      _searchController.text = value;
+    });
+  }
+
   @override
   void dispose() {
     _searchController.dispose();
@@ -33,43 +39,33 @@ class _ClassWorkBodyState extends State<ClassWorkBody> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        padding: screenPadding,
-        child: Column(
-          children: [
-            // ClassWork List
-            SizedBox(height: defaultSize * 2),
-            // ClassWorkList(data: classWorksList),
-            // Search Text Field
-            buildSearchTextField(press: updateSearchController),
+      padding: screenPadding,
+      child: Column(
+        children: [
+          // Search Text Field
+          SizedBox(height: defaultSize * 2),
+          buildSearchTextField(press: updateSearchController),
 
-            // + Add Button
-            SizedBox(height: defaultSize * 3),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                buildAddButton(title: "Add Class Work", press: (context) {}),
-              ],
-            ),
+          // + Add Button
+          SizedBox(height: defaultSize * 3),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              buildAddButton(title: "Add Class Work", press: (context) {}),
+            ],
+          ),
 
-            // Cards
-            SizedBox(height: defaultSize),
-            Column(
-              children: List.generate(classWorksList.length,
-                      (index) => ClassWorkCard(data: classWorksList[index])),
-            ),
+          // Cards
+          SizedBox(height: defaultSize),
+          Column(
+            children: List.generate(classWorksList.length,
+                    (index) => ClassWorkCard(data: classWorksList[index])),
+          ),
 
-            // Bottom Padding
-            pageBottomPadding(),
-          ],
-        ),
+          // Bottom Padding
+          pageBottomPadding(),
+        ],
       ),
     );
-  }
-
-  updateSearchController(String value) {
-    setState(() {
-      _searchController.text = value;
-    });
   }
 }
