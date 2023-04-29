@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/screens/login/login_screen.dart';
+import 'package:neocloud_mobile/screens/settings/components/settings_edit_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/language_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/manage_account_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/payment_screen.dart';
@@ -12,19 +13,26 @@ import 'package:neocloud_mobile/utils.dart';
 class Setting {
   Setting({
     required this.title,
-    required this.visitRoute,
+    this.visitRoute,
     // this.leadingIcon,
     this.leadingSvg,
     this.actionText = "",
     this.actionIcon = Icons.arrow_forward_ios,
+    // Fields required for SettingsEditScreen
+    this.subTitle,
+    this.inputFieldsList,
   });
 
   final String title;
-  final String visitRoute;
-  // final String? leadingIcon;
+  final String? visitRoute;
   final String? leadingSvg;
   final String actionText;
   final IconData actionIcon;
+
+  // Required if not using visitRoute and want to push and edit screen
+  // that requires the below variables to display settings form properly
+  final String? subTitle;
+  final List<String>? inputFieldsList;
 }
 
 // General
@@ -41,13 +49,15 @@ List<Setting> settingsAccountList = <Setting>[
   Setting(leadingSvg: 'assets/icons/settings/logout.svg', title: 'Login', visitRoute: getRouteName(LoginScreen.screenName)),
 ];
 
-// Manage Account
+// Manage Account - Tip: doesn't use visitRoute, therefore provides subText and
+// inputFieldsList for our SettingsEditScreen (which displays a form)
+String getMASubText(String name) => 'Ensure the $name is not the same with the previous $name';
 List<Setting> settingsManageAccountList = <Setting>[
-  Setting(title: 'Name', actionText: 'Chukwu Daniel Nonso', visitRoute: getRouteName(SettingsScreen.screenName)),
-  Setting(title: 'Email', actionText: '00chukwudaniel@gmail.com', visitRoute: getRouteName(SettingsScreen.screenName)),
-  Setting(title: 'Phone', actionText: '+234 915 120 7528', visitRoute: getRouteName(SettingsScreen.screenName)),
-  Setting(title: 'Address', actionText: 'Army Estate Blk f25', visitRoute: getRouteName(SettingsScreen.screenName)),
-  Setting(title: 'Password', actionText: 'Good Password', visitRoute: getRouteName(SettingsScreen.screenName)),
+  Setting(title: 'Name', actionText: 'Chukwu Daniel Nonso', subTitle: getMASubText('name'), inputFieldsList: ['Name']),
+  Setting(title: 'Email', actionText: '00chukwudaniel@gmai.com', subTitle: getMASubText('email'), inputFieldsList: ['Email']),
+  Setting(title: 'Phone', actionText: '+234 915 120 7528', subTitle: getMASubText('number'), inputFieldsList: ['Phone Number']),
+  Setting(title: 'Address', actionText: 'Army Estate Blk f25', subTitle: getMASubText('address'), inputFieldsList: ['Change Address'],),
+  Setting(title: 'Password', actionText: 'Good Password', subTitle: getMASubText('password'), inputFieldsList: ['Old Password', 'New Password', 'Confirm Password'],),
 ];
 
 // System
