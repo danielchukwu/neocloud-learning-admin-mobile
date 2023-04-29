@@ -72,15 +72,19 @@ class AppsAppBar extends StatelessWidget {
       ),
       actions: showAction
           ? <Widget>[
-        SizedBox(width: defaultSize * 1.5),
-        actionUserButton(
-          icon: actionIcon,
-          svg: actionSvg,
-          isDark: isDark,
-          routeName: routeName,
-        ),
-        SizedBox(width: defaultSize * 1.5),
-      ]
+              actionUserButton(
+                icon: Icons.search,
+                svg: null,
+                isDark: isDark,
+                routeName: '/search',
+              ),
+              actionUserButton(
+                icon: actionIcon,
+                svg: actionSvg,
+                isDark: isDark,
+                routeName: routeName,
+              ),
+            ]
           : [],
     );
   }
@@ -121,16 +125,14 @@ class AppsSliverAppBar extends AppsAppBar {
                 icon: Icons.search,
                 svg: actionSvg,
                 isDark: isDark,
-                routeName: routeName,
+                routeName: '/search',
               ),
-              SizedBox(width: defaultSize * 1.5),
               actionUserButton(
                 icon: actionIcon,
                 svg: actionSvg,
                 isDark: isDark,
                 routeName: routeName,
               ),
-              SizedBox(width: defaultSize * 1.5),
             ]
           : [],
     );
