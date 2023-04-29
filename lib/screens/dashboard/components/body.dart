@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/students.dart';
+import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/dashboard/components/profile_section.dart';
 import 'package:neocloud_mobile/screens/dashboard/components/title_count_section.dart';
 

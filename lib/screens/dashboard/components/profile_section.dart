@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/students.dart';
+import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/dashboard/components/circle_avatar_text.dart';
 
 class ListProfileSection extends StatelessWidget {

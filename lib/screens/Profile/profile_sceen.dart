@@ -4,7 +4,7 @@ import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/ProfileNavbarItem.dart';
-import 'package:neocloud_mobile/models/students.dart';
+import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/components/intro_name_role_ratings.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_cards_list.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_navbar_and_content.dart';
@@ -53,14 +53,14 @@ class ProfileScreen extends StatelessWidget {
                 ProfileNavbarAndContent(
                     navItems: ProfileNavbarItems.educatorItems),
 
-                pageBottomPadding(),
+                pageBottomPadding(height: defaultSize * 6),
               ],
             ),
           ),
         ],
       ),
-      extendBody: true,
-      bottomNavigationBar: AppsBottomNavBar(),
+      // extendBody: true,
+      // bottomNavigationBar: AppsBottomNavBar(),
     );
   }
 }

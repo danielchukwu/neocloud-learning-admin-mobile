@@ -1,4 +1,4 @@
-import 'package:neocloud_mobile/models/students.dart';
+import 'package:neocloud_mobile/models/Students.dart';
 
 class Course {
   final String imgSrc;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/students.dart';
+import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_card.dart';
 
 class ProfileCardsList extends StatelessWidget {
