@@ -6,25 +6,23 @@ Objectives
 - fix navbar icons widths ✅
 
 --- Profile
-- Add First section of the profile screen (cover, profile image, rectangle with curved edges) ✅
-- Add profile name, role, and ratings ✅
-- Add Info Cards section ✅
-- Add Profile Navbar ✅
-- Make Navbar animate ✅
-- Implement Courses Section - create cards ✅
-- Implement Activities Section
-- Implement Information Section
-- Fix the NavbarSelector to make it work with any navbar count
 
 --- Fixes
-- change the email label to access id in LoginScreen
+- Fix/Change Navbar
 - fix the logos with what was sent to you by Mr. J
 - abstract the color usage of the star color
 
 --- Pages
-- Course view Page
+- Students view Page
+- Courses view Page
+- Reviews view Page
+- View Cards (of all kinds) Page
+- Cart
 - Notifications Page
 - Virtual Students Feed
+- Search Page
+- Upload Course Page
+- Undertaken Course Page
 
 
 
@@ -37,6 +35,7 @@ Improvements
   - Change the color of the Navbar when it gets to a certain point (the white background)
 - Navbar
   - Test out a different navbar
+
 
 
 UI DEsigns
