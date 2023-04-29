@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/login/login_screen.dart';
 import 'package:neocloud_mobile/screens/settings/components/settings_edit_screen.dart';
+import 'package:neocloud_mobile/screens/settings/components/system_logos_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/language_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/manage_account_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/payment_screen.dart';
+import 'package:neocloud_mobile/screens/settings/components/system_general_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/smtp_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/system_screen.dart';
 import 'package:neocloud_mobile/screens/settings/settings_screen.dart';
@@ -35,11 +38,11 @@ class Setting {
   final List<String>? inputFieldsList;
 }
 
-// General
-List<Setting> settingsGeneralList = <Setting>[
+// Main
+List<Setting> settingsMainList = <Setting>[
   Setting(leadingSvg: 'assets/icons/settings/user.svg', title: 'Manage Account', visitRoute: getRouteName(ManageAccountScreen.screenName)),
   Setting(leadingSvg: 'assets/icons/settings/lucide-laptop.svg', title: 'System', visitRoute: getRouteName(SystemScreen.screenName)),
-  Setting(leadingSvg: 'assets/icons/settings/credit-card.svg', title: 'Payment', visitRoute: getRouteName(PaymentScreen.screenName)),
+  Setting(leadingSvg: 'assets/icons/settings/credit-card.svg', title: 'Payment', visitRoute: getRouteName(ComingSoonScreen.screenName)),
   Setting(leadingSvg: 'assets/icons/settings/globe.svg', title: 'Language', visitRoute: getRouteName(LanguageScreen.screenName), actionText: "English"),
   Setting(leadingSvg: 'assets/icons/settings/switch-connection.svg', title: 'Smtp', visitRoute: getRouteName(SmtpScreen.screenName)),
 ];
@@ -62,8 +65,8 @@ List<Setting> settingsManageAccountList = <Setting>[
 
 // System
 List<Setting> settingsSystemList = <Setting>[
-  Setting(title: 'General', visitRoute: getRouteName(SettingsScreen.screenName)),
-  Setting(title: 'System Logos', visitRoute: getRouteName(SettingsScreen.screenName)),
+  Setting(title: 'General', visitRoute: getRouteName(SystemGeneralScreen.screenName)),
+  Setting(title: 'System Logos', visitRoute: getRouteName(SystemLogosScreen.screenName)),
 ];
 
 
