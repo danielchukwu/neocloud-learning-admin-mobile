@@ -24,15 +24,15 @@ class actionUserButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      // backgroundColor: (isDark ? kBlack : kWhite).withOpacity(.1),
-      backgroundColor: Colors.transparent,
-      child: IconButton(
-        onPressed: () => navigateToScreen(context: context, routeName: routeName),
-        icon: svg != null
-            ? IconOrSvg(svg: svg!, color: isDark ? kBlack80 : kWhite, size: defaultSize * 2,)
-            : IconOrSvg(icon: icon!, color: isDark ? kBlack80 : kWhite, size: defaultSize * 2,)
-      ),
+    return GestureDetector(
+        onTap: () => navigateToScreen(context: context, routeName: routeName),
+        child: Container(
+          color: Colors.transparent,
+          padding: EdgeInsets.symmetric(horizontal: defaultSize * 2),
+          child: svg != null
+            ? IconOrSvg(svg: svg!, color: isDark ? kBlack80 : kWhite, size: defaultSize * 2.5,)
+            : IconOrSvg(icon: icon!, color: isDark ? kBlack80 : kWhite, size: defaultSize * 2.5),
+        )
     );
   }
 }
