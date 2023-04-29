@@ -33,8 +33,6 @@ class _SettingsFormState extends State<SettingsForm> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.data);
-
     return Form(
       key: _formKey,
       child: Column(
@@ -58,7 +56,7 @@ class _SettingsFormState extends State<SettingsForm> {
           ),
 
           // Submit Form
-          SizedBox(height: defaultSize * 5),
+          SizedBox(height: defaultSize * 3.5),
           AppsButton(
             title: 'Save',
             press: (context) {
