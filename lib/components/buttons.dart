@@ -150,18 +150,23 @@ class TextLink extends StatelessWidget {
     super.key,
     required this.title,
     required this.press,
+    this.color = Colors.black87,
+    this.fontSize = 14,
   });
 
   final String title;
-  final press;
+  final Function(BuildContext context) press;
+  final Color color;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () => press(context),
-      child: TextSmall(
+      child: TextCustom(
         title: title,
-        color: kBlack70,
+        fontSize: fontSize,
+        color: color,
       ),
     );
   }
