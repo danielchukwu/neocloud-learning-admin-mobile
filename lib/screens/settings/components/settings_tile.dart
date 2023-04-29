@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/screens/settings/components/settings_edit_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
 import 'package:neocloud_mobile/utils.dart';
 
@@ -9,27 +10,50 @@ class SettingsTile extends StatelessWidget {
   const SettingsTile({
     super.key,
     required this.title,
-    required this.visitRoute,
+    this.visitRoute,
     this.leadingIcon,
     this.leadingSvg,
     this.actionText = "",
     this.actionTextBoxWidth,
-
     this.actionIcon = Icons.arrow_forward_ios,
+    this.subTitle,
+    this.inputFieldsList,
   });
 
   final String title;
   final String actionText;
-  final String visitRoute;
+  final String? visitRoute;
   final double? actionTextBoxWidth;
   final String? leadingSvg;
   final IconData? leadingIcon;
   final IconData? actionIcon;
 
+  // This fields are required if visitRoute is null - They are field initiators
+  // for SettingsEditScreen
+  final String? subTitle;
+  final List<String>? inputFieldsList;
+
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => navigateToScreen(context: context, routeName: visitRoute),
+      onTap: (){
+        if (visitRoute != null) {
+          navigateToScreen(context: context, routeName: visitRoute!);
+        } else {
+          Navigator.push(context, MaterialPageRoute(builder: (context) =>
+              SettingsEditScreen(
+                  title: title,
+                  subTitle: subTitle != null
+                      ? subTitle!
+                      : "",
+                  inputFieldsList: inputFieldsList != null
+                      ? inputFieldsList!
+                      : []
+              ),
+          ));
+        }
+      },
       child: ListTile(
         title: Row(
           children: [
