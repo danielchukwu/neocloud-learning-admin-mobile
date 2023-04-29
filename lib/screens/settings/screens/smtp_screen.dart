@@ -38,7 +38,7 @@ class SmtpScreen extends StatelessWidget {
             children: [
               // Header
               SizedBox(height: defaultSize * 3),
-              SettingsFormHeader(mainText: 'SMTP Settings', subText: subText),
+              SettingsFormHeader(title: 'SMTP Settings', subTitle: subText),
 
               // Form
               SettingsForm(inputFieldsList: inputFieldsList, data: {}),
