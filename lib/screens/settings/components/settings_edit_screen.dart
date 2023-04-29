@@ -7,15 +7,15 @@ import 'package:neocloud_mobile/size_config.dart';
 class SettingsEditScreen extends StatelessWidget {
   SettingsEditScreen({
     Key? key,
-    this.screenName = 'Settings Edit Screen',
-    required this.mainText,
-    required this.subText,
+    this.screenName = '',
+    required this.title,
+    required this.subTitle,
     required this.inputFieldsList,
   }) : super(key: key);
 
   final String screenName;
-  final String mainText;
-  final String subText;
+  final String title;
+  final String subTitle;
   final List<String> inputFieldsList;
 
   @override
@@ -38,7 +38,7 @@ class SettingsEditScreen extends StatelessWidget {
             children: [
               // Header
               SizedBox(height: defaultSize * 3),
-              SettingsFormHeader(mainText: 'SMTP Settings', subText: subText),
+              SettingsFormHeader(title: 'Update ${title}', subTitle: subTitle),
 
               // Form
               SettingsForm(inputFieldsList: inputFieldsList, data: {}),
