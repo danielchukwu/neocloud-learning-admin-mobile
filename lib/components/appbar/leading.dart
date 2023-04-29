@@ -17,25 +17,21 @@ class LeadingBackButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        SizedBox(width: defaultSize * 1.5),
-        CircleAvatar(
-          // backgroundColor: (isDark ? kBlack : kWhite).withOpacity(.1),
-          backgroundColor: Colors.transparent,
-          child: Padding(
-            padding: EdgeInsets.only(left: defaultSize * .5),
-            child: IconButton(
-              // splashRadius: defaultSize * 2,
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: isDark ? kBlack80 : kWhite,
-                size: 20,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+
+        GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
+            color: kWhite,
+            padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 2, defaultSize * 1.5, defaultSize * 2),
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: isDark ? kBlack80 : kWhite,
+              size: defaultSize * 2.5,
             ),
           ),
-        ),
+        )
       ],
     );
   }
