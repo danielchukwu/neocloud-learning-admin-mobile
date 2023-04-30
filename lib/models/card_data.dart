@@ -121,8 +121,8 @@ List<ClassRoutine> classRoutineList = [
 
 
 // COURSE
-class Course extends AppData {
-  Course({
+class AccademicCourse extends AppData {
+  AccademicCourse({
     required super.id,
     required this.clas,
     required this.course,
@@ -132,12 +132,12 @@ class Course extends AppData {
   final String course;
 }
 // Course objects
-List<Course> coursesList = [
-  Course(id: '1', clas: 'Class A', course: 'Mathematics'),
-  Course(id: '2', clas: 'Class B', course: 'English'),
-  Course(id: '3', clas: 'Class C', course: 'Science'),
-  Course(id: '4', clas: 'Class D', course: 'Social Studies'),
-  Course(id: '5', clas: 'Class E', course: 'History'),
+List<AccademicCourse> academicCoursesList = [
+  AccademicCourse(id: '1', clas: 'Class A', course: 'Mathematics'),
+  AccademicCourse(id: '2', clas: 'Class B', course: 'English'),
+  AccademicCourse(id: '3', clas: 'Class C', course: 'Science'),
+  AccademicCourse(id: '4', clas: 'Class D', course: 'Social Studies'),
+  AccademicCourse(id: '5', clas: 'Class E', course: 'History'),
 ];
 
 
