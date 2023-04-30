@@ -214,7 +214,7 @@ AppsButton buildAddButton({
 // CARDS
 
 // variables
-EdgeInsets cardTopMargin = EdgeInsets.only(top: defaultSize * 2);
+EdgeInsets cardBottomMargin = EdgeInsets.only(bottom: defaultSize * 2);
 EdgeInsets cardPadding = EdgeInsets.all(defaultSize * 2);
 
 // card decoration
