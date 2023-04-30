@@ -6,8 +6,8 @@ import 'package:neocloud_mobile/screens/settings/components/settings_edit_screen
 import 'package:neocloud_mobile/size_config.dart';
 import 'package:neocloud_mobile/utils.dart';
 
-class SettingsTile extends StatelessWidget {
-  const SettingsTile({
+class SettingsTileButton extends StatelessWidget {
+  const SettingsTileButton({
     super.key,
     required this.title,
     this.visitRoute,
@@ -54,38 +54,60 @@ class SettingsTile extends StatelessWidget {
           ));
         }
       },
-      child: ListTile(
-        title: Row(
-          children: [
-            leadingSvg != null
-                ? Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              IconOrSvg(
-                svg: leadingSvg,
-                size: defaultSize * 2,
-                color: kBlack80,
-              ),
-            ])
-                : const SizedBox(),
-            leadingSvg != null ? SizedBox(width: defaultSize * 2,) : SizedBox(),
-            TextMedium(title: title, weight: FontWeight.w500),
+      child: SettingsTile(leadingSvg: leadingSvg, title: title, actionTextBoxWidth: actionTextBoxWidth, actionText: actionText, actionIcon: actionIcon),
+    );
+  }
+}
+
+class SettingsTile extends StatelessWidget {
+  const SettingsTile({
+    super.key,
+    required this.title,
+    this.leadingSvg,
+    this.actionText = "",
+    this.actionTextBoxWidth = 40,
+    this.actionIcon = Icons.arrow_forward_ios,
+  });
+
+  final String? leadingSvg;
+  final String title;
+  final double? actionTextBoxWidth;
+  final String actionText;
+  final IconData? actionIcon;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Row(
+        children: [
+          leadingSvg != null
+              ? Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            IconOrSvg(
+              svg: leadingSvg,
+              size: defaultSize * 2,
+              color: kBlack80,
+            ),
+          ])
+              : const SizedBox(),
+          leadingSvg != null ? SizedBox(width: defaultSize * 2,) : SizedBox(),
+          TextMedium(title: title, weight: FontWeight.w500),
+        ],
+      ),
+      contentPadding: EdgeInsets.zero,
+      horizontalTitleGap: 0,
+      trailing: Container(
+        height: defaultSize * 2,
+        width: actionTextBoxWidth == null ? SizeConfig.screenWidth! / 2 : actionTextBoxWidth,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            TextSmall(
+                title: shortenText(text: actionText, limit: 20),
+                color: kBlack50),
+            SizedBox(width: defaultSize),
+            Icon(actionIcon, size: defaultSize * 1.5),
           ],
-        ),
-        contentPadding: EdgeInsets.zero,
-        horizontalTitleGap: 0,
-        trailing: Container(
-          height: defaultSize * 2,
-          width: actionTextBoxWidth == null ? SizeConfig.screenWidth! / 2 : actionTextBoxWidth,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              TextSmall(
-                  title: shortenText(text: actionText, limit: 20),
-                  color: kBlack50),
-              SizedBox(width: defaultSize),
-              Icon(actionIcon, size: defaultSize * 1.5),
-            ],
-          ),
         ),
       ),
     );
