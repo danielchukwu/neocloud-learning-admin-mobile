@@ -16,7 +16,7 @@ class CertificateCard extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-      margin: cardTopMargin,
+      margin: cardBottomMargin,
       padding: cardPadding,
       decoration: buildCardDecoration(),
       child: Column(

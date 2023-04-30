@@ -33,7 +33,7 @@ class FacultyCard extends StatelessWidget {
     String bigText = facultyList[0];
 
     return Container(
-      margin: cardTopMargin,
+      margin: cardBottomMargin,
       padding: cardPadding,
       decoration: buildCardDecoration(),
       child: Column(

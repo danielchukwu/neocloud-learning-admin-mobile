@@ -20,7 +20,7 @@ class BookCard extends StatelessWidget {
     String smallText = "${getPluralOrSingular(count: int.parse(data.availableCopies), word: "copies",)}";
 
     return Container(
-      margin: cardTopMargin,
+      margin: cardBottomMargin,
       padding: cardPadding,
       decoration: buildCardDecoration(),
       child: Column(

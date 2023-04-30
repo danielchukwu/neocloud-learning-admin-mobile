@@ -15,7 +15,7 @@ class BookIssueCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: cardTopMargin,
+      margin: cardBottomMargin,
       padding: cardPadding,
       decoration: buildCardDecoration(),
       child: Column(
