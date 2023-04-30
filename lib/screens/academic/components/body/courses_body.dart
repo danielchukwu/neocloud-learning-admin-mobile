@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:neocloud_mobile/components/cards/components/courses_card.dart';
+import 'package:neocloud_mobile/components/cards.dart';
+import 'package:neocloud_mobile/screens/academic/components/cards/academic_course_card.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/card_data.dart';
 import 'package:neocloud_mobile/screens/academic/components/filter_section.dart';
+import 'package:neocloud_mobile/screens/academic/components/list/academic_courses_list.dart';
 
 class CoursesBody extends StatefulWidget {
   const CoursesBody({Key? key}) : super(key: key);
@@ -39,7 +41,7 @@ class _CoursesBodyState extends State<CoursesBody> {
         // Cards
         SizedBox(height: defaultSize),
         Column(
-          children: List.generate(coursesList.length, (index) => CoursesCard(data: coursesList[index])),
+          children: List.generate(academicCoursesList.length, (index) => AcademicCourseCard(data: academicCoursesList[index])),
         ),
       ],
     );
