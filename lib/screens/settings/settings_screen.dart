@@ -29,7 +29,7 @@ class SettingsScreen extends StatelessWidget {
             SizedBox(height: defaultSize),
             Padding(
                 padding: screenPadding,
-                child: SettingsList(list: settingsGeneralList, actionTextBoxWidth: SizeConfig.screenWidth! / 3,)),
+                child: SettingsList(list: settingsMainList, actionTextBoxWidth: SizeConfig.screenWidth! / 3,)),
 
             // Account Settings
             Divider(),
