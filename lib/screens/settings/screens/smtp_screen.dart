@@ -22,7 +22,7 @@ class SmtpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(
-        title: screenName,
+        title: '',
         bgColor: kWhite,
         isDark: true,
         showLeading: true,
@@ -31,19 +31,16 @@ class SmtpScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: screenPadding,
-        child: Container(
-          height: SizeConfig.screenHeight,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header
-              SizedBox(height: defaultSize * 3),
-              SettingsFormHeader(title: 'SMTP Settings', subTitle: subText),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header
+            SizedBox(height: defaultSize * 3),
+            SettingsFormHeader(title: 'SMTP Settings', subTitle: subText),
 
-              // Form
-              SettingsForm(inputFieldsList: inputFieldsList, data: {}),
-            ],
-          ),
+            // Form
+            SettingsForm(inputFieldsList: inputFieldsList, data: {}),
+          ],
         ),
       ),
     );
