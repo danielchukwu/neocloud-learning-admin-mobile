@@ -19,14 +19,13 @@ class SystemScreen extends StatelessWidget {
         elevation: .5,
       ),
       body: SingleChildScrollView(
+        padding: screenPadding,
         child: Column(
           children: [
             // General Settings
             SizedBox(height: defaultSize),
-            Padding(
-              padding: screenPadding,
-              child: SettingsList(list: settingsSystemList),
-            ),
+
+            SettingsList(list: settingsSystemList)
           ],
         ),
       ),
