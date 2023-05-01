@@ -20,7 +20,7 @@ class SettingsList extends StatelessWidget {
     return Column(
       children: List.generate(
         list.length,
-        (index) => SettingsTile(
+        (index) => SettingsTileButton(
           title: list[index].title,
           leadingSvg: list[index].leadingSvg,
           visitRoute: list[index].visitRoute,
