@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/screens/settings/components/settings_form.dart';
 import 'package:neocloud_mobile/screens/settings/components/settings_form_header.dart';
-import 'package:neocloud_mobile/size_config.dart';
 
-class SettingsGeneralScreen extends StatelessWidget {
-  SettingsGeneralScreen({Key? key}) : super(key: key);
+class SystemGeneralScreen extends StatelessWidget {
+  SystemGeneralScreen({Key? key}) : super(key: key);
   static String screenName = 'General';
   final String subText =
       "Note that whatever you change here affects the overall application (Web & Mobile)";
@@ -26,7 +25,7 @@ class SettingsGeneralScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(
-        title: screenName,
+        title: '',
         bgColor: kWhite,
         isDark: true,
         showLeading: true,
