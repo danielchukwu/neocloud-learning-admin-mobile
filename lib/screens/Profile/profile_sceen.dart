@@ -53,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
                 ProfileNavbarAndContent(
                     navItems: ProfileNavbarItems.educatorItems),
 
-                pageBottomPadding(height: defaultSize * 6),
+                SizedBox(height: defaultSize *3),
               ],
             ),
           ),
