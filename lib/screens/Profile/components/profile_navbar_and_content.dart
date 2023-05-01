@@ -36,14 +36,11 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
           buildNavbarIconButtons(),
 
           // Selector - used to select the currently chosen navbar item
-          // SizedBox(height: defaultSize),
           buildNavbarSelector(),
 
           // Display content - based on the navbar button clicked, this changes
           ProfileContent(
               type: widget.navItems[ProfileNavbarItems.selectedIndex].title),
-
-          SizedBox(height: defaultSize * 10),
         ],
       ),
     );
@@ -63,7 +60,7 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
         // Selector
         AnimatedPositioned(
           width: selectorWidth,
-          left: getPosition(),
+          left: getSelectorPosition(),
           curve: Curves.easeIn,
           duration: const Duration(milliseconds: 100),
           child: Container(
@@ -107,7 +104,7 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
   }
 
   // Returns the position horizontally where the selector should be
-  double getPosition() {
+  double getSelectorPosition() {
     if (ProfileNavbarItems.selectedIndex == 0) {
       return 0;
     } else if (ProfileNavbarItems.selectedIndex == 1) {
