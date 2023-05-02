@@ -38,12 +38,14 @@ class WelcomeScreen extends StatelessWidget {
                 SizedBox(height: defaultSize * 5),
                 TextLink(
                     title: 'Access Virtual Course',
+                    color: kBlack70,
                     press: (context) => navigateToComingSoon(context: context)),
 
                 // Link - certificate validation
-                SizedBox(height: defaultSize),
+                SizedBox(height: defaultSize * 7),
                 TextLink(
                   title: 'Certificate Validation',
+                  color: kBlack70,
                   press: (context) => navigateToComingSoon(context: context),
                 ),
               ],
