@@ -144,6 +144,37 @@ class AppsButton extends StatelessWidget {
   }
 }
 
+class AppsIconButton extends AppsButton {
+  AppsIconButton({
+    super.title = "",
+    required super.press,
+    super.icon,
+    super.iconColor = Colors.black87,
+    super.bgColor,
+    super.borderRadius,
+    super.padTopBottom = 18,
+    super.padLeftRight = 18,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => press(context),
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: padTopBottom,
+          horizontal: padLeftRight,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(borderRadius),
+          color: bgColor,
+        ),
+        child: Center(child: Icon(icon, color: iconColor,)),
+      ),
+    );
+  }
+}
+
 // Link Button
 class TextLink extends StatelessWidget {
   const TextLink({
@@ -152,20 +183,23 @@ class TextLink extends StatelessWidget {
     required this.press,
     this.color = Colors.black87,
     this.fontSize = 14,
+    this.weight = FontWeight.w400,
   });
 
   final String title;
   final Function(BuildContext context) press;
   final Color color;
   final double fontSize;
+  final FontWeight weight;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => press(context),
+    return GestureDetector(
+      onTap: () => press(context),
       child: TextCustom(
         title: title,
         fontSize: fontSize,
+        weight: weight,
         color: color,
       ),
     );
@@ -222,7 +256,8 @@ class _AppsDropdownButtonState extends State<AppsDropdownButton> {
   @override
   void initState() {
     super.initState();
-    dropdownValue = widget.selected != null ? widget.selected : widget.list.first;
+    dropdownValue =
+        widget.selected != null ? widget.selected : widget.list.first;
   }
 
   @override
@@ -240,11 +275,10 @@ class _AppsDropdownButtonState extends State<AppsDropdownButton> {
       items: widget.list.map((String month) {
         return DropdownMenuItem(
           child:
-          TextSmall(title: month, color: kBlack50, weight: FontWeight.w500),
+              TextSmall(title: month, color: kBlack50, weight: FontWeight.w500),
           value: month,
         );
       }).toList(),
     );
   }
 }
-
