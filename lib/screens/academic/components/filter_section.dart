@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/headers/headear_dropdown.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Filters.dart';
@@ -34,63 +35,89 @@ class FilterSection extends StatefulWidget {
 class _FilterSectionState extends State<FilterSection> {
   Map<String, String> filter = {};
   double turns = 0;
-  bool displayFilter = false;
+  bool showContent = false;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         // Filter Header and 🔻
-        buildFilterHeader(),
+        HeaderWithDropdown(
+          title: 'Filter',
+          showContent: showContent,
+          press: () => setState(() {
+            showContent = !showContent;
+          }),
+        ),
 
-        displayFilter
+        showContent
             ? Column(
                 children: <Widget>[
                   // Month, Year
-                  widget.showMonthYear ? SizedBox(height: defaultSize) : SizedBox(),
+                  widget.showMonthYear
+                      ? SizedBox(height: defaultSize)
+                      : SizedBox(),
                   widget.showMonthYear ? buildMonthYearField() : SizedBox(),
 
                   // range
                   widget.showRange ? SizedBox(height: defaultSize) : SizedBox(),
-                  widget.showRange ? buildAppsDropdownButton(
-                    list: dateRangeFilters,
-                    press: updateFilter(k: "range"),
-                  ) : SizedBox(),
+                  widget.showRange
+                      ? buildAppsDropdownButton(
+                          list: dateRangeFilters,
+                          press: updateFilter(k: "range"),
+                        )
+                      : SizedBox(),
 
                   // Status
-                  widget.showStatus ? SizedBox(height: defaultSize) : SizedBox(),
-                  widget.showStatus ? buildAppsDropdownButton(
-                    list: statusFilters,
-                    press: updateFilter(k: "status"),
-                  ) : SizedBox(),
+                  widget.showStatus
+                      ? SizedBox(height: defaultSize)
+                      : SizedBox(),
+                  widget.showStatus
+                      ? buildAppsDropdownButton(
+                          list: statusFilters,
+                          press: updateFilter(k: "status"),
+                        )
+                      : SizedBox(),
 
                   // Class
                   widget.showClass ? SizedBox(height: defaultSize) : SizedBox(),
-                  widget.showClass ? buildAppsDropdownButton(
-                    list: coursesFilter,
-                    press: updateFilter(k: "class"),
-                  ) : SizedBox(),
+                  widget.showClass
+                      ? buildAppsDropdownButton(
+                          list: coursesFilter,
+                          press: updateFilter(k: "class"),
+                        )
+                      : SizedBox(),
 
                   // Section
-                  widget.showSection ? SizedBox(height: defaultSize) : SizedBox(),
-                  widget.showSection ? buildAppsDropdownButton(
-                    list: sectionFilters,
-                    press: updateFilter(k: "section"),
-                  ): SizedBox(),
+                  widget.showSection
+                      ? SizedBox(height: defaultSize)
+                      : SizedBox(),
+                  widget.showSection
+                      ? buildAppsDropdownButton(
+                          list: sectionFilters,
+                          press: updateFilter(k: "section"),
+                        )
+                      : SizedBox(),
 
                   // Session
-                  widget.showSession ? SizedBox(height: defaultSize) : SizedBox(),
-                  widget.showSession ? buildAppsDropdownButton(
-                    list: sessionFilters,
-                    press: updateFilter(k: "session"),
-                    selected: sessionFilters.last,
-                  ): SizedBox(),
+                  widget.showSession
+                      ? SizedBox(height: defaultSize)
+                      : SizedBox(),
+                  widget.showSession
+                      ? buildAppsDropdownButton(
+                          list: sessionFilters,
+                          press: updateFilter(k: "session"),
+                          selected: sessionFilters.last,
+                        )
+                      : SizedBox(),
 
                   // Button
                   SizedBox(height: defaultSize),
                   buildFilterButton(
-                      press: (context) { widget.press(filter); },
-                      buttonText: widget.buttonText,
+                    press: (context) {
+                      widget.press(filter);
+                    },
+                    buttonText: widget.buttonText,
                   ),
                 ],
               )
@@ -129,32 +156,5 @@ class _FilterSectionState extends State<FilterSection> {
         filter[k] = value;
       });
     };
-  }
-
-  GestureDetector buildFilterHeader() {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          turns = turns == -.25 ? 0 : -.25;
-          displayFilter = turns == 0 ? false : true;
-        });
-      },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          TextLarge(
-            title: widget.label,
-            color: kBlack70,
-            weight: FontWeight.w500,
-          ),
-          AnimatedRotation(
-            turns: turns,
-            duration: Duration(milliseconds: 100),
-            child: Icon(Icons.arrow_left, color: kBlack70),
-            // child: Icon(Icons.arrow_drop_down_sharp, color: kBlack70),
-          ),
-        ],
-      ),
-    );
   }
 }
