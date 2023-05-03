@@ -10,6 +10,7 @@ class Course {
   final int reviews_count;
   final int students_count;
   final int duration;
+  final List<Review>? reviews;
   final List<String>? accomplishments;
   final List<String>? requirements;
 
@@ -23,9 +24,19 @@ class Course {
     required this.reviews_count,
     required this.students_count,
     required this.duration,
+    this.reviews,
     this.accomplishments,
     this.requirements,
   });
+}
+
+class Review {
+  final String id;
+  final String name;
+  final double rating;
+  final String content;
+
+  Review({required this.id, required this.name, required this.rating, required this.content});
 }
 
 class CourseModule {
@@ -222,5 +233,38 @@ List<CourseModule> modulesList = [
         duration: '18:54',
       ),
     ],
+  ),
+];
+
+List<Review> reviewsList = [
+  Review(
+    id: '1',
+    name: 'John Doe',
+    rating: 85,
+    content: 'Great product, would recommend!',
+  ),
+  Review(
+    id: '2',
+    name: 'Jane Smith',
+    rating: 100,
+    content: 'Amazing experience, loved it!',
+  ),
+  Review(
+    id: '3',
+    name: 'Bob Johnson',
+    rating: 60,
+    content: 'Product was okay, not too impressed.',
+  ),
+  Review(
+    id: '4',
+    name: 'Alice Williams',
+    rating: 75,
+    content: 'Good value for the price.',
+  ),
+  Review(
+    id: '5',
+    name: 'Tom Wilson',
+    rating: 25,
+    content: 'Disappointed with the product quality.',
   ),
 ];
