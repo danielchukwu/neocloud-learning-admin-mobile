@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/screens/login/login_screen.dart';
 
 // Welcome Button
 class WelcomeButton extends StatelessWidget {
@@ -170,37 +169,6 @@ class AppsIconButton extends AppsButton {
           color: bgColor,
         ),
         child: Center(child: Icon(icon, color: iconColor,)),
-      ),
-    );
-  }
-}
-
-// Link Button
-class TextLink extends StatelessWidget {
-  const TextLink({
-    super.key,
-    required this.title,
-    required this.press,
-    this.color = Colors.black87,
-    this.fontSize = 14,
-    this.weight = FontWeight.w400,
-  });
-
-  final String title;
-  final Function(BuildContext context) press;
-  final Color color;
-  final double fontSize;
-  final FontWeight weight;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => press(context),
-      child: TextCustom(
-        title: title,
-        fontSize: fontSize,
-        weight: weight,
-        color: color,
       ),
     );
   }
