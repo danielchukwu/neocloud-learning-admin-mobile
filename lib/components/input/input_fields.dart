@@ -89,6 +89,7 @@ class _LoginInputFieldState extends State<LoginInputField> {
     if (value!.isEmpty) {
       return "Please enter your ${widget.labelText}";
     }
+    return null;
   }
 }
 
