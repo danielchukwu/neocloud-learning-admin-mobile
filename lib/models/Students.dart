@@ -7,6 +7,7 @@ class Account {
   final String password;
   final String role;
   final double ratings;
+  final String about;
   final int students_count;
   final int courses_count;
   final int reviews_count;
@@ -20,6 +21,7 @@ class Account {
     required this.password,
     required this.role,
     required this.ratings,
+    required this.about,
     required this.students_count,
     required this.courses_count,
     required this.reviews_count,
@@ -41,7 +43,7 @@ class Student extends Account {
     required super.id,
     required super.students_count,
     required super.courses_count,
-    required super.reviews_count,
+    required super.reviews_count, required super.about,
   });
 }
 
@@ -62,7 +64,7 @@ class Educator extends Account {
     required super.id,
     required super.students_count,
     required super.courses_count,
-    required super.reviews_count,
+    required super.reviews_count, required super.about,
   });
 }
 
@@ -78,12 +80,12 @@ class Admin extends Account {
     required super.id,
     required super.students_count,
     required super.courses_count,
-    required super.reviews_count,
+    required super.reviews_count, required super.about,
   });
 }
 
-// Ratings
-//
+var about = "Hi! I’m Nathan. I’m a developer with a deep passion for teaching. I’ve spent the last few years teaching people to program at 2 different immersive boot camps. I’ve helped over a million amazing personnel's make their developer dreams a reality, taking them out of poverty over night. This is what I do, If you are looking to be a great developer and make millions while you are at it, purchase anyone of the list of courses I currently have available and start the Journey that will change your life. I assure you";
+
 String imagePath = 'assets/dps/';
 List<Account> users = [
   Student(
@@ -95,6 +97,7 @@ List<Account> users = [
     password: 'abc',
     role: 'Educator',
     ratings: 100,
+    about: about,
     id: 1,
     students_count: 16,
     courses_count: 3,
@@ -110,6 +113,7 @@ List<Account> users = [
     password: 'abc',
     role: 'Student',
     ratings: 80,
+    about: about,
     students_count: 11,
     courses_count: 5,
     reviews_count: 23,
@@ -124,6 +128,7 @@ List<Account> users = [
     password: 'abc',
     role: 'Student',
     ratings: 60,
+    about: about,
     students_count: 6,
     courses_count: 7,
     reviews_count: 10,
@@ -138,6 +143,7 @@ List<Account> users = [
     password: 'abc',
     role: 'Educator',
     ratings: 40,
+    about: about,
     students_count: 12,
     courses_count: 1,
     reviews_count: 5,
@@ -152,6 +158,7 @@ List<Account> users = [
     password: 'abc',
     role: 'SuperAdmin',
     ratings: 20,
+    about: about,
     students_count: 19,
     courses_count: 5,
     reviews_count: 23,
