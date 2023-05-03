@@ -20,7 +20,6 @@ class StarRating extends StatelessWidget {
 
   // returns a list containing star widgets mixture, both full_stars, half_stars, and empty_stars
   List<Widget> getRatings({required double rating, required double iconSize}) {
-    print(rating);
     Map ratingsMap = getStarsForRating(ratings: rating);
     List<Widget> result = [];
 
