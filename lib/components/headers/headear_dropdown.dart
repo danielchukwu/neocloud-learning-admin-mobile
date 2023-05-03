@@ -30,8 +30,8 @@ class HeaderWithDropdown extends StatelessWidget {
       onTap: () => press(),
       child: Container(
         color: Colors.transparent,
-        // padding: EdgeInsets.symmetric(vertical: defaultSize),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Expanded(
@@ -42,11 +42,14 @@ class HeaderWithDropdown extends StatelessWidget {
                 weight: weight,
               ),
             ),
-            AnimatedRotation(
-              turns: turns,
-              duration: Duration(milliseconds: 100),
-              child: Icon(icon ?? Icons.arrow_drop_up, color: iconColor ?? kBlack70),
-              // child: Icon(Icons.arrow_drop_down_sharp, color: kBlack70),
+            Container(
+              margin: EdgeInsets.only(left: defaultSize * 3),
+              child: AnimatedRotation(
+                turns: turns,
+                duration: Duration(milliseconds: 100),
+                child: Icon(icon ?? Icons.arrow_drop_up, color: iconColor ?? kBlack70),
+                // child: Icon(Icons.arrow_drop_down_sharp, color: kBlack70),
+              ),
             ),
           ],
         ),
