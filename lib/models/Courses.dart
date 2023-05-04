@@ -7,6 +7,7 @@ class Course {
   final Account user;
   final double rating;
   final double price;
+  final int discount;
   final int reviews_count;
   final int students_count;
   final int duration;
@@ -21,6 +22,7 @@ class Course {
     required this.user,
     required this.rating,
     required this.price,
+    required this.discount,
     required this.reviews_count,
     required this.students_count,
     required this.duration,
@@ -36,7 +38,11 @@ class Review {
   final double rating;
   final String content;
 
-  Review({required this.id, required this.name, required this.rating, required this.content});
+  Review(
+      {required this.id,
+      required this.name,
+      required this.rating,
+      required this.content});
 }
 
 class CourseModule {
@@ -68,49 +74,144 @@ class CourseMaterial {
 // Items
 List<Course> coursesList = [
   Course(
-      id: "1",
-      imgSrc: "assets/images/course_python.jpg",
-      title: "The Ultimate Python Course For Automation Today",
-      user: users[0],
-      price: 55599,
-      rating: 94,
-      reviews_count: 22,
-      duration: 12,
-      students_count: 103,
-      accomplishments: [
-        "You’ll get a complete knowledge on Python fundamentals  starting from a-z",
-        "You’ll be able to implement Python Test Automation Frameworks from scratch with all latest Technologies",
-        "You will be learning Python Unit Test Frameworks like PyTest which will be helpful for Unit and Integration Testing",
-        "You'll be a certified Tech bro when we are done I am done with u"
-      ],
-      requirements: [
-        "It’s not required to have a prior knowledge on python",
-        "Though these are online lectures. You will have Life Time Educator support. You can contact me anytime for your queries",
-        "You need to have a system (Windows, Mac or Linux), that’s able to install and run python without any hiccups",
-        "It's okay to be a lazy person prior to taking this course, by the time I am done with you, you won't be the same"
-      ]),
+    id: "1",
+    imgSrc: "assets/images/course_python.jpg",
+    title: "The Ultimate Python Course For Automation Today",
+    user: users[0],
+    price: 55599,
+    discount: 20,
+    rating: 94,
+    reviews_count: 22,
+    duration: 12,
+    students_count: 103,
+    accomplishments: [
+      "You’ll get a complete knowledge on Python fundamentals  starting from a-z",
+      "You’ll be able to implement Python Test Automation Frameworks from scratch with all latest Technologies",
+      "You will be learning Python Unit Test Frameworks like PyTest which will be helpful for Unit and Integration Testing",
+      "You'll be a certified Tech bro when we are done I am done with u"
+    ],
+    requirements: [
+      "It’s not required to have a prior knowledge on python",
+      "Though these are online lectures. You will have Life Time Educator support. You can contact me anytime for your queries",
+      "You need to have a system (Windows, Mac or Linux), that’s able to install and run python without any hiccups",
+      "It's okay to be a lazy person prior to taking this course, by the time I am done with you, you won't be the same"
+    ],
+  ),
   Course(
-      id: "2",
-      imgSrc: "assets/images/course_html&css.jpg",
-      title: "The Ultimate HTML & CSS Course Online",
-      user: users[1],
-      price: 62000,
-      rating: 76,
-      reviews_count: 59,
-      duration: 17,
-      students_count: 69,
-      accomplishments: [
-        "You’ll get a complete knowledge on Python fundamentals  starting from a-z",
-        "You’ll be able to implement Python Test Automation Frameworks from scratch with all latest Technologies",
-        "You will be learning Python Unit Test Frameworks like PyTest which will be helpful for Unit and Integration Testing",
-        "You'll be a certified Tech bro when we are done I am done with u"
-      ],
-      requirements: [
-        "It’s not required to have a prior knowledge on python",
-        "Though these are online lectures. You will have Life Time Educator support. You can contact me anytime for your queries",
-        "You need to have a system (Windows, Mac or Linux), that’s able to install and run python without any hiccups",
-        "It's okay to be a lazy person prior to taking this course, by the time I am done with you, you won't be the same"
-      ]),
+    id: "2",
+    imgSrc: "assets/images/course_html&css.jpg",
+    title: "The Ultimate HTML & CSS Course Online",
+    user: users[1],
+    price: 62000,
+    discount: 45,
+    rating: 76,
+    reviews_count: 59,
+    duration: 17,
+    students_count: 69,
+    accomplishments: [
+      "You’ll get a complete knowledge on Python fundamentals  starting from a-z",
+      "You’ll be able to implement Python Test Automation Frameworks from scratch with all latest Technologies",
+      "You will be learning Python Unit Test Frameworks like PyTest which will be helpful for Unit and Integration Testing",
+      "You'll be a certified Tech bro when we are done I am done with u"
+    ],
+    requirements: [
+      "It’s not required to have a prior knowledge on python",
+      "Though these are online lectures. You will have Life Time Educator support. You can contact me anytime for your queries",
+      "You need to have a system (Windows, Mac or Linux), that’s able to install and run python without any hiccups",
+      "It's okay to be a lazy person prior to taking this course, by the time I am done with you, you won't be the same"
+    ],
+  ),
+  Course(
+    id: "3",
+    imgSrc: "assets/images/course_javascript.jpg",
+    title: "The Comprehensive JavaScript Course: Build Real-World Projects",
+    user: users[2],
+    price: 99999,
+    discount: 10,
+    rating: 85,
+    reviews_count: 42,
+    duration: 20,
+    students_count: 87,
+    accomplishments: [
+      "You will learn the JavaScript language and how to use it in web development",
+      "You will build real-world projects that you can add to your portfolio",
+      "You will gain a thorough understanding of JavaScript's fundamentals",
+      "You'll be a skilled JavaScript developer by the end of this course"
+    ],
+    requirements: [
+      "Basic understanding of HTML and CSS",
+      "Access to a computer with internet connection",
+      "No prior JavaScript experience is necessary"
+    ],
+  ),
+  Course(
+    id: "4",
+    imgSrc: "assets/images/course_react.jpg",
+    title: "Mastering React: Build Dynamic Web Applications",
+    user: users[3],
+    price: 79999,
+    discount: 30,
+    rating: 91,
+    reviews_count: 63,
+    duration: 15,
+    students_count: 105,
+    accomplishments: [
+      "You will learn React fundamentals and how to build dynamic web applications",
+      "You will gain hands-on experience building projects with React",
+      "You will learn how to integrate React with other technologies such as Firebase and Redux",
+      "You'll be a skilled React developer by the end of this course"
+    ],
+    requirements: [
+      "Basic understanding of HTML, CSS, and JavaScript",
+      "Access to a computer with internet connection",
+      "No prior React experience is necessary"
+    ],
+  ),
+  Course(
+    id: "5",
+    imgSrc: "assets/images/course_java.jpg",
+    title: "Java Programming for Beginners: Learn Java from Scratch",
+    user: users[4],
+    price: 49999,
+    discount: 50,
+    rating: 80,
+    reviews_count: 31,
+    duration: 10,
+    students_count: 93,
+    accomplishments: [
+      "You will learn Java fundamentals and how to write Java code",
+      "You will gain hands-on experience building Java applications",
+      "You will learn about object-oriented programming concepts",
+      "You'll be a skilled Java developer by the end of this course"
+    ],
+    requirements: [
+      "Access to a computer with internet connection",
+      "No prior programming experience is necessary"
+    ],
+  ),
+  Course(
+    id: "6",
+    imgSrc: "assets/images/course_aws.jpg",
+    title: "AWS Certified Solutions Architect: Associate Certification",
+    user: users[2],
+    price: 119999,
+    discount: 25,
+    rating: 88,
+    reviews_count: 50,
+    duration: 30,
+    students_count: 75,
+    accomplishments: [
+      "You will learn about AWS services and solutions",
+      "You will be prepared for the AWS Certified Solutions Architect: Associate certification exam",
+      "You will gain hands-on experience with AWS tools and services",
+      "You'll be a certified AWS Solutions Architect by the end of this course"
+    ],
+    requirements: [
+      "Basic understanding of cloud computing concepts",
+      "Access to a computer with internet connection",
+      "No prior AWS experience is necessary"
+    ],
+  )
 ];
 
 List<CourseModule> modulesList = [
@@ -239,32 +340,36 @@ List<CourseModule> modulesList = [
 List<Review> reviewsList = [
   Review(
     id: '1',
-    name: 'John Doe',
+    name: 'Emefor Chinonso',
     rating: 85,
-    content: 'Great product, would recommend!',
+    content:
+        'As a computer Science graduate, I found this NCT course taught by Nathan to be extremely efficient in transitioning to an automation career. I would recommend Nathan Rashford to anyone who seriously wants to dive into any tech career. 5+ stars for this course!',
   ),
   Review(
     id: '2',
-    name: 'Jane Smith',
+    name: 'Jason Lauthong',
     rating: 100,
-    content: 'Amazing experience, loved it!',
+    content:
+        'Amazing experience, loved it! It even had a little Wordpress in it. This course is a master piece, I would recommend it to any and everyone.',
   ),
   Review(
     id: '3',
-    name: 'Bob Johnson',
+    name: 'Ezra Odugbe',
     rating: 60,
-    content: 'Product was okay, not too impressed.',
+    content:
+        'Fantastic course, absolutely worth the price! It will teach you all of the fundamental building blocks to automation.\n\n I absolutely recommend this to anyone looking to get started with python automation or even to anyone who kinda has gaps in their knowledge and are looking for a credible source. Look know more sir/ma, this NCT Educator has go it',
   ),
   Review(
     id: '4',
-    name: 'Alice Williams',
+    name: 'Alex Iwobi',
     rating: 75,
-    content: 'Good value for the price.',
+    content:
+        "I was a bit skeptical before embarking on the journey to take this course but after taking it for some reason I can't even remember, It was well worth it. Good value for the price.",
   ),
   Review(
     id: '5',
-    name: 'Tom Wilson',
+    name: 'Mmesoma Chi',
     rating: 25,
-    content: 'Disappointed with the product quality.',
+    content: 'Disappointed with the course quality.',
   ),
 ];
