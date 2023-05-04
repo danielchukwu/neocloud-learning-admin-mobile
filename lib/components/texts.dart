@@ -4,13 +4,12 @@ import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/constraints.dart';
 
 class TextSmall extends StatelessWidget {
-  TextSmall({
-    super.key,
-    required this.title,
-    this.color = Colors.black,
-    this.weight = FontWeight.w400,
-    this.textAlign = TextAlign.start
-  });
+  TextSmall(
+      {super.key,
+      required this.title,
+      this.color = Colors.black,
+      this.weight = FontWeight.w400,
+      this.textAlign = TextAlign.start});
 
   final TextAlign textAlign;
   final String title;
@@ -33,13 +32,12 @@ class TextSmall extends StatelessWidget {
 }
 
 class TextMedium extends StatelessWidget {
-  const TextMedium({
-    super.key,
-    required this.title,
-    this.color = Colors.black87,
-    this.weight = FontWeight.w400,
-    this.textAlign = TextAlign.start
-  });
+  const TextMedium(
+      {super.key,
+      required this.title,
+      this.color = Colors.black87,
+      this.weight = FontWeight.w400,
+      this.textAlign = TextAlign.start});
 
   final TextAlign textAlign;
   final String title;
@@ -62,13 +60,12 @@ class TextMedium extends StatelessWidget {
 }
 
 class TextLarge extends StatelessWidget {
-  const TextLarge({
-    super.key,
-    required this.title,
-    this.color = Colors.black,
-    this.weight = FontWeight.w400,
-    this.textAlign = TextAlign.start
-  });
+  const TextLarge(
+      {super.key,
+      required this.title,
+      this.color = Colors.black,
+      this.weight = FontWeight.w400,
+      this.textAlign = TextAlign.start});
 
   final TextAlign textAlign;
   final String title;
@@ -91,13 +88,12 @@ class TextLarge extends StatelessWidget {
 }
 
 class TextExtraLarge extends StatelessWidget {
-  const TextExtraLarge({
-    super.key,
-    required this.title,
-    this.color = Colors.black,
-    this.weight = FontWeight.w400,
-    this.textAlign = TextAlign.start
-  });
+  const TextExtraLarge(
+      {super.key,
+      required this.title,
+      this.color = Colors.black,
+      this.weight = FontWeight.w400,
+      this.textAlign = TextAlign.start});
 
   final TextAlign textAlign;
   final String title;
@@ -120,14 +116,13 @@ class TextExtraLarge extends StatelessWidget {
 }
 
 class TextCustom extends StatelessWidget {
-  const TextCustom({
-    super.key,
-    required this.title,
-    required this.fontSize,
-    this.color = Colors.black,
-    this.weight = FontWeight.w400,
-    this.textAlign = TextAlign.start
-  });
+  const TextCustom(
+      {super.key,
+      required this.title,
+      required this.fontSize,
+      this.color = Colors.black,
+      this.weight = FontWeight.w400,
+      this.textAlign = TextAlign.start});
 
   final TextAlign textAlign;
   final String title;
@@ -150,8 +145,7 @@ class TextCustom extends StatelessWidget {
   }
 }
 
-
-class TextCustomMaxLine extends StatelessWidget{
+class TextCustomMaxLine extends StatelessWidget {
   const TextCustomMaxLine({
     super.key,
     required this.title,
@@ -161,6 +155,7 @@ class TextCustomMaxLine extends StatelessWidget{
     this.textAlign = TextAlign.start,
     this.maxLines = 1,
     this.overflow = TextOverflow.ellipsis,
+    this.lineHeight = 1.5,
   });
 
   final TextAlign textAlign;
@@ -170,6 +165,7 @@ class TextCustomMaxLine extends StatelessWidget{
   final FontWeight weight;
   final int maxLines;
   final TextOverflow overflow;
+  final double lineHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -181,13 +177,13 @@ class TextCustomMaxLine extends StatelessWidget{
         color: color,
         fontSize: fontSize,
         fontWeight: weight,
+        height: lineHeight,
       ),
       maxLines: maxLines,
       overflow: overflow,
     );
   }
 }
-
 
 class IconText extends StatelessWidget {
   const IconText({
@@ -235,7 +231,6 @@ class IconText extends StatelessWidget {
   }
 }
 
-
 class AppsTextRich extends StatelessWidget {
   const AppsTextRich({
     super.key,
@@ -246,7 +241,9 @@ class AppsTextRich extends StatelessWidget {
     this.text1FontSize = 16,
     this.text2FontSize = 16,
     this.text1FontWeight = FontWeight.w400,
-    this.text2FontWeight = FontWeight.w400,
+    this.text2FontWeight = FontWeight.w400, 
+    this.text1Decoration = TextDecoration.none, 
+    this.text2Decoration = TextDecoration.none,
   });
 
   final String text1;
@@ -257,6 +254,8 @@ class AppsTextRich extends StatelessWidget {
   final double text2FontSize;
   final FontWeight text1FontWeight;
   final FontWeight text2FontWeight;
+  final TextDecoration text1Decoration;
+  final TextDecoration text2Decoration;
 
   @override
   Widget build(BuildContext context) {
@@ -266,14 +265,17 @@ class AppsTextRich extends StatelessWidget {
         style: getAppsTextStyle(
             color: text1Color,
             fontSize: text1FontSize,
-            fontWeight: text1FontWeight),
+            fontWeight: text1FontWeight,
+            decoration: text1Decoration),
         children: [
           TextSpan(
             text: text2,
             style: getAppsTextStyle(
-                color: text2Color,
-                fontSize: text2FontSize,
-                fontWeight: text2FontWeight),
+              color: text2Color,
+              fontSize: text2FontSize,
+              fontWeight: text2FontWeight,
+              decoration: text2Decoration,
+            ),
           ),
         ],
       ),
@@ -314,16 +316,17 @@ class _TextSeeMoreState extends State<TextSeeMore> {
           maxLines: !showMore ? widget.maxLines : 200,
         ),
         SizedBox(
-          height: widget.text.length > 215 ?  defaultSize * 1 : 0,
+          height: widget.text.length > 215 ? defaultSize * 1 : 0,
         ),
-        widget.text.length > 215 
-        ? TextLink(
-          title: !showMore ? "See more" : "See less",
-          color: kBlue,
-          fontSize: defaultSize * 1.6,
-          weight: FontWeight.w600,
-          press: (_) => setState(() => showMore = !showMore),
-        ): SizedBox(),
+        widget.text.length > 215
+            ? TextLink(
+                title: !showMore ? "See more" : "See less",
+                color: kBlue,
+                fontSize: defaultSize * 1.6,
+                weight: FontWeight.w600,
+                press: (_) => setState(() => showMore = !showMore),
+              )
+            : SizedBox(),
       ],
     );
   }
