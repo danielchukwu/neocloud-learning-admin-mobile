@@ -6,15 +6,15 @@ import 'package:neocloud_mobile/models/Courses.dart';
 class CoursesList extends StatelessWidget {
   const CoursesList({
     super.key,
-    required this.data,
+    required this.coursesList,
   });
 
-  final List<Course> data;
+  final List<Course> coursesList;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-          children: List.generate(data.length, (index) => CourseCard(course: data[index])),
+          children: List.generate(coursesList.length, (index) => CourseCard(course: coursesList[index])),
         );
   }
 }
