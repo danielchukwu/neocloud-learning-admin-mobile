@@ -157,8 +157,9 @@ class AppsIconButton extends AppsButton {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () => press(context),
+      borderRadius: BorderRadius.circular(borderRadius),
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: padTopBottom,
