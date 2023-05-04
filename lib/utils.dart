@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 // replaces all the " " space in a string with an underscore "_" and
 // returns a lowercase version of the new string and then prepends a forward
 // slash "/" e.g Back Office => /back_office, Profile => /profile
@@ -56,4 +58,10 @@ String shortenText({required String text, required int limit}){
     return text.substring(0, limit) + "...";
   }
   return text;
+}
+
+String getMoneyFormat(double value){
+  var formatter = NumberFormat.currency(symbol: '');
+
+  return formatter.format(value);
 }
