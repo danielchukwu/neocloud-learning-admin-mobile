@@ -6,9 +6,13 @@ import 'package:neocloud_mobile/components/cards/components/display_filename.dar
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/texts.dart';
+import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
+import 'package:neocloud_mobile/screens/list/list_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
+
+import 'components/cards.dart';
 
 // Images
 const neocloudLogo = 'assets/images/logo-dark.png';
@@ -57,16 +61,20 @@ TextStyle getAppsTextStyle({
   Color color = Colors.black87,
   double fontSize = 16,
   FontWeight fontWeight = FontWeight.w600,
+  TextDecoration decoration = TextDecoration.none,
 }) {
   return TextStyle(
     fontFamily: fontFamily,
     color: color,
     fontSize: fontSize,
     fontWeight: fontWeight,
+    decorationStyle: TextDecorationStyle.solid,
+    decoration: decoration,
   );
 }
 
-// - Navigations
+// - Navigators
+
 void navigateToComingSoon({BuildContext? context}) {
   Navigator.push(
     context!,
@@ -88,6 +96,15 @@ void navigateToProfile({BuildContext? context}) {
 void navigateToScreen(
     {required BuildContext context, required String routeName}) {
   Navigator.pushNamed(context, routeName);
+}
+
+navigateToListScreen({required BuildContext context, required String screenName, required Widget widgetList}) {
+  return Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => ListScreen(widgetList: widgetList, screenName: screenName),
+    ),
+  );
 }
 
 // - Build Widgets
@@ -283,4 +300,15 @@ Widget buildSearchTextField({required Function(String value) press}) {
     hintText: "Search",
     onSubmitPress: press,
   );
+}
+
+// - Mini Course Card
+Widget buildSmallMiniCourseCard({required Course course}) {
+  return MiniCourseCard(course: course);
+}
+Widget buildMediumMiniCourseCard({required Course course}) {
+  return MiniCourseCard(course: course, cardSize: defaultSize * 20, fontSize: defaultSize * 1.6,);
+}
+Widget buildBigMiniCourseCard({required Course course}) {
+  return MiniCourseCard(course: course, cardSize: defaultSize * 30, fontSize: defaultSize * 1.8,);
 }
