@@ -11,18 +11,22 @@ Objectives
 - Fix/Change Navbar
 - fix the logos with what was sent to you by Mr. J
 - abstract the color usage of the star color
+- Fix star ratings ⭐ - it isn't accurate
+- Use Sliver AppBar for widgets
 
 --- Pages
-- Students view Page
-- Courses view Page
-- Reviews view Page
-- View Cards (of all kinds) Page
-- Cart
+- Students view Page ✅
+- Courses view Page ✅
+- Reviews view Page ✅
+- View Cards (of all kinds) Page 
+- Carts
 - Notifications Page
 - Virtual Students Feed
-- Search Page
+- Search Page ✅
 - Upload Course Page
 - Undertaken Course Page
+
+- Students Navbar (Home, Search, Tasks, Notifications, Profile)
 
 
 
