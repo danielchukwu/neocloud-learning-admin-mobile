@@ -4,8 +4,8 @@ import 'package:neocloud_mobile/constraints.dart';
 class StackCoverAndProfileImage extends StatelessWidget {
   const StackCoverAndProfileImage({
     super.key,
-    required this.coverImg,
-    required this.profileImg,
+    required this.cover,
+    required this.avatar,
     this.coverSize = 280,
     this.profileImgBorderSize = 3,
     this.coverOverlay = Colors.green,
@@ -13,8 +13,8 @@ class StackCoverAndProfileImage extends StatelessWidget {
     this.bgCurveVerticalPosition = 130,
   });
 
-  final String coverImg;
-  final String profileImg;
+  final String cover;
+  final String avatar;
   final double coverSize;
   final double profileImgBorderSize;
   final Color coverOverlay;
@@ -65,7 +65,7 @@ class StackCoverAndProfileImage extends StatelessWidget {
               shape: BoxShape.circle,
               border: Border.all(color: kWhite, width: profileImgBorderSize),
               image: DecorationImage(
-                image: AssetImage(profileImg),
+                image: AssetImage(avatar),
                 fit: BoxFit.cover,
               ),
             ),
@@ -81,7 +81,7 @@ class StackCoverAndProfileImage extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(coverImg), fit: BoxFit.cover),
+                  image: AssetImage(cover), fit: BoxFit.cover),
             ),
             child: Container(color: coverOverlay), // dark overlay
           ),
