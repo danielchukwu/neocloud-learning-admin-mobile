@@ -68,15 +68,23 @@ class _SearchScreenState extends State<SearchScreen> {
 
               // Result
               SizedBox(height: defaultSize),
-              UserList(usersList: users.where((user) => (_selectedIndex == 0)).toList()),
-              UserList(usersList: users.where((user) => (user.role == "Educator" && _selectedIndex == 1)).toList()),
-              UserList(usersList: users.where((user) => (user.role == "Student" && _selectedIndex == 2)).toList()),
-              _selectedIndex == 3 ? Padding(
-                padding: screenPadding,
-                child: CoursesList(data: coursesList),
-              ) : SizedBox(),
+              Padding(
+                padding: EdgeInsets.fromLTRB(defaultSize * 2, 0, defaultSize * 2, defaultSize * 2),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    // Users List
+                  UserList(usersList: users.where((user) => (_selectedIndex == 0)).toList()),
+                  UserList(usersList: users.where((user) => (user.role == "Educator" && _selectedIndex == 1)).toList()),
+                  UserList(usersList: users.where((user) => (user.role == "Student" && _selectedIndex == 2)).toList()),
 
-              SizedBox(height: defaultSize * 3),
+                  // Courses List
+                  _selectedIndex == 3 ? CoursesList(coursesList: coursesList) : SizedBox(),
+              
+                  SizedBox(height: defaultSize * 3),
+                  ],
+                ),
+              )
             ],
           ),
         ),
