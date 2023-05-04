@@ -27,12 +27,13 @@ class Ratings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // Rating
         showRatingsText 
         ? TextCustom(
             title: "${rating / 20}",
-            color: color ?? kBlack80,
+            color: color ?? kBlack70,
             weight: FontWeight.w600,
             fontSize: fontSize ?? defaultSize * 1.6)
         : SizedBox(),
