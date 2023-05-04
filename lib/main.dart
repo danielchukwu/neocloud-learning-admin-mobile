@@ -4,6 +4,7 @@ import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/back_office/back_office_screen.dart';
 import 'package:neocloud_mobile/screens/book_issues/books_issue_screen.dart';
+import 'package:neocloud_mobile/screens/cart/cart_screen.dart';
 import 'package:neocloud_mobile/screens/class_works/class_works_screen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/course/course_screen.dart';
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
         '/finance': (context) => const FinanceScreen(),
         '/profile': (context) => ProfileScreen(),
         '/search': (context) => const SearchScreen(),
+        '/cart': (context) => const CartScreen(),
         // Removed because the CourseScreen Screen widget takes arguments
         // '/course': (context) => const CourseScreen(),
 
