@@ -19,9 +19,8 @@ class UserTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(
-          defaultSize * 2, 0, defaultSize * 2, defaultSize * 2),
       color: Colors.transparent,
+      padding: EdgeInsets.only(bottom: defaultSize * 2),
       child: Row(
         children: <Widget>[
           // Avatar
