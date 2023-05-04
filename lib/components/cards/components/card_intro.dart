@@ -26,7 +26,7 @@ class CardHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // Card Label
-        TextCustomMaxLine(
+        TextCustom(
           title: label,
           fontSize: labelSize,
           color: kBlack70,
@@ -34,13 +34,11 @@ class CardHeader extends StatelessWidget {
         ),
 
         // Card Title
-        TextCustomMaxLine(
+        TextCustom(
           title: title,
           fontSize: textSize,
           color: kBlack80,
           weight: textWeight,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
         ),
       ],
     );
