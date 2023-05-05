@@ -84,22 +84,18 @@ void navigateToComingSoon({BuildContext? context}) {
   );
 }
 
-void navigateToProfile({BuildContext? context}) {
-  Navigator.push(
-    context!,
-    MaterialPageRoute(
-      builder: (context) => ProfileScreen(),
-    ),
-  );
-}
-
 void navigateToScreen(
     {required BuildContext context, required String routeName}) {
   Navigator.pushNamed(context, routeName);
 }
 
-navigateToListScreen({required BuildContext context, required String screenName, required Widget widgetList}) {
-  return Navigator.push(
+void navigateToScreenPush(
+    {required BuildContext context, required Widget widget}) {
+  Navigator.push(context, MaterialPageRoute(builder: (_) => widget,));
+}
+
+void navigateToListScreen({required BuildContext context, required String screenName, required Widget widgetList}) {
+  Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) => ListScreen(widgetList: widgetList, screenName: screenName),
@@ -134,11 +130,11 @@ PreferredSize buildAppBar({
       title: title,
       isDark: isDark,
       bgColor: bgColor!,
-      actionIcon: actionIcon,
-      actionSvg: actionSvg,
-      showAction: showAction,
+      actionIcon1: actionIcon,
+      actionSvg1: actionSvg,
+      showAction1: showAction,
       showLeading: showLeading,
-      routeName: routeName,
+      routeName1: routeName,
       elevation: elevation,
     ),
   );
@@ -148,32 +144,44 @@ AppsSliverAppBar buildSliverAppBar({
   required String title,
   bool isDark = false,
   Color? bgColor,
-  bool showAction = true,
   bool showLeading = true,
-  IconData? actionIcon,
-  String? actionSvg,
-  String routeName = '',
+  bool showAction1 = true,
+  bool showAction2 = false,
+  IconData? actionIcon1,
+  IconData? actionIcon2,
+  String? actionSvg1,
+  String? actionSvg2,
+  String routeName1 = '',
+  String routeName2 = '',
   double elevation = 0,
+  Widget? routeWidget1,
+  Widget? routeWidget2,
   // Function(BuildContext context)? press,
 }) {
   // give <kBlue> to <bgColor> if it is null
   bgColor ??= kBlue;
   // if neither actionSvg or actionIcon was provided, then we want to
   // set a default actionSvg value (to be displayed)
-  actionSvg = actionSvg == null && actionIcon == null
+  actionSvg1 = actionSvg1 == null && actionIcon1 == null
       ? 'assets/icons/account.svg'
       : null;
 
   return AppsSliverAppBar(
     title: title,
     isDark: isDark,
-    bgColor: bgColor!,
-    actionIcon: actionIcon,
-    actionSvg: actionSvg,
-    showAction: showAction,
+    bgColor: bgColor,
+    actionIcon1: actionIcon1,
+    actionIcon2: actionIcon2,
+    actionSvg1: actionSvg1,
+    actionSvg2: actionSvg2,
+    showAction1: showAction1,
+    showAction2: showAction2,
     showLeading: showLeading,
-    routeName: routeName,
+    routeName1: routeName1,
+    routeName2: routeName2,
     elevation: elevation,
+    routeWidget1: routeWidget1,
+    routeWidget2: routeWidget2,
   );
 }
 
@@ -288,6 +296,7 @@ Row buildAvatarAndName({required String avatar, required String name}) {
   return Row(
     children: <Widget>[
       RoundBoxAvatar(width: defaultSize * 3, height: defaultSize * 3, image: avatar,),
+      SizedBox(width: defaultSize),
       Column(children: [TextMedium(title: name, color: kBlack70,)],)
     ],
   );
