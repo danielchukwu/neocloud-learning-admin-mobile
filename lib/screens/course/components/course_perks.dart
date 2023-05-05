@@ -40,25 +40,29 @@ class _CoursePerksState extends State<CoursePerks> {
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: List<Widget>.generate(
-                    // Perks List
+                      // Perks List
                       widget.list.length > 3 && !showMore
                           ? 3
                           : widget.list.length,
                       (index) => buildListItem(index),
-                    ).toList() +
+                    ) +
                     // See More
-                    <Widget>[
-                      SizedBox(
-                        height: defaultSize * 1,
-                      ),
-                      TextLink(
-                        title: !showMore ? "See more" : "See less",
-                        color: kBlue,
-                        fontSize: defaultSize * 1.6,
-                        weight: FontWeight.w600,
-                        press: (_) => setState(() => showMore = !showMore),
-                      )
-                    ])
+                    (widget.list.length > 3
+                        ? <Widget>[
+                            SizedBox(
+                              height: defaultSize * 1,
+                            ),
+                            TextLink(
+                              title: !showMore ? "See more" : "See less",
+                              color: kBlue,
+                              fontSize: defaultSize * 1.6,
+                              weight: FontWeight.w600,
+                              press: (_) =>
+                                  setState(() => showMore = !showMore),
+                            )
+                          ]
+                        : []),
+              )
             : SizedBox(),
       ],
     );
