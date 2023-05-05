@@ -32,7 +32,7 @@ class Ratings extends StatelessWidget {
         // Rating
         showRatingsText 
         ? TextCustom(
-            title: "${rating / 20}",
+            title: getRatingFormat(rating),
             color: color ?? kBlack70,
             weight: FontWeight.w600,
             fontSize: fontSize ?? defaultSize * 1.6)
@@ -40,7 +40,7 @@ class Ratings extends StatelessWidget {
 
         // Stars
         SizedBox(width: showRatingsText ? defaultSize * .5 : 0),
-        StarRating(rating: rating, iconSize: iconSize ?? defaultSize * 2.4),
+        StarRating(rating: rating, iconSize: iconSize ?? defaultSize * 2.2),
 
         // Reviews Count
         SizedBox(width: showReviews ? defaultSize * .5 : 0),
