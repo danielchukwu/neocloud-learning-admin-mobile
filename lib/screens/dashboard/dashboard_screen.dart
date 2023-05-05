@@ -19,7 +19,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBlue,
-      appBar: buildAppBar(title: screenName, showLeading: false, routeName: getRouteName(ProfileScreen.screenName)),
+      // appBar: buildAppBar(title: screenName, showLeading: false, routeName: getRouteName(ProfileScreen.screenName)),
       body: Body(),
       extendBody: true,
       bottomNavigationBar: const AppsBottomNavBar(),
