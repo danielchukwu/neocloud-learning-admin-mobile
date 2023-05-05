@@ -60,8 +60,12 @@ String shortenText({required String text, required int limit}){
   return text;
 }
 
-String getMoneyFormat(double value){
+// Gets the proper format of money, e.g 99999.0 =>  99,999.00
+String getMoneyFormat(double num){
   var formatter = NumberFormat.currency(symbol: '');
 
-  return formatter.format(value);
+  return formatter.format(num);
 }
+
+// Gets the proper rating format e.g 4.3222 => 4.3 or 2.54 => 2.5
+String getRatingFormat(double rating) => "${(rating / 20)}".substring(0, 3);
