@@ -42,6 +42,7 @@ class BooksBodyState extends State<BooksBody> {
         ),
 
         // list of cards
+        SizedBox(height: defaultSize * 2),
         Column(
           children: List.generate(booksList.length, (index) => BookCard(data: booksList[index])),
         ),
