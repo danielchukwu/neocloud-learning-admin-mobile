@@ -4,11 +4,12 @@ import 'package:neocloud_mobile/constraints.dart';
 
 class actionUserButton extends StatelessWidget {
   const actionUserButton({
+    required this.routeName, 
     super.key,
     this.icon,
     this.svg,
     this.isDark = false,
-    required this.routeName,
+    this.routeWidget,
   });
 
   // either <svg> or <icon> is required for in other for something
@@ -20,12 +21,20 @@ class actionUserButton extends StatelessWidget {
   final bool isDark;
   // the route to be navigated to when this action button is clicked on
   final String routeName;
-  // final Function(BuildContext context) press;
+  // 
+  final Widget? routeWidget;
+  
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () => navigateToScreen(context: context, routeName: routeName),
+        onTap: () {
+          if (routeName.length == 0 && routeWidget != null){
+            // Push
+            return navigateToScreenPush(context: context, widget: routeWidget!);
+          }
+          navigateToScreen(context: context, routeName: routeName);
+        },
         child: Container(
           color: Colors.transparent,
           padding: EdgeInsets.symmetric(horizontal: defaultSize * 2),
