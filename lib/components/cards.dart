@@ -48,7 +48,7 @@ class CourseCard extends StatelessWidget {
               TextMedium(title: course.user.fullName, color: kBlack70),
               const Spacer(),
               // Ratings
-              TextMedium(title: "${course.rating}"),
+              TextMedium(title: getRatingFormat(course.rating)),
               SizedBox(width: defaultSize),
               Icon(
                 Icons.star,
@@ -59,8 +59,8 @@ class CourseCard extends StatelessWidget {
 
           // Price
           SizedBox(height: defaultSize),
-          TextLarge(
-            title: "N ${course.price}",
+          TextExtraLarge(
+            title: "N ${getMoneyFormat(course.price)}",
             color: kBlack80,
             weight: FontWeight.w600,
           ),
