@@ -359,6 +359,7 @@ class Finance extends AppData {
   final double totalAmount;
   final double paidAmount;
 }
+
 // Finance objects
 final List<Finance> financeList = [
   Finance(
