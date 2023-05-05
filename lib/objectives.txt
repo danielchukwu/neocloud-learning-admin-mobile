@@ -13,13 +13,14 @@ Objectives
 - abstract the color usage of the star color
 - Fix star ratings ⭐ - it isn't accurate
 - Use Sliver AppBar for widgets
+- Fix money formats for all, 
 
 --- Pages
 - Students view Page ✅
 - Courses view Page ✅
 - Reviews view Page ✅
 - View Cards (of all kinds) Page 
-- Carts
+- Carts ✅
 - Notifications Page
 - Virtual Students Feed
 - Search Page ✅
