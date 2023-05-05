@@ -3,6 +3,7 @@ import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart
 import 'package:neocloud_mobile/components/options/DisplayOptions.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Options.dart';
+import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/back_office/components/SessionManagerBody.dart';
 import 'package:neocloud_mobile/screens/back_office/components/books_body.dart';
@@ -22,45 +23,61 @@ class _BackOfficeScreenState extends State<BackOfficeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(
-        title: BackOfficeScreen.screenName,
-        bgColor: kWhite,
-        isDark: true,
-        showLeading: false,
-        routeName: getRouteName(ProfileScreen.screenName),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: screenPadding,
-          child: Column(
-            children: <Widget>[
-              // Academic Options (Attendance, Class routine, Courses, etc...)
-              SizedBox(height: defaultSize),
-              DisplayOptions(
-                items: BackOfficeOptions.items,
-                getSelectedIndex: BackOfficeOptions.getSelectedIndex,
-                press: updateSelectedOption,
-              ),
-
-              // Books - show this if selected
-              BackOfficeOptions.selectedIndex == 0 ? const BooksBody() : const SizedBox(),
-
-              // Session - show if selected
-
-              BackOfficeOptions.selectedIndex == 1 ? const SessionManagerBody() : const SizedBox(),
-
-              // NoticeBoard
-              BackOfficeOptions.selectedIndex == 2 ? const NoticeboardBody() : const SizedBox(),
-
-              // Enquires
-              BackOfficeOptions.selectedIndex == 3 ? const EnquiriesBody() : const SizedBox(),
-
-
-              pageBottomPadding(),
-            ],
+      // appBar: buildAppBar(
+      //   title: BackOfficeScreen.screenName,
+      //   bgColor: kWhite,
+      //   isDark: true,
+      //   showLeading: false,
+      //   routeName: getRouteName(ProfileScreen.screenName),
+      // ),
+      body: CustomScrollView(slivers: [
+        buildSliverAppBar(
+          title: BackOfficeScreen.screenName,
+          bgColor: kWhite,
+          isDark: true,
+          showLeading: false,
+          routeWidget1: ProfileScreen(user: users[0]),
+        ),
+        
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: screenPadding,
+            child: Column(
+              children: <Widget>[
+                // Academic Options (Attendance, Class routine, Courses, etc...)
+                SizedBox(height: defaultSize),
+                DisplayOptions(
+                  items: BackOfficeOptions.items,
+                  getSelectedIndex: BackOfficeOptions.getSelectedIndex,
+                  press: updateSelectedOption,
+                ),
+        
+                // Books - show this if selected
+                BackOfficeOptions.selectedIndex == 0
+                    ? const BooksBody()
+                    : const SizedBox(),
+        
+                // Session - show if selected
+                BackOfficeOptions.selectedIndex == 1
+                    ? const SessionManagerBody()
+                    : const SizedBox(),
+        
+                // NoticeBoard
+                BackOfficeOptions.selectedIndex == 2
+                    ? const NoticeboardBody()
+                    : const SizedBox(),
+        
+                // Enquires
+                BackOfficeOptions.selectedIndex == 3
+                    ? const EnquiriesBody()
+                    : const SizedBox(),
+        
+                pageBottomPadding(),
+              ],
+            ),
           ),
         ),
-      ),
+      ]),
       extendBody: true,
       bottomNavigationBar: const AppsBottomNavBar(),
     );
