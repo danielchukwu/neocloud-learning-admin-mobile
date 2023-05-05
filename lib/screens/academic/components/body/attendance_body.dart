@@ -39,6 +39,7 @@ class _AttendanceBodyState extends State<AttendanceBody> {
         ),
 
         // + Take Attendance and List of CARDS
+        SizedBox(height: defaultSize),
         Column(
           children: List.generate(attendanceList.length, (index) => AttendanceCard(data: attendanceList[index])),
         ),
