@@ -21,7 +21,7 @@ class CircleAvatarAndText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String firstName = text!.split(' ')[0];
+    String firstName = text.split(' ')[0];
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -35,7 +35,7 @@ class CircleAvatarAndText extends StatelessWidget {
 
         // Text - Users First Name
         SizedBox(height: defaultSize * .7),
-        TextSmall(title: firstName = text!.split(' ')[0], color: kBlack50),
+        TextSmall(title: firstName = text.split(' ')[0], color: kBlack50),
       ],
     );
   }
