@@ -3,8 +3,11 @@ import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Students.dart';
+import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/dashboard/components/profile_section.dart';
 import 'package:neocloud_mobile/screens/dashboard/components/title_count_section.dart';
+import 'package:neocloud_mobile/screens/search/search_screen.dart';
+import 'package:neocloud_mobile/utils.dart';
 
 class Body extends StatefulWidget {
   Body({Key? key}) : super(key: key);
@@ -24,20 +27,34 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      controller: _controller,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          // Section 1 - Attendance, Events
-          SizedBox(height: defaultSize * 2),
-          buildSectionOne(),
+    return CustomScrollView(
+      slivers: <Widget>[
+        buildSliverAppBar(
+          title: "Dashboard",
+          bgColor: kBlue,
+          showLeading: false,
+          showAction2: true,
+          actionIcon2: Icons.search,
+          // routeName1: getRouteName(ProfileScreen.screenName),
+          routeWidget1: ProfileScreen(user: users[0]),
+          routeName2: getRouteName(SearchScreen.screenName),
+        ),
 
-          // Section 2 - Students, Educators, Admin, Grant Permission
-          SizedBox(height: defaultSize * 3),
-          buildSectionTwo(context)
-        ],
-      ),
+        SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              // Section 1 - Attendance, Events
+              SizedBox(height: defaultSize * 2),
+              buildSectionOne(),
+
+              // Section 2 - Students, Educators, Admin, Grant Permission
+              SizedBox(height: defaultSize * 3),
+              buildSectionTwo(context),
+            ],
+          ),
+        )
+      ],
     );
   }
 
@@ -65,8 +82,6 @@ class _BodyState extends State<Body> {
   Container buildSectionTwo(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.fromLTRB(
-          defaultSize * 2, 0, defaultSize * 2, defaultSize * 12),
       // Background
       decoration: BoxDecoration(
         color: kWhite,
@@ -86,15 +101,18 @@ class _BodyState extends State<Body> {
           ListProfileSection(title: 'Educators', data: users),
 
           // Admin Section
-          ListProfileSection(title: 'Admin', data: users),
+          ListProfileSection(title: 'Admins', data: users),
 
           // Grant Permission
           SizedBox(height: defaultSize * 3),
-          TextCustom(
-            title: "Grant Permission",
-            fontSize: defaultSize * 2.2,
-            color: kBlack80,
-            weight: FontWeight.w600,
+          Padding(
+            padding: screenPadding,
+            child: TextCustom(
+              title: "Grant Permission",
+              fontSize: defaultSize * 2.2,
+              color: kBlack80,
+              weight: FontWeight.w600,
+            ),
           ),
           SizedBox(height: defaultSize * 2),
 
@@ -102,10 +120,10 @@ class _BodyState extends State<Body> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(width: defaultSize * 2),
+              SizedBox(width: defaultSize * 4),
               Image(
-                  image: AssetImage('assets/icons/thumbs-up.png'),
-                  width: defaultSize * 5,
+                image: const AssetImage('assets/icons/thumbs-up.png'),
+                width: defaultSize * 5,
               ),
               SizedBox(width: defaultSize * 2),
               Expanded(
@@ -129,10 +147,10 @@ class _BodyState extends State<Body> {
                   ],
                 ),
               ),
-              SizedBox(width: defaultSize * 2),
+              SizedBox(width: defaultSize * 4),
             ],
           ),
-          SizedBox(height: defaultSize * 2),
+          pageBottomPadding(),
         ],
       ),
     );
