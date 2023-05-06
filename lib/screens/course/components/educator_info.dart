@@ -49,9 +49,11 @@ class EducatorCard extends StatelessWidget {
       child: Row(
         children: <Widget>[
           // Avatar
+          SizedBox(width: defaultSize * 2),
           buildAvatar(),
 
           // User Info
+          SizedBox(width: defaultSize * 2),
           Expanded(
             child: Padding(
               padding: EdgeInsets.only(right: defaultSize * 2),
@@ -133,14 +135,11 @@ class EducatorCard extends StatelessWidget {
   }
 
   Widget buildAvatar() {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: defaultSize * 1),
-      child: RoundBoxAvatar(
-        width: defaultSize * 11,
-        height: defaultSize * 11,
-        borderSize: 0.35,
-        image: user.avatar,
-      ),
+    return RoundBoxAvatar(
+      width: defaultSize * 11,
+      height: defaultSize * 11,
+      borderSize: 0.35,
+      image: user.avatar,
     );
   }
 
