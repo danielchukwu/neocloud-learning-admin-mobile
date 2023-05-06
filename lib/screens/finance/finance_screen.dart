@@ -12,13 +12,6 @@ class FinanceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(
-        title: screenName,
-        bgColor: kWhite,
-        isDark: true,
-        showLeading: false,
-        routeName: getRouteName(ProfileScreen.screenName),
-      ),
       body: FinanceBody(),
       extendBody: true,
       bottomNavigationBar: const AppsBottomNavBar(),
