@@ -20,7 +20,7 @@ class ProfileContent extends StatelessWidget {
       case "courses":
         return Container(
           margin: EdgeInsets.only(top: defaultSize * 2),
-          child: CoursesList(data: coursesList),
+          child: CoursesList(coursesList: coursesList),
         );
       case "activities":
         return Container(
