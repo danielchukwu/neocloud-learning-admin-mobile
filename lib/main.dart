@@ -58,10 +58,11 @@ class MyApp extends StatelessWidget {
         '/back-office': (context) => const BackOfficeScreen(),
         '/book-issues': (context) => const BookIssuesScreen(),
         '/finance': (context) => const FinanceScreen(),
-        '/profile': (context) => ProfileScreen(),
+        // Removed because the ProfileScreen widget takes arguments
+        // '/profile': (context) => ProfileScreen(),
         '/search': (context) => const SearchScreen(),
         '/cart': (context) => const CartScreen(),
-        // Removed because the CourseScreen Screen widget takes arguments
+        // Removed because the CourseScreen widget takes arguments
         // '/course': (context) => const CourseScreen(),
 
         // Settings
