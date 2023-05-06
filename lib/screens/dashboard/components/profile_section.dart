@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/Lists/user_list.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Students.dart';
+import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
+import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/components/circle_avatar_text.dart';
 
 class ListProfileSection extends StatelessWidget {
@@ -39,25 +42,22 @@ class ListProfileSection extends StatelessWidget {
     );
   }
 
-  Row buildSectionHeader(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: <Widget>[
-        TextCustom(
-          title: title,
-          fontSize: defaultSize * 2.2,
-          color: kBlack80,
-          weight: FontWeight.w600,
-        ),
-        GestureDetector(
-          onTap: () => navigateToComingSoon(context: context),
-          child: TextMedium(
-            title: 'See all',
-            color: kBlue,
+  Widget buildSectionHeader(BuildContext context) {
+    return Padding(
+      padding: screenPadding,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: <Widget>[
+          TextCustom(
+            title: title,
+            fontSize: defaultSize * 2.2,
+            color: kBlack80,
+            weight: FontWeight.w600,
           ),
-        ),
-      ],
+          TextLink(title: "See all", color: kBlue, press: (_) => navigateToListScreen(context: context, screenName: title, widgetList: UserList(usersList: users)),)
+        ],
+      ),
     );
   }
 
@@ -66,17 +66,23 @@ class ListProfileSection extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: <Widget>[
-          CircleAvatarAndText(
-            text: 'Add',
-            press: (context) => navigateToProfile(context: context),
+          Padding(
+            padding: EdgeInsets.only(left: defaultSize * 2, right: defaultSize),
+            child: CircleAvatarAndText(
+              text: 'Add',
+              press: (context) => navigateToScreenPush(context: context, widget: const ComingSoonScreen()),
+            ),
           ),
           Row(
             children: List.generate(data.length, (index) {
               Account user = data[index];
-              return CircleAvatarAndText(
-                image: user.avatar,
-                text: user.fullName,
-                press: (context) => navigateToProfile(context: context),
+              return Padding(
+                padding: EdgeInsets.only(right: defaultSize),
+                child: CircleAvatarAndText(
+                  image: user.avatar,
+                  text: user.fullName,
+                  press: (context) => navigateToScreenPush(context: context, widget: ProfileScreen(user: user)),
+                ),
               );
             }),
           ),
