@@ -13,17 +13,17 @@ import 'package:neocloud_mobile/screens/settings/settings_screen.dart';
 import 'package:neocloud_mobile/utils.dart';
 
 class ProfileScreen extends StatelessWidget {
-  ProfileScreen({Key? key}) : super(key: key);
+  ProfileScreen({Key? key, required this.user}) : super(key: key);
   static String screenName = "Profile";
   final String coverImg = 'assets/images/nct-office.jpg';
-  final user = users[2];
+  final Account user;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          buildSliverAppBar(title: screenName, bgColor: kWhite, actionIcon: Icons.settings, isDark: true, routeName: getRouteName(SettingsScreen.screenName)),
+          buildSliverAppBar(title: screenName, bgColor: kWhite, actionIcon1: Icons.settings, isDark: true, routeName1: getRouteName(SettingsScreen.screenName)),
 
 
           SliverToBoxAdapter(
@@ -31,8 +31,8 @@ class ProfileScreen extends StatelessWidget {
               children: <Widget>[
                 // Stack Required Section - cover img, round bg, profile img
                 StackCoverAndProfileImage(
-                  coverImg: coverImg,
-                  profileImg: user.avatar,
+                  cover: coverImg,
+                  avatar: user.avatar,
                   coverSize: defaultSize * 19,
                   coverOverlay: kBlack.withOpacity(.2),
                   profileImgBorderSize: defaultSize * .3,
