@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/ratings.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Students.dart';
@@ -28,15 +29,7 @@ class IntroNameRoleRatings extends StatelessWidget {
 
           // User Ratings
           SizedBox(height: defaultSize * .3),
-          Row(
-            children: [
-              StarRating(rating: user.ratings, iconSize: defaultSize * 2.4),
-              TextMedium(
-                title: " (${user.ratings / 20} stars)",
-                color: kBlack70,
-              ),
-            ],
-          ),
+          Ratings(rating: user.ratings, reviewsCount: user.reviews_count, fontSize: defaultSize * 1.8,)
         ],
       ),
     );
