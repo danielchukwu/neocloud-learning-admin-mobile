@@ -21,7 +21,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       backgroundColor: kBlue,
       // appBar: buildAppBar(title: screenName, showLeading: false, routeName: getRouteName(ProfileScreen.screenName)),
       body: Body(),
-      extendBody: true,
       bottomNavigationBar: const AppsBottomNavBar(),
     );
   }

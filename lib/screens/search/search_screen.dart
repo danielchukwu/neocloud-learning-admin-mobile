@@ -89,6 +89,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
       ),
+      bottomNavigationBar: const AppsBottomNavBar(),
     );
   }
 }

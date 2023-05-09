@@ -59,8 +59,7 @@ class ProfileScreen extends StatelessWidget {
           ),
         ],
       ),
-      // extendBody: true,
-      // bottomNavigationBar: AppsBottomNavBar(),
+      bottomNavigationBar: AppsBottomNavBar(),
     );
   }
 }
