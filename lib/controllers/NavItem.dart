@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/models/Students.dart';
+import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/back_office/back_office_screen.dart';
 import 'package:neocloud_mobile/screens/class_works/class_works_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
 import 'package:neocloud_mobile/screens/finance/finance_screen.dart';
+import 'package:neocloud_mobile/screens/search/search_screen.dart';
 
 class NavItem {
-  final Icon iconActive;
-  final Icon iconInactive;
+  final String svgActive;
+  final String svgInactive;
   final String itemLabel;
   final Widget destination;
 
   const NavItem({
-    required this.iconActive,
-    required this.iconInactive,
+    required this.svgActive,
+    required this.svgInactive,
     required this.itemLabel,
     required this.destination,
   });
 }
 
 class NavItems extends ChangeNotifier {
-  int _selectedIndex = 2;
+  int _selectedIndex = 0;
 
   void changeNavIndex(int index) {
-    // if (index >= 5){
-    //   throw ArgumentError()
-    // }
     _selectedIndex = index;
 
     notifyListeners();
@@ -35,48 +35,35 @@ class NavItems extends ChangeNotifier {
   int getSelectedIndex() => _selectedIndex;
 
   List<NavItem> items = [
-    NavItem(
-      iconActive: Icon(Icons.book, color: kWhite),
-      iconInactive: Icon(Icons.book_outlined, color: kBlack.withOpacity(.4)),
-      itemLabel: "Class works",
-      destination: const ClassWorksScreen(),
+    const NavItem(
+      svgActive: "assets/icons/navbar/home-fill.svg",
+      svgInactive: "assets/icons/navbar/home-outline.svg",
+      itemLabel: "Home",
+      destination: DashboardScreen(),
     ),
-    NavItem(
-      iconActive: Icon(Icons.school, color: kWhite),
-      iconInactive: Icon(
-        Icons.school_outlined,
-        color: kBlack.withOpacity(.4),
-        size: 28,
-      ),
+    const NavItem(
+      svgActive: "assets/icons/navbar/search-fill.svg",
+      svgInactive: "assets/icons/navbar/search-outline.svg",
       itemLabel: "Academic",
-      destination: const AcademicScreen(),
+      destination: SearchScreen(),
     ),
-    NavItem(
-      iconActive: Icon(Icons.home, color: kWhite),
-      iconInactive: Icon(
-        Icons.home_outlined,
-        color: kBlack.withOpacity(.4),
-        size: 28,
-      ),
+    const NavItem(
+      svgActive: "assets/icons/navbar/book-fill.svg",
+      svgInactive: "assets/icons/navbar/book-outline.svg",
       itemLabel: "Dashboard",
-      destination: const DashboardScreen(),
+      destination: AcademicScreen(),
     ),
     NavItem(
-      iconActive: Icon(Icons.folder, color: kWhite),
-      iconInactive: Icon(
-        Icons.folder_outlined,
-        color: kBlack.withOpacity(.4),
-        size: 28,
-      ),
+      svgActive: "assets/icons/navbar/notification-fill.svg",
+      svgInactive: "assets/icons/navbar/notification-outline.svg",
       itemLabel: "Back Office",
-      destination: const BackOfficeScreen(),
+      destination: ProfileScreen(user: users[0]),
     ),
     NavItem(
-      iconActive: Icon(Icons.monetization_on, color: kWhite),
-      iconInactive:
-          Icon(Icons.monetization_on_outlined, color: kBlack.withOpacity(.4), size: 27,),
+      svgActive: "assets/icons/navbar/user-fill.svg",
+      svgInactive: "assets/icons/navbar/user-outline.svg",
       itemLabel: "Finance",
-      destination: const FinanceScreen(),
+      destination: ProfileScreen(user: users[0]),
     ),
   ];
 }
