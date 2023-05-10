@@ -111,7 +111,7 @@ class IconOrSvg extends StatelessWidget {
 
   final String? svg;
   final IconData? icon;
-  final Color color;
+  final Color? color;
   final double size;
 
   @override
