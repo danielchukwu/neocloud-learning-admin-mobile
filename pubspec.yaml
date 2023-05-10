@@ -70,8 +70,9 @@ flutter:
     - assets/images/logos/
     - assets/dps/
     - assets/icons/
-    - assets/icons/settings/
     - assets/icons/navbar/
+    - assets/icons/roles/
+    - assets/icons/settings/
     - assets/lottiefiles/
   #   - images/a_dot_ham.jpeg
 
