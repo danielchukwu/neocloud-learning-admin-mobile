@@ -196,6 +196,7 @@ class IconText extends StatelessWidget {
     this.color,
     this.fontSize = 16,
     this.fontWeight = FontWeight.w400,
+    this.iconIsLeft = true,
   });
 
   final IconData? icon;
@@ -206,26 +207,37 @@ class IconText extends StatelessWidget {
   final Color? color;
   final double fontSize;
   final FontWeight fontWeight;
+  final bool iconIsLeft;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         // Icon
-        IconOrSvg(
+        iconIsLeft ? IconOrSvg(
           svg: svg,
           icon: icon,
-          color: iconColor ?? kBlack60,
+          color: iconColor,
           size: iconSize,
-        ),
+        ) : SizedBox(),
+
         // Count
-        SizedBox(width: defaultSize * .5),
+        iconIsLeft ? SizedBox(width: defaultSize * .5) : SizedBox(),
         TextCustom(
           title: title,
           color: color ?? kBlack70,
           fontSize: fontSize,
           weight: fontWeight,
-        )
+        ),
+
+        // Icon
+        !iconIsLeft ? SizedBox(width: defaultSize * .5) : SizedBox(),
+        !iconIsLeft ? IconOrSvg(
+          svg: svg,
+          icon: icon,
+          color: iconColor,
+          size: iconSize,
+        ) : SizedBox(),
       ],
     );
   }
