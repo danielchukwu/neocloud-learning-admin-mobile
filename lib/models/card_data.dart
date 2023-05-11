@@ -244,8 +244,8 @@ List<Certificate> certificatesList = [
 
 
 // FACULTY
-class Faculty extends AppData {
-  Faculty({
+class FacultyOld extends AppData {
+  FacultyOld({
     required super.id,
     required this.faculty,
     required this.hod,
@@ -257,32 +257,32 @@ class Faculty extends AppData {
   final int studentsCount;
 }
 // Faculty objects
-final List<Faculty> facultiesList = [
-  Faculty(
+final List<FacultyOld> facultiesList = [
+  FacultyOld(
     id: '1',
     faculty: 'Data Science',
     hod: 'John Doe',
     studentsCount: 1200,
   ),
-  Faculty(
+  FacultyOld(
     id: '2',
     faculty: 'Digital Marketing',
     hod: 'Jane Smith',
     studentsCount: 800,
   ),
-  Faculty(
+  FacultyOld(
     id: '3',
     faculty: 'Cyber Policy And Governance',
     hod: 'Sarah Johnson',
     studentsCount: 600,
   ),
-  Faculty(
+  FacultyOld(
     id: '4',
     faculty: 'Ethical Hacking',
     hod: 'David Lee',
     studentsCount: 400,
   ),
-  Faculty(
+  FacultyOld(
     id: '5',
     faculty: 'Graphical Design',
     hod: 'Mary Brown',
