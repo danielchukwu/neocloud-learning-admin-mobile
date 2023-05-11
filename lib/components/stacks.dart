@@ -73,3 +73,54 @@ class StackedImages extends StatelessWidget {
     );
   }
 }
+
+class StackedImageAndDot extends StatelessWidget {
+  const StackedImageAndDot({
+    super.key,
+    required this.img,
+    required this.text,
+    this.imgSize = 55,
+    this.dotColor = Colors.black87,
+    this.dotSize = 25, 
+    this.stackSize = 60,
+  });
+
+  final String img;
+  final double imgSize;
+  final String text;
+  final Color dotColor;
+  final double dotSize;
+  final double stackSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: imgSize,
+      width: stackSize,
+      // color: Colors.amber,
+      child: Stack(
+        children: [
+          RoundBoxAvatar(width: imgSize, height: imgSize, image: img),
+
+          // Round Info Box (is stacked ontop of the avatar)
+          Positioned(
+            right: 0,
+            bottom: 0,
+            child: Container(
+              width: defaultSize * 2.7,
+              height: defaultSize * 2.7,
+              decoration: BoxDecoration(
+                color: dotColor,
+                borderRadius: BorderRadius.circular(imgSize),
+                border: Border.all(color: kWhite, width: defaultSize * .2)
+              ),
+              child: Center(
+                child: TextSmall(title: text, color: kWhite, weight: FontWeight.w600),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
