@@ -11,7 +11,7 @@ class FacultyCard extends StatelessWidget {
     required this.data,
   });
 
-  final Faculty data;
+  final FacultyOld data;
 
   @override
   Widget build(BuildContext context) {
