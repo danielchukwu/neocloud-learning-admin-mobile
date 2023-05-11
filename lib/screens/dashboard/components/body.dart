@@ -1,29 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/buttons.dart';
+import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/models/Students.dart';
-import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
-import 'package:neocloud_mobile/screens/dashboard/components/profile_section.dart';
-import 'package:neocloud_mobile/screens/dashboard/components/title_count_section.dart';
-import 'package:neocloud_mobile/screens/search/search_screen.dart';
+import 'package:neocloud_mobile/screens/dashboard/components/personel_dashboard.dart';
+import 'package:neocloud_mobile/screens/dashboard/components/section_one.dart';
+import 'package:neocloud_mobile/size_config.dart';
 import 'package:neocloud_mobile/utils.dart';
 
-class Body extends StatefulWidget {
+class Body extends StatelessWidget {
   Body({Key? key}) : super(key: key);
-
-  @override
-  State<Body> createState() => _BodyState();
-}
-
-class _BodyState extends State<Body> {
-  final ScrollController _controller = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    // _controller.jumpTo(100.0);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,128 +18,29 @@ class _BodyState extends State<Body> {
       slivers: <Widget>[
         buildSliverAppBar(
           title: "Dashboard",
-          bgColor: kBlue,
+          bgColor: kWhite,
+          elevation: .1,
+          isDark: true,
           showLeading: false,
-          showAction2: true,
-          actionIcon2: Icons.search,
-          // routeName1: getRouteName(ProfileScreen.screenName),
-          routeWidget1: ProfileScreen(user: users[0]),
-          routeName2: getRouteName(SearchScreen.screenName),
+          showAction1: false,
+          showAction2: false,
         ),
-
         SliverToBoxAdapter(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // Section 1 - Attendance, Events
-              SizedBox(height: defaultSize * 2),
-              buildSectionOne(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Section 1 (Intro dashboard)
+            AttendanceClassesCwDashboard(),
 
-              // Section 2 - Students, Educators, Admin, Grant Permission
-              SizedBox(height: defaultSize * 3),
-              buildSectionTwo(context),
-            ],
-          ),
-        )
+            // Section 2
+            SizedBox(height: defaultSize * 5),
+            PersonelDashboard(),
+
+            // buildGrantPermission(),
+          ],
+        )),
       ],
     );
   }
-
-  Container buildSectionOne() {
-    return Container(
-      padding: screenPadding,
-      child: Column(
-        children: [
-          TitleCountSection(
-            title: 'Todays Attendance',
-            count: '0',
-            press: (context) => navigateToComingSoon(context: context),
-          ),
-          SizedBox(height: defaultSize * 1),
-          TitleCountSection(
-            title: 'Recent Events',
-            count: '0',
-            press: (context) => navigateToComingSoon(context: context),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container buildSectionTwo(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      // Background
-      decoration: BoxDecoration(
-        color: kWhite,
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(defaultSize * 3),
-        ),
-      ),
-
-      // List the users
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          // Students Section
-          ListProfileSection(title: 'Students', data: users),
-
-          // Educators Section
-          ListProfileSection(title: 'Educators', data: users),
-
-          // Admin Section
-          ListProfileSection(title: 'Admins', data: users),
-
-          // Grant Permission
-          SizedBox(height: defaultSize * 3),
-          Padding(
-            padding: screenPadding,
-            child: TextCustom(
-              title: "Grant Permission",
-              fontSize: defaultSize * 2.2,
-              color: kBlack80,
-              weight: FontWeight.w600,
-            ),
-          ),
-          SizedBox(height: defaultSize * 2),
-
-          // Thumbs up and Text
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(width: defaultSize * 4),
-              Image(
-                image: const AssetImage('assets/icons/thumbs-up.png'),
-                width: defaultSize * 5,
-              ),
-              SizedBox(width: defaultSize * 2),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    TextMedium(
-                      title:
-                          'Grant Permission for Students or Educators to be able to take certain courses at NCT',
-                      color: kBlack60,
-                    ),
-                    SizedBox(height: defaultSize * 2),
-                    AppsButton(
-                      title: 'Grant',
-                      press: (context) =>
-                          navigateToComingSoon(context: context),
-                      bgColor: kBlue,
-                      padTopBottom: defaultSize * .5,
-                      borderRadius: defaultSize * 4,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(width: defaultSize * 4),
-            ],
-          ),
-          pageBottomPadding(),
-        ],
-      ),
-    );
-  }
 }
+
