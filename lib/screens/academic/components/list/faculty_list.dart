@@ -8,7 +8,7 @@ class FacultyList extends StatelessWidget {
     required this.data,
   });
 
-  final List<Faculty> data;
+  final List<FacultyOld> data;
 
   @override
   Widget build(BuildContext context) {
