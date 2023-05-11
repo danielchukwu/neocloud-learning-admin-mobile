@@ -1,4 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
+import 'package:neocloud_mobile/components/stacks.dart';
+import 'package:neocloud_mobile/components/texts.dart';
+import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/models/Courses.dart';
+import 'package:neocloud_mobile/models/Students.dart';
 
 // replaces all the " " space in a string with an underscore "_" and
 // returns a lowercase version of the new string and then prepends a forward
@@ -69,3 +75,84 @@ String getMoneyFormat(double num){
 
 // Gets the proper rating format e.g 4.3222 => 4.3 or 2.54 => 2.5
 String getRatingFormat(double rating) => "${(rating / 20)}".substring(0, 3);
+
+
+// Stack util functions
+// This function extracts the String url of the avatars from the List<Account>
+// passed in and creates a list with that then passes it into the
+// StackedImages Widget which returns a Widget of stacked images
+Widget buildStackedUserImgs(
+    {required List<Account> users, double imgSize = 35, double overlapDifference = 25}) {
+  List<String> avatarsList = [];
+  for (var i = 0; i < users.length; i++) {
+    if (i < 3) {
+      avatarsList.add(users[i].avatar);
+      continue;
+    }
+    break;
+  }
+  return StackedImages(
+    imgList: avatarsList,
+    length: users.length,
+    imgSize: imgSize,
+    stackRight: true,
+    overlapDifference: overlapDifference,
+  );
+}
+
+Widget buildStackedClassImgs(
+    {required List<Course> classList, double imgSize = 35, double overlapDifference = 25}) {
+  List<String> avatarsList = [];
+  for (var i = 0; i < classList.length; i++) {
+    if (i < 3) {
+      avatarsList.add(classList[i].imgSrc);
+      continue;
+    }
+    break;
+  }
+  return StackedImages(
+    imgList: avatarsList,
+    length: classList.length,
+    imgSize: imgSize,
+    stackRight: true,
+    overlapDifference: overlapDifference,
+  );
+}
+
+// This takes a users name and role, then it returns the 
+// name with a role icon by it's side. e.g Edwin Vladimir⚡, Godstime Edet 🙍‍♂️
+Widget getNameWithRoleIcon({
+    required String title,
+    required String role,
+    Color? color,
+    FontWeight weight = FontWeight.w500,
+    double fontSize = 16,
+    double iconSize = 16,
+  }) {
+    String svg = "assets/icons/roles/";
+    switch (role.toLowerCase()) {
+      case "superadmin":
+        svg += "superadmin.svg";
+        break;
+      case "admin":
+        svg += "admin.svg";
+        break;
+      case "educator":
+        svg += "educator.svg";
+        break;
+      case "student":
+        svg += "student.svg";
+        break;
+      default:
+        throw Exception("getNameWithRoleIcon() Exception - \nthe role doesn't match either \nsuperadmin, admin, educator, student");
+    }
+    return IconText(
+      title: title,
+      color: color ?? kBlack80,
+      fontWeight: weight,
+      fontSize: fontSize,
+      iconIsLeft: false,
+      svg: svg,
+      iconSize: iconSize,
+    );
+  }
