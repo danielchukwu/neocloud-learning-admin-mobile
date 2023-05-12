@@ -16,10 +16,9 @@ class AcademicOptions extends OptionsObject {
 
   // Try to make sure the items are always divisible by 2
   static List<Option> items = [
-    Option(title: "Attendance"),
-    Option(title: "Class routine"),
-    Option(title: "Courses"),
-    Option(title: "Syllabus"),
+    Option(title: "Class Schedule"),
+    Option(title: "Classes"),
+    Option(title: "Classworks"),
     Option(title: "Certificate"),
     Option(title: "Faculty"),
     Option(title: "Class"),
@@ -36,9 +35,9 @@ class BackOfficeOptions extends OptionsObject {
 
   // Try to make sure the items are always divisible by 2
   static List<Option> items = [
-    Option(title: "Books"),
-    Option(title: "Session Manager"),
-    Option(title: "Noticeboard"),
-    Option(title: "Enquires"),
+    const Option(title: "Books"),
+    const Option(title: "Session Manager"),
+    const Option(title: "Noticeboard"),
+    const Option(title: "Enquires"),
   ];
 }
