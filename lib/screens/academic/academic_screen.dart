@@ -13,7 +13,6 @@ import 'package:neocloud_mobile/screens/academic/components/body/faculty_body.da
 import 'package:neocloud_mobile/screens/academic/components/body/courses_body.dart';
 import 'package:neocloud_mobile/screens/academic/components/body/event_calendar_body.dart';
 import 'package:neocloud_mobile/screens/academic/components/body/syllabus_body.dart';
-import 'package:neocloud_mobile/utils.dart';
 
 class AcademicScreen extends StatefulWidget {
   const AcademicScreen({Key? key}) : super(key: key);
@@ -97,7 +96,6 @@ class _AcademicScreenState extends State<AcademicScreen> {
           ),
         ),
       ]),
-      extendBody: true,
       bottomNavigationBar: const AppsBottomNavBar(),
     );
   }
