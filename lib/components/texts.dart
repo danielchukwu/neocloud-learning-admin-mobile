@@ -374,3 +374,39 @@ class TextLink extends StatelessWidget {
     );
   }
 }
+
+
+// This takes a users name and role, then it returns the 
+// name with a role icon by it's side. e.g Edwin Vladimir⚡, Godstime Edet 🙍‍♂️
+Widget TextRoleIcon({
+    required String title,
+    required List<String> role,
+    Color? color,
+    FontWeight weight = FontWeight.w500,
+    double fontSize = 16,
+    double iconSize = 16,
+  }) {
+    
+    String svg = "assets/icons/roles/";
+    if (role.contains("Superadmin")) {
+      svg += "superadmin.svg";
+    }
+    else if (role.contains("Admin")) {
+      svg += "admin.svg";
+    }
+    else if (role.contains("Educator")) {
+      svg += "educator.svg";
+    }
+    else if (role.contains("Student")) {
+      svg += "student.svg";
+    }
+    return IconText(
+      title: title,
+      color: color ?? kBlack80,
+      fontWeight: weight,
+      fontSize: fontSize,
+      iconIsLeft: false,
+      svg: svg,
+      iconSize: iconSize,
+    );
+  }
