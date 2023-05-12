@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/stacks.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 
@@ -25,7 +26,8 @@ class UserTile extends StatelessWidget {
         children: <Widget>[
           // Avatar
           CircleAvatar(
-              backgroundImage: AssetImage(avatar), radius: defaultSize * 3.5),
+              backgroundImage: AssetImage(avatar), radius: defaultSize * 2.8),
+          // StackedImageAndDot(img: avatar, text: "1"),
           SizedBox(width: defaultSize * 2),
           // Name and Role
           Column(
