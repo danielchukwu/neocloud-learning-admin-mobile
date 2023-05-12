@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/tile/user_tile.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Students.dart';
-import 'package:neocloud_mobile/screens/search/search_screen.dart';
 
 class UserList extends StatelessWidget {
   const UserList({
@@ -24,7 +23,7 @@ class UserList extends StatelessWidget {
           child: UserTile(
             avatar: usersList[index].avatar,
             title: usersList[index].fullName,
-            subtitle: usersList[index].role,
+            subtitle: usersList[index].role[0],
           ),
         ),
       ),
