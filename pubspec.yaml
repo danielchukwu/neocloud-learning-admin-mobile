@@ -41,6 +41,7 @@ dependencies:
   provider: ^6.0.5
   page_transition: ^2.0.9
   money_formatter: ^0.0.4
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
