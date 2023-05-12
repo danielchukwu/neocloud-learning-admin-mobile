@@ -14,9 +14,8 @@ class AppsBottomNavBar extends StatelessWidget {
     return Consumer<NavItems>(
       builder: (context, navItems, child) => Container(
         decoration: BoxDecoration(
-          color: kWhite,
           border: Border(
-            top: BorderSide(color: kBlack.withOpacity(.1), width: .2),
+            top: BorderSide(color: kBlack.withOpacity(.5), width: .2),
           ),
         ),
         child: Row(
@@ -25,14 +24,19 @@ class AppsBottomNavBar extends StatelessWidget {
             return Expanded(
               child: InkWell(
                 onTap: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => navItems.items[index].destination,
-                      ));
-                  navItems.changeNavIndex(index);
+                  if (index != navItems.getSelectedIndex()) {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => navItems.items[index].destination,
+                        ));
+                    navItems.changeNavIndex(index);
+                  }
                 },
-                child: Padding(
+                highlightColor: kWhite,
+                splashColor: appsSplashColor,
+                radius: appsSplashRadius,
+                child: Container(
                   padding: EdgeInsets.only(
                     top: defaultSize,
                     bottom: defaultSize * 2.4,
