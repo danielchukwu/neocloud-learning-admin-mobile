@@ -6,8 +6,7 @@ import 'package:neocloud_mobile/components/cards/components/display_filename.dar
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/texts.dart';
-import 'package:neocloud_mobile/models/Courses.dart';
-import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
+import 'package:neocloud_mobile/models/Courses.dart'; 
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/list/list_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
@@ -52,6 +51,9 @@ Color kOrange = const Color(0xFFF7941D);
 Color kGreen = const Color(0xFF2B5D18);
 Color kRed = const Color(0xFFD0102B);
 
+Color appsSplashColor = kBlack.withOpacity(.05);
+double appsSplashRadius = defaultSize * 5;
+
 // FUNCTIONS
 
 // - Styles
@@ -74,7 +76,6 @@ TextStyle getAppsTextStyle({
 }
 
 // - Navigators
-
 void navigateToComingSoon({BuildContext? context}) {
   Navigator.push(
     context!,
