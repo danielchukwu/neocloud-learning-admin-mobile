@@ -75,8 +75,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   children: <Widget>[
                     // Users List
                   UserList(usersList: users.where((user) => (_selectedIndex == 0)).toList()),
-                  UserList(usersList: users.where((user) => (user.role == "Educator" && _selectedIndex == 1)).toList()),
-                  UserList(usersList: users.where((user) => (user.role == "Student" && _selectedIndex == 2)).toList()),
+                  UserList(usersList: users.where((user) => (user.role.contains("Educator") && _selectedIndex == 1)).toList()),
+                  UserList(usersList: users.where((user) => (user.role.contains("Student") && _selectedIndex == 2)).toList()),
 
                   // Courses List
                   _selectedIndex == 3 ? CoursesList(coursesList: coursesList) : SizedBox(),
