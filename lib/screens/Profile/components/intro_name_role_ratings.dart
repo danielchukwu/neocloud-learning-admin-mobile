@@ -25,7 +25,7 @@ class IntroNameRoleRatings extends StatelessWidget {
               title: user.fullName, color: kBlack80, weight: FontWeight.w600),
 
           // User Role
-          TextMedium(title: "NCT " + user.role, color: kBlack70),
+          TextMedium(title: "NCT " + user.role[0], color: kBlack70),
 
           // User Ratings
           SizedBox(height: defaultSize * .3),
