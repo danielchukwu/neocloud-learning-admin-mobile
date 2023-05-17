@@ -86,7 +86,8 @@ class AppsButton extends StatelessWidget {
     this.borderRadius = 10,
     this.textIconSeperationSize = 5,
     this.padTopBottom = 10,
-    this.padLeftRight = 10,
+    this.padLeftRight = 10, 
+    this.weight = FontWeight.w400,
   });
 
   final String title;
@@ -100,6 +101,7 @@ class AppsButton extends StatelessWidget {
   final Function(BuildContext? context) press;
   final double padTopBottom;
   final double padLeftRight;
+  final FontWeight weight;
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +121,7 @@ class AppsButton extends StatelessWidget {
             TextMedium(
               title: title,
               color: color,
+              weight: weight,
             ),
           ],
         ),
@@ -194,10 +197,10 @@ class OptionButton extends StatelessWidget {
       title: title,
       borderRadius: buttonBorderRadius,
       bgColor: bgColor,
-      color: bgColor == Colors.transparent ? kBlack70 : kWhite,
-      border: buttonBorderWidth,
+      color: bgColor == kBlueLight? kWhite : kBlack70,
       press: (context) => press(),
       padTopBottom: .5,
+      weight: bgColor == kBlueLight? FontWeight.w600 : FontWeight.w400,
     );
   }
 }
