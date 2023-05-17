@@ -5,7 +5,7 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
-import 'package:neocloud_mobile/screens/dashboard/components/circle_avatar_text.dart';
+import 'package:neocloud_mobile/screens/dashboard/obsolete/circle_avatar_text.dart';
 
 class ListProfileSection extends StatelessWidget {
   final String title;
