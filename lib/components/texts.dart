@@ -7,13 +7,13 @@ class TextSmall extends StatelessWidget {
   TextSmall(
       {super.key,
       required this.title,
-      this.color = Colors.black,
+      this.color,
       this.weight = FontWeight.w400,
       this.textAlign = TextAlign.start});
 
   final TextAlign textAlign;
   final String title;
-  final Color color;
+  final Color? color;
   final FontWeight weight;
 
   @override
@@ -23,7 +23,7 @@ class TextSmall extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color,
+        color: color ?? kBlack70,
         fontSize: defaultSize * 1.4,
         fontWeight: weight,
       ),
@@ -41,7 +41,7 @@ class TextMedium extends StatelessWidget {
 
   final TextAlign textAlign;
   final String title;
-  final Color color;
+  final Color? color;
   final FontWeight weight;
 
   @override
@@ -51,7 +51,7 @@ class TextMedium extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color,
+        color: color ?? kBlack70,
         fontSize: defaultSize * 1.6,
         fontWeight: weight,
       ),
@@ -63,13 +63,13 @@ class TextLarge extends StatelessWidget {
   const TextLarge(
       {super.key,
       required this.title,
-      this.color = Colors.black,
+      this.color,
       this.weight = FontWeight.w400,
       this.textAlign = TextAlign.start});
 
   final TextAlign textAlign;
   final String title;
-  final Color color;
+  final Color? color;
   final FontWeight weight;
 
   @override
@@ -79,7 +79,7 @@ class TextLarge extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color,
+        color: color ?? kBlack70,
         fontSize: defaultSize * 1.8,
         fontWeight: weight,
       ),
@@ -91,13 +91,13 @@ class TextExtraLarge extends StatelessWidget {
   const TextExtraLarge(
       {super.key,
       required this.title,
-      this.color = Colors.black,
+      this.color,
       this.weight = FontWeight.w400,
       this.textAlign = TextAlign.start});
 
   final TextAlign textAlign;
   final String title;
-  final Color color;
+  final Color? color;
   final FontWeight weight;
 
   @override
@@ -107,7 +107,7 @@ class TextExtraLarge extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color,
+        color: color ?? kBlack70,
         fontSize: defaultSize * 2,
         fontWeight: weight,
       ),
@@ -120,14 +120,14 @@ class TextCustom extends StatelessWidget {
       {super.key,
       required this.title,
       required this.fontSize,
-      this.color = Colors.black,
+      this.color,
       this.weight = FontWeight.w400,
       this.textAlign = TextAlign.start});
 
   final TextAlign textAlign;
   final String title;
   final double fontSize;
-  final Color color;
+  final Color? color;
   final FontWeight weight;
 
   @override
@@ -137,7 +137,7 @@ class TextCustom extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color,
+        color: color ?? kBlack70,
         fontSize: fontSize,
         fontWeight: weight,
       ),
@@ -150,7 +150,7 @@ class TextCustomMaxLine extends StatelessWidget {
     super.key,
     required this.title,
     required this.fontSize,
-    this.color = Colors.black,
+    this.color,
     this.weight = FontWeight.w400,
     this.textAlign = TextAlign.start,
     this.maxLines = 1,
@@ -161,7 +161,7 @@ class TextCustomMaxLine extends StatelessWidget {
   final TextAlign textAlign;
   final String title;
   final double fontSize;
-  final Color color;
+  final Color? color;
   final FontWeight weight;
   final int maxLines;
   final TextOverflow overflow;
@@ -174,7 +174,7 @@ class TextCustomMaxLine extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color,
+        color: color ?? kBlack70,
         fontSize: fontSize,
         fontWeight: weight,
         height: lineHeight,
@@ -357,7 +357,7 @@ class TextLink extends StatelessWidget {
 
   final String title;
   final Function(BuildContext context) press;
-  final Color color;
+  final Color? color;
   final double fontSize;
   final FontWeight weight;
 
@@ -369,7 +369,7 @@ class TextLink extends StatelessWidget {
         title: title,
         fontSize: fontSize,
         weight: weight,
-        color: color,
+        color: color ?? kBlack70,
       ),
     );
   }
