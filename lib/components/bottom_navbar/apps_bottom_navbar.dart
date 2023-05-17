@@ -46,7 +46,7 @@ class AppsBottomNavBar extends StatelessWidget {
                         ? item.svgActive
                         : item.svgInactive,
                     color: navItems.getSelectedIndex() == index
-                        ? kBlack80
+                        ? kBlue
                         : kBlack50,
                   ),
                 ),
