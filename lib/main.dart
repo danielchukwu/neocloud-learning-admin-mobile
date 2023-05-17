@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/controllers/NavItem.dart';
-import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
-import 'package:neocloud_mobile/screens/back_office/back_office_screen.dart';
-import 'package:neocloud_mobile/screens/book_issues/books_issue_screen.dart';
 import 'package:neocloud_mobile/screens/cart/cart_screen.dart';
 import 'package:neocloud_mobile/screens/class_works/class_works_screen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
-import 'package:neocloud_mobile/screens/course/course_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
-import 'package:neocloud_mobile/screens/finance/finance_screen.dart';
 import 'package:neocloud_mobile/screens/login/login_screen.dart';
 import 'package:neocloud_mobile/screens/search/search_screen.dart';
 import 'package:neocloud_mobile/screens/settings/components/system_logos_screen.dart';
@@ -55,9 +50,6 @@ class MyApp extends StatelessWidget {
         '/class-works': (context) => const ClassWorksScreen(),
         '/academic': (context) => const AcademicScreen(),
         '/dashboard': (context) => const DashboardScreen(),
-        '/back-office': (context) => const BackOfficeScreen(),
-        '/book-issues': (context) => const BookIssuesScreen(),
-        '/finance': (context) => const FinanceScreen(),
         // Removed because the ProfileScreen widget takes arguments
         // '/profile': (context) => ProfileScreen(),
         '/search': (context) => const SearchScreen(),
@@ -89,6 +81,8 @@ class MyApp extends StatelessWidget {
         textTheme: const TextTheme(
           bodyLarge: TextStyle(fontFamily: 'Poppins', fontSize: 16),
         ),
-        scaffoldBackgroundColor: Colors.white);
+        scaffoldBackgroundColor: Colors.white,
+        splashFactory: InkRipple.splashFactory
+        );
   }
 }
