@@ -105,7 +105,7 @@ Widget buildStackedClassImgs(
   List<String> avatarsList = [];
   for (var i = 0; i < classList.length; i++) {
     if (i < 3) {
-      avatarsList.add(classList[i].imgSrc);
+      avatarsList.add(classList[i].avatar);
       continue;
     }
     break;
