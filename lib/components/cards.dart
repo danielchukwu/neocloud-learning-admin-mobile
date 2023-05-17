@@ -28,7 +28,7 @@ class CourseCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           // Course Image
-          RectangularBoxImage(img: course.imgSrc, height: defaultSize * 20),
+          RectangularBoxImage(img: course.avatar, height: defaultSize * 20),
 
           // Title
           SizedBox(height: defaultSize * 2),
@@ -103,7 +103,7 @@ class MiniCourseCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(defaultSize * .4),
                 image: DecorationImage(
-                    image: AssetImage(course.imgSrc), fit: BoxFit.cover),
+                    image: AssetImage(course.avatar), fit: BoxFit.cover),
               ),
             ),
 
@@ -131,7 +131,7 @@ class MiniCourseCard extends StatelessWidget {
             SizedBox(height: defaultSize * .5),
             Ratings(
               rating: course.rating,
-              reviewsCount: course.reviews_count,
+              reviewsCount: course.reviews_count ?? 0,
               fontSize: fontSize - 2,
               iconSize: defaultSize * 1.6,
               showReviews: false,
@@ -220,7 +220,7 @@ class CartCard extends StatelessWidget {
               height: defaultSize * 7,
               width: defaultSize * 7,
               decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(course.imgSrc), fit: BoxFit.cover)
+                image: DecorationImage(image: AssetImage(course.avatar), fit: BoxFit.cover)
               ),
             ),
       
@@ -243,7 +243,7 @@ class CartCard extends StatelessWidget {
                   
                   // Price
                   SizedBox(height: defaultSize * .5),
-                  AppsTextRich(text1: "N ${getMoneyFormat(course.price)}", text2: "  NGN ${getMoneyFormat(course.price - (course.price * (course.discount / 100)))}", text1FontSize: defaultSize * 1.4, text1Decoration: TextDecoration.lineThrough, text2FontWeight: FontWeight.w600, text2Color: kBlack80,),
+                  AppsTextRich(text1: "N ${getMoneyFormat(course.price)}", text2: "  NGN ${getMoneyFormat(course.price - (course.price * (course.discount ?? 0 / 100)))}", text1FontSize: defaultSize * 1.4, text1Decoration: TextDecoration.lineThrough, text2FontWeight: FontWeight.w600, text2Color: kBlack80,),
       
                   // Move to / Remove
                   SizedBox(height: defaultSize * 1.5),
