@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/appbar/appbar.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
-import 'package:neocloud_mobile/components/cards/components/card_intro.dart';
 import 'package:neocloud_mobile/components/cards/components/display_filename.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/texts.dart';
-import 'package:neocloud_mobile/models/Courses.dart'; 
+import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/list/list_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
@@ -23,7 +22,7 @@ var defaultSize = SizeConfig.defaultSize!;
 double appsBodyPadding = defaultSize * 2;
 EdgeInsets screenPadding =
     EdgeInsets.symmetric(horizontal: appsBodyPadding); // 20px 20px
-SizedBox pageBottomPadding ({double height = 120}) => SizedBox(height: height);
+SizedBox pageBottomPadding({double height = 120}) => SizedBox(height: height);
 
 // Border
 double buttonBorderWidth = defaultSize * .05;
@@ -92,14 +91,22 @@ void navigateToScreen(
 
 void navigateToScreenPush(
     {required BuildContext context, required Widget widget}) {
-  Navigator.push(context, MaterialPageRoute(builder: (_) => widget,));
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => widget,
+      ));
 }
 
-void navigateToListScreen({required BuildContext context, required String screenName, required Widget widgetList}) {
+void navigateToListScreen(
+    {required BuildContext context,
+    required String screenName,
+    required Widget widgetList}) {
   Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => ListScreen(widgetList: widgetList, screenName: screenName),
+      builder: (context) =>
+          ListScreen(widgetList: widgetList, screenName: screenName),
     ),
   );
 }
@@ -154,7 +161,7 @@ AppsSliverAppBar buildSliverAppBar({
   String? actionSvg2,
   String routeName1 = '',
   String routeName2 = '',
-  double elevation = 0,
+  double elevation = .5,
   Widget? routeWidget1,
   Widget? routeWidget2,
   // Function(BuildContext context)? press,
@@ -236,29 +243,20 @@ AppsButton buildAddButton({
   );
 }
 
-
 // CARDS
 
 // variables
 EdgeInsets cardBottomMargin = EdgeInsets.only(bottom: defaultSize * 2);
 EdgeInsets cardPadding = EdgeInsets.all(defaultSize * 2);
 
-// card decoration
-BoxDecoration buildCardDecoration() {
-  return BoxDecoration(
-    border: Border.all(color: kBlack.withOpacity(.2), width: defaultSize * .1),
-    borderRadius: BorderRadius.circular(defaultSize * 3),
-  );
-}
-
 // - e.g label
 //       text
-CardHeader buildLabelAndText({required String label, required String text}) {
-  return CardHeader(
-    label: label,
-    title: text,
-    textSize: defaultSize * 1.6,
-    labelSize: defaultSize * 1.4,
+Widget buildCardHeader({required String title}) {
+  return TextCustom(
+    title: title,
+    fontSize: defaultSize * 2.2,
+    color: kBlack80,
+    weight: FontWeight.w600,
   );
 }
 
@@ -293,12 +291,30 @@ Row buildDownloadButton({required Function(BuildContext? context) press}) {
 
 // - Avatar: Username
 // e.g 😎 john doe
-Row buildAvatarAndName({required String avatar, required String name}) {
+Row buildAvatarAndName({
+  required String avatar,
+  required String name,
+  double imgSize = 30,
+  double fontSize = 16,
+  FontWeight weight = FontWeight.w400,
+  Color? color,
+}) {
   return Row(
     children: <Widget>[
-      RoundBoxAvatar(width: defaultSize * 3, height: defaultSize * 3, image: avatar,),
+      RoundBoxAvatar(
+        width: imgSize,
+        height: imgSize,
+        image: avatar,
+      ),
       SizedBox(width: defaultSize),
-      Column(children: [TextMedium(title: name, color: kBlack70,)],)
+      Column(
+        children: [
+          TextCustom(
+            title: name,
+            color: color ?? kBlack70, fontSize: fontSize, weight: weight,
+          )
+        ],
+      )
     ],
   );
 }
@@ -316,9 +332,19 @@ Widget buildSearchTextField({required Function(String value) press}) {
 Widget buildSmallMiniCourseCard({required Course course}) {
   return MiniCourseCard(course: course);
 }
+
 Widget buildMediumMiniCourseCard({required Course course}) {
-  return MiniCourseCard(course: course, cardSize: defaultSize * 20, fontSize: defaultSize * 1.6,);
+  return MiniCourseCard(
+    course: course,
+    cardSize: defaultSize * 20,
+    fontSize: defaultSize * 1.6,
+  );
 }
+
 Widget buildBigMiniCourseCard({required Course course}) {
-  return MiniCourseCard(course: course, cardSize: defaultSize * 30, fontSize: defaultSize * 1.8,);
+  return MiniCourseCard(
+    course: course,
+    cardSize: defaultSize * 30,
+    fontSize: defaultSize * 1.8,
+  );
 }
