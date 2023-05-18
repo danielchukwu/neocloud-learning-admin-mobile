@@ -16,13 +16,10 @@ class AcademicOptions extends OptionsObject {
 
   // Try to make sure the items are always divisible by 2
   static List<Option> items = [
-    Option(title: "Class Schedule"),
     Option(title: "Classes"),
+    Option(title: "Faculties"),
     Option(title: "Classworks"),
-    Option(title: "Certificate"),
-    Option(title: "Faculty"),
-    Option(title: "Class"),
-    Option(title: "Event Calendar"),
+    Option(title: "Class Schedules"),
   ];
 }
 
