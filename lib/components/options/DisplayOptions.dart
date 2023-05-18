@@ -21,13 +21,13 @@ class DisplayOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // The length of the items to be displayed divided by 2 should balance out
-    // in our row which should have 2 option buttons at each time
+    // in our row which should have 2 option buttons for each row
     int rowCount = (items.length / 2).toInt();
     return Column(
       children: List.generate(
         rowCount,
         (index) => Container(
-          padding: EdgeInsets.only(top: 10),
+          padding: EdgeInsets.symmetric(vertical: defaultSize * .5, horizontal: defaultSize * 2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -47,7 +47,7 @@ class DisplayOptions extends StatelessWidget {
         title: items[index].title,
         press: () => press(index),
         bgColor:
-            (index) == getSelectedIndex() ? kBlueLight : Colors.transparent,
+            (index) == getSelectedIndex() ? kBlueLight : kBlack.withOpacity(.05),
       ),
     );
   }
