@@ -61,7 +61,7 @@ class CourseScreen extends StatelessWidget {
                     SizedBox(height: defaultSize),
                     Ratings(
                         rating: course.rating,
-                        reviewsCount: course.reviews_count),
+                        reviewsCount: course.reviews_count ?? 0),
         
                     // Created by ....
                     SizedBox(height: defaultSize * .8),
@@ -208,7 +208,7 @@ class CourseScreen extends StatelessWidget {
     return IconText(
       icon: Icons.phone_android,
       title:
-          "${course.duration} ${getPluralOrSingular(count: course.duration, word: 'hour')} on demand",
+          "${course.duration} ${getPluralOrSingular(count: course.duration!, word: 'hour')} on demand",
       fontSize: defaultSize * 1.6,
       color: kBlack70,
       iconColor: kBlack70,
@@ -223,7 +223,7 @@ class CourseScreen extends StatelessWidget {
         IconText(
           svg: 'assets/icons/account.svg',
           title:
-              "${course.students_count} ${getPluralOrSingular(count: course.students_count, word: 'student')}",
+              "${course.students_count} ${getPluralOrSingular(count: course.students_count!, word: 'student')}",
           fontSize: defaultSize * 1.6,
           color: kBlack70,
           iconColor: kBlack70,
@@ -233,7 +233,7 @@ class CourseScreen extends StatelessWidget {
         course.reviews_count != 0
             ? AppsTextRich(
                 text1:
-                    "${((course.reviews_count / course.students_count) * 100).toInt()}% ",
+                    "${((course.reviews_count! / course.students_count!) * 100).toInt()}% ",
                 text2: "left a review",
                 text1Color: kGreen,
                 text2Color: kBlack70,
@@ -264,7 +264,7 @@ class CourseScreen extends StatelessWidget {
       width: SizeConfig.screenWidth,
       decoration: BoxDecoration(
         image: DecorationImage(
-            image: AssetImage(course.imgSrc), fit: BoxFit.cover),
+            image: AssetImage(course.avatar), fit: BoxFit.cover),
       ),
     );
   }
