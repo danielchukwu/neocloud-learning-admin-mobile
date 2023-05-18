@@ -34,23 +34,6 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
           SizedBox(height: defaultSize * 3),
           buildTextCountStackedImages(
               title: "Classwork's", users: users, length: users.length),
-
-          // Indicator ... for letting users know interface is swipe able
-          SizedBox(height: defaultSize * 3),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              2,
-              (index) => Container(
-                height: 7,
-                width: 7,
-                decoration: BoxDecoration(
-                    color: kBlack50,
-                    borderRadius: BorderRadius.circular(defaultSize)),
-                margin: EdgeInsets.symmetric(horizontal: defaultSize * .5),
-              ),
-            ),
-          ),
         ],
       ),
     );
@@ -64,20 +47,15 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            // Greetings
             TextSmall(
               title: "Hi, Goodmorning",
               color: kBlack50,
               weight: FontWeight.w500,
             ),
-            IconText(
-              svg: "assets/icons/roles/admin.svg",
-              title: "Edwin Vladimir",
-              fontSize: defaultSize * 2.2,
-              color: kBlack80,
-              fontWeight: FontWeight.w600,
-              iconIsLeft: false,
-              iconSize: defaultSize * 2.2,
-            )
+            
+            // {Name}{Role Icon} e.g Chukwu Daniel ⚡
+            TextRoleIcon(title: "Edwin Vladimir", role: users[0].role, fontSize: defaultSize * 2.2, color: kBlack80, weight: FontWeight.w600, iconSize: defaultSize * 2),
           ],
         ),
         // Avatar
