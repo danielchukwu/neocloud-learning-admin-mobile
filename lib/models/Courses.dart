@@ -1,23 +1,25 @@
+import 'package:neocloud_mobile/models/Faculty.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 
+// CLASSES
 class Course {
   final String id;
   final String title;
-  final String imgSrc;
+  final String avatar;
   final Account user;
   final double rating;
   final double price;
-  final int discount;
-  final int reviews_count;
-  final int students_count;
-  final int duration;
+  final int? discount;
+  final int? reviews_count;
+  final int? students_count;
+  final int? duration;
   final List<Review>? reviews;
   final List<String>? accomplishments;
   final List<String>? requirements;
 
   const Course({
     required this.id,
-    required this.imgSrc,
+    required this.avatar,
     required this.title,
     required this.user,
     required this.rating,
@@ -71,11 +73,11 @@ class CourseMaterial {
   });
 }
 
-// Items
+// ITEMS
 List<Course> coursesList = [
   Course(
     id: "1",
-    imgSrc: "assets/images/course_python.jpg",
+    avatar: "assets/images/course_python.jpg",
     title: "The Ultimate Python Course For Automation Today",
     user: users[0],
     price: 55599,
@@ -99,7 +101,7 @@ List<Course> coursesList = [
   ),
   Course(
     id: "2",
-    imgSrc: "assets/images/course_html&css.jpg",
+    avatar: "assets/images/course_html&css.jpg",
     title: "The Ultimate HTML & CSS Course Online",
     user: users[1],
     price: 62000,
@@ -123,7 +125,7 @@ List<Course> coursesList = [
   ),
   Course(
     id: "3",
-    imgSrc: "assets/images/course_javascript.jpg",
+    avatar: "assets/images/course_javascript.jpg",
     title: "The Comprehensive JavaScript Course: Build Real-World Projects",
     user: users[2],
     price: 99999,
@@ -146,7 +148,7 @@ List<Course> coursesList = [
   ),
   Course(
     id: "4",
-    imgSrc: "assets/images/course_react.jpg",
+    avatar: "assets/images/course_react.jpg",
     title: "Mastering React: Build Dynamic Web Applications",
     user: users[3],
     price: 79999,
@@ -169,7 +171,7 @@ List<Course> coursesList = [
   ),
   Course(
     id: "5",
-    imgSrc: "assets/images/course_java.jpg",
+    avatar: "assets/images/course_java.jpg",
     title: "Java Programming for Beginners: Learn Java from Scratch",
     user: users[4],
     price: 49999,
@@ -191,7 +193,7 @@ List<Course> coursesList = [
   ),
   Course(
     id: "6",
-    imgSrc: "assets/images/course_aws.jpg",
+    avatar: "assets/images/course_aws.jpg",
     title: "AWS Certified Solutions Architect: Associate Certification",
     user: users[2],
     price: 119999,
@@ -373,3 +375,4 @@ List<Review> reviewsList = [
     content: 'Disappointed with the course quality.',
   ),
 ];
+
