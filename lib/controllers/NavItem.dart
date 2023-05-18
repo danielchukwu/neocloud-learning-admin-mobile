@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
-import 'package:neocloud_mobile/screens/back_office/back_office_screen.dart';
-import 'package:neocloud_mobile/screens/class_works/class_works_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
-import 'package:neocloud_mobile/screens/finance/finance_screen.dart';
 import 'package:neocloud_mobile/screens/search/search_screen.dart';
 
 class NavItem {
