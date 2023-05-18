@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:neocloud_mobile/components/cards/faculty_card.dart';
+// import 'package:neocloud_mobile/components/cards/faculty_card.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/card_data.dart';
+import 'package:neocloud_mobile/models/Faculty.dart';
 
 class FacultyBody extends StatelessWidget {
   const FacultyBody({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class FacultyBody extends StatelessWidget {
         // Cards
         SizedBox(height: defaultSize),
         Column(
-          children: List.generate(facultiesList.length, (index) => FacultyCard(data: facultiesList[index])),
+          children: List.generate(facultiesList.length, (index) => FacultyCard(faculty: facultiesList[index])),
         ),
       ],
     );
