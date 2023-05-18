@@ -58,7 +58,7 @@ class GrantPermission extends StatelessWidget {
             SizedBox(width: defaultSize * 4),
           ],
         ),
-        pageBottomPadding(),
+        SizedBox(height: defaultSize * 5,)
       ],
     );
   }
