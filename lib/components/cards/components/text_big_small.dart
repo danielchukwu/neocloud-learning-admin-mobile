@@ -13,14 +13,14 @@ class TextBigSmall extends StatelessWidget {
       text: TextSpan(
         style: getAppsTextStyle(
           fontWeight: FontWeight.w200,
-          fontSize: defaultSize * 5,
+          fontSize: defaultSize * 4,
         ),
         children: [
           TextSpan(text: bigText),
           TextSpan(
-            text: smallText,
+            text: ' $smallText',
             style: getAppsTextStyle(
-                fontWeight: FontWeight.w500, fontSize: defaultSize * 1.4),
+                fontWeight: FontWeight.w600, fontSize: defaultSize * 1.6),
           ),
         ],
       ),
