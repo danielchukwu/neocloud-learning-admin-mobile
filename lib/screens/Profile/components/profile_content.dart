@@ -28,7 +28,7 @@ class ProfileContent extends StatelessWidget {
           child: Column(
               children: List.generate(
             classWorksList.length,
-            (index) => ClassWorkCard(data: classWorksList[index]),
+            (index) => ClassWorkCard(clas: classWorksList[index]),
           )),
         );
       case "info":
