@@ -21,27 +21,14 @@ class _ClassSchedulesBodyState extends State<ClassSchedulesBody> {
     return Column(
       children: <Widget>[
         // Filter Section
-        SizedBox(height: defaultSize * 3),
-        FilterSection(press: updateFilter, showClass: true, showSection: true),
+        // SizedBox(height: defaultSize * 3),
+        // FilterSection(press: updateFilter, showClass: true, showSection: true),
 
-        // + Add button
-        SizedBox(height: defaultSize * 3),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            buildAddButton(title: "Create Routing", press: (context) {}),
-          ],
-        ),
-
-        // List of CARDS
         SizedBox(height: defaultSize),
         Column(
           children: List.generate(classScheduleList.length, (index) => ClassScheduleCard(data: classScheduleList[index])),
         ),
 
-        // + Add button and List of CARDS
-        // SizedBox(height: defaultSize * 3),
-        // ClassRoutineList(data: classRoutineList),
       ],
     );
   }
