@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/tablets.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Class.dart';
@@ -33,38 +34,14 @@ class ClassCard extends StatelessWidget {
 
           // About
           SizedBox(height: defaultSize * 1.5),
-          TextCustomMaxLine(title: clas.about, fontSize: defaultSize * 1.4, color: kBlack70, maxLines: 3),
+          TextCustomMaxLine(title: clas.about, fontSize: defaultSize * 1.6, color: kBlack70, maxLines: 3),
 
           // Info Cards
           SizedBox(height: defaultSize * 2),
           TextColorTablet(title: clas.faculty != null ? clas.faculty!.title : "faculty is null", bgColor: kOrange),
+          SizedBox(height: defaultSize * .5),
         ],
       ),
-    );
-  }
-}
-
-class TextColorTablet extends StatelessWidget {
-  const TextColorTablet({
-    super.key,
-    required this.title,
-    required this.bgColor,
-    this.color = Colors.white,
-  });
-
-  final String title;
-  final Color color;
-  final Color bgColor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: defaultSize * .5, horizontal: defaultSize),
-      decoration: BoxDecoration(
-        color: kOrange,
-        borderRadius: BorderRadius.circular(defaultSize * .5)
-      ),
-      child: TextSmall(title: title, color: color, weight: FontWeight.w500,),
     );
   }
 }
