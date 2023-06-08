@@ -38,7 +38,6 @@ class _AcademicScreenState extends State<AcademicScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-
               // Academic Options (
               // [     Classes    ] [    Faculties    ]
               // [   Classworks   ] [ Class Schedules ]
@@ -46,8 +45,8 @@ class _AcademicScreenState extends State<AcademicScreen> {
               Container(
                 padding: EdgeInsets.only(bottom: defaultSize * .5),
                 decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: kBlack50, width: .2))
-                  ),
+                    border:
+                        Border(bottom: BorderSide(color: kBlack50, width: .2))),
                 child: DisplayOptions(
                   items: AcademicOptions.items,
                   getSelectedIndex: AcademicOptions.getSelectedIndex,
@@ -55,7 +54,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
                 ),
               ),
 
-              // Underneath Background Layer Seperator
+              // Underneath Background Layer Separator
               Container(
                 height: defaultSize * .7,
                 color: kBlack.withOpacity(.03),
@@ -65,37 +64,48 @@ class _AcademicScreenState extends State<AcademicScreen> {
               Container(
                 padding: EdgeInsets.symmetric(vertical: defaultSize),
                 decoration: BoxDecoration(
-                  border: Border(top: BorderSide(color: kBlack50, width: .2), bottom: BorderSide(color: kBlack50, width: .2))
-                  ),
+                    border: Border(
+                        top: BorderSide(color: kBlack50, width: .2),
+                        bottom: BorderSide(color: kBlack50, width: .2))),
                 child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     // Title
                     SizedBox(width: defaultSize * 2),
-                    TextLarge(title: "Classes", weight: FontWeight.w700),
-              
+                    const TextLarge(title: "Classes", weight: FontWeight.w700),
+
                     // Count
                     Spacer(),
-              
+
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        print('Do Something');
+                      },
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(defaultSize * 1.5),
+                        bottomLeft: Radius.circular(defaultSize * 1.5),
+                      ),
                       child: Container(
                         width: defaultSize * 10,
                         height: defaultSize * 4,
                         decoration: BoxDecoration(
-                          color: kBlack.withOpacity(.05),
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(defaultSize * 1.5), bottomLeft: Radius.circular(defaultSize * 1.5))
-                        ),
+                            color: kBlack.withOpacity(.05),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(defaultSize * 1.5),
+                                bottomLeft:
+                                    Radius.circular(defaultSize * 1.5))),
                         child: Column(
                           children: [
                             Spacer(),
-                            TextLarge(title: "45", color: kBlack50, weight: FontWeight.w500,),
+                            TextLarge(
+                              title: "45",
+                              color: kBlack50,
+                              weight: FontWeight.w500,
+                            ),
                             Spacer(),
                           ],
                         ),
                       ),
                     )
-              
                   ],
                 ),
               ),
@@ -112,16 +122,16 @@ class _AcademicScreenState extends State<AcademicScreen> {
                   ? const FacultyBody()
                   : const SizedBox(),
 
-              // ClassRoutine - show if selected
-              AcademicOptions.selectedIndex == 2
-                  ? const ClassSchedulesBody()
-                  : const SizedBox(),
-
               // Event Calendar
-              AcademicOptions.selectedIndex == 3
+              AcademicOptions.selectedIndex == 2
                   ? const ClassworksBody()
                   : const SizedBox(),
 
+              // ClassRoutine - show if selected
+              AcademicOptions.selectedIndex == 3
+                  ? const ClassSchedulesBody()
+                  : const SizedBox(),
+            
             ],
           ),
         ),
@@ -129,8 +139,8 @@ class _AcademicScreenState extends State<AcademicScreen> {
       bottomNavigationBar: const AppsBottomNavBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(Icons.add, color: kWhite),
         backgroundColor: kBlue,
+        child: Icon(Icons.add, color: kWhite),
       ),
     );
   }
