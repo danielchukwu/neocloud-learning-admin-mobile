@@ -73,7 +73,7 @@ class _ClassWorkBodyState extends State<ClassWorkBody> {
               SizedBox(height: defaultSize),
               Column(
                 children: List.generate(classWorksList.length,
-                    (index) => ClassWorkCard(data: classWorksList[index])),
+                    (index) => ClassWorkCard(clas: classWorksList[index])),
               ),
 
               // Bottom Padding

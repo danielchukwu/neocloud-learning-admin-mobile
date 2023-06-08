@@ -38,7 +38,7 @@ class _ClassWorkListState extends State<ClassWorkList> {
   Widget build(BuildContext context) {
     return Column(
           children: List.generate(widget.data.length,
-              (index) => ClassWorkCard(data: widget.data[index])),
+              (index) => ClassWorkCard(clas: widget.data[index])),
         );
   }
 

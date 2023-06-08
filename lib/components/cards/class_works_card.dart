@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/cards/components/card_description.dart';
-import 'package:neocloud_mobile/components/cards/components/card_sections.dart';
+import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/card_data.dart';
 
 class ClassWorkCard extends StatelessWidget {
   const ClassWorkCard({
     super.key,
-    required this.data,
+    required this.clas,
   });
 
-  final ClassWork data;
+  final ClassWork clas;
 
   @override
   Widget build(BuildContext context) {
@@ -23,33 +22,51 @@ class ClassWorkCard extends StatelessWidget {
     // without label
     //   27  |  March  |  2023
     final sections = [
-      {"label": "Course", "title": data.course, "flex": 3},
-      {"label": "Date", "title": data.date, "flex": 2},
+      {"label": "Course", "title": clas.course, "flex": 3},
+      {"label": "Date", "title": clas.date, "flex": 2},
     ];
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
+    return Container(
+      padding: screenPadding,
+      decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: kBlack50, width: .2)
+            )
+          ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
 
-        // Card Into
-        buildCardHeader(title: data.title),
+          // Due - Tomorrow
+          SizedBox(height: defaultSize * 1.5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              TextSmall(title: 'Due - Wed (Tomorrow)', color: kBlack50),
+            ],
+          ),
+    
+          // Class Title
+          SizedBox(height: defaultSize * .5),
+          buildCardHeader(title: clas.title),
 
-        // Description Label
-        CardDescription(label: "Description", content: data.description),
+          SizedBox(height: defaultSize),
+          buildAvatarAndName(
+              avatar: clas.educator.avatar,
+              name: clas.educator.fullName,
+              fontSize: defaultSize * 1.6,
+              weight: FontWeight.w600),
 
-        // Course and Date
-        SizedBox(height: defaultSize * 2),
-        CardSections(data: sections),
+          // Description Label
+          // CardDescription(label: "Description", content: data.description),
+          SizedBox(height: defaultSize),
+          TextMedium(title: clas.description, color: kBlack70),
 
-        // Classworks Image or File name
-        SizedBox(height: defaultSize * 3),
-        buildImageOrFileName(file: data.file),
-
-        // Download button
-        SizedBox(height: defaultSize * 2),
-        buildDownloadButton(press: (context) {}),
-
-      ],
+          // Info Cards
+          SizedBox(height: defaultSize * 2),
+    
+        ],
+      ),
     );
   }
 }
