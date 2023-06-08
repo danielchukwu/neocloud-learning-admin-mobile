@@ -53,7 +53,14 @@ Map<String, int> getStarsForRating({required double ratings}) {
 // takes `count` and `a singular word` then based on the count it either
 // pluralizes the singular word or returns the singular word like this
 String getPluralOrSingular({required int count, required String word}) {
-  return count == 0 || count >= 2 ? "${word}s" : word;
+  var result = '';
+  if ( count == 0 || count >= 2 ) {
+    if (word.endsWith('ss')) {   // e.g Singular; class - Plural; classes
+      return "${word}es";
+    }
+    return "${word}s";           // e.g Singular; educator - plural; educators
+  }
+  return word;
 }
 
 // if a text is longer than a specified number this func shortens it
