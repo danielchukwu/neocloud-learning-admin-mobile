@@ -262,13 +262,13 @@ Widget buildCardHeader({required String title}) {
 
 // - image or file display
 
-Widget buildImageOrFileName({required String file}) {
-  if (file.contains(".jpg") || file.contains(".png")) {
-    return RectangularBoxImage(img: file);
-  } else {
-    return DisplayFileName(title: file);
-  }
-}
+// Widget buildImageOrFileName({required String file}) {
+//   if (file.contains(".jpg") || file.contains(".png")) {
+//     return RectangularBoxImage(img: file);
+//   } else {
+//     return DisplayFileName(title: file);
+//   }
+// }
 
 // - download button
 
