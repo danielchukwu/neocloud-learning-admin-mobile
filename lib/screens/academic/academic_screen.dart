@@ -30,7 +30,8 @@ class _AcademicScreenState extends State<AcademicScreen> {
           bgColor: kWhite,
           isDark: true,
           showLeading: false,
-          routeWidget1: ProfileScreen(user: users[0]),
+          showAction1: false,
+          showAction2: false
         ),
 
         // App Body
