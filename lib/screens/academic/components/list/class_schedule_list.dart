@@ -13,7 +13,7 @@ class ClassRoutineList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-          children: List.generate(data.length, (index) => ClassScheduleCard(data: data[index]))
+          children: List.generate(data.length, (index) => ClassScheduleCard(clas: data[index]))
         );
   }
 }
