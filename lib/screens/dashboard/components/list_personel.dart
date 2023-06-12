@@ -4,6 +4,7 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/size_config.dart';
+import 'package:neocloud_mobile/utils.dart';
 
 // Lists Personel Tiles
 class ListPersonel extends StatefulWidget {
@@ -81,11 +82,20 @@ class PersonelTile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // Text (Name)
-            TextRoleIcon(
-              role: user.role,
+            // TextRoleIcon(
+            //   svg: getRoleSvgFileName(roleList: user.role),
+            //   title: user.fullName,
+            //   weight: FontWeight.w600,
+            //   fontSize: defaultSize * 1.6,
+            // ),
+            IconText(
               title: user.fullName,
-              weight: FontWeight.w600,
+              color: kBlack80,
+              fontWeight: FontWeight.w600,
               fontSize: defaultSize * 1.6,
+              iconIsLeft: false,
+              svg: getRoleSvgFileName(roleList: user.role),
+              iconSize: 16,
             ),
 
             // Text (Live - Time)
