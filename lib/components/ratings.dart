@@ -14,6 +14,7 @@ class Ratings extends StatelessWidget {
     this.color,
     this.showReviews = true, 
     this.showRatingsText = true,
+    this.alignCenter = false,
   });
 
   final double rating;
@@ -23,11 +24,13 @@ class Ratings extends StatelessWidget {
   final Color? color;
   final bool showReviews;
   final bool showRatingsText;
+  final bool alignCenter;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: alignCenter ? MainAxisAlignment.center : MainAxisAlignment.start,
       children: <Widget>[
         // Rating
         showRatingsText 
