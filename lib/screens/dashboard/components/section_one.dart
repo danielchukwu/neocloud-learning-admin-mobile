@@ -55,7 +55,15 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
             ),
             
             // {Name}{Role Icon} e.g Chukwu Daniel ⚡
-            TextRoleIcon(title: "Edwin Vladimir", role: users[0].role, fontSize: defaultSize * 2.2, color: kBlack80, weight: FontWeight.w600, iconSize: defaultSize * 2),
+            // TextRoleIcon(title: "Edwin Vladimir", svg: getRoleSvgFileName(roleList: users[0].role), fontSize: defaultSize * 2.2, color: kBlack80, weight: FontWeight.w600, iconSize: defaultSize * 2),
+            IconText(
+              title: "Edwin Vladimir",
+              color: kBlack80,
+              fontWeight: FontWeight.w600,
+              fontSize: defaultSize * 2.2,
+              svg: getRoleSvgFileName(roleList: users[0].role),
+              iconSize: defaultSize * 2,
+            ),
           ],
         ),
         // Avatar
