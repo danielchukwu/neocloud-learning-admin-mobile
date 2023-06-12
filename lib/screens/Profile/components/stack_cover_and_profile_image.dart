@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/constraints.dart';
 
 class StackCoverAndProfileImage extends StatelessWidget {
@@ -6,60 +8,60 @@ class StackCoverAndProfileImage extends StatelessWidget {
     super.key,
     required this.cover,
     required this.avatar,
+    required this.containerSize,
+    required this.roleSvg,
     this.coverSize = 280,
     this.profileImgBorderSize = 3,
-    this.coverOverlay = Colors.green,
-    this.profileImageVerticalPosition = 68,
-    this.bgCurveVerticalPosition = 130,
+    this.coverOverlay = Colors.grey,
+    this.profileImageVerticalPosition = 68, 
   });
 
   final String cover;
   final String avatar;
+  final String roleSvg;
+  final double containerSize;
   final double coverSize;
   final double profileImgBorderSize;
   final Color coverOverlay;
   final double profileImageVerticalPosition;
-  final double bgCurveVerticalPosition;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: coverSize,
+    return Container(
+      // color: kOrange,
+      height: containerSize,
       child: Stack(
+        alignment: Alignment.center,
         children: <Widget>[
           // cover image and cover overlay
           buildCoverImage(context),
 
-          // a rectangle with circular border radius of 20
-          buildBoxBackgroundWithCurvedEdges(context),
-
           // profile image in circular format
-          buildProfileImage()
+          buildProfileImage(),
+
+          // users role icon
+          buildUserRoleIcon()
         ],
       ),
     );
   }
 
-  Positioned buildBoxBackgroundWithCurvedEdges(BuildContext context) {
+  Positioned buildUserRoleIcon() {
     return Positioned(
-          height: defaultSize * 5,
-          width: MediaQuery.of(context).size.width,
-          top: bgCurveVerticalPosition,
-          child: Container(
-            decoration: BoxDecoration(
-              color: kWhite,
-              // borderRadius: BorderRadius.circular(defaultSize * 2),
-            ),
-          ),
-        );
+      right: defaultSize * 2,
+      bottom: defaultSize * .6,
+      child: SvgPicture.asset(roleSvg, width: defaultSize * 2.2),
+    );
   }
+
 
   Positioned buildProfileImage() {
     return Positioned(
           height: defaultSize * 11,
           width: defaultSize * 11,
           top: profileImageVerticalPosition,
-          left: defaultSize * 2,
+          // left: 0,
+          // right: 0,
           child: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
