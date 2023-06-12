@@ -125,3 +125,22 @@ Widget buildStackedClassImgs(
     overlapDifference: overlapDifference,
   );
 }
+
+// Get Role Icon Filename
+String getRoleSvgFileName({required List<String> roleList}) {
+  String svg = "assets/icons/roles/";
+  if (roleList.contains("Superadmin")) {
+    svg += "superadmin.svg";
+  }
+  else if (roleList.contains("Admin")) {
+    svg += "admin.svg";
+  }
+  else if (roleList.contains("Educator")) {
+    svg += "educator.svg";
+  }
+  else if (roleList.contains("Student")) {
+    svg += "student.svg";
+  }
+
+  return svg;
+}
