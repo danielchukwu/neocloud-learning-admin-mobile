@@ -26,7 +26,7 @@ class _ClassSchedulesBodyState extends State<ClassSchedulesBody> {
 
         SizedBox(height: defaultSize),
         Column(
-          children: List.generate(classScheduleList.length, (index) => ClassScheduleCard(data: classScheduleList[index])),
+          children: List.generate(classScheduleList.length, (index) => ClassScheduleCard(clas: classScheduleList[index])),
         ),
 
       ],
