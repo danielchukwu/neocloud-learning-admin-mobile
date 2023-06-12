@@ -21,23 +21,15 @@ class CourseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: buildAppBar(
-      //   title: "",
-      //   bgColor: kWhite,
-      //   isDark: true,
-      //   showLeading: true,
-      //   actionIcon: Icons.shopping_cart_outlined,
-      //   routeName: getRouteName(CartScreen.screenName),
-      // ),
       body: CustomScrollView(slivers: <Widget>[
         buildSliverAppBar(
-        title: "",
-        bgColor: kWhite,
-        isDark: true,
-        showLeading: true,
-        routeName1: getRouteName(CartScreen.screenName),
-        actionIcon1: Icons.shopping_cart_outlined,
-      ),
+          title: "",
+          bgColor: kWhite,
+          isDark: true,
+          showLeading: true,
+          routeName1: getRouteName(CartScreen.screenName),
+          actionIcon1: Icons.shopping_cart_outlined,
+        ),
         
         SliverToBoxAdapter(
           child: Column(
