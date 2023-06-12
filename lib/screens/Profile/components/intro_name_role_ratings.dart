@@ -3,7 +3,6 @@ import 'package:neocloud_mobile/components/ratings.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Students.dart';
-import 'package:neocloud_mobile/screens/Profile/components/star_rating.dart';
 
 class IntroNameRoleRatings extends StatelessWidget {
   const IntroNameRoleRatings({
@@ -18,18 +17,19 @@ class IntroNameRoleRatings extends StatelessWidget {
     return Padding(
       padding: screenPadding,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           // User Name
           TextExtraLarge(
               title: user.fullName, color: kBlack80, weight: FontWeight.w600),
 
           // User Role
-          TextMedium(title: "NCT " + user.role[0], color: kBlack70),
+          SizedBox(height: defaultSize * .3),
+          TextMedium(title: user.role[0], color: kBlack50),
 
           // User Ratings
-          SizedBox(height: defaultSize * .3),
-          Ratings(rating: user.ratings, reviewsCount: user.reviews_count, fontSize: defaultSize * 1.8,)
+          SizedBox(height: defaultSize * .5),
+          Ratings(rating: user.ratings, reviewsCount: user.reviews_count, fontSize: defaultSize * 1.6, alignCenter: true,)
         ],
       ),
     );
