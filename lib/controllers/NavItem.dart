@@ -3,6 +3,7 @@ import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
+import 'package:neocloud_mobile/screens/notifications/notifications_screen.dart';
 import 'package:neocloud_mobile/screens/search/search_screen.dart';
 
 class NavItem {
@@ -34,31 +35,31 @@ class NavItems extends ChangeNotifier {
     const NavItem(
       svgActive: "assets/icons/navbar/home-fill.svg",
       svgInactive: "assets/icons/navbar/home-outline.svg",
-      itemLabel: "Home",
+      itemLabel: "Dashboard",
       destination: DashboardScreen(),
     ),
     const NavItem(
       svgActive: "assets/icons/navbar/search-fill.svg",
       svgInactive: "assets/icons/navbar/search-outline.svg",
-      itemLabel: "Academic",
+      itemLabel: "Search",
       destination: SearchScreen(),
     ),
     const NavItem(
       svgActive: "assets/icons/navbar/book-fill.svg",
       svgInactive: "assets/icons/navbar/book-outline.svg",
-      itemLabel: "Dashboard",
+      itemLabel: "Academic",
       destination: AcademicScreen(),
     ),
-    NavItem(
+    const NavItem(
       svgActive: "assets/icons/navbar/notification-fill.svg",
       svgInactive: "assets/icons/navbar/notification-outline.svg",
-      itemLabel: "Back Office",
-      destination: ProfileScreen(user: users[0]),
+      itemLabel: "Notification",
+      destination: NotificationScreen(),
     ),
     NavItem(
       svgActive: "assets/icons/navbar/user-fill.svg",
       svgInactive: "assets/icons/navbar/user-outline.svg",
-      itemLabel: "Finance",
+      itemLabel: "Profile",
       destination: ProfileScreen(user: users[0]),
     ),
   ];
