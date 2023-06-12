@@ -14,6 +14,9 @@ class ClassCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Map> tabletData = [
+      {'value': clas.faculty?.title ?? 'No Faculty Present' , 'color': kOrange},
+    ];
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: defaultSize * 2, vertical: defaultSize * 2),
@@ -37,9 +40,23 @@ class ClassCard extends StatelessWidget {
           TextCustomMaxLine(title: clas.about, fontSize: defaultSize * 1.6, color: kBlack70, maxLines: 3),
 
           // Info Cards
+          // SizedBox(height: defaultSize * 2),
+          // TextColorTablet(title: clas.faculty != null ? clas.faculty!.title : "faculty is null", bgColor: kOrange),
+          // SizedBox(height: defaultSize * .5),
+
+          // Bottom Tablets
           SizedBox(height: defaultSize * 2),
-          TextColorTablet(title: clas.faculty != null ? clas.faculty!.title : "faculty is null", bgColor: kOrange),
-          SizedBox(height: defaultSize * .5),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: List.generate(tabletData.length, (index) => TextColorTablet( 
+              title: '${tabletData[index]['value']}', 
+              bgColor: tabletData[index]['color'], 
+            ),
+            ),
+          ),
+
+            SizedBox(height: defaultSize * .5),
         ],
       ),
     );
