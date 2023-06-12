@@ -61,7 +61,12 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               // Search
               SizedBox(height: defaultSize * 2),
-              SearchHeader(updateSearch: _updateSearchController),
+
+              // SearchHeader(updateSearch: _updateSearchController),
+              Padding(
+                padding: screenPadding,
+                child: buildSearchTextField(press: _updateSearchController),
+              ),
 
               // Filter
               SearchFilter(searchFilter: searchFilter, selectedIndex: _selectedIndex, updateIndex: updateIndex),
