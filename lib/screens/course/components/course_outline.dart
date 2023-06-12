@@ -57,14 +57,17 @@ class _CourseOutlineState extends State<CourseOutline> {
         IconText(
             title: 'Modules (45)',
             icon: Icons.featured_play_list_sharp,
+            iconColor: kBlack70,
             fontSize: defaultSize * 1.4),
         IconText(
             title: 'Lectures (158)',
             icon: Icons.video_library,
+            iconColor: kBlack70,
             fontSize: defaultSize * 1.4),
         IconText(
             title: 'Time (115hrs)',
             icon: Icons.watch_later,
+            iconColor: kBlack70,
             fontSize: defaultSize * 1.4)
       ],
     );
