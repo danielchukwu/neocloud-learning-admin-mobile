@@ -27,26 +27,23 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: screenPadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          // Icon Buttons - courses, activities & info
-          buildNavbarIconButtons(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        // Icon Buttons - courses, activities & info
+        buildNavbarIconButtons(),
 
-          // Selector - used to select the currently chosen navbar item
-          buildNavbarSelector(),
+        // Selector - used to select the currently chosen navbar item
+        buildNavbarSelector(),
 
-          // Display content - based on the navbar button clicked, this changes
-          ProfileContent(
-              type: widget.navItems[ProfileNavbarItems.selectedIndex].title),
-        ],
-      ),
+        // Display content - based on the navbar button clicked, this changes
+        ProfileContent(
+            type: widget.navItems[ProfileNavbarItems.selectedIndex].title),
+      ],
     );
   }
 
-  Stack buildNavbarSelector() {
+  Widget buildNavbarSelector() {
     return Stack(
       children: <Widget>[
         // Divider Line
@@ -60,7 +57,7 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
         // Selector
         AnimatedPositioned(
           width: selectorWidth,
-          left: getSelectorPosition(),
+          left: getSelectorPosition() + 20,
           curve: Curves.easeIn,
           duration: const Duration(milliseconds: 100),
           child: Container(
@@ -73,28 +70,30 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
   }
 
   // Navbar Icons
-  Row buildNavbarIconButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: List.generate(
-        widget.navItems.length,
-        (index) => Expanded(
-          child: GestureDetector(
-            onTap: () {
-              setState(() {
-                ProfileNavbarItems.selectedIndex = index;
-              });
-            },
-            child: Container(
-              // color: Colors.red,
-              color: Colors.white,
-              padding: EdgeInsets.only(top: index == 0 ? 3 : 0, bottom: index == 0 ? 12 : 10),
-              child: SvgPicture.asset(
-                widget.navItems[index].iconSrc,
-                color: index == ProfileNavbarItems.selectedIndex
-                    ? kBlack80
-                    : kBlack50,
-                width: index == 0 ? defaultSize * 3 : defaultSize * 3.5,
+  Widget buildNavbarIconButtons() {
+    return Padding(
+      padding: screenPadding,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: List.generate(
+          widget.navItems.length,
+          (index) => Expanded(
+            child: GestureDetector(
+              onTap: () {
+                setState(() {
+                  ProfileNavbarItems.selectedIndex = index;
+                });
+              },
+              child: Container(
+                color: Colors.white,
+                padding: EdgeInsets.only(top: index == 0 ? 3 : 0, bottom: index == 0 ? 12 : 10),
+                child: SvgPicture.asset(
+                  widget.navItems[index].iconSrc,
+                  color: index == ProfileNavbarItems.selectedIndex
+                      ? kBlack80
+                      : kBlack50,
+                  width: widget.navItems[index].size,
+                ),
               ),
             ),
           ),
