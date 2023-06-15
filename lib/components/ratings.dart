@@ -45,16 +45,6 @@ class Ratings extends StatelessWidget {
         SizedBox(width: showRatingsText ? defaultSize * .5 : 0),
         StarRating(rating: rating, iconSize: iconSize ?? defaultSize * 2.2),
 
-        // Reviews Count
-        SizedBox(width: showReviews ? defaultSize * .5 : 0),
-        showReviews
-            ? TextCustom(
-                title:
-                    "(${reviewsCount} ${getPluralOrSingular(count: reviewsCount, word: 'review')})",
-                color: color ?? kBlack50,
-                fontSize: fontSize ?? defaultSize * 1.6,
-              )
-            : SizedBox(),
       ],
     );
     ;
