@@ -8,7 +8,6 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
-import 'package:neocloud_mobile/screens/class_works/components/class_works_body.dart';
 import 'package:neocloud_mobile/screens/search/components/search_field.dart';
 import 'package:neocloud_mobile/screens/search/components/search_filter.dart';
 import 'package:neocloud_mobile/utils.dart';

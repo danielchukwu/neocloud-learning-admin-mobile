@@ -4,7 +4,6 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/screens/Profile/components/current-old-header.dart';
 import 'package:neocloud_mobile/screens/academic/components/body/class_schedule_body.dart';
 import 'package:neocloud_mobile/screens/academic/components/body/class_works_body.dart';
-import 'package:neocloud_mobile/screens/class_works/components/class_works_body.dart';
 
 class ProfileDashboard extends StatefulWidget {
   const ProfileDashboard({
