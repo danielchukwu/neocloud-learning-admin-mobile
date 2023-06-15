@@ -62,6 +62,10 @@ class FacultyCard extends StatelessWidget {
               TextBigSmall(
                 bigText: bigText,
                 smallText: smallText,
+                bigTextSize: defaultSize * 4,
+                bigTextWeight: FontWeight.w200,
+                smallTextSize: defaultSize * 1.6,
+                smallTextWeight: FontWeight.w600,
               ),
 
               // Faculty Owner
