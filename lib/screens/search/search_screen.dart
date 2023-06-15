@@ -74,7 +74,7 @@ class _SearchScreenState extends State<SearchScreen> {
               // Result
               SizedBox(height: defaultSize),
               Padding(
-                padding: EdgeInsets.fromLTRB(defaultSize * 2, 0, defaultSize * 2, defaultSize * 2),
+                padding: _selectedIndex != 3 ?  EdgeInsets.fromLTRB(defaultSize * 2, 0, defaultSize * 2, defaultSize * 2) : EdgeInsets.all(0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
