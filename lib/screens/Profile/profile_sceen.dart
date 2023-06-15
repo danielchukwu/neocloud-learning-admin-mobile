@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
-import 'package:neocloud_mobile/components/texts.dart';
+// import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/ProfileNavbarItem.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/components/intro_name_role_ratings.dart';
-import 'package:neocloud_mobile/screens/Profile/components/profile_cards_list.dart';
+import 'package:neocloud_mobile/screens/Profile/components/profile_students_classes_reviews_count.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_navbar_and_content.dart';
 import 'package:neocloud_mobile/screens/Profile/components/stack_cover_and_profile_image.dart';
 import 'package:neocloud_mobile/screens/settings/settings_screen.dart';
@@ -22,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          buildSliverAppBar(title: screenName, bgColor: kWhite, actionIcon1: Icons.settings, isDark: true, routeName1: getRouteName(SettingsScreen.screenName)),
+          buildSliverAppBar(title: screenName, bgColor: kWhite, actionIcon1: Icons.settings, isDark: true, routeName1: getRouteName(SettingsScreen.screenName), showLeading: false),
 
           SliverToBoxAdapter(
             child: Column(
@@ -46,12 +46,12 @@ class ProfileScreen extends StatelessWidget {
 
                 // Info Cards (Students, Courses, Reviews)
                 SizedBox(height: defaultSize * 2),
-                ProfileCardsList(user: user),
+                ProfileStudentsClassesReviewsCount(user: user),
 
                 // Profile Navbar and Profiles Content (Courses, Activity, Info)
                 SizedBox(height: defaultSize * 3),
                 ProfileNavbarAndContent(
-                    navItems: ProfileNavbarItems.educatorItems),
+                    navItems: ProfileNavbarItems.items),
 
                 SizedBox(height: defaultSize *3),
               ],

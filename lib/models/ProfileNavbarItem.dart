@@ -1,8 +1,11 @@
+import 'package:neocloud_mobile/constraints.dart';
+
 class ProfileNavbarItem {
   final String title;
   final String iconSrc;
+  final double size;
 
-  ProfileNavbarItem({required this.title, required this.iconSrc});
+  ProfileNavbarItem({required this.title, required this.iconSrc, required this.size});
 }
 
 class ProfileNavbarItems {
@@ -12,23 +15,23 @@ class ProfileNavbarItems {
   static int get selectedIndex => _selectedIndex;
 
   static List<ProfileNavbarItem> items = [
-    ProfileNavbarItem(title: "courses", iconSrc: "assets/icons/courses.svg"),
-    ProfileNavbarItem(title: "activities", iconSrc: "assets/icons/activities.svg"),
-    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/about.svg"),
+    ProfileNavbarItem(title: "dashboard", iconSrc: "assets/icons/profile/laptop.svg", size: defaultSize * 2.7),
+    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/profile/info-square.svg", size: defaultSize * 2.5),
+    ProfileNavbarItem(title: "classes", iconSrc: "assets/icons/profile/courses.svg", size: defaultSize * 2.3),
   ];
   static List<ProfileNavbarItem> studentItems = [
-    ProfileNavbarItem(title: "courses", iconSrc: "assets/icons/courses.svg"),
-    ProfileNavbarItem(title: "activities", iconSrc: "assets/icons/activities.svg"),
-    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/about.svg"),
+    ProfileNavbarItem(title: "dashboard", iconSrc: "assets/icons/profile/laptop.svg", size: defaultSize * 2.7),
+    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/profile/info-square.svg", size: defaultSize * 2.5),
+    ProfileNavbarItem(title: "classes", iconSrc: "assets/icons/profile/courses.svg", size: defaultSize * 2.3),
   ];
   static List<ProfileNavbarItem> educatorItems = [
-    ProfileNavbarItem(title: "courses", iconSrc: "assets/icons/courses.svg"),
-    ProfileNavbarItem(title: "activities", iconSrc: "assets/icons/activities.svg"),
-    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/about.svg"),
+    ProfileNavbarItem(title: "dashboard", iconSrc: "assets/icons/profile/laptop.svg", size: defaultSize * 2.7),
+    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/profile/info-square.svg", size: defaultSize * 2.5),
+    ProfileNavbarItem(title: "classes", iconSrc: "assets/icons/profile/courses.svg", size: defaultSize * 2.3),
   ];
   static List<ProfileNavbarItem> adminItems = [
-    ProfileNavbarItem(title: "courses", iconSrc: "assets/icons/courses.svg"),
-    ProfileNavbarItem(title: "activities", iconSrc: "assets/icons/activities.svg"),
-    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/about.svg"),
+    ProfileNavbarItem(title: "dashboard", iconSrc: "assets/icons/profile/laptop.svg", size: defaultSize * 2.7),
+    ProfileNavbarItem(title: "info", iconSrc: "assets/icons/profile/info-square.svg", size: defaultSize * 2.5),
+    ProfileNavbarItem(title: "classes", iconSrc: "assets/icons/profile/courses.svg", size: defaultSize * 2.3),
   ];
 }
