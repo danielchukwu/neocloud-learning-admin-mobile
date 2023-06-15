@@ -73,6 +73,7 @@ flutter:
     - assets/icons/
     - assets/icons/navbar/
     - assets/icons/roles/
+    - assets/icons/profile/
     - assets/icons/settings/
     - assets/lottiefiles/
   #   - images/a_dot_ham.jpeg
