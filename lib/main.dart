@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/controllers/NavItem.dart';
 import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/cart/cart_screen.dart';
-import 'package:neocloud_mobile/screens/class_works/class_works_screen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
 import 'package:neocloud_mobile/screens/login/login_screen.dart';
@@ -47,7 +46,6 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/welcome': (context) => const WelcomeScreen(),
         '/coming-soon': (context) => const ComingSoonScreen(),
-        '/class-works': (context) => const ClassWorksScreen(),
         '/academic': (context) => const AcademicScreen(),
         '/dashboard': (context) => const DashboardScreen(),
         // Removed because the ProfileScreen widget takes arguments

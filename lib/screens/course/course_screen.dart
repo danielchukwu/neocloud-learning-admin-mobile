@@ -141,7 +141,6 @@ class CourseScreen extends StatelessWidget {
       children: <Widget>[
         // Buy now
         Expanded(
-          // flex: 3,
           child: AppsButton(
             title: "Buy now",
             padTopBottom: defaultSize * .6,

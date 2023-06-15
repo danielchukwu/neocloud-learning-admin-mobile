@@ -12,7 +12,6 @@ class ClassBody extends StatelessWidget {
     return Column(
       children: <Widget>[
         // Cards
-        SizedBox(height: defaultSize),
         Column(
           children: List.generate( classesList.length, (index) => ClassCard(clas: classesList[index])),
         ),
