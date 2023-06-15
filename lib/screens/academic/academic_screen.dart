@@ -5,6 +5,7 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Options.dart';
 import 'package:neocloud_mobile/models/Students.dart';
+import 'package:neocloud_mobile/screens/Profile/components/current-old-header.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/academic/components/body/class_body.dart';
 import 'package:neocloud_mobile/screens/academic/components/body/class_schedule_body.dart';
@@ -26,13 +27,12 @@ class _AcademicScreenState extends State<AcademicScreen> {
       body: CustomScrollView(slivers: <Widget>[
         // App Bar
         buildSliverAppBar(
-          title: AcademicScreen.screenName,
-          bgColor: kWhite,
-          isDark: true,
-          showLeading: false,
-          showAction1: false,
-          showAction2: false
-        ),
+            title: AcademicScreen.screenName,
+            bgColor: kWhite,
+            isDark: true,
+            showLeading: false,
+            showAction1: false,
+            showAction2: false),
 
         // App Body
         SliverToBoxAdapter(
@@ -61,56 +61,18 @@ class _AcademicScreenState extends State<AcademicScreen> {
                 color: kBlack.withOpacity(.03),
               ),
 
-              // HEADER = Classes - Count (styled background)
-              Container(
-                padding: EdgeInsets.symmetric(vertical: defaultSize),
-                decoration: BoxDecoration(
-                    border: Border(
-                        top: BorderSide(color: kBlack50, width: .2),
-                        bottom: BorderSide(color: kBlack50, width: .2))),
-                child: Row(
-                  children: <Widget>[
-                    // Title
-                    SizedBox(width: defaultSize * 2),
-                    const TextLarge(title: "Classes", weight: FontWeight.w700),
-
-                    // Count
-                    Spacer(),
-
-                    InkWell(
-                      onTap: () {
-                        print('Do Something');
-                      },
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(defaultSize * 1.5),
-                        bottomLeft: Radius.circular(defaultSize * 1.5),
-                      ),
-                      child: Container(
-                        width: defaultSize * 10,
-                        height: defaultSize * 4,
-                        decoration: BoxDecoration(
-                            color: kBlack.withOpacity(.05),
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(defaultSize * 1.5),
-                                bottomLeft:
-                                    Radius.circular(defaultSize * 1.5))),
-                        child: Column(
-                          children: [
-                            Spacer(),
-                            TextLarge(
-                              title: "45",
-                              color: kBlack50,
-                              weight: FontWeight.w500,
-                            ),
-                            Spacer(),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+              // Header - Classes, Count (styled background)
+              CurrentOldHeader(
+                title: AcademicOptions.items[AcademicOptions.selectedIndex].title,
+                rightText: AcademicOptions.selectedIndex < 2 ? '2' : 'Old',
+                selectedLeft: AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent,
+                pressLeft: () => setState(() {
+                  AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent = true;
+                }),
+                pressRight: () => setState(() {
+                  AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent = false;
+                }),
               ),
-              // SizedBox(height: defaultSize * 2),
 
               // Load Body
               // Classes
@@ -125,14 +87,13 @@ class _AcademicScreenState extends State<AcademicScreen> {
 
               // Event Calendar
               AcademicOptions.selectedIndex == 2
-                  ? const ClassworksBody()
+                  ? const ClassworksList()
                   : const SizedBox(),
 
               // ClassRoutine - show if selected
               AcademicOptions.selectedIndex == 3
-                  ? const ClassSchedulesBody()
+                  ? const ClassSchedulesList()
                   : const SizedBox(),
-            
             ],
           ),
         ),
@@ -153,3 +114,4 @@ class _AcademicScreenState extends State<AcademicScreen> {
     });
   }
 }
+
