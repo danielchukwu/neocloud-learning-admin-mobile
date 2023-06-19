@@ -1,4 +1,3 @@
-import 'package:neocloud_mobile/models/Faculty.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 
 // CLASSES
@@ -375,4 +374,3 @@ List<Review> reviewsList = [
     content: 'Disappointed with the course quality.',
   ),
 ];
-
