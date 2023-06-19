@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/appbar/appbar.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
-import 'package:neocloud_mobile/components/cards/components/display_filename.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/texts.dart';
@@ -17,6 +16,9 @@ const neocloudLogo = 'assets/images/logo-dark.png';
 
 // Sizes (Integers and Doubles)
 var defaultSize = SizeConfig.defaultSize!;
+
+// Border
+BorderSide appsBorder = BorderSide(color: kBlack50, width: .2);
 
 // Paddings
 double appsBodyPadding = defaultSize * 2;
@@ -46,6 +48,7 @@ const kTextColor = Color(0xFF202E2E);
 const kTextLigntColor = Color(0xFF7286A5);
 
 // - Secondary
+Color kStarColor = const Color(0XFFF7AC16);
 Color kOrange = const Color(0xFFF7941D);
 Color kGreen = const Color(0xFF2B5D18);
 Color kRed = const Color(0xFFD0102B);
@@ -311,7 +314,9 @@ Row buildAvatarAndName({
         children: [
           TextCustom(
             title: name,
-            color: color ?? kBlack70, fontSize: fontSize, weight: weight,
+            color: color ?? kBlack70,
+            fontSize: fontSize,
+            weight: weight,
           )
         ],
       )
