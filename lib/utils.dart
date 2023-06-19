@@ -12,7 +12,6 @@ import 'package:neocloud_mobile/models/Students.dart';
 String getRouteName(String value) =>
     "/" + value.replaceAll(" ", "-").toLowerCase();
 
-
 // This function is used to get the amount of stars set with a provided
 // ratings number
 // e.g 100 => {full_stars: 5, half_stars: 0, empty_stars: 0}
@@ -30,7 +29,7 @@ Map<String, int> getStarsForRating({required double ratings}) {
   const hs_value = 10;
 
   // this represents the amount of half stars that make up the entire ratings
-  double half_stars = ratings/hs_value;
+  double half_stars = ratings / hs_value;
 
   // Final: get full stars in rating (2 half stars make up 1 full star)
   int full_stars = (half_stars / 2).floor();
@@ -49,24 +48,24 @@ Map<String, int> getStarsForRating({required double ratings}) {
   return stars;
 }
 
-
 // takes `count` and `a singular word` then based on the count it either
 // pluralizes the singular word or returns the singular word like this
 String getPluralOrSingular({required int count, required String word}) {
   var result = '';
-  if ( count == 0 || count >= 2 ) {
-    if (word.endsWith('ss')) {   // e.g Singular; class - Plural; classes
+  if (count == 0 || count >= 2) {
+    if (word.endsWith('ss')) {
+      // e.g Singular; class - Plural; classes
       return "${word}es";
     }
-    return "${word}s";           // e.g Singular; educator - plural; educators
+    return "${word}s"; // e.g Singular; educator - plural; educators
   }
   return word;
 }
 
 // if a text is longer than a specified number this func shortens it
 // and adds an ellipse e.g  text: daniel, limit: 3  => dan...
-String shortenText({required String text, required int limit}){
-  if (text.length > limit){
+String shortenText({required String text, required int limit}) {
+  if (text.length > limit) {
     // shorten the text and return with ellipse
     return text.substring(0, limit) + "...";
   }
@@ -74,7 +73,7 @@ String shortenText({required String text, required int limit}){
 }
 
 // Gets the proper format of money, e.g 99999.0 =>  99,999.00
-String getMoneyFormat(double num){
+String getMoneyFormat(double num) {
   var formatter = NumberFormat.currency(symbol: '');
 
   return formatter.format(num);
@@ -83,13 +82,14 @@ String getMoneyFormat(double num){
 // Gets the proper rating format e.g 4.3222 => 4.3 or 2.54 => 2.5
 String getRatingFormat(double rating) => "${(rating / 20)}".substring(0, 3);
 
-
 // Stack util functions
 // This function extracts the String url of the avatars from the List<Account>
 // passed in and creates a list with that then passes it into the
 // StackedImages Widget which returns a Widget of stacked images
 Widget buildStackedUserImgs(
-    {required List<Account> users, double imgSize = 35, double overlapDifference = 25}) {
+    {required List<Account> users,
+    double imgSize = 35,
+    double overlapDifference = 25}) {
   List<String> avatarsList = [];
   for (var i = 0; i < users.length; i++) {
     if (i < 3) {
@@ -108,7 +108,9 @@ Widget buildStackedUserImgs(
 }
 
 Widget buildStackedClassImgs(
-    {required List<Course> classList, double imgSize = 35, double overlapDifference = 25}) {
+    {required List<Course> classList,
+    double imgSize = 35,
+    double overlapDifference = 25}) {
   List<String> avatarsList = [];
   for (var i = 0; i < classList.length; i++) {
     if (i < 3) {
@@ -129,16 +131,13 @@ Widget buildStackedClassImgs(
 // Get Role Icon Filename
 String getRoleSvgFileName({required List<String> roleList}) {
   String svg = "assets/icons/roles/";
-  if (roleList.contains("Superadmin")) {
+  if (roleList.contains("SuperAdmin")) {
     svg += "superadmin.svg";
-  }
-  else if (roleList.contains("Admin")) {
+  } else if (roleList.contains("Admin")) {
     svg += "admin.svg";
-  }
-  else if (roleList.contains("Educator")) {
+  } else if (roleList.contains("Educator")) {
     svg += "educator.svg";
-  }
-  else if (roleList.contains("Student")) {
+  } else if (roleList.contains("Student")) {
     svg += "student.svg";
   }
 
