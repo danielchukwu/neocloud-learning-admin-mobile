@@ -4,11 +4,7 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/utils.dart';
 
 class StarRating extends StatelessWidget {
-  const StarRating({
-    super.key,
-    required this.rating,
-    required this.iconSize
-  });
+  const StarRating({super.key, required this.rating, required this.iconSize});
 
   final double rating;
   final double iconSize;
@@ -25,13 +21,22 @@ class StarRating extends StatelessWidget {
 
     // Add full stars
     addRatingIcon(
-        count: ratingsMap['full_stars'], icon: Icons.star, iconSize: iconSize, list: result);
+        count: ratingsMap['full_stars'],
+        icon: Icons.star,
+        iconSize: iconSize,
+        list: result);
     // Add half stars
     addRatingIcon(
-        count: ratingsMap['half_stars'], icon: Icons.star_half, iconSize: iconSize, list: result);
+        count: ratingsMap['half_stars'],
+        icon: Icons.star_half,
+        iconSize: iconSize,
+        list: result);
     // Add empty stars
     addRatingIcon(
-        count: ratingsMap['empty_stars'], icon: Icons.star_outline, iconSize: iconSize, list: result);
+        count: ratingsMap['empty_stars'],
+        icon: Icons.star_outline,
+        iconSize: iconSize,
+        list: result);
 
     return result;
   }
@@ -44,8 +49,11 @@ class StarRating extends StatelessWidget {
     required double iconSize,
   }) {
     for (int i = 0; i < count; i++) {
-      list.add(Icon(icon, color: Color(0XFFF7AC16), size: iconSize,));
+      list.add(Icon(
+        icon,
+        color: kStarColor,
+        size: iconSize,
+      ));
     }
   }
-  
 }
