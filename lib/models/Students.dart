@@ -249,7 +249,7 @@ List<Account> users = [
     email: "samuel@yahoo.com",
     phone: 09031440494,
     password: 'abc',
-    role: ['SuperAdmin', ],
+    role: ['SuperAdmin', 'Admin', 'Educator', 'Student'],
     ratings: 20,
     about: about,
     students_count: 19,
