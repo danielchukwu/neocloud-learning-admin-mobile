@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/appbar/appbar.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
+import 'package:neocloud_mobile/components/cards/mini_course_card.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/texts.dart';
@@ -8,8 +9,6 @@ import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/list/list_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
-
-import 'components/cards.dart';
 
 // Images
 const neocloudLogo = 'assets/images/logo-dark.png';
@@ -140,7 +139,7 @@ PreferredSize buildAppBar({
     child: AppsAppBar(
       title: title,
       isDark: isDark,
-      bgColor: bgColor!,
+      bgColor: bgColor,
       actionIcon1: actionIcon,
       actionSvg1: actionSvg,
       showAction1: showAction,
@@ -238,7 +237,7 @@ AppsButton buildAddButton({
 }) {
   return AppsButton(
     title: title,
-    press: press != null ? press! : (context) {},
+    press: press != null ? press : (context) {},
     icon: Icons.add,
     bgColor: kBlack80,
     padTopBottom: defaultSize * 0.3,
@@ -299,6 +298,7 @@ Row buildAvatarAndName({
   required String name,
   double imgSize = 30,
   double fontSize = 16,
+  double imgBorderSize = 0,
   FontWeight weight = FontWeight.w400,
   Color? color,
 }) {
@@ -308,17 +308,16 @@ Row buildAvatarAndName({
         width: imgSize,
         height: imgSize,
         image: avatar,
+        borderSize: imgBorderSize,
       ),
       SizedBox(width: defaultSize),
-      Column(
-        children: [
-          TextCustom(
-            title: name,
-            color: color ?? kBlack70,
-            fontSize: fontSize,
-            weight: weight,
-          )
-        ],
+      Expanded(
+        child: TextCustomMaxLine(
+          title: name,
+          color: color ?? kBlack70,
+          fontSize: fontSize,
+          weight: weight,
+        ),
       )
     ],
   );

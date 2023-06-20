@@ -214,12 +214,14 @@ class IconText extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         // Icon
-        iconIsLeft ? IconOrSvg(
-          svg: svg,
-          icon: icon,
-          color: iconColor,
-          size: iconSize,
-        ) : SizedBox(),
+        iconIsLeft
+            ? IconOrSvg(
+                svg: svg,
+                icon: icon,
+                color: iconColor,
+                size: iconSize,
+              )
+            : SizedBox(),
 
         // Count
         iconIsLeft ? SizedBox(width: defaultSize * .5) : SizedBox(),
@@ -232,12 +234,14 @@ class IconText extends StatelessWidget {
 
         // Icon
         !iconIsLeft ? SizedBox(width: defaultSize * .5) : SizedBox(),
-        !iconIsLeft ? IconOrSvg(
-          svg: svg,
-          icon: icon,
-          color: iconColor,
-          size: iconSize,
-        ) : SizedBox(),
+        !iconIsLeft
+            ? IconOrSvg(
+                svg: svg,
+                icon: icon,
+                color: iconColor,
+                size: iconSize,
+              )
+            : SizedBox(),
       ],
     );
   }
@@ -253,8 +257,8 @@ class AppsTextRich extends StatelessWidget {
     this.text1FontSize = 16,
     this.text2FontSize = 16,
     this.text1FontWeight = FontWeight.w400,
-    this.text2FontWeight = FontWeight.w400, 
-    this.text1Decoration = TextDecoration.none, 
+    this.text2FontWeight = FontWeight.w400,
+    this.text1Decoration = TextDecoration.none,
     this.text2Decoration = TextDecoration.none,
   });
 
@@ -300,12 +304,14 @@ class TextSeeMore extends StatefulWidget {
     super.key,
     required this.text,
     this.color,
+    this.seeMoreColor,
     this.maxLines = 5,
     this.fontSize = 16,
   });
 
   final String text;
   final Color? color;
+  final Color? seeMoreColor;
   final int maxLines;
   final double fontSize;
 
@@ -333,7 +339,7 @@ class _TextSeeMoreState extends State<TextSeeMore> {
         widget.text.length > 215
             ? TextLink(
                 title: !showMore ? "See more" : "See less",
-                color: kBlue,
+                color: widget.seeMoreColor ?? kBlue,
                 fontSize: defaultSize * 1.6,
                 weight: FontWeight.w600,
                 press: (_) => setState(() => showMore = !showMore),

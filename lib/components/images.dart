@@ -85,9 +85,12 @@ class RectangularBoxImage extends StatelessWidget {
   final double height;
   final double borderRadius;
 
-  const RectangularBoxImage(
-      {Key? key, required this.img, this.height = 200, this.borderRadius = 00,})
-      : super(key: key);
+  const RectangularBoxImage({
+    Key? key,
+    required this.img,
+    this.height = 200,
+    this.borderRadius = 00,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -105,9 +108,14 @@ class RectangularBoxImage extends StatelessWidget {
   }
 }
 
-
 class IconOrSvg extends StatelessWidget {
-  const IconOrSvg({Key? key, this.svg, this.icon, this.color = Colors.black87, this.size = 20}) : super(key: key);
+  const IconOrSvg(
+      {Key? key,
+      this.svg,
+      this.icon,
+      this.color = Colors.black87,
+      this.size = 20})
+      : super(key: key);
 
   final String? svg;
   final IconData? icon;
@@ -123,4 +131,3 @@ class IconOrSvg extends StatelessWidget {
     }
   }
 }
-

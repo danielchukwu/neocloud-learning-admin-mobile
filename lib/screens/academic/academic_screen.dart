@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/Lists/class_list.dart';
+import 'package:neocloud_mobile/components/Lists/class_schedule_body.dart';
+import 'package:neocloud_mobile/components/Lists/class_works_list.dart';
+import 'package:neocloud_mobile/components/Lists/faculty_list.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
 import 'package:neocloud_mobile/components/options/DisplayOptions.dart';
-import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/models/Class.dart';
+import 'package:neocloud_mobile/models/ClassSchedule.dart';
+import 'package:neocloud_mobile/models/Faculty.dart';
 import 'package:neocloud_mobile/models/Options.dart';
-import 'package:neocloud_mobile/models/Students.dart';
+import 'package:neocloud_mobile/models/ClassWork.dart';
 import 'package:neocloud_mobile/screens/Profile/components/current-old-header.dart';
-import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
-import 'package:neocloud_mobile/screens/academic/components/body/class_body.dart';
-import 'package:neocloud_mobile/screens/academic/components/body/class_schedule_body.dart';
-import 'package:neocloud_mobile/screens/academic/components/body/class_works_body.dart';
-import 'package:neocloud_mobile/screens/academic/components/body/faculty_body.dart';
 
 class AcademicScreen extends StatefulWidget {
   const AcademicScreen({Key? key}) : super(key: key);
@@ -63,36 +64,43 @@ class _AcademicScreenState extends State<AcademicScreen> {
 
               // Header - Classes, Count (styled background)
               CurrentOldHeader(
-                title: AcademicOptions.items[AcademicOptions.selectedIndex].title,
+                title:
+                    AcademicOptions.items[AcademicOptions.selectedIndex].title,
                 rightText: AcademicOptions.selectedIndex < 2 ? '2' : 'Old',
-                selectedLeft: AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent,
+                selectedLeft: AcademicOptions
+                    .items[AcademicOptions.selectedIndex].selectedCurrent,
                 pressLeft: () => setState(() {
-                  AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent = true;
+                  AcademicOptions.items[AcademicOptions.selectedIndex]
+                      .selectedCurrent = true;
                 }),
                 pressRight: () => setState(() {
-                  AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent = false;
+                  AcademicOptions.items[AcademicOptions.selectedIndex]
+                      .selectedCurrent = false;
                 }),
               ),
 
               // Load Body
               // Classes
               AcademicOptions.selectedIndex == 0
-                  ? const ClassBody()
+                  ? ClassList(classList: classesList)
                   : const SizedBox(),
 
               // Faculty
               AcademicOptions.selectedIndex == 1
-                  ? const FacultyBody()
+                  ? FacultyList(facultyList: facultiesList)
                   : const SizedBox(),
 
-              // Event Calendar
+              // Classworks
               AcademicOptions.selectedIndex == 2
-                  ? const ClassworksList()
+                  ? ClassworksList(
+                      classworksList: classWorksList,
+                      showFeedback: false,
+                    )
                   : const SizedBox(),
 
-              // ClassRoutine - show if selected
+              // Class Schedules
               AcademicOptions.selectedIndex == 3
-                  ? const ClassSchedulesList()
+                  ? ClassSchedulesList(classScheduleList: classScheduleList)
                   : const SizedBox(),
             ],
           ),
@@ -114,4 +122,3 @@ class _AcademicScreenState extends State<AcademicScreen> {
     });
   }
 }
-
