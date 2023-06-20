@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/cards.dart';
-// import 'package:neocloud_mobile/components/images.dart';
-// import 'package:neocloud_mobile/components/tablets.dart';
+import 'package:neocloud_mobile/components/cards/class_card.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-// import 'package:neocloud_mobile/models/AccountInfo.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/models/Students.dart';
-// import 'package:neocloud_mobile/screens/Profile/components/account_info_tile.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_dashboard.dart';
 import 'package:neocloud_mobile/utils.dart';
 

@@ -4,7 +4,7 @@ class Faculty {
   final String id;
   final String title;
   final Account hod;
-  final String? about;
+  final String about;
   final List<String>? classesList;
   final List<String>? educatorsList;
   final List<String>? studentsList;
@@ -16,7 +16,7 @@ class Faculty {
     required this.id,
     required this.title,
     required this.hod,
-    this.about,
+    required this.about,
     this.classesList,
     this.educatorsList,
     this.studentsList,

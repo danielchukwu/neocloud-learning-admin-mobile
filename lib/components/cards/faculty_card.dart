@@ -6,7 +6,7 @@ import 'package:neocloud_mobile/components/tablets.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Faculty.dart';
-import 'package:neocloud_mobile/screens/faculty/faculty%20screen.dart';
+import 'package:neocloud_mobile/screens/faculty/faculty_screen.dart';
 import 'package:neocloud_mobile/utils.dart';
 
 class FacultyCard extends StatelessWidget {
@@ -29,17 +29,13 @@ class FacultyCard extends StatelessWidget {
     List<Map> tabletData = [
       {'count': faculty.educatorsCount, 'type': 'Educator', 'color': kOrange},
       {'count': faculty.classesCount, 'type': 'Class', 'color': kRed},
-      {
-        'count': faculty.studentsCount,
-        'type': 'Student',
-        'color': kGreen.withOpacity(.9)
-      },
+      {'count': faculty.studentsCount, 'type': 'Student', 'color': kGreen},
     ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        GestureDetector(
+        InkWell(
           onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
@@ -74,7 +70,7 @@ class FacultyCard extends StatelessWidget {
                 // Faculty intro description
                 SizedBox(height: defaultSize * 2),
                 TextCustomMaxLine(
-                  title: faculty.about ?? 'This faculty has no about',
+                  title: faculty.about,
                   color: kBlack70,
                   fontSize: defaultSize * 1.6,
                   maxLines: 2,

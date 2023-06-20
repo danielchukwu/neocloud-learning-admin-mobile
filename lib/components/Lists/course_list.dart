@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/cards.dart';
+import 'package:neocloud_mobile/components/cards/course_card.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
-
 
 class CoursesList extends StatelessWidget {
   const CoursesList({
@@ -14,7 +13,8 @@ class CoursesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-          children: List.generate(coursesList.length, (index) => CourseCard(course: coursesList[index])),
-        );
+      children: List.generate(coursesList.length,
+          (index) => CourseCard(course: coursesList[index])),
+    );
   }
 }

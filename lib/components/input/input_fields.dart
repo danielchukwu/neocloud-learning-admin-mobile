@@ -120,10 +120,12 @@ class _InputFieldSettingsState extends State<InputFieldSettings> {
         hintText: widget.fieldName,
       ),
       style: TextStyle(),
-      validator: (value) {},
+      validator: (value) {
+        return null;
+      },
       onSaved: (value) {
         if (value != null && value.isNotEmpty) {
-          widget.press(widget.fieldName, value!.trim());
+          widget.press(widget.fieldName, value.trim());
         }
       },
     );

@@ -1,5 +1,5 @@
 import 'package:neocloud_mobile/models/Faculty.dart';
-import 'package:neocloud_mobile/models/card_data.dart';
+import 'package:neocloud_mobile/models/ClassWork.dart';
 
 class Account {
   final int id;

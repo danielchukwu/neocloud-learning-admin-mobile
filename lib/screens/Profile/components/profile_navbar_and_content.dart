@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/ProfileNavbarItem.dart';
-import 'package:neocloud_mobile/models/card_data.dart';
+import 'package:neocloud_mobile/models/ClassWork.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_content.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
@@ -86,7 +86,8 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
               },
               child: Container(
                 color: Colors.white,
-                padding: EdgeInsets.only(top: index == 0 ? 3 : 0, bottom: index == 0 ? 12 : 10),
+                padding: EdgeInsets.only(
+                    top: index == 0 ? 3 : 0, bottom: index == 0 ? 12 : 10),
                 child: SvgPicture.asset(
                   widget.navItems[index].iconSrc,
                   color: index == ProfileNavbarItems.selectedIndex
