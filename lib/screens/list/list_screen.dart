@@ -6,10 +6,12 @@ class ListScreen extends StatelessWidget {
     Key? key,
     this.screenName = "",
     required this.widgetList,
+    this.addScreenPadding = true,
   }) : super(key: key);
 
   final String screenName;
   final Widget widgetList;
+  final bool addScreenPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class ListScreen extends StatelessWidget {
         showAction: false,
       ),
       body: SingleChildScrollView(
-        padding: screenPadding,
+        padding: addScreenPadding ? screenPadding : EdgeInsets.zero,
         child: Container(
           padding: EdgeInsets.only(bottom: defaultSize * 6),
           child: widgetList,
