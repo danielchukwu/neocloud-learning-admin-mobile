@@ -18,7 +18,7 @@ class PersonelNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(bottom: appsBorder, top: appsBorder),
+        border: Border(bottom: appsBorder),
       ),
       child: Row(
         children: List<Widget>.generate(
