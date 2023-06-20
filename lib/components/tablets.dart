@@ -17,12 +17,21 @@ class TextColorTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: defaultSize * .5, horizontal: defaultSize),
+      padding: EdgeInsets.symmetric(
+          vertical: defaultSize * .5, horizontal: defaultSize),
       decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(defaultSize * .5)
+        gradient: LinearGradient(
+          colors: [bgColor, bgColor.withOpacity(.95)],
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+        ),
+        borderRadius: BorderRadius.circular(defaultSize * .5),
       ),
-      child: TextSmall(title: title, color: color, weight: FontWeight.w500,),
+      child: TextSmall(
+        title: title,
+        color: color,
+        weight: FontWeight.w500,
+      ),
     );
   }
 }
