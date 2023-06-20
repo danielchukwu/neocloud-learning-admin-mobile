@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/cards.dart';
-// import 'package:neocloud_mobile/components/images.dart';
-// import 'package:neocloud_mobile/components/tablets.dart';
-// import 'package:neocloud_mobile/components/texts.dart';
+import 'package:neocloud_mobile/components/cards/class_card.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Class.dart';
-// import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/screens/class/components/class_syllabus.dart';
-// import 'package:neocloud_mobile/screens/course/components/course_outline.dart';
-// import 'package:neocloud_mobile/utils.dart';
 
 class ClassScreen extends StatefulWidget {
-  const ClassScreen({super.key});
+  const ClassScreen({super.key, required this.clas});
   static String screenName = 'Class';
+  final Class clas;
 
   @override
   State<ClassScreen> createState() => _ClassScreenState();
 }
 
 class _ClassScreenState extends State<ClassScreen> {
-  var clas = classesList[0];
-
   @override
   Widget build(BuildContext context) {
+    var clas = widget.clas;
+
     List<Map> tabletData = [
       {'value': clas.faculty.title, 'color': kOrange},
       {'value': clas.hod.fullName, 'color': kGreen},
@@ -43,10 +38,12 @@ class _ClassScreenState extends State<ClassScreen> {
             children: <Widget>[
               // Class Card
               ClassCard(
-                  clas: clas,
-                  allowSeeMore: true,
-                  bodySeperationSize: defaultSize * 1.5,
-                  enableGestureDecorator: false),
+                clas: clas,
+                allowSeeMore: true,
+                bodySeparationSize: defaultSize * 1.5,
+                enableGestureDecorator: false,
+                showBottomBorder: false,
+              ),
 
               Padding(
                 padding: screenPadding,
@@ -58,6 +55,11 @@ class _ClassScreenState extends State<ClassScreen> {
           ),
         ),
       ]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: kBlue,
+        child: Icon(Icons.add, color: kWhite),
+      ),
     );
   }
 }
