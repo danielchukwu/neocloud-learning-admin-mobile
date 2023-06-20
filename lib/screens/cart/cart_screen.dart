@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/cards.dart';
+import 'package:neocloud_mobile/components/cards/cart_card.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
@@ -30,18 +30,24 @@ class CartScreen extends StatelessWidget {
             SizedBox(height: defaultSize * 2),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: List<Widget>.generate(coursesList.length, (index) => CartCard(course: coursesList[index])),
+              children: List<Widget>.generate(coursesList.length,
+                  (index) => CartCard(course: coursesList[index])),
             ),
 
             Divider(color: kBlack50, height: defaultSize * .2),
 
             // Wishlist items
             SizedBox(height: defaultSize * 2),
-            TextExtraLarge(title: "Wishlist", color: kBlack80, weight: FontWeight.w500,),
+            TextExtraLarge(
+              title: "Wishlist",
+              color: kBlack80,
+              weight: FontWeight.w500,
+            ),
             SizedBox(height: defaultSize * 4),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: List<Widget>.generate(2, (index) => CartCard(course: coursesList[index])),
+              children: List<Widget>.generate(
+                  2, (index) => CartCard(course: coursesList[index])),
             ),
           ],
         ),
