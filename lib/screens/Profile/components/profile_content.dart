@@ -41,6 +41,7 @@ class ProfileClasses extends StatelessWidget {
         (index) => ClassCard(clas: classesList[index]),
       ),
     );
+    // return SizedBox();
   }
 }
 

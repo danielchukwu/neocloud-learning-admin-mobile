@@ -5,31 +5,38 @@ import 'package:neocloud_mobile/components/cards/components/text_big_small.dart'
 import 'package:neocloud_mobile/components/tablets.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/models/Faculty.dart';
 import 'package:neocloud_mobile/screens/faculty/faculty_screen.dart';
 import 'package:neocloud_mobile/utils.dart';
 
+// : (){} "" <> ? _ ! *
 class FacultyCard extends StatelessWidget {
   const FacultyCard({
     super.key,
     required this.faculty,
   });
 
-  final Faculty faculty;
+  final FacultyModel faculty;
 
   @override
   Widget build(BuildContext context) {
-    List<String> facultyTitleList = faculty.title.split(" ");
+    List<String> facultyTitleList = faculty.name.split(" ");
     String smallText = facultyTitleList.length > 1
         ? ' ${facultyTitleList.sublist(
               1,
             ).join(' ')}'
         : '';
     String bigText = facultyTitleList[0];
+    // List<Map> tabletData = [
+    //   {'count': 'faculty.educatorsCount', 'type': 'Educator', 'color': kOrange},
+    //   {'count': 'faculty.classesCount', 'type': 'Class', 'color': kRed},
+    //   {'count': 'faculty.studentsCount', 'type': 'Student', 'color': kGreen},
+    // ];
     List<Map> tabletData = [
-      {'count': faculty.educatorsCount, 'type': 'Educator', 'color': kOrange},
-      {'count': faculty.classesCount, 'type': 'Class', 'color': kRed},
-      {'count': faculty.studentsCount, 'type': 'Student', 'color': kGreen},
+      {'count': 3, 'type': 'Educator', 'color': kOrange},
+      {'count': 3, 'type': 'Class', 'color': kRed},
+      {'count': 3, 'type': 'Student', 'color': kGreen},
     ];
 
     return Column(
@@ -62,15 +69,15 @@ class FacultyCard extends StatelessWidget {
                 // Faculty Owner
                 SizedBox(height: defaultSize),
                 buildAvatarAndName(
-                    avatar: faculty.hod.avatar,
-                    name: faculty.hod.fullName,
+                    avatar: faculty.hod!.avatar ?? 'assets/dps/1.jpg',
+                    name: faculty.hod!.name,
                     fontSize: defaultSize * 1.6,
                     weight: FontWeight.w600),
 
                 // Faculty intro description
                 SizedBox(height: defaultSize * 2),
                 TextCustomMaxLine(
-                  title: faculty.about,
+                  title: faculty.about ?? 'about not found',
                   color: kBlack70,
                   fontSize: defaultSize * 1.6,
                   maxLines: 2,
