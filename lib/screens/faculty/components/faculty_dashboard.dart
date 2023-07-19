@@ -111,6 +111,7 @@ class _ListClassTilesState extends State<ListClassTiles> {
                       ? widget.maxContentCount
                       : widget.classList.length,
                   (index) => ClassTile(clas: widget.classList[index]),
+                  // (index) => SizedBox(),
                 ) +
                 // See More
                 (widget.classList.length > widget.maxContentCount

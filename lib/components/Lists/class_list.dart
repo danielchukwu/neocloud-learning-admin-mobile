@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:neocloud_mobile/components/cards/class_card.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 
-class ClassList extends StatelessWidget {
+
+class ClassList extends StatefulWidget {
   const ClassList({
     Key? key,
     required this.classList,
@@ -15,14 +16,19 @@ class ClassList extends StatelessWidget {
   final double bodySeparationSize;
 
   @override
+  State<ClassList> createState() => _ClassListState();
+}
+
+class _ClassListState extends State<ClassList> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: List.generate(
         classesList.length,
         (index) => ClassCard(
-          clas: classList[index],
-          showClassAvatar: showClassAvatar,
-          bodySeparationSize: bodySeparationSize,
+          clas: widget.classList[index],
+          showClassAvatar: widget.showClassAvatar,
+          bodySeparationSize: widget.bodySeparationSize,
         ),
       ),
     );

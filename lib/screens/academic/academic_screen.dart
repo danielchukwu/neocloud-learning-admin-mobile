@@ -47,8 +47,8 @@ class _AcademicScreenState extends State<AcademicScreen> {
               Container(
                 padding: EdgeInsets.only(bottom: defaultSize * .5),
                 decoration: BoxDecoration(
-                    border:
-                        Border(bottom: BorderSide(color: kBlack50, width: .2))),
+                    border: Border(bottom: BorderSide(color: kBlack50, width: .2)),
+                ),
                 child: DisplayOptions(
                   items: AcademicOptions.items,
                   getSelectedIndex: AcademicOptions.getSelectedIndex,
@@ -64,18 +64,14 @@ class _AcademicScreenState extends State<AcademicScreen> {
 
               // Header - Classes, Count (styled background)
               CurrentOldHeader(
-                title:
-                    AcademicOptions.items[AcademicOptions.selectedIndex].title,
+                title: AcademicOptions.items[AcademicOptions.selectedIndex].title,
                 rightText: AcademicOptions.selectedIndex < 2 ? '2' : 'Old',
-                selectedLeft: AcademicOptions
-                    .items[AcademicOptions.selectedIndex].selectedCurrent,
+                selectedLeft: AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent,
                 pressLeft: () => setState(() {
-                  AcademicOptions.items[AcademicOptions.selectedIndex]
-                      .selectedCurrent = true;
+                  AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent = true;
                 }),
                 pressRight: () => setState(() {
-                  AcademicOptions.items[AcademicOptions.selectedIndex]
-                      .selectedCurrent = false;
+                  AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent = false;
                 }),
               ),
 
