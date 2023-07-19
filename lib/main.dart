@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Neo Cloud Technologies',
       theme: buildTheme(),
-      initialRoute: '/welcome',
+      initialRoute: '/academic',
       routes: {
         '/': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),

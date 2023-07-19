@@ -29,6 +29,8 @@ Objectives
 
 - Students Navbar (Home, Search, Tasks, Notifications, Profile)
 
+// : (){} "" <> ? _ ! *
+
 
 
 
