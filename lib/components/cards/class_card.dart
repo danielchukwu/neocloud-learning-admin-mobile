@@ -3,6 +3,7 @@ import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/tablets.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/screens/class/class_screen.dart';
 import 'package:neocloud_mobile/utils.dart';
@@ -18,7 +19,7 @@ class ClassCard extends StatelessWidget {
     this.showBottomBorder = true,
   });
 
-  final Class clas;
+  final ClassModel clas;
   final bool allowSeeMore;
   final double bodySeparationSize;
   // we use this because we use this card in the class screen and
@@ -31,8 +32,8 @@ class ClassCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map> tabletData = [
-      {'value': clas.faculty.title, 'color': kOrange},
-      {'value': '${clas.hod.fullName} (HOD)', 'color': kGreen},
+      {'value': clas.faculty!.name, 'color': kOrange},
+      {'value': '${clas.hod!.name} (HOD)', 'color': kGreen},
     ];
 
     return GestureDetector(
@@ -57,7 +58,7 @@ class ClassCard extends StatelessWidget {
             // Course Image
             showClassAvatar
                 ? RectangularBoxImage(
-                    img: clas.avatar, height: defaultSize * 22)
+                    img: clas.avatar ?? '', height: defaultSize * 22)
                 : SizedBox(),
 
             // Course Body - Title, tutor, price
@@ -69,7 +70,7 @@ class ClassCard extends StatelessWidget {
                 children: [
                   // Title
                   TextCustom(
-                    title: clas.title,
+                    title: clas.name,
                     fontSize: defaultSize * 2.2,
                     color: kBlack80,
                     weight: FontWeight.w700,
@@ -84,15 +85,17 @@ class ClassCard extends StatelessWidget {
                       SizedBox(height: defaultSize),
                       Expanded(
                         child: buildAvatarAndName(
-                            avatar: clas.educator.avatar,
-                            name: clas.educator.fullName,
+                            avatar: clas.educators != null && clas.educators!.length > 0 
+                              ? clas.educators![0].avatar ?? '' : '',
+                            name: clas.educators != null && clas.educators!.length > 0 
+                              ? clas.educators![0].name : 'daniel',
                             fontSize: defaultSize * 1.6,
                             weight: FontWeight.w600),
                       ),
 
                       // Ratings
                       TextMedium(
-                        title: getRatingFormat(clas.rating),
+                        title: getRatingFormat(50),
                         weight: FontWeight.w600,
                       ),
                       SizedBox(width: defaultSize * .5),
@@ -108,13 +111,13 @@ class ClassCard extends StatelessWidget {
                   SizedBox(height: defaultSize * 1.5),
                   allowSeeMore
                       ? TextSeeMore(
-                          text: clas.about,
+                          text: clas.about ?? '',
                           color: kBlack70,
                           fontSize: defaultSize * 1.6,
                           maxLines: 2,
                         )
                       : TextCustomMaxLine(
-                          title: clas.about,
+                          title: clas.about ?? '',
                           color: kBlack70,
                           fontSize: defaultSize * 1.6,
                           maxLines: 3,
