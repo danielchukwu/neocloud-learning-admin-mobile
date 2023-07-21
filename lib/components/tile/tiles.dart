@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/stacks.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
@@ -60,7 +61,7 @@ class ClassTile extends StatelessWidget {
     required this.clas,
   });
 
-  final Class clas;
+  final ClassModel clas;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +77,7 @@ class ClassTile extends StatelessWidget {
         children: [
           // Class Avatar
           Image.asset(
-            clas.avatar,
+            clas.avatar ?? '',
             width: defaultSize * 9,
           ),
 
@@ -88,7 +89,7 @@ class ClassTile extends StatelessWidget {
               children: [
                 // Title
                 TextCustomMaxLine(
-                  title: clas.title,
+                  title: clas.name,
                   weight: FontWeight.w600,
                   color: kBlack90,
                   fontSize: defaultSize * 1.8,
@@ -98,9 +99,11 @@ class ClassTile extends StatelessWidget {
                 // Avatar and Name
                 SizedBox(height: defaultSize * .5),
                 buildAvatarAndName(
-                  avatar: clas.educator.avatar,
+                  avatar: clas.educators != null && clas.educators!.length > 0 
+                    ? clas.educators![0].avatar ?? '' : '',
+                  name: clas.educators != null && clas.educators!.length > 0 
+                    ? clas.educators![0].name : 'daniel',
                   imgSize: defaultSize * 2.5,
-                  name: clas.educator.fullName + clas.educator.fullName,
                   fontSize: defaultSize * 1.6,
                   weight: FontWeight.w600,
                 ),
