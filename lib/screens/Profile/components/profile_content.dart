@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/class_card.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
+import 'package:neocloud_mobile/graphql/services/class_service.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_dashboard.dart';
@@ -27,19 +29,45 @@ class ProfileContent extends StatelessWidget {
   }
 }
 
-class ProfileClasses extends StatelessWidget {
+// Get classes specific to this user
+class ProfileClasses extends StatefulWidget {
   const ProfileClasses({
     super.key,
   });
 
   @override
+  State<ProfileClasses> createState() => _ProfileClassesState();
+}
+
+class _ProfileClassesState extends State<ProfileClasses> {
+  var classService = ClassService();
+  List<ClassModel>? classList;
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  void loadData() {
+    classService.getClasses().then((classes) {
+      setState(() {
+        classList = classes;
+      });
+    });
+  }
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(
-        classesList.length,
-        (index) => ClassCard(clas: classesList[index]),
-      ),
+    return classList == null
+        ? Center(child: CircularProgressIndicator())
+        : classList!.isEmpty
+            ? Center(child: Text('No Classes Found'))
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: List.generate(
+                  classList!.length,
+                  (index) => ClassCard(clas: classList![index]),
+                ),
     );
     // return SizedBox();
   }
