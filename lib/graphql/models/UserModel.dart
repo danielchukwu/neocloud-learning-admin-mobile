@@ -1,26 +1,25 @@
 // : (){} "" <> ? _ ! *
+import 'package:neocloud_mobile/graphql/models/RoleModel.dart';
+
 class UserModel {
   final String id;
   final String name;
   final String? email;
   final String? cover;
   final String? avatar;
-  final String? password;
   final String? bio;
   final String? phone;
-  final int? rating;
-  // hod: User!
-
+  final RoleModel? role;
+  
   UserModel({
     required this.id,
     required this.name,
     this.email,
     this.cover,
     this.avatar,
-    this.password,
     this.bio,
     this.phone,
-    this.rating
+    this.role,
   });
 
   static UserModel fromMap({required Map user}) => UserModel(
@@ -29,9 +28,25 @@ class UserModel {
     email: user['email'],
     cover: user['cover'],
     avatar: user['avatar'],
-    password: user['password'],
     bio: user['bio'],
     phone: user['phone'],
-    rating: user['rating'],
+    role: user.containsKey('role') ? RoleModel.fromMap(role: user['role']) : null,
   );
 }
+
+
+// query Query($limit: Int) {
+//   users(limit: $limit) {
+//     _id
+//     name
+//     bio
+//     avatar
+//     cover
+//     email
+//     phone
+//     role {
+//       _id
+//       name
+//     }
+//   }
+// }
