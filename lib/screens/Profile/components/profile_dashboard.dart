@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/Lists/class_schedule_body.dart';
+import 'package:neocloud_mobile/components/Lists/class_schedule_list.dart';
 import 'package:neocloud_mobile/components/Lists/class_works_list.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/constraints.dart';
@@ -39,20 +39,16 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
 
           // List
           selectedIndex == 0
-              ? ClassSchedulesList(
-                  classScheduleList: classScheduleList,
-                )
+              ? ClassSchedulesList()
               : SizedBox(),
 
           selectedIndex == 1
-              ? ClassworksList(
-                  classworksList: classWorksList,
-                )
+              ? ClassworksList()
               : SizedBox(),
 
-          // selectedIndex == 2
-          //   ? ClassworksList()
-          //   : SizedBox(),
+          selectedIndex == 2
+            ? ClassworksList()
+            : SizedBox(),
         ],
       ),
     );
