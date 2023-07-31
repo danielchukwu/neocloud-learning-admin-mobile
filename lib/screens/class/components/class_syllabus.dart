@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-// import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/headers/headear_dropdown.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
+import 'package:neocloud_mobile/graphql/services/class_module_service.dart';
 import 'package:neocloud_mobile/models/Class.dart';
-// import 'package:neocloud_mobile/models/Courses.dart';
-import 'package:neocloud_mobile/screens/class/components/class_modules_list.dart';
-// import 'package:neocloud_mobile/screens/course/components/modules_list.dart';
+import 'class_modules_list.dart';
+
 
 class ClassSyllabus extends StatefulWidget {
-  const ClassSyllabus({super.key, required this.modules});
+  const ClassSyllabus({super.key, required this.modules, required this.classId});
 
   final List<ClassModule> modules;
+  final String classId;
 
   @override
   State<ClassSyllabus> createState() => _ClassSyllabusState();
@@ -19,9 +20,27 @@ class ClassSyllabus extends StatefulWidget {
 
 class _ClassSyllabusState extends State<ClassSyllabus> {
   bool showContent = true;
+  var classModuleService = ClassModuleService();
+  List<ClassModuleModel>? classModulesList;
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  void loadData() {
+    classModuleService.getClassModules(classId: widget.classId).then((cModules) {
+      setState(() {
+        classModulesList = cModules;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    print('classModulesList');
+    print(classModulesList);
     return Column(
       children: <Widget>[
         // Course Outline Header
@@ -34,9 +53,13 @@ class _ClassSyllabusState extends State<ClassSyllabus> {
         // Modules and Their contents
         SizedBox(height: defaultSize),
         showContent
-            ? ClassModulesList(
-                modules: modulesList,
-              )
+            ? classModulesList == null
+              ? Center(child: CircularProgressIndicator())
+              : classModulesList!.isEmpty
+                  ? Center(child: Text('No Classes Found'))
+                  : ClassModulesList(
+                      modules: classModulesList!,
+                    )
             : SizedBox(),
       ],
     );
@@ -57,7 +80,7 @@ class _ClassSyllabusState extends State<ClassSyllabus> {
       children: <Widget>[
         // Items
         IconText(
-            title: 'Weeks (45)',
+            title: 'Weeks (${classModulesList != null ? classModulesList!.length : 0})',
             icon: Icons.dataset,
             iconColor: kBlack70,
             fontSize: defaultSize * 1.4),
