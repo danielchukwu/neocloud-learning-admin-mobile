@@ -9,7 +9,7 @@ class ClassModel {
   final String? avatar;
   final FacultyModel? faculty;
   final List<UserModel>? educators;
-  final UserModel? hod;
+  // final UserModel? hod;
   // hod: User!
 
   ClassModel({
@@ -19,7 +19,7 @@ class ClassModel {
     this.avatar,
     this.faculty,
     this.educators,
-    this.hod
+    // this.hod
   });
 
   static ClassModel fromMap({required Map aClass}) => ClassModel(
@@ -27,17 +27,30 @@ class ClassModel {
     name: aClass['name'],
     about: aClass['about'],
     avatar: aClass['avatar'],
-    faculty: FacultyModel(
-      id: aClass['faculty']['_id'],
-      name: aClass['faculty']['name'],
-    ),
-    educators: List.generate(aClass['educators'].length, (index) => UserModel(
-      id: aClass['educators'][index]['_id'],
-      name: aClass['educators'][index]['name'],
-    ),).toList(),
-    hod: UserModel(
-      id: aClass['faculty']['hod']['_id'],
-      name: aClass['faculty']['hod']['name'],
-    ),
+    faculty: aClass.containsKey('faculty') ? FacultyModel.fromMap(faculty: aClass['faculty']) : null,
+    educators:  aClass.containsKey('educators') 
+      ? List.generate(aClass['educators'].length, (index) => UserModel.fromMap(user: aClass['educators'][index])).toList() 
+      : null,
   );
 }
+
+// query ExampleQuery(\$limit: Int) {
+//   classes(limit: \$limit) {
+//     _id
+//     name
+//     about
+//     avatar
+//     faculty {
+//       _id
+//       name
+//       hod {
+//         _id
+//         name
+//       }
+//     }
+//     educators {
+//       _id
+//       name
+//     }
+//   }
+// }
