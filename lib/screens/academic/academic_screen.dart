@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/Lists/class_list.dart';
-import 'package:neocloud_mobile/components/Lists/class_schedule_body.dart';
+import 'package:neocloud_mobile/components/Lists/class_schedule_list.dart';
 import 'package:neocloud_mobile/components/Lists/class_works_list.dart';
 import 'package:neocloud_mobile/components/Lists/faculty_list.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
@@ -88,15 +88,12 @@ class _AcademicScreenState extends State<AcademicScreen> {
 
               // Classworks
               AcademicOptions.selectedIndex == 2
-                  ? ClassworksList(
-                      classworksList: classWorksList,
-                      showFeedback: false,
-                    )
+                  ? ClassworksList(showFeedback: false)
                   : const SizedBox(),
 
               // Class Schedules
               AcademicOptions.selectedIndex == 3
-                  ? ClassSchedulesList(classScheduleList: classScheduleList)
+                  ? ClassSchedulesList()
                   : const SizedBox(),
             ],
           ),
