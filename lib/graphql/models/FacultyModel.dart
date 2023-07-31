@@ -19,6 +19,6 @@ class FacultyModel {
     id: faculty['_id'],
     name: faculty['name'],
     about: faculty['about'],
-    hod: UserModel(id: faculty['hod']['_id'], name: faculty['hod']['name']),
+    hod: faculty.containsKey('hod') ? UserModel.fromMap(user: faculty['hod']) : null,
   );
 }
