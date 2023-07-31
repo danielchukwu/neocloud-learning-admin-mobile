@@ -33,7 +33,7 @@ class ClassCard extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Map> tabletData = [
       {'value': clas.faculty!.name, 'color': kOrange},
-      {'value': '${clas.hod!.name} (HOD)', 'color': kGreen},
+      {'value': '${clas.faculty!.hod!.name} (HOD)', 'color': kGreen},
     ];
 
     return GestureDetector(
