@@ -42,7 +42,6 @@ class _ClassListState extends State<ClassList> {
 
   @override
   Widget build(BuildContext context) {
-    List.generate(classesList.length, (index) => { print(classesList[index]) } );
     return classList == null
         ? Center(child: CircularProgressIndicator())
         : classList!.isEmpty
