@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/cards/components/card_sections.dart';
 import 'package:neocloud_mobile/components/tablets.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/ClassSchedule.dart';
-import 'package:neocloud_mobile/models/ClassWork.dart';
+import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 
 class ClassScheduleCard extends StatelessWidget {
   const ClassScheduleCard({
     super.key,
-    required this.clas,
+    required this.classSchedule,
   });
 
-  final ClassSchedule clas;
+  final ClassScheduleModel classSchedule;
 
   @override
   Widget build(BuildContext context) {
     List<Map> tabletData = [
-      {'value': clas.createdAt, 'color': kOrange},
+      // {'value': clas.createdAt, 'color': kOrange},
+      // {'value': 'Incoming Classwork', 'color': kRed},
+      {'value': 'Tomorrow', 'color': kOrange},
       {'value': 'Incoming Classwork', 'color': kRed},
     ];
 
@@ -45,21 +45,22 @@ class ClassScheduleCard extends StatelessWidget {
 
           // Class Title
           SizedBox(height: defaultSize),
-          buildCardHeader(title: clas.title),
+          buildCardHeader(title: classSchedule.title),
 
           // Educator {Avatar - Name}
           SizedBox(height: defaultSize),
           buildAvatarAndName(
-              avatar: clas.educator.avatar,
-              name: clas.educator.fullName,
+              avatar: 'classSchedule.classModule.avatar',
+              name: 'classSchedule.educator.name',
               fontSize: defaultSize * 1.6,
-              weight: FontWeight.w600),
+              weight: FontWeight.w600,
+          ),
 
           // About
           SizedBox(height: defaultSize * 1.5),
           TextSmall(title: 'Subject', color: kBlack70),
           TextSmall(
-            title: clas.subject,
+            title: classSchedule.title,
             color: kBlack70,
             weight: FontWeight.w600,
           ),
