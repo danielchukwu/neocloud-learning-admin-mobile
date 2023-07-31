@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/headers/headear_dropdown.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/Class.dart';
-import 'package:neocloud_mobile/models/Courses.dart';
+import '../../../graphql/models/ClassModuleModel.dart';
+import '../../../graphql/models/ClassScheduleModel.dart';
 
 class ClassModuleCardsContainer extends StatefulWidget {
   const ClassModuleCardsContainer({
@@ -12,7 +12,7 @@ class ClassModuleCardsContainer extends StatefulWidget {
     required this.index,
   });
   final int index;
-  final ClassModule module;
+  final ClassModuleModel module;
 
   @override
   State<ClassModuleCardsContainer> createState() =>
@@ -41,10 +41,10 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
         showContent
             ? Column(
                 children: List<Widget>.generate(
-                  widget.module.materials!.length,
+                  widget.module.classSchedules!.length,
                   (index) => buildClassModuleCard(
                     index: index,
-                    clas: widget.module.materials![index],
+                    clas: widget.module.classSchedules![index],
                   ),
                 ),
               )
@@ -54,7 +54,7 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
   }
 
   Widget buildClassModuleCard(
-      {required ClassModuleItem clas, required int index}) {
+      {required ClassScheduleModel clas, required int index}) {
     return Padding(
       padding: EdgeInsets.only(top: defaultSize),
       child: Row(
@@ -87,7 +87,7 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
                 // Type - Duration
                 SizedBox(height: defaultSize * .5),
                 TextSmall(
-                  title: clas.description,
+                  title: clas.description ?? 'This is a description',
                   color: kBlack70,
                 ),
 
@@ -97,7 +97,7 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
                   children: [
                     // Class Duration
                     IconText(
-                      title: clas.duration,
+                      title: '${clas.startTime} - ${clas.endTime}',
                       icon: Icons.watch_later_rounded,
                       fontSize: defaultSize * 1.4,
                       iconSize: defaultSize * 1.6,
@@ -123,7 +123,8 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
           Padding(
             padding: const EdgeInsets.only(top: 1),
             child: TextSmall(
-              title: clas.date,
+              // title: clas.date,
+              title: 'Mon',
               color: kBlack50,
             ),
           )
