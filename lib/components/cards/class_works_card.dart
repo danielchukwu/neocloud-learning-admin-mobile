@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/components/text_big_small.dart';
 import 'package:neocloud_mobile/components/images.dart';
+import 'package:neocloud_mobile/components/tablets.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/ClassWork.dart';
+import 'package:neocloud_mobile/graphql/models/ClassworkModel.dart';
 import 'package:neocloud_mobile/screens/classwork/classwork_screen.dart';
 
 class ClassWorkCard extends StatelessWidget {
   const ClassWorkCard({
     super.key,
-    required this.clas,
+    required this.classwork,
     this.enableGestureDecorator = true,
     this.showFeedback = true,
   });
 
-  final ClassWork clas;
+  final ClassworkModel classwork;
   final bool showFeedback;
   final bool enableGestureDecorator;
 
@@ -25,7 +26,7 @@ class ClassWorkCard extends StatelessWidget {
           ? () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ClassWorkScreen(classwork: clas),
+                  builder: (context) => ClassWorkScreen(classwork: classwork),
                 ),
               )
           : () => SizedBox(),
@@ -38,7 +39,7 @@ class ClassWorkCard extends StatelessWidget {
           children: <Widget>[
             // Top Section - Title, Avatar, Body
             SizedBox(height: defaultSize * 1.5),
-            buildClassworkCard(clas: clas),
+            TheClassworkCard(classwork: classwork),
 
             // Feedback
             SizedBox(height: defaultSize * 2),
@@ -112,7 +113,7 @@ class ClassWorkCard extends StatelessWidget {
                 child: RoundBoxAvatar(
                     width: defaultSize * 5,
                     height: defaultSize * 5,
-                    image: clas.educator.avatar),
+                    image: classwork.clas!.educators![0].avatar ?? ''),
               ),
 
               // Notifications Info
@@ -125,14 +126,14 @@ class ClassWorkCard extends StatelessWidget {
                   children: <Widget>[
                     // Users Full Name
                     TextLarge(
-                      title: clas.educator.fullName,
+                      title: classwork.clas!.educators![0].name ?? '',
                       weight: FontWeight.w600,
                       color: kBlack90,
                     ),
 
                     // Notification Body
                     SizedBox(height: defaultSize),
-                    TextMedium(title: clas.description, color: kBlack70),
+                    TextMedium(title: classwork.body, color: kBlack70),
                   ],
                 ),
               )
@@ -144,60 +145,66 @@ class ClassWorkCard extends StatelessWidget {
   }
 }
 
-class buildClassworkCard extends StatelessWidget {
-  const buildClassworkCard({
+class TheClassworkCard extends StatelessWidget {
+  const TheClassworkCard({
     super.key,
-    required this.clas,
+    required this.classwork,
   });
 
-  final ClassWork clas;
+  final ClassworkModel classwork;
 
   @override
   Widget build(BuildContext context) {
+    var faculty =  classwork.faculty!;
+    var classSchedule = classwork.classSchedule!;
+    var module = classwork.classSchedule!.classModule!;
+
+    print(faculty);
+    print(classSchedule);
+    print(module);
+
+    List<Map> tabletData = [
+      {'value': faculty.name, 'color': kOrange},
+      {'value': 'Module ${module.order} - C${classSchedule.order}' , 'color': kRed},
+      {'value': 'Due ${classwork.deadline}' , 'color': kBlue},
+    ];
+
     return Padding(
       padding: screenPadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Due - Tomorrow
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              TextSmall(title: 'Due - Wed (Tomorrow)', color: kBlack50),
-            ],
-          ),
 
           // Class Title
           SizedBox(height: defaultSize * .5),
-          buildCardHeader(title: clas.title),
+          buildCardHeader(title: classwork.title),
 
           SizedBox(height: defaultSize),
           buildAvatarAndName(
-              avatar: clas.educator.avatar,
-              name: clas.educator.fullName,
+              avatar: classwork.clas!.educators![0].avatar ?? '',
+              name: classwork.clas!.educators![0].name,
               fontSize: defaultSize * 1.6,
               weight: FontWeight.w600),
 
-          // Description Label
-          // CardDescription(label: "Description", content: data.description),
+          // Description
           SizedBox(height: defaultSize),
-          TextMedium(title: clas.description, color: kBlack70),
+          TextMedium(title: classwork.body ?? '', color: kBlack70),
+
+          // Bottom Tablets
+          SizedBox(height: defaultSize * 2),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: List.generate(
+              tabletData.length,
+              (index) => TextColorTablet(
+                title: '${tabletData[index]['value']}',
+                bgColor: tabletData[index]['color'],
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 }
-
-// class ClassWorkFeedbacks extends StatelessWidget {
-//   const ClassWorkFeedbacks({
-//     super.key,
-//     required this.clas,
-//   });
-
-//   final ClassWork clas;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return 
-//   }
-// }
