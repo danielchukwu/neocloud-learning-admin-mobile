@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/screens/class/components/class_module_cards_container.dart';
+
+import '../../../graphql/models/ClassModuleModel.dart';
 // import 'package:neocloud_mobile/models/Courses.dart';
 // import 'package:neocloud_mobile/screens/course/components/module_item.dart';
 
@@ -11,7 +12,7 @@ class ClassModulesList extends StatefulWidget {
     super.key,
     required this.modules,
   });
-  final List<ClassModule> modules;
+  final List<ClassModuleModel> modules;
 
   @override
   State<ClassModulesList> createState() => _ClassModulesListState();
