@@ -29,7 +29,7 @@ Objectives
 
 - Students Navbar (Home, Search, Tasks, Notifications, Profile)
 
-// : (){} "" <> ? _ ! *
+// : (){} "" <> ? _ ! * $
 
 
 
@@ -47,4 +47,4 @@ Improvements
 
 UI DEsigns
 - course view screen
--
+- 

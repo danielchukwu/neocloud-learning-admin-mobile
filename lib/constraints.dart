@@ -324,11 +324,12 @@ Row buildAvatarAndName({
 }
 
 // - Search TextField
-Widget buildSearchTextField({required Function(String value) press}) {
+Widget buildSearchTextField({required Function(String value) press, required Function(String value) onChangePress}) {
   return AppsTextField(
     prefixIcon: Icons.search,
     hintText: "Search",
     onSubmitPress: press,
+    onChangePress: onChangePress,
   );
 }
 
