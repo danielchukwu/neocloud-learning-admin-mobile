@@ -35,8 +35,8 @@ class UserModel {
 }
 
 
-// query Query($limit: Int) {
-//   users(limit: $limit) {
+// query Query($name: String, $limit: Int) {
+//   users(name: $name, limit: $limit) {
 //     _id
 //     name
 //     bio
