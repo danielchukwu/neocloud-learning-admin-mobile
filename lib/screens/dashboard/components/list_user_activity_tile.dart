@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/components/tile/tiles.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/Students.dart';
+import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
 // Lists Personel Tiles
@@ -12,7 +12,7 @@ class ListUserActivityTile extends StatefulWidget {
     required this.users,
     this.maxContentCount = 3,
   });
-  final List<Account> users;
+  final List<UserModel> users;
   final int maxContentCount;
 
   @override
