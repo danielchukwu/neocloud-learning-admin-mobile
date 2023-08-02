@@ -5,16 +5,15 @@ import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/graphql/services/class_service.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 
-
 class ClassList extends StatefulWidget {
   const ClassList({
     Key? key,
-    required this.classList,
+    this.classList,
     this.showClassAvatar = false,
     this.bodySeparationSize = 15,
   }) : super(key: key);
 
-  final List<Class> classList;
+  final List<ClassModel>? classList;
   final bool showClassAvatar;
   final double bodySeparationSize;
 
@@ -24,7 +23,7 @@ class ClassList extends StatefulWidget {
 
 class _ClassListState extends State<ClassList> {
   var classService = ClassService();
-  List<ClassModel>? classList;
+  List<ClassModel>? dataList;
 
   @override
   void initState() {
@@ -33,29 +32,35 @@ class _ClassListState extends State<ClassList> {
   }
 
   void loadData() {
-    classService.getClasses().then((classes) {
-      setState(() {
-        classList = classes;
+    if (!mounted) return;
+
+    if (widget.classList == null) {
+      classService.getClasses().then((classes) {
+        setState(() {
+          dataList = classes;
+        });
       });
-    });
+    } else { 
+      dataList = widget.classList;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return classList == null
+    return dataList == null
         ? Center(child: CircularProgressIndicator())
-        : classList!.isEmpty
+        : dataList!.isEmpty
             ? Center(child: Text('No Classes Found'))
             : Column(
-      children: List.generate(
-        classList!.length,
-        // (index) => ListTile(title: Text('It worked'),),
-        (index) => ClassCard(
-          clas: classList![index],
-          showClassAvatar: widget.showClassAvatar,
-          bodySeparationSize: widget.bodySeparationSize,
-        ),
-      ),
-    );
+                children: List.generate(
+                  dataList!.length,
+                  // (index) => ListTile(title: Text('It worked'),),
+                  (index) => ClassCard(
+                    clas: dataList![index],
+                    showClassAvatar: widget.showClassAvatar,
+                    bodySeparationSize: widget.bodySeparationSize,
+                  ),
+                ),
+              );
   }
 }
