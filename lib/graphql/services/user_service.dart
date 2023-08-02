@@ -6,10 +6,10 @@ class UserService {
   static var config = GraphQLConfig();
   var client = config.client;
 
-  Future<List<UserModel>> getUsers({int? limit}) async {
+  Future<List<UserModel>> getUsers({int? limit, String? name}) async {
     String userQuery = """
-      query Query(\$limit: Int) {
-        users(limit: \$limit) {
+      query Query(\$name: String, \$limit: Int) {
+        users(name: \$name, limit: \$limit) {
           _id
           name
           bio
@@ -28,7 +28,7 @@ class UserService {
     try {
       var result = await client.query(QueryOptions(
         document: gql(userQuery),
-        variables: {'limit': limit ?? 100},
+        variables: {'limit': limit, 'name': name},
       ));
 
       if (result.hasException) {
