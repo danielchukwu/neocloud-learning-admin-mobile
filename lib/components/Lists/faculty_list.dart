@@ -9,7 +9,7 @@ import 'package:neocloud_mobile/models/Faculty.dart';
 class FacultyList extends StatefulWidget {
   const FacultyList({Key? key, this.facultyList}) : super(key: key);
 
-  final List<Faculty>? facultyList;
+  final List<FacultyModel>? facultyList;
 
   @override
   State<FacultyList> createState() => _FacultyListState();
@@ -18,7 +18,7 @@ class FacultyList extends StatefulWidget {
 // (){} "" <> ? _ ! *
 class _FacultyListState extends State<FacultyList> {
   var facultyService = FacultyService();
-  List<FacultyModel>? facList;
+  List<FacultyModel>? dataList;
 
   @override
   void initState() {
@@ -27,11 +27,17 @@ class _FacultyListState extends State<FacultyList> {
   }
 
   void loadData() {
-    facultyService.getFaculties().then((faculties) {
-      setState(() {
-        facList = faculties;
+    if (!mounted) return;
+    
+    if (widget.facultyList == null) {
+      facultyService.getFaculties().then((faculties) {
+        setState(() {
+          dataList = faculties;
+        });
       });
-    });
+    }  else {
+      dataList = widget.facultyList;
+    }  
   }
 
   @override
@@ -40,14 +46,14 @@ class _FacultyListState extends State<FacultyList> {
     // children: List.generate(facultiesList.length,
     //     (index) => FacultyCard(faculty: facultiesList[index])),
     // );
-    return facList == null
+    return dataList == null
         ? Center(child: CircularProgressIndicator())
-        : facList!.isEmpty
+        : dataList!.isEmpty
             ? Center(child: Text('No Faculties Found'))
             : Column(
                 children: List.generate(
                   facultiesList.length,
-                  (index) => FacultyCard(faculty: facList![index])
+                  (index) => FacultyCard(faculty: dataList![index])
                 ),
               );
   }
