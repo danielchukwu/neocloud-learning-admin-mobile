@@ -14,12 +14,6 @@ class ClassScheduleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map> tabletData = [
-      // {'value': clas.createdAt, 'color': kOrange},
-      // {'value': 'Incoming Classwork', 'color': kRed},
-      {'value': 'Tomorrow', 'color': kOrange},
-      {'value': 'Incoming Classwork', 'color': kRed},
-    ];
 
     return Container(
       padding: screenPadding,
@@ -28,55 +22,43 @@ class ClassScheduleCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          // Class week and Lecture count and date
-          SizedBox(height: defaultSize * 1.5),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              // Class Week - Class Count
-              TextSmall(
-                  title: 'Week 3 - 7th Class',
-                  color: kBlack70,
-                  weight: FontWeight.w500),
-              // Live or Time it's coming
-              TextSmall(title: 'Live', color: kBlue, weight: FontWeight.w500),
-            ],
+          // Educator {Avatar - Name}
+          SizedBox(height: defaultSize * 2),
+          buildAvatarAndName(
+            avatar: 'classSchedule.classModule.avatar',
+            name: classSchedule.classModule!.clas!.educators![0].name,
+            fontSize: defaultSize * 1.6,
+            weight: FontWeight.w600,
           ),
 
           // Class Title
           SizedBox(height: defaultSize),
           buildCardHeader(title: classSchedule.title),
 
-          // Educator {Avatar - Name}
-          SizedBox(height: defaultSize),
-          buildAvatarAndName(
-              avatar: 'classSchedule.classModule.avatar',
-              name: 'classSchedule.educator.name',
-              fontSize: defaultSize * 1.6,
-              weight: FontWeight.w600,
-          ),
-
           // About
           SizedBox(height: defaultSize * 1.5),
-          TextSmall(title: 'Subject', color: kBlack70),
           TextSmall(
-            title: classSchedule.title,
+            title: classSchedule.description ?? '',
             color: kBlack70,
-            weight: FontWeight.w600,
+            // weight: FontWeight.w400,
           ),
 
           // Bottom Tablets
           SizedBox(height: defaultSize * 2),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: List.generate(
-              tabletData.length,
-              (index) => TextColorTablet(
-                title: '${tabletData[index]['value']}',
-                bgColor: tabletData[index]['color'],
-              ),
-            ),
+          Row(
+            children: [
+              IconText(
+                  title: 'August 12',
+                  icon: Icons.calendar_month,
+                  iconColor: kBlack70,
+                  fontSize: defaultSize * 1.4),
+              SizedBox(width: defaultSize * 2,),
+              IconText(
+                  title: '9:30 am - 12:30pm',
+                  icon: Icons.timer,
+                  iconColor: kBlack70,
+                  fontSize: defaultSize * 1.4),
+            ],
           ),
 
           SizedBox(height: defaultSize * 2.5),
