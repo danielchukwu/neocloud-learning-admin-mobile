@@ -3,6 +3,7 @@ import 'package:neocloud_mobile/components/stacks.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
+import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
@@ -12,15 +13,11 @@ import 'package:neocloud_mobile/utils.dart';
 class UserTile extends StatelessWidget {
   const UserTile({
     super.key,
-    required this.title,
-    required this.avatar,
-    required this.subtitle,
+    required this.user,
     this.trailing,
   });
 
-  final String title;
-  final String avatar;
-  final String subtitle;
+  final UserModel user;
   final Widget? trailing;
 
   @override
@@ -32,7 +29,7 @@ class UserTile extends StatelessWidget {
         children: <Widget>[
           // Avatar
           CircleAvatar(
-              backgroundImage: AssetImage(avatar), radius: defaultSize * 2.8),
+              backgroundImage: AssetImage(user.avatar ?? 'img'), radius: defaultSize * 2.8),
           // StackedImageAndDot(img: avatar, text: "1"),
           SizedBox(width: defaultSize * 2),
           // Name and Role
@@ -40,15 +37,15 @@ class UserTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextMedium(
-                  title: title, weight: FontWeight.w600, color: kBlack90),
+                  title: user.name, weight: FontWeight.w600, color: kBlack90),
               TextMedium(
-                  title: subtitle, weight: FontWeight.w500, color: kBlack50),
+                  title: user.role!.name, weight: FontWeight.w500, color: kBlack50),
             ],
           ),
 
           const Spacer(),
 
-          trailing != null ? trailing! : const SizedBox(),
+          // trailing != null ? trailing! : const SizedBox(),
         ],
       ),
     );
@@ -133,7 +130,7 @@ class ClassTile extends StatelessWidget {
 class UserActivityTile extends StatelessWidget {
   const UserActivityTile({super.key, required this.user});
 
-  final Account user;
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +144,7 @@ class UserActivityTile extends StatelessWidget {
       child: Row(
         children: <Widget>[
           // Images
-          StackedImageAndDot(img: user.avatar, text: "2"),
+          StackedImageAndDot(img: user.avatar!, text: "2"),
           // Users name and Live - Time
           SizedBox(width: defaultSize * 1.5),
           Column(
@@ -161,19 +158,19 @@ class UserActivityTile extends StatelessWidget {
               //   fontSize: defaultSize * 1.6,
               // ),
               IconText(
-                title: user.fullName,
+                title: user.name,
                 color: kBlack80,
                 fontWeight: FontWeight.w600,
                 fontSize: defaultSize * 1.6,
                 iconIsLeft: false,
-                svg: getRoleSvgFileName(roleList: user.role),
+                svg: getRoleSvgFileName(roleList:[user.role!.name]),
                 iconSize: 16,
               ),
 
               // Text (Live - Time)
               AppsTextRich(
                 text1: "Live",
-                text2: "  10:00-1:30",
+                text2: "10:00-1:30",
                 text1FontSize: defaultSize * 1.4,
                 text2FontSize: defaultSize * 1.4,
                 text1Color: kBlue,
