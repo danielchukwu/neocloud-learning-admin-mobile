@@ -132,6 +132,8 @@ class _InputFieldSettingsState extends State<InputFieldSettings> {
   }
 }
 
+
+
 // TextField
 class AppsTextField extends StatefulWidget {
   const AppsTextField({
@@ -141,6 +143,7 @@ class AppsTextField extends StatefulWidget {
     this.hintText = "",
     this.borderRadius = 10,
     required this.onSubmitPress,
+    this.onChangePress,
   }) : super(key: key);
 
   final IconData? prefixIcon;
@@ -148,6 +151,7 @@ class AppsTextField extends StatefulWidget {
   final String hintText;
   final double borderRadius;
   final Function(String value) onSubmitPress;
+  final Function(String value)? onChangePress;
 
   @override
   State<AppsTextField> createState() => _AppsTextFieldState();
@@ -178,7 +182,12 @@ class _AppsTextFieldState extends State<AppsTextField> {
       textInputAction: TextInputAction.search,
       style: getAppsTextStyle(fontWeight: FontWeight.w400, color: kBlack80),
       onSubmitted: widget.onSubmitPress,
-      onChanged: hideOrRevealCancel,
+      onChanged: (String value) { 
+        hideOrRevealCancel();
+        if (widget.onChangePress != null){
+          widget.onChangePress!(_controller.text);
+        }
+      },
       decoration: buildDecoration(),
     );
   }
@@ -211,7 +220,7 @@ class _AppsTextFieldState extends State<AppsTextField> {
     );
   }
 
-  void hideOrRevealCancel(String value) {
+  void hideOrRevealCancel() {
     if (_controller.text.length != 0) {
       setState(() {
         hideCancel = false;
