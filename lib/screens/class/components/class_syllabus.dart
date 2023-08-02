@@ -39,8 +39,6 @@ class _ClassSyllabusState extends State<ClassSyllabus> {
 
   @override
   Widget build(BuildContext context) {
-    print('classModulesList');
-    print(classModulesList);
     return Column(
       children: <Widget>[
         // Course Outline Header
@@ -91,7 +89,7 @@ class _ClassSyllabusState extends State<ClassSyllabus> {
             fontSize: defaultSize * 1.4),
         IconText(
             title: 'CWs (14)',
-            icon: Icons.work_history_rounded,
+            icon: Icons.timer,
             iconColor: kBlack70,
             fontSize: defaultSize * 1.4)
       ],
