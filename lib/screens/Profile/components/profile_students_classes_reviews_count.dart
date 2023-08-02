@@ -1,21 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/Lists/class_list.dart';
-import 'package:neocloud_mobile/components/Lists/course_list.dart';
 import 'package:neocloud_mobile/components/Lists/reviews_list.dart';
 import 'package:neocloud_mobile/components/Lists/user_list.dart';
-// import 'package:neocloud_mobile/components/Lists/course_list.dart';
-// import 'package:neocloud_mobile/components/Lists/reviews_list.dart';
-// import 'package:neocloud_mobile/components/Lists/user_list.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/Class.dart';
+import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
-// import 'package:neocloud_mobile/models/Courses.dart';
-import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/list/list_screen.dart';
-// import 'package:neocloud_mobile/screens/Profile/components/profile_card.dart';
-// import 'package:neocloud_mobile/screens/course/components/reviews.dart';
-// import 'package:neocloud_mobile/screens/list/list_screen.dart';
 
 class ProfileStudentsClassesReviewsCount extends StatelessWidget {
   const ProfileStudentsClassesReviewsCount({
@@ -23,7 +14,7 @@ class ProfileStudentsClassesReviewsCount extends StatelessWidget {
     required this.user,
   });
 
-  final Account user;
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +23,14 @@ class ProfileStudentsClassesReviewsCount extends StatelessWidget {
         'title': 'Students',
         'icon': Icons.supervisor_account,
         'count': 23,
-        'widget': UserList(usersList: users),
+        'widget': UserList(),
         'padding': true
       },
       {
         'title': 'Classes',
         'icon': Icons.video_library,
         'count': 2,
-        'widget': ClassList(classList: classesList, showClassAvatar: true),
+        'widget': ClassList(showClassAvatar: true),
         'padding': false
       },
       {
