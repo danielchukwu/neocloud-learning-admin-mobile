@@ -1,32 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/tile/tiles.dart';
-import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/Students.dart';
+import 'package:neocloud_mobile/graphql/models/UserModel.dart';
+import 'package:neocloud_mobile/graphql/services/user_service.dart';
+import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 
-class UserList extends StatelessWidget {
+class UserList extends StatefulWidget {
   const UserList({
     super.key,
-    required this.usersList,
+    this.usersList,
   });
 
-  final List<Account> usersList;
+  final List<UserModel>? usersList;
+
+  @override
+  State<UserList> createState() => _UserListState();
+}
+
+class _UserListState extends State<UserList> {
+  var userService = UserService();
+  List<UserModel>? dataList;
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  void loadData() {
+    if (!mounted) return; 
+
+    if (widget.usersList == null) {
+      userService.getUsers().then((users) {
+      setState(() { dataList = users; });
+    });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(
-        usersList.length,
-        (index) => GestureDetector(
-          onTap: () =>
-              navigateToScreen(context: context, routeName: '/profile'),
-          child: UserTile(
-            avatar: usersList[index].avatar,
-            title: usersList[index].fullName,
-            subtitle: usersList[index].role[0],
-          ),
-        ),
-      ),
-    );
+    if (widget.usersList != null) { dataList = widget.usersList; }
+    
+    return dataList == null
+        ? Center(child: CircularProgressIndicator())
+        : dataList!.isEmpty
+            ? Center(child: Text('No Classes Found'))
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: List.generate(
+                  dataList!.length,
+                  (index) => GestureDetector(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(user: dataList![index]),)),
+                    child: UserTile(
+                      user: dataList![index]
+                    ),
+                  ),
+                ),
+              );
   }
+
+  toList() {}
 }
