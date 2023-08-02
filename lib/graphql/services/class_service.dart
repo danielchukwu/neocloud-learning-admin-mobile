@@ -10,8 +10,8 @@ class ClassService {
 
   Future<List<ClassModel>> getClasses({int? limit}) async {
     String classesQuery = """
-      query ExampleQuery(\$limit: Int) {
-        classes(limit: \$limit) {
+      query Query(\$limit: Int, \$name: String) {
+        classes(limit: \$limit, name: \$name) {
           _id
           name
           about
