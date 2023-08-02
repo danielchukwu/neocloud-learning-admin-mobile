@@ -78,12 +78,12 @@ class _AcademicScreenState extends State<AcademicScreen> {
               // Load Body
               // Classes
               AcademicOptions.selectedIndex == 0
-                  ? ClassList(classList: classesList)
+                  ? ClassList()
                   : const SizedBox(),
 
               // Faculty
               AcademicOptions.selectedIndex == 1
-                  ? FacultyList(facultyList: facultiesList)
+                  ? FacultyList()
                   : const SizedBox(),
 
               // Classworks
