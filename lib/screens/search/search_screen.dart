@@ -3,6 +3,9 @@ import 'package:neocloud_mobile/components/Lists/class_list.dart';
 import 'package:neocloud_mobile/components/Lists/user_list.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
+import 'package:neocloud_mobile/graphql/models/UserModel.dart';
+import 'package:neocloud_mobile/graphql/services/search_service.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/search/components/search_filter.dart';
@@ -18,8 +21,10 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final TextEditingController _searchController =
-      TextEditingController(text: "");
+  var searchService = SearchService();
+  List<UserModel>? usersList;
+  List<ClassModel>? classesList;
+
   List<String> searchFilter = [
     "All",
     "Educators",
@@ -31,27 +36,31 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
+  }
 
-    _searchController.addListener(() {
-      print("Search Now...");
-      print(_searchController.text);
+  void search(String value) {
+    print('search');
+    loadData(value);
+  }
+
+  void loadData(String value) {
+    searchService.getUsersClasses(name: value).then((data) {
+      print(mounted);
+      if (mounted) {
+        setState(() {
+          print('SET STATE');
+          usersList = data['users'] as List<UserModel>;
+          classesList = data['classes'] as List<ClassModel>;
+      });
+      }
     });
   }
 
-  void _updateSearchController(String value) {
-    setState(() {
-      _searchController.text = value;
-    });
-  }
-
-  void updateIndex(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  void updateIndex(int index) { setState(() { _selectedIndex = index; }); }
 
   @override
   Widget build(BuildContext context) {
+    print('REBUILD UI');
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -61,10 +70,10 @@ class _SearchScreenState extends State<SearchScreen> {
               // Search
               SizedBox(height: defaultSize * 2),
 
-              // SearchHeader(updateSearch: _updateSearchController),
+              // SearchHeader(updateSearch: search),
               Padding(
                 padding: screenPadding,
-                child: buildSearchTextField(press: _updateSearchController),
+                child: buildSearchTextField(press: (String v){}, onChangePress: loadData),
               ),
 
               // Filter
@@ -78,35 +87,24 @@ class _SearchScreenState extends State<SearchScreen> {
               SizedBox(height: defaultSize),
               Padding(
                 padding: _selectedIndex != 3
-                    ? EdgeInsets.fromLTRB(
-                        defaultSize * 2, 0, defaultSize * 2, defaultSize * 2)
+                    ? EdgeInsets.fromLTRB(defaultSize * 2, 0, defaultSize * 2, defaultSize * 2)
                     : EdgeInsets.all(0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     // Users List
-                    UserList(
-                        usersList: users
-                            .where((user) => (_selectedIndex == 0))
-                            .toList()),
-                    UserList(
-                        usersList: users
-                            .where((user) => (user.role.contains("Educator") &&
-                                _selectedIndex == 1))
-                            .toList()),
-                    UserList(
-                        usersList: users
-                            .where((user) => (user.role.contains("Student") &&
-                                _selectedIndex == 2))
-                            .toList()),
+                    _selectedIndex == 0 && usersList != null ? 
+                      UserList(usersList: usersList!.where((user) => (user.role!.name.toLowerCase() == "educator" || user.role!.name.toLowerCase() == 'student') ).toList())
+                    : SizedBox(),
+                    
+                    _selectedIndex == 1 && usersList != null ? 
+                    UserList(usersList: usersList!.where((user) => (user.role!.name.toLowerCase() == "educator") ).toList()) : SizedBox(),
 
-                    // Classes List
-                    _selectedIndex == 3
-                        ? ClassList(
-                            classList: classesList,
-                            showClassAvatar: true,
-                          )
-                        : SizedBox(),
+                    _selectedIndex == 2 && usersList != null ? 
+                    UserList(usersList: usersList!.where((user) => (user.role!.name.toLowerCase() == 'student') ).toList() ) : SizedBox(),
+
+                    _selectedIndex == 3 ? 
+                    ClassList( classList: classesList!, showClassAvatar: true ) : SizedBox(),
 
                     SizedBox(height: defaultSize * 3),
                   ],
