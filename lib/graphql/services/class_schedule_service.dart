@@ -43,7 +43,7 @@ class ClassScheduleService {
       if (result.hasException) {
         throw Exception(result.exception);
       } else {
-        List? classSchedule = result.data?['classSchedule'];
+        List? classSchedule = result.data?['classSchedules'];
 
         if (classSchedule == null) {
           return [];
