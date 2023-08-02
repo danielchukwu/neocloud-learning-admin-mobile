@@ -60,7 +60,7 @@ class NavItems extends ChangeNotifier {
       svgActive: "assets/icons/navbar/user-fill.svg",
       svgInactive: "assets/icons/navbar/user-outline.svg",
       itemLabel: "Profile",
-      destination: ProfileScreen(user: users[0]),
+      destination: ProfileScreen(),
     ),
   ];
 }
