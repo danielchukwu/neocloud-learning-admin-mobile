@@ -5,14 +5,17 @@ import 'package:neocloud_mobile/graphql/services/class_schedule_service.dart';
 import 'package:neocloud_mobile/models/ClassSchedule.dart';
 
 class ClassSchedulesList extends StatefulWidget {
-  const ClassSchedulesList({super.key});
+  const ClassSchedulesList({super.key, this.classScheduleList});
+
+  final List<ClassScheduleModel>? classScheduleList;
+
   @override
   State<ClassSchedulesList> createState() => _ClassSchedulesListState();
 }
 
 class _ClassSchedulesListState extends State<ClassSchedulesList> {
   var classSchedule = ClassScheduleService();
-  List<ClassScheduleModel>? csList;
+  List<ClassScheduleModel>? dataList;
 
   @override
   void initState() {
@@ -21,34 +24,31 @@ class _ClassSchedulesListState extends State<ClassSchedulesList> {
   }
 
   void loadData() {
-    classSchedule.getClassSchedules().then((cs) {
-      setState(() {
-        csList = cs;
+    if (!mounted) return;
+
+    if (widget.classScheduleList == null) {
+      classSchedule.getClassSchedules().then((cs) {
+        setState(() { dataList = cs; });
       });
-    });
+    } else {
+      dataList = widget.classScheduleList;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return csList == null
+    return dataList == null
         ? Center(child: CircularProgressIndicator())
-        : csList!.isEmpty
+        : dataList!.isEmpty
             ? Center(child: Text('No Class Schedules Found'))
             : Column(
-      children: List.generate(
-        csList!.length,
-        // (index) => ListTile(title: Text('It worked'),),
-        (index) => ClassScheduleCard(
-          classSchedule: csList![index],
-        ),
-      ),
-    );
+                children: List.generate(
+                  dataList!.length,
+                  // (index) => ListTile(title: Text('It worked'),),
+                  (index) => ClassScheduleCard(
+                    classSchedule: dataList![index],
+                  ),
+                ),
+              );
   }
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Column(
-  //     children: List.generate(widget.classScheduleList.length,
-  //         (index) => ClassScheduleCard(clas: widget.classScheduleList[index])),
-  //   );
-  // }
 }
