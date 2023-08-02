@@ -155,7 +155,7 @@ class TheClassworkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var faculty =  classwork.faculty!;
+    var faculty = classwork.faculty!;
     var classSchedule = classwork.classSchedule!;
     var module = classwork.classSchedule!.classModule!;
 
@@ -163,22 +163,17 @@ class TheClassworkCard extends StatelessWidget {
     print(classSchedule);
     print(module);
 
-    List<Map> tabletData = [
-      {'value': faculty.name, 'color': kOrange},
-      {'value': 'Module ${module.order} - C${classSchedule.order}' , 'color': kRed},
-      {'value': 'Due ${classwork.deadline}' , 'color': kBlue},
-    ];
+    // List<Map> tabletData = [
+    //   {'value': faculty.name, 'color': kOrange},
+    //   {'value': 'Module ${module.order} - C${classSchedule.order}' , 'color': kRed},
+    //   {'value': 'Due ${classwork.deadline}' , 'color': kBlue},
+    // ];
 
     return Padding(
       padding: screenPadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-          // Class Title
-          SizedBox(height: defaultSize * .5),
-          buildCardHeader(title: classwork.title),
-
           SizedBox(height: defaultSize),
           buildAvatarAndName(
               avatar: classwork.clas!.educators![0].avatar ?? '',
@@ -186,22 +181,34 @@ class TheClassworkCard extends StatelessWidget {
               fontSize: defaultSize * 1.6,
               weight: FontWeight.w600),
 
+          // Class Title
+          SizedBox(height: defaultSize * .5),
+          buildCardHeader(title: classwork.title),
+
           // Description
           SizedBox(height: defaultSize),
           TextMedium(title: classwork.body ?? '', color: kBlack70),
 
           // Bottom Tablets
-          SizedBox(height: defaultSize * 2),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: List.generate(
-              tabletData.length,
-              (index) => TextColorTablet(
-                title: '${tabletData[index]['value']}',
-                bgColor: tabletData[index]['color'],
+          SizedBox(height: defaultSize * 2.5),
+          Row(
+            children: [
+              IconText(
+                title: 'Due August 12 - 3pm',
+                icon: Icons.watch,
+                iconColor: kBlack70,
+                fontSize: defaultSize * 1.4,
               ),
-            ),
+              SizedBox(
+                width: defaultSize * 2,
+              ),
+              IconText(
+                title: classwork.clas!.name,
+                icon: Icons.school,
+                iconColor: kBlack70,
+                fontSize: defaultSize * 1.4,
+              ),
+            ],
           ),
         ],
       ),
