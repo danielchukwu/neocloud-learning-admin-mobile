@@ -34,8 +34,8 @@ class ClassModel {
   );
 }
 
-// query ExampleQuery(\$limit: Int) {
-//   classes(limit: \$limit) {
+// query Query($limit: Int, $name: String) {
+//   classes(limit: $limit, name: $name) {
 //     _id
 //     name
 //     about
