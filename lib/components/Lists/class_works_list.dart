@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/class_works_card.dart';
 import 'package:neocloud_mobile/graphql/models/ClassworkModel.dart';
 import 'package:neocloud_mobile/graphql/services/classwork_service.dart';
-import 'package:neocloud_mobile/models/ClassWork.dart';
 
 class ClassworksList extends StatefulWidget {
   const ClassworksList(
-      {Key? key, this.showFeedback = false})
+      {Key? key, this.classworkList, this.showFeedback = false})
       : super(key: key);
 
+  final List<ClassworkModel>? classworkList;
   final bool showFeedback;
   @override
   State<ClassworksList> createState() => _ClassworksListState();
@@ -16,7 +16,7 @@ class ClassworksList extends StatefulWidget {
 
 class _ClassworksListState extends State<ClassworksList> {
   var classworkService = ClassworkService();
-  List<ClassworkModel>? classworkList;
+  List<ClassworkModel>? dataList;
 
   @override
   void initState() {
@@ -25,27 +25,29 @@ class _ClassworksListState extends State<ClassworksList> {
   }
 
   void loadData() {
-    classworkService.getClassworks().then((classes) {
-      setState(() {
-        classworkList = classes;
-        print('classworkList');
-        print(classworkList);
+    if (!mounted) return;
+    
+    if (widget.classworkList == null){
+      classworkService.getClassworks().then((classes) {
+        setState(() { dataList = classes; });
       });
-    });
+    } else {
+      dataList = widget.classworkList;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     
-    return classworkList == null
+    return dataList == null
         ? Center(child: CircularProgressIndicator())
-        : classworkList!.isEmpty
+        : dataList!.isEmpty
             ? Center(child: Text('No Classes Found'))
             : Column(
       children: List.generate(
-        classworkList!.length,
+        dataList!.length,
         (index) => ClassWorkCard(
-          classwork: classworkList![index],
+          classwork: dataList![index],
           enableGestureDecorator: true,
           showFeedback: false,
         ),
