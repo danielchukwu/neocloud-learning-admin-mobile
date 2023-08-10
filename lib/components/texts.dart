@@ -34,7 +34,7 @@ class TextMedium extends StatelessWidget {
   const TextMedium(
       {super.key,
       required this.title,
-      this.color = Colors.black87,
+      this.color,
       this.weight = FontWeight.w400,
       this.textAlign = TextAlign.start});
 
@@ -252,8 +252,8 @@ class AppsTextRich extends StatelessWidget {
     super.key,
     required this.text1,
     required this.text2,
-    this.text1Color = Colors.black54,
-    this.text2Color = Colors.black87,
+    this.text1Color,
+    this.text2Color,
     this.text1FontSize = 16,
     this.text2FontSize = 16,
     this.text1FontWeight = FontWeight.w400,
@@ -264,8 +264,8 @@ class AppsTextRich extends StatelessWidget {
 
   final String text1;
   final String text2;
-  final Color text1Color;
-  final Color text2Color;
+  final Color? text1Color;
+  final Color? text2Color;
   final double text1FontSize;
   final double text2FontSize;
   final FontWeight text1FontWeight;
@@ -279,7 +279,7 @@ class AppsTextRich extends StatelessWidget {
       TextSpan(
         text: text1,
         style: getAppsTextStyle(
-            color: text1Color,
+            color: text1Color ?? kBlack80,
             fontSize: text1FontSize,
             fontWeight: text1FontWeight,
             decoration: text1Decoration),
@@ -287,7 +287,7 @@ class AppsTextRich extends StatelessWidget {
           TextSpan(
             text: text2,
             style: getAppsTextStyle(
-              color: text2Color,
+              color: text2Color ?? kBlack70,
               fontSize: text2FontSize,
               fontWeight: text2FontWeight,
               decoration: text2Decoration,
@@ -356,7 +356,7 @@ class TextLink extends StatelessWidget {
     super.key,
     required this.title,
     required this.press,
-    this.color = Colors.black87,
+    this.color,
     this.fontSize = 14,
     this.weight = FontWeight.w400,
   });
