@@ -8,7 +8,7 @@ import 'package:neocloud_mobile/screens/Profile/components/profile_students_clas
 import 'package:neocloud_mobile/screens/Profile/components/profile_navbar_and_content.dart';
 import 'package:neocloud_mobile/screens/Profile/components/stack_cover_and_profile_image.dart';
 import 'package:neocloud_mobile/screens/settings/settings_screen.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key, this.user}) : super(key: key);
@@ -46,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   profileImageVerticalPosition: defaultSize * 2.5,
                 ),
 
-                // User Short Intro - name, role, ratings ⭐
+                // User Short Intro - name, role, ratings zxz⭐
                 // SizedBox(height: defaultSize * 2),
                 IntroNameRoleRatings(user: widget.user!),
 

@@ -21,8 +21,7 @@ class IntroNameRoleRatings extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           // User Name
-          TextExtraLarge(
-              title: user.name, color: kBlack80, weight: FontWeight.w600),
+          TextExtraLarge(title: user.name, color: kBlack80, weight: FontWeight.w600),
 
           // User Role
           SizedBox(height: defaultSize * .3),

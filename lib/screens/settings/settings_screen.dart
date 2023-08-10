@@ -4,7 +4,7 @@ import 'package:neocloud_mobile/models/Settings.dart';
 import 'package:neocloud_mobile/screens/settings/components/settings_list.dart';
 import 'package:neocloud_mobile/screens/settings/screens/manage_account_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);

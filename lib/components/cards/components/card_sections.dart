@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/components/seperator.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 // This displays a <label and a title - in a column> more if we want
 // It takes in a a List containing Maps that hold the data to be displayed

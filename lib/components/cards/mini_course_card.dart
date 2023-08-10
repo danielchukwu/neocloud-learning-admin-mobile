@@ -4,7 +4,7 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/screens/course/course_screen.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 class MiniCourseCard extends StatelessWidget {
   const MiniCourseCard({

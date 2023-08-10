@@ -11,7 +11,7 @@ import 'package:neocloud_mobile/screens/settings/components/system_general_scree
 import 'package:neocloud_mobile/screens/settings/screens/smtp_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/system_screen.dart';
 import 'package:neocloud_mobile/screens/settings/settings_screen.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 class Setting {
   Setting({

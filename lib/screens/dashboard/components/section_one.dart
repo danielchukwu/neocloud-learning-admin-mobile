@@ -5,7 +5,7 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/size_config.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 class AttendanceClassesCwDashboard extends StatelessWidget {
   const AttendanceClassesCwDashboard({super.key});

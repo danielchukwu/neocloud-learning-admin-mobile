@@ -7,7 +7,7 @@ import 'package:neocloud_mobile/graphql/services/class_service.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_dashboard.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 class ProfileContent extends StatelessWidget {
   const ProfileContent({Key? key, required this.type}) : super(key: key);

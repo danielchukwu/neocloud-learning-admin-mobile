@@ -8,7 +8,7 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/models/Faculty.dart';
 import 'package:neocloud_mobile/screens/faculty/faculty_screen.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 // : (){} "" <> ? _ ! *
 class FacultyCard extends StatelessWidget {

@@ -6,7 +6,7 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/course/course_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 class EducatorInfo extends StatelessWidget {
   const EducatorInfo({super.key, required this.user});

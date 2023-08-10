@@ -8,7 +8,7 @@ import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/class/class_screen.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 class UserTile extends StatelessWidget {
   const UserTile({

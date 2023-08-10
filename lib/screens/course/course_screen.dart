@@ -10,7 +10,7 @@ import 'package:neocloud_mobile/screens/course/components/course_perks.dart';
 import 'package:neocloud_mobile/screens/course/components/educator_info.dart';
 import 'package:neocloud_mobile/screens/course/components/reviews.dart';
 import 'package:neocloud_mobile/size_config.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 class CourseScreen extends StatelessWidget {
   const CourseScreen({Key? key, required this.course}) : super(key: key);

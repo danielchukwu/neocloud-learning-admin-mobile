@@ -6,7 +6,7 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/screens/class/class_screen.dart';
-import 'package:neocloud_mobile/utils.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 class ClassCard extends StatelessWidget {
   const ClassCard({
