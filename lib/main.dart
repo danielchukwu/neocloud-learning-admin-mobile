@@ -4,7 +4,7 @@ import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/cart/cart_screen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
-import 'package:neocloud_mobile/screens/login/auth_screen.dart';
+import 'package:neocloud_mobile/screens/login_signup/login_signup_screen.dart';
 import 'package:neocloud_mobile/screens/search/search_screen.dart';
 import 'package:neocloud_mobile/screens/settings/components/system_logos_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/language_screen.dart';

@@ -5,7 +5,7 @@ import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/screens/login/auth_screen.dart';
+import 'package:neocloud_mobile/screens/login_signup/login_signup_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

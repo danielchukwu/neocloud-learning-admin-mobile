@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
-import 'package:neocloud_mobile/screens/login/auth_screen.dart';
+import 'package:neocloud_mobile/screens/login_signup/login_signup_screen.dart';
 import 'package:neocloud_mobile/screens/settings/components/settings_edit_screen.dart';
 import 'package:neocloud_mobile/screens/settings/components/system_logos_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/language_screen.dart';
