@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/cards/components/label_text.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/utils/validation.dart';
 
 // TextFormField
 
@@ -8,13 +10,15 @@ import 'package:neocloud_mobile/constraints.dart';
 class LoginInputField extends StatefulWidget {
   final bool obsureText;
   final String labelText;
-  final press;
+  final String? Function(String? value) press;
+  final String? Function(String? value) validate;
 
-  const LoginInputField({
+  LoginInputField({
     Key? key,
     required this.labelText,
     required this.press,
     this.obsureText = false,
+    this.validate = validateRequireField,
   }) : super(key: key);
 
   @override
@@ -24,54 +28,33 @@ class LoginInputField extends StatefulWidget {
 class _LoginInputFieldState extends State<LoginInputField> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Label
-        SizedBox(height: defaultSize * 2),
-        TextMedium(
-          title: widget.labelText,
-          color: kBlack60,
-          weight: FontWeight.w500,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(defaultSize)),
+      ),
+      child: ClipRRect(
+        clipBehavior: Clip.antiAlias,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(defaultSize)),
+        child: TextFormField(
+          keyboardType: getKeyboardType(widget.labelText),
+          obscureText: widget.obsureText,
+          decoration: buildInputDecoration(),
+          style: buildInputTextStyle(),
+          validator: widget.validate,
+          onSaved: widget.press,
         ),
-        SizedBox(height: defaultSize * .5),
-
-        // Form Input Field - basically an input field
-        buildFormInputField(),
-      ],
-    );
-  }
-
-  // Form Field
-  TextFormField buildFormInputField() {
-    return TextFormField(
-      obscureText: widget.obsureText,
-      decoration: buildInputDecoration(),
-      style: buildInputTextStyle(),
-      validator: (value) => validateInputField(value),
-      onSaved: (value) => widget.press(value),
-    );
-  }
-
-  // Style - our form fields border styles
-  OutlineInputBorder buildBorderStyle() {
-    return OutlineInputBorder(
-      borderRadius: BorderRadius.circular(defaultSize * 2),
-      borderSide: BorderSide(width: 5, color: kBlue.withOpacity(.01)),
+      ),
     );
   }
 
   // Style - our form fields input decoration
   InputDecoration buildInputDecoration() {
     return InputDecoration(
+      labelText: widget.labelText,
+      labelStyle: getAppsTextStyle(color: kBlack50),
       filled: true,
-      fillColor: kBlue.withOpacity(.1),
-      contentPadding: EdgeInsets.symmetric(
-          horizontal: defaultSize * 2, vertical: defaultSize * 2),
-      enabledBorder: buildBorderStyle(),
-      focusedBorder: buildBorderStyle(),
-      errorBorder: buildBorderStyle(),
-      focusedErrorBorder: buildBorderStyle(),
+      fillColor: kBlack.withOpacity(.05),
+      border: InputBorder.none,
     );
   }
 
@@ -83,13 +66,16 @@ class _LoginInputFieldState extends State<LoginInputField> {
       color: kBlack60,
     );
   }
-
-  // Validator - validates the data entered into our input form field
-  String? validateInputField(value) {
-    if (value!.isEmpty) {
-      return "Please enter your ${widget.labelText}";
+  
+  TextInputType getKeyboardType(String labelText) {
+    switch (labelText.toLowerCase()) {
+      case "email":
+        return TextInputType.emailAddress;
+      case "phone number":
+        return TextInputType.phone;
+      default:
+        return TextInputType.text;
     }
-    return null;
   }
 }
 
