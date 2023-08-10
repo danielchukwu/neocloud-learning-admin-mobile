@@ -4,7 +4,7 @@ import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/cart/cart_screen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
-import 'package:neocloud_mobile/screens/login/login_screen.dart';
+import 'package:neocloud_mobile/screens/login/auth_screen.dart';
 import 'package:neocloud_mobile/screens/search/search_screen.dart';
 import 'package:neocloud_mobile/screens/settings/components/system_logos_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/language_screen.dart';
@@ -40,10 +40,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Neo Cloud Technologies',
       theme: buildTheme(),
-      initialRoute: '/academic',
+      initialRoute: '/login',
       routes: {
         '/': (context) => const SplashScreen(),
-        '/login': (context) => const LoginScreen(),
+        '/login': (context) => const LoginSignupScreen(),
         '/welcome': (context) => const WelcomeScreen(),
         '/coming-soon': (context) => const ComingSoonScreen(),
         '/academic': (context) => const AcademicScreen(),

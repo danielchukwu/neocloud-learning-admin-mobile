@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
-import 'package:neocloud_mobile/screens/login/login_screen.dart';
+import 'package:neocloud_mobile/screens/login/auth_screen.dart';
 import 'package:neocloud_mobile/screens/settings/components/settings_edit_screen.dart';
 import 'package:neocloud_mobile/screens/settings/components/system_logos_screen.dart';
 import 'package:neocloud_mobile/screens/settings/screens/language_screen.dart';
@@ -49,7 +49,7 @@ List<Setting> settingsMainList = <Setting>[
 
 // Account
 List<Setting> settingsAccountList = <Setting>[
-  Setting(leadingSvg: 'assets/icons/settings/logout.svg', title: 'Login', visitRoute: getRouteName(LoginScreen.screenName)),
+  Setting(leadingSvg: 'assets/icons/settings/logout.svg', title: 'Login', visitRoute: getRouteName(LoginSignupScreen.screenName)),
 ];
 
 // Manage Account - Tip: doesn't use visitRoute, therefore provides subText and
