@@ -85,8 +85,8 @@ class AppsButton extends StatelessWidget {
     this.border = 0,
     this.borderRadius = 10,
     this.textIconSeperationSize = 5,
-    this.padTopBottom = 10,
-    this.padLeftRight = 10, 
+    this.padTopBottom = 6,
+    this.padLeftRight = 6, 
     this.weight = FontWeight.w400,
   });
 
