@@ -53,6 +53,7 @@ class TextMedium extends StatelessWidget {
         color: color ?? kBlack70,
         fontSize: defaultSize * 1.6,
         fontWeight: weight,
+        decoration: TextDecoration.none
       ),
     );
   }

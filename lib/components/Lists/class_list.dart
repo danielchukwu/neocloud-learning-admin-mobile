@@ -35,7 +35,7 @@ class _ClassListState extends State<ClassList> {
     if (!mounted) return;
 
     if (widget.classList == null) {
-      classService.getClasses().then((classes) {
+      classService.getClasses(context).then((classes) {
         setState(() {
           dataList = classes;
         });
