@@ -11,13 +11,21 @@ import 'package:neocloud_mobile/screens/list/list_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
 // Images
-const neocloudLogo = 'assets/images/logo-dark.png';
+// const nctFaviconBlue = 'assets/images/logos/logo-icon-blue.png';
+// const nctBannerBlack = 'assets/images/logos/logo-banner-dark.png';
+// const nctBannerWhite = 'assets/images/logos/logo-banner-light.png';
+const nctFaviconBlue = 'assets/icons/logos/favicon-blue.svg';
+const nctBannerBlueBlack = 'assets/icons/logos/banner-blueblack.svg';
+const nctBannerWhite = 'assets/icons/logos/banner-blue.svg';
 
 // Sizes (Integers and Doubles)
 var defaultSize = SizeConfig.defaultSize!;
 
 // Border
 BorderSide appsBorder = BorderSide(color: kBlack50, width: .2);
+
+// Border Radius
+BorderRadius appsBorderRadius = BorderRadius.all(Radius.circular(defaultSize));
 
 // Paddings
 double appsBodyPadding = defaultSize * 2;
