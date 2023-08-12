@@ -50,7 +50,7 @@ class _ProfileClassesState extends State<ProfileClasses> {
   }
 
   void loadData() {
-    classService.getClasses().then((classes) {
+    classService.getClasses(context).then((classes) {
       setState(() {
         classList = classes;
       });
