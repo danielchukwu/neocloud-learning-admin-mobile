@@ -35,7 +35,7 @@ class ClassScheduleService {
     """;
 
     try {
-      var result = await client.query(QueryOptions(
+      var result = await client.value.query(QueryOptions(
         document: gql(csQuery),
         variables: {'limit': limit ?? 100},
       ));

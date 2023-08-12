@@ -26,7 +26,7 @@ class UserService {
     """;
 
     try {
-      var result = await client.query(QueryOptions(
+      var result = await client.value.query(QueryOptions(
         document: gql(userQuery),
         variables: {'limit': limit, 'name': name},
       ));

@@ -47,7 +47,7 @@ class SearchService {
     """;
 
     try {
-      var result = await client.query(QueryOptions(
+      var result = await client.value.query(QueryOptions(
         document: gql(classesQuery),
         variables: {'limit': limit, 'className': name, 'userName': name},
       ));

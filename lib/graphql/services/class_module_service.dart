@@ -28,7 +28,7 @@ class ClassModuleService {
     """;
 
     try {
-      var result = await client.query(QueryOptions(
+      var result = await client.value.query(QueryOptions(
         document: gql(classModulesQuery),
         variables: {'limit': limit ?? 100, classId: classId},
       ));
