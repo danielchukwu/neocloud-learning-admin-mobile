@@ -16,11 +16,10 @@ handleErrors(BuildContext context, QueryResult<Object?> result) {
   // jwt expiration
   print('JWT EXPIRATION');
   if ('$result'.contains('jwt expired')) {
-
     showTopAlertDialog(context, text: 'jwt expired');
     return 'jwt expired';
   }
-  
+
   showTopAlertDialog(context, text: 'An error occurred!');
   return 'An error has occurred!';
 }
