@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/app_secure_storage.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
+import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/services/auth_service.dart';
@@ -20,30 +21,29 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _formkey = GlobalKey<FormState>();
   final authService = AuthService();
+  bool btnIsLoading = false;
   late String _email;
   late String _password;
 
   Future<void> login() async {
-    String? token = await authService.login(email: _email, password: _password);
-    AppSecureStorage.getToken().then((value) => {
-      print("${token} == ${value}"),
-      if (token == value) {
-        navigateToHome()
-      } else {
-        resetForm()
-      }
-    });
+    setState(() { btnIsLoading = true; });
+    String? token = await authService.login(context, email: _email, password: _password);
+    String jwtToken = await AppSecureStorage.getToken();
+    setState(() { btnIsLoading = false; });
+
+    // debugPrint("${token} == ${jwtToken}");
+    if (token == jwtToken) {
+      showTopAlertDialog(context, text: 'Login was Successful! 👍', isError: false);
+      Future.delayed(Duration(seconds: 2), () => navigateToHome() );
+    }
   }
 
   void navigateToHome() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardScreen(),));
-  }
-
-  void resetForm() {
-    setState(() {
-      _email = "";
-      _password = "";
-    });
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const DashboardScreen(),
+        ));
   }
 
   @override
@@ -69,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
           LoginInputField(
             labelText: 'Password',
             obsureText: true,
-            validate: validatePassword,
+            validate: validateRequireField,
             press: (value) {
               setState(() {
                 _password = value!;
@@ -86,7 +86,9 @@ class _LoginFormState extends State<LoginForm> {
           AppsButton(
               title: 'Login',
               bgColor: kBlueLight,
+              bgColorLoading: kBlueLight.withOpacity(.5),
               borderRadius: defaultSize,
+              isLoading: btnIsLoading,
               press: (context) {
                 if (_formkey.currentState!.validate()) {
                   _formkey.currentState!.save();
@@ -101,11 +103,14 @@ class _LoginFormState extends State<LoginForm> {
 
   Row buildForgotPasswordLink() {
     return Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            TextLink(title: 'Forgot Password?', weight: FontWeight.w500, press: (context) => debugPrint('forgot password clicked!'))
-            // TextMedium(title: 'Forgot Password?', weight: FontWeight.w500,)
-          ],
-        );
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        TextLink(
+            title: 'Forgot Password?',
+            weight: FontWeight.w500,
+            press: (context) => debugPrint('forgot password clicked!'))
+        // TextMedium(title: 'Forgot Password?', weight: FontWeight.w500,)
+      ],
+    );
   }
 }
