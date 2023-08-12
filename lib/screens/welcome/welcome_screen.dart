@@ -1,6 +1,7 @@
 // import 'package:flutter/src/widgets/framework.dart';
 // import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/texts.dart';
@@ -25,7 +26,7 @@ class WelcomeScreen extends StatelessWidget {
 
                 // Logo - neocloud logo icon
                 SizedBox(height: defaultSize * 20),
-                DisplayAssetImage(icon: neocloudLogo, size: defaultSize * 25),
+                SvgPicture.asset(nctFaviconBlue, width: 50, color: kBlueLight,),
 
                 // Button - takes us to the login page
                 SizedBox(height: defaultSize * 25),
