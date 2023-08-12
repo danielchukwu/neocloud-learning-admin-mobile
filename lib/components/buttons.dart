@@ -82,17 +82,20 @@ class AppsButton extends StatelessWidget {
     this.color = Colors.white,
     this.iconColor = Colors.white,
     this.bgColor = Colors.blueAccent,
+    this.bgColorLoading = Colors.blue,
     this.border = 0,
     this.borderRadius = 10,
     this.textIconSeperationSize = 5,
     this.padTopBottom = 6,
     this.padLeftRight = 6, 
     this.weight = FontWeight.w400,
+    this.isLoading = false,
   });
 
   final String title;
   final Color color;
   final Color bgColor;
+  final Color bgColorLoading;
   final Color iconColor;
   final IconData? icon;
   final double border;
@@ -102,27 +105,23 @@ class AppsButton extends StatelessWidget {
   final double padTopBottom;
   final double padLeftRight;
   final FontWeight weight;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => press(context),
+      onPressed: !isLoading ? () => press(context) : null,
       style: buildButtonStyle(),
       child: Container(
-        padding: EdgeInsets.symmetric(
-          vertical: padTopBottom,
-          horizontal: padLeftRight,
-        ),
+        constraints: BoxConstraints(minHeight: defaultSize * 4, maxHeight: defaultSize * 4),        
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             icon != null ? Icon(icon, color: iconColor) : SizedBox(),
             icon != null ? SizedBox(width: textIconSeperationSize) : SizedBox(),
-            TextMedium(
-              title: title,
-              color: color,
-              weight: weight,
-            ),
+            !isLoading
+              ? TextMedium(title: title, color: color, weight: weight)
+              : SizedBox(height: 23, width: 23, child: CircularProgressIndicator(color: kWhite)),
           ],
         ),
       ),
@@ -131,7 +130,7 @@ class AppsButton extends StatelessWidget {
 
   ButtonStyle buildButtonStyle() {
     return ButtonStyle(
-      backgroundColor: MaterialStatePropertyAll<Color>(bgColor),
+      backgroundColor: MaterialStatePropertyAll<Color>(!isLoading ? bgColor : bgColorLoading),
       shape: MaterialStatePropertyAll(
         RoundedRectangleBorder(
           side: border > 0
