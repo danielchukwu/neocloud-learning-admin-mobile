@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/app_secure_storage.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
-import 'package:neocloud_mobile/components/texts.dart';
+import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/services/auth_service.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
@@ -20,33 +20,32 @@ class SignupForm extends StatefulWidget {
 class SignupFormState extends State<SignupForm> {
   final _formkey = GlobalKey<FormState>();
   final authService = AuthService();
+  bool btnIsLoading = false;
   late String _name;
   late String _phone;
   late String _email;
   late String _password;
 
   Future<void> signup() async {
-    String? token = await authService.signup(email: _email, password: _password, name: _name, phone: _phone);
-    AppSecureStorage.getToken().then((value) => {
-      print("${token} == ${value}"),
-      if (token == value) {
-        navigateToHome()
-      } else {
-        resetForm()
-      }
-    });
+    setState(() { btnIsLoading = true; });
+    String? token = await authService.signup(context,
+        email: _email, password: _password, name: _name, phone: _phone);
+    String jwtToken = await AppSecureStorage.getToken();
+    setState(() { btnIsLoading = false; });
+    
+    debugPrint("${token} == ${jwtToken}");
+    if (token == jwtToken) {
+      showTopAlertDialog(context, text: 'Account Created. Logging In 👍', isError: false);
+      Future.delayed(Duration(seconds: 2), () => navigateToHome() );
+    }
   }
 
   void navigateToHome() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const DashboardScreen(),));
-  }
-  void resetForm() {
-    setState(() {
-      _name = "";
-      _phone = "";
-      _email = "";
-      _password = "";
-    });
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const DashboardScreen(),
+        ));
   }
 
   @override
@@ -102,15 +101,13 @@ class SignupFormState extends State<SignupForm> {
             },
           ),
 
-          // forgot password
-          SizedBox(height: defaultSize * 2),
-          buildForgotPasswordLink(),
-
           // Button - used for submitting form
           SizedBox(height: defaultSize * 4),
           AppsButton(
               title: 'Sign up',
               bgColor: kBlueLight,
+              bgColorLoading: kBlueLight.withOpacity(.5),
+              isLoading: btnIsLoading,
               press: (context) {
                 if (_formkey.currentState!.validate()) {
                   _formkey.currentState!.save();
@@ -121,15 +118,5 @@ class SignupFormState extends State<SignupForm> {
         ],
       ),
     );
-  }
-
-  Row buildForgotPasswordLink() {
-    return Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            TextLink(title: 'Forgot Password?', weight: FontWeight.w500, press: (context) => debugPrint('forgot password clicked!'))
-            // TextMedium(title: 'Forgot Password?', weight: FontWeight.w500,)
-          ],
-        );
   }
 }
