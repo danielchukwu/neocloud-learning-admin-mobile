@@ -30,7 +30,7 @@ class UserModel {
     avatar: user['avatar'],
     bio: user['bio'],
     phone: user['phone'],
-    role: user.containsKey('role') ? RoleModel.fromMap(role: user['role']) : null,
+    role: user.containsKey('role') && user['role'] != null ? RoleModel.fromMap(role: user['role']) : null,
   );
 }
 
