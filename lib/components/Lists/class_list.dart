@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/class_card.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/graphql/services/class_service.dart';
-import 'package:neocloud_mobile/models/Class.dart';
 
 class ClassList extends StatefulWidget {
   const ClassList({
@@ -35,7 +33,7 @@ class _ClassListState extends State<ClassList> {
     if (!mounted) return;
 
     if (widget.classList == null) {
-      classService.getClasses(context).then((classes) {
+      classService.getClasses().then((classes) {
         setState(() {
           dataList = classes;
         });
