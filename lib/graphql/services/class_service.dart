@@ -41,22 +41,27 @@ class ClassService {
       ));
 
       if (result.hasException) {
-        return handleErrors(context, result);
+        debugPrint("getClasses Status: ❌❌");
+        String error = await handleErrors(context, result);
+        debugPrint(error);
+        if (error == 'jwt expired') {
+          print('ReFetching: getClasses(context, limit: limit)⏳');
+          return await getClasses(context, limit: limit);
+        }
+        return [];
       } else {
+        debugPrint("getClasses Status: ✅");
         List? classes = result.data?['classes'];
 
-        if (classes == null) {
-          return [];
-        }
+        if (classes == null) return [];
 
-        List<ClassModel> classList =
-            classes.map((clas) => ClassModel.fromMap(aClass: clas)).toList();
-        print('Classes');
+        List<ClassModel> classList = classes.map((clas) => ClassModel.fromMap(aClass: clas)).toList();
+        debugPrint("getClasses Status: ✅✅");
         print(classList);
-
         return classList;
       }
     } catch (e) {
+      debugPrint("getClasses Status: ❌❌");
       throw Exception(e);
     }
   }
