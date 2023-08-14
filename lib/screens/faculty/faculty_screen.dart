@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
@@ -5,6 +6,7 @@ import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/models/Faculty.dart';
 import 'package:neocloud_mobile/screens/faculty/components/faculty_dashboard.dart';
 
+@RoutePage()
 class FacultyScreen extends StatefulWidget {
   const FacultyScreen({super.key, required this.faculty});
   static String screenName = 'Faculty';

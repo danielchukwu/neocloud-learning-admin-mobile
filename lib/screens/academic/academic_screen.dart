@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/Lists/class_list.dart';
 import 'package:neocloud_mobile/components/Lists/class_schedule_list.dart';
@@ -13,6 +14,7 @@ import 'package:neocloud_mobile/models/Options.dart';
 import 'package:neocloud_mobile/models/ClassWork.dart';
 import 'package:neocloud_mobile/screens/Profile/components/current-old-header.dart';
 
+@RoutePage()
 class AcademicScreen extends StatefulWidget {
   const AcademicScreen({Key? key}) : super(key: key);
   static String screenName = "Academic";

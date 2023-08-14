@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
 import 'package:neocloud_mobile/constraints.dart';
@@ -5,6 +6,7 @@ import 'package:neocloud_mobile/models/Notification.dart';
 import 'package:neocloud_mobile/models/Options.dart';
 import 'package:neocloud_mobile/screens/notifications/components/notification-card.dart';
 
+@RoutePage()
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key}) : super(key: key);
   static String screenName = "Notifications";

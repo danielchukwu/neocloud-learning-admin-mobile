@@ -1,12 +1,13 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:neocloud_mobile/app_secure_storage.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/services/auth_service.dart';
 import 'package:neocloud_mobile/screens/login_signup/components/login_form.dart';
 import 'package:neocloud_mobile/screens/login_signup/components/signup_form.dart';
 
+@RoutePage()
 class LoginSignupScreen extends StatefulWidget {
   const LoginSignupScreen({super.key});
   static String screenName = 'Login';

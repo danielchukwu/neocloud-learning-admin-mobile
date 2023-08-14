@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/Lists/class_list.dart';
 import 'package:neocloud_mobile/components/Lists/user_list.dart';
@@ -6,10 +7,9 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/graphql/services/search_service.dart';
-import 'package:neocloud_mobile/models/Class.dart';
-import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/search/components/search_filter.dart';
 
+@RoutePage()
 class SearchScreen extends StatefulWidget {
   const SearchScreen({
     super.key,

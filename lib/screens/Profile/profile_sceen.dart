@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
 import 'package:neocloud_mobile/constraints.dart';
@@ -10,6 +11,7 @@ import 'package:neocloud_mobile/screens/Profile/components/stack_cover_and_profi
 import 'package:neocloud_mobile/screens/settings/settings_screen.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
 
+@RoutePage()
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key, this.user}) : super(key: key);
   static String screenName = "Profile";
