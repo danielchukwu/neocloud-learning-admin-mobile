@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/controllers/NavItem.dart';
+import 'package:neocloud_mobile/providers/NavItem.dart';
 import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/cart/cart_screen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
