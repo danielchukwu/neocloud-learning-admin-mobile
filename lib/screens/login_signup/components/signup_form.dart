@@ -5,10 +5,13 @@ import 'package:neocloud_mobile/app_secure_storage.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/graphql/services/auth_service.dart';
+import 'package:neocloud_mobile/providers/UserProvider.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/utils/validation.dart';
+import 'package:provider/provider.dart';
 
 class SignupForm extends StatefulWidget {
   SignupForm({Key? key}) : super(key: key);
@@ -28,14 +31,14 @@ class SignupFormState extends State<SignupForm> {
 
   Future<void> signup() async {
     setState(() { btnIsLoading = true; });
-    String? token = await authService.signup(context,
+    UserModel? user = await authService.signup(context,
         email: _email, password: _password, name: _name, phone: _phone);
-    String jwtToken = await AppSecureStorage.getToken();
     setState(() { btnIsLoading = false; });
-    
-    debugPrint("${token} == ${jwtToken}");
-    if (token == jwtToken) {
-      showTopAlertDialog(context, text: 'Account Created. Logging In 👍', isError: false);
+
+    debugPrint("Logged In User: ${user?.name}");
+    if (user != null && user.name.isNotEmpty) {
+      Provider.of<UserProvider>(context, listen: false).setUser(user);
+      showTopAlertDialog(text: 'Account Created. Logging In 👍', isError: false);
       Future.delayed(Duration(seconds: 2), () => navigateToHome() );
     }
   }

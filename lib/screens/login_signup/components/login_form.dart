@@ -6,10 +6,13 @@ import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/graphql/services/auth_service.dart';
+import 'package:neocloud_mobile/providers/UserProvider.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/utils/validation.dart';
+import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
   LoginForm({Key? key}) : super(key: key);
@@ -25,15 +28,15 @@ class _LoginFormState extends State<LoginForm> {
   late String _email;
   late String _password;
 
-  Future<void> login() async {
+  Future<void> login(BuildContext context) async {
     setState(() { btnIsLoading = true; });
-    String? token = await authService.login(context, email: _email, password: _password);
-    String jwtToken = await AppSecureStorage.getToken();
+    UserModel? user = await authService.login(email: _email, password: _password);
     setState(() { btnIsLoading = false; });
 
-    debugPrint("${token} == ${jwtToken}");
-    if (token == jwtToken) {
-      showTopAlertDialog(context, text: 'Login was Successful! 👍', isError: false);
+    debugPrint("Logged In User: ${user?.name}");
+    if (user != null && user.name.isNotEmpty) {
+      Provider.of<UserProvider>(context, listen: false).setUser(user);
+      showTopAlertDialog(text: 'Login was Successful! 👍', isError: false);
       Future.delayed(Duration(seconds: 2), () => navigateToHome() );
     }
   }
@@ -92,7 +95,7 @@ class _LoginFormState extends State<LoginForm> {
               press: (context) {
                 if (_formkey.currentState!.validate()) {
                   _formkey.currentState!.save();
-                  login();
+                  login(context);
                 }
               }),
           SizedBox(height: defaultSize * 2),
