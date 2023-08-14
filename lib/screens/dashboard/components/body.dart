@@ -29,9 +29,7 @@ class Body extends StatelessWidget {
             DashboardSlider(),
 
             // Section 2
-            SizedBox(
-              height: defaultSize * 2,
-            ),
+            SizedBox(height: defaultSize * 2),
             PersonelDashboard(),
 
             // buildGrantPermission(),
@@ -66,7 +64,7 @@ class _DashboardSliderState extends State<DashboardSlider> {
               initialPage: 1,
               viewportFraction: 1,
               height: defaultSize * 30,
-              enableInfiniteScroll: false,
+              enableInfiniteScroll: true,
               onPageChanged: (index, reason) {
                 setState(() {
                   selectedIndex = index;
@@ -98,7 +96,7 @@ class _DashboardSliderState extends State<DashboardSlider> {
             height: 7,
             width: 7,
             decoration: BoxDecoration(
-              color: index == selectedIndex ? kBlack70 : kBlack50,
+              color: index == selectedIndex ? kBlueLight : kBlack.withOpacity(.2),
               borderRadius: BorderRadius.circular(defaultSize),
             ),
             margin: EdgeInsets.symmetric(horizontal: defaultSize * .5),

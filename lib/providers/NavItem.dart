@@ -19,7 +19,7 @@ class NavItem {
   });
 }
 
-class NavItems extends ChangeNotifier {
+class NavbarProvider extends ChangeNotifier {
   int _selectedIndex = 0;
 
   void changeNavIndex(int index) {
