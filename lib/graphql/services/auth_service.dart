@@ -3,14 +3,19 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:neocloud_mobile/app_secure_storage.dart';
 import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/graphql/graphql_config.dart';
+import 'package:neocloud_mobile/graphql/models/UserModel.dart';
+import 'package:neocloud_mobile/providers/UserProvider.dart';
 import 'package:neocloud_mobile/utils/error_handler.dart';
 
 class AuthService {
   static var config = GraphQLConfig();
   var client = config.client;
+  var userProvider = UserProvider();  // help store user data after login or signup
 
   Future<String> login(BuildContext context, {required String email, required String password}) async {
-    debugPrint('LOGIN REQUEST SENT......  ');
+    debugPrint('Function called: login(context, email, password) ✍️');
+    // this is done so that we don't send a token to a login endpoint, that would make no sense
+    AppSecureStorage.deleteToken();
     String loginMutation = """
       mutation Login(\$email: String, \$password: String) {
         login(email: \$email, password: \$password){
@@ -40,27 +45,25 @@ class AuthService {
       ));
 
       if (result.hasException) {
-        // return handleErrors(context, result);
-        String error = handleErrors(context, result);
-        if (error == 'jwt expired') {
-          await AppSecureStorage.deleteToken();
-          await refreshToken(context);
-          return await login(context, email: email, password: password);
-        }
-        return error;
+        debugPrint("Login Status: ❌❌");
+        return await handleErrors(context, result);
       } else {
+        debugPrint("Login Status: ✅");
         String accessToken = await _setAccessAndRefreshTokens('login', result);
+        _updateLoggedInUser('login', result);
         return accessToken;
       }
     } catch (e) {
-      print(e);
+      debugPrint("Login Status: ❌");
       showTopAlertDialog(context, text: 'Something went wrong!');
       return 'Exception caught';
     }
   }
 
   Future<String> signup(BuildContext context, {required String name, required String phone, required String email, required String password}) async {
-    debugPrint('SIGNUP REQUEST SENT......  ');
+    debugPrint('Function called: signup(context, email, password, ...) 🗽');
+    // this is done so that we don't send a token to a login endpoint, that would make no sense
+    AppSecureStorage.deleteToken();
     String signupMutation = """
       mutation Signup(\$name: String, \$email: String, \$phone: String, \$password: String) {
         signup(name: \$name, email: \$email, phone: \$phone, password: \$password) {
@@ -87,23 +90,28 @@ class AuthService {
       var result = await client.value.mutate(MutationOptions(
         document: gql(signupMutation),
         variables: { "name": name, "email": email, "phone": phone, "password": password},
-        // variables: { "name": "chukwu daniel", "email": "00danzy@gmail.com", "phone": "09031420494", "password": "Password123_" },
       ));
 
       if (result.hasException) {
-        return handleErrors(context, result);
+        debugPrint("Signup Status: ❌❌");
+        return await handleErrors(context, result);
       } else {
+        debugPrint("Signup Status: ✅");
         String accessToken = await _setAccessAndRefreshTokens('signup', result);
+        _updateLoggedInUser('signup', result);
         return accessToken;
       }
     } catch (e) {
+      debugPrint("Signup Status: ❌");
       showTopAlertDialog(context, text: 'Something went wrong!');
       return 'Exception caught';
     }
   }
 
   Future<String> refreshToken(BuildContext context) async {
-    debugPrint('SIGNUP REQUEST SENT......  ');
+    debugPrint('Function Called: refreshToken(BuildContext context) 🔃');
+    // this is done so that we don't send a token to a login endpoint, that would make no sense
+    AppSecureStorage.deleteToken();
     String signupMutation = """
       mutation RefreshToken(\$refreshToken: String) {
         refreshToken(refreshToken: \$refreshToken) {
@@ -124,7 +132,6 @@ class AuthService {
           }
         }
       }
-
     """;
 
     try {
@@ -135,26 +142,38 @@ class AuthService {
       ));
 
       if (result.hasException) {
-        return handleErrors(context, result);
+        debugPrint('Token Refreshed: ❌❌');
+        await showTopAlertDialog(context, text: 'Refresh - Something went wrong!');
+        return '';
       } else {
-        print('token refreshed successfully');
+        debugPrint('Token Refreshed: ✅');
         String accessToken = await _setAccessAndRefreshTokens('refreshToken', result);
-        print(accessToken);
+        _updateLoggedInUser('refreshToken', result);
+        debugPrint('Token Refreshed: ✅✅');
         return accessToken;
       }
     } catch (e) {
-      showTopAlertDialog(context, text: 'Something went wrong!');
+      debugPrint('Token Refreshed: ❌');
       return 'Exception caught';
     }
   }
   
+  Future<void> logout() async {
+    await AppSecureStorage.deleteToken();
+    await AppSecureStorage.deleteRefreshToken();
+    userProvider.removeUser();
+  }
+
   Future<String> _setAccessAndRefreshTokens(String key, QueryResult<Object?> result) async {
     String accessToken = result.data?[key]['access_token'];
     String refreshToken = result.data?[key]['refresh_token'];
-    debugPrint(accessToken);
     await AppSecureStorage.setToken(accessToken);
     await AppSecureStorage.setRefreshToken(refreshToken);
     return accessToken;
   }
 
+  void _updateLoggedInUser(String key, QueryResult<Object?> result) {
+    var user = UserModel.fromMap(user: result.data?[key]['user']);
+    userProvider.user = user;
+  }
 }
