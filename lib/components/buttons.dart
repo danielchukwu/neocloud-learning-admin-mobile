@@ -101,7 +101,7 @@ class AppsButton extends StatelessWidget {
   final double border;
   final double borderRadius;
   final double textIconSeperationSize;
-  final Function(BuildContext? context) press;
+  final Function(BuildContext context) press;
   final double padTopBottom;
   final double padLeftRight;
   final FontWeight weight;
