@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neocloud_mobile/app_secure_storage.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/services/auth_service.dart';
 import 'package:neocloud_mobile/screens/login_signup/components/login_form.dart';
 import 'package:neocloud_mobile/screens/login_signup/components/signup_form.dart';
 
@@ -20,9 +21,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
   @override
   void initState() {
     super.initState();
-    // remove jwt tokens
-    AppSecureStorage.deleteToken();
-    AppSecureStorage.deleteRefreshToken();
+    AuthService().logout();
   }
   @override
   Widget build(BuildContext context) {
