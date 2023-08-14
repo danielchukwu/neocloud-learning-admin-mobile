@@ -4,8 +4,10 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/models/Students.dart';
+import 'package:neocloud_mobile/providers/UserProvider.dart';
 import 'package:neocloud_mobile/size_config.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
+import 'package:provider/provider.dart';
 
 class AttendanceClassesCwDashboard extends StatelessWidget {
   const AttendanceClassesCwDashboard({super.key});
@@ -19,7 +21,7 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
         children: <Widget>[
           // Header - Hi, Goodmorning \n {users name}
           SizedBox(height: defaultSize * 2),
-          buildHeader(),
+          buildHeader(context),
 
           // Classes - count - stackedImages | classworks - count - stackedImages
           SizedBox(height: defaultSize * 3),
@@ -39,7 +41,12 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
     );
   }
 
-  Row buildHeader() {
+  Row buildHeader(BuildContext context) {
+    var user = context.watch<UserProvider>().user;
+    print(user?.id);
+    print(user?.name);
+    print(user?.bio);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -49,7 +56,7 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
           children: <Widget>[
             // Greetings
             TextSmall(
-              title: "Hi, Goodmorning",
+              title: "Hello there",
               color: kBlack50,
               weight: FontWeight.w500,
             ),
@@ -57,7 +64,7 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
             // {Name}{Role Icon} e.g Chukwu Daniel ⚡
             // TextRoleIcon(title: "Edwin Vladimir", svg: getRoleSvgFileName(roleList: users[0].role), fontSize: defaultSize * 2.2, color: kBlack80, weight: FontWeight.w600, iconSize: defaultSize * 2),
             IconText(
-              title: "Edwin Vladimir",
+              title: user?.name ?? 'null',
               color: kBlack80,
               fontWeight: FontWeight.w600,
               fontSize: defaultSize * 2.2,
