@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/controllers/NavItem.dart';
+import 'package:neocloud_mobile/providers/NavItem.dart';
 import 'package:provider/provider.dart';
 
 class AppsBottomNavBar extends StatelessWidget {
@@ -57,28 +57,4 @@ class AppsBottomNavBar extends StatelessWidget {
       ),
     );
   }
-  //   return Consumer<NavItems>(
-  //     builder: (context, navItems, child) =>
-  //         AnimatedNotchBottomBar(
-  //           color: Color(0xFFF9F9F9),
-  //           showLabel: false,
-  //           notchColor: kBlue,
-  //           onTap: (int value) {
-  //             Navigator.pushReplacement(context, MaterialPageRoute(
-  //               builder: (context) => navItems.items[value].destination,));
-  //             navItems.changeNavIndex(value);
-  //           },
-  //           pageController: PageController(
-  //               initialPage: navItems.getSelectedIndex()),
-  //           bottomBarItems: List.generate(navItems.items.length, (index) {
-  //             NavItem item = navItems.items[index];
-  //             return BottomBarItem(
-  //               activeItem: item.iconActive,
-  //               inActiveItem: item.iconInactive,
-  //               itemLabel: item.itemLabel,
-  //             );
-  //           }),
-  //         ),
-  //   );
-  // }
 }
