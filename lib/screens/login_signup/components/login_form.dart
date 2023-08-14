@@ -31,7 +31,7 @@ class _LoginFormState extends State<LoginForm> {
     String jwtToken = await AppSecureStorage.getToken();
     setState(() { btnIsLoading = false; });
 
-    // debugPrint("${token} == ${jwtToken}");
+    debugPrint("${token} == ${jwtToken}");
     if (token == jwtToken) {
       showTopAlertDialog(context, text: 'Login was Successful! 👍', isError: false);
       Future.delayed(Duration(seconds: 2), () => navigateToHome() );
