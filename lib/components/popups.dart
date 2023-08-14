@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/size_config.dart';
 
 
-showTopAlertDialog(BuildContext context, { required String text, bool isError = true}) {
+showTopAlertDialog({required String text, bool isError = true}) {
   // Animation Controller
   AnimationController controller = AnimationController(
-    vsync: Navigator.of(context)!.overlay!,
+    vsync: Navigator.of(SizeConfig.appContext!).overlay!,
     duration: Duration(milliseconds: 150),
   );
 
@@ -44,7 +45,7 @@ showTopAlertDialog(BuildContext context, { required String text, bool isError = 
     Future.delayed(Duration(milliseconds: 500), () => overlayEntry.remove());
   });
 
-  Overlay.of(context).insert(overlayEntry);
+  Overlay.of(SizeConfig.appContext!).insert(overlayEntry);
 }
 
 

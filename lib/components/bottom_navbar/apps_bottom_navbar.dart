@@ -11,7 +11,7 @@ class AppsBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<NavItems>(
+    return Consumer<NavbarProvider>(
       builder: (context, navItems, child) => Container(
         decoration: BoxDecoration(
           border: Border(
