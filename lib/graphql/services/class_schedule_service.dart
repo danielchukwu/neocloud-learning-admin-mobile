@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/graphql/graphql_config.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
+import 'package:neocloud_mobile/utils/error_handler.dart';
 
 class ClassScheduleService {
   static var config = GraphQLConfig();
@@ -41,22 +44,25 @@ class ClassScheduleService {
       ));
 
       if (result.hasException) {
-        throw Exception(result.exception);
-      } else {
-        List? classSchedule = result.data?['classSchedules'];
-
-        if (classSchedule == null) {
-          return [];
+        debugPrint("getClassSchedules Status: ❌❌");
+        String error = await handleErrors(result);
+        if (error == 'jwt expired') {
+          return await getClassSchedules(limit: limit);
         }
+        return [];
+      } else {
+        debugPrint("getClassSchedules Status: ✅");
 
+        List? classSchedule = result.data?['classSchedules'];
+        if (classSchedule == null) return [];
         List<ClassScheduleModel> csList =
             classSchedule.map((cs) => ClassScheduleModel.fromMap(cs: cs)).toList();
-        print('classSchedule');
-        print(csList);
 
         return csList;
       }
     } catch (e) {
+      debugPrint("getClassSchedules Status: ❌");
+      showTopAlertDialog(text: 'Something went wrong!');
       throw Exception(e);
     }
   }

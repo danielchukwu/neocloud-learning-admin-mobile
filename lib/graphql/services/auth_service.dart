@@ -12,7 +12,7 @@ class AuthService {
   var client = config.client;
   var userProvider = UserProvider();  // help store user data after login or signup
 
-  Future<String> login(BuildContext context, {required String email, required String password}) async {
+  Future<UserModel?> login({required String email, required String password}) async {
     debugPrint('Function called: login(context, email, password) ✍️');
     // this is done so that we don't send a token to a login endpoint, that would make no sense
     AppSecureStorage.deleteToken();
@@ -46,21 +46,20 @@ class AuthService {
 
       if (result.hasException) {
         debugPrint("Login Status: ❌❌");
-        return await handleErrors(context, result);
+        await handleErrors(result);
       } else {
         debugPrint("Login Status: ✅");
         String accessToken = await _setAccessAndRefreshTokens('login', result);
-        _updateLoggedInUser('login', result);
-        return accessToken;
+        var user = UserModel.fromMap(user: result.data?['login']['user']);
+        return user;
       }
     } catch (e) {
       debugPrint("Login Status: ❌");
-      showTopAlertDialog(context, text: 'Something went wrong!');
-      return 'Exception caught';
+      showTopAlertDialog(text: 'Something went wrong!');
     }
   }
 
-  Future<String> signup(BuildContext context, {required String name, required String phone, required String email, required String password}) async {
+  Future<UserModel?> signup(BuildContext context, {required String name, required String phone, required String email, required String password}) async {
     debugPrint('Function called: signup(context, email, password, ...) 🗽');
     // this is done so that we don't send a token to a login endpoint, that would make no sense
     AppSecureStorage.deleteToken();
@@ -89,26 +88,25 @@ class AuthService {
     try {
       var result = await client.value.mutate(MutationOptions(
         document: gql(signupMutation),
-        variables: { "name": name, "email": email, "phone": phone, "password": password},
+        variables: { "name": name.toLowerCase(), "email": email, "phone": phone, "password": password},
       ));
 
       if (result.hasException) {
         debugPrint("Signup Status: ❌❌");
-        return await handleErrors(context, result);
+        await handleErrors(result);
       } else {
         debugPrint("Signup Status: ✅");
         String accessToken = await _setAccessAndRefreshTokens('signup', result);
-        _updateLoggedInUser('signup', result);
-        return accessToken;
+        var user = UserModel.fromMap(user: result.data?['login']['user']);
+        return user;
       }
     } catch (e) {
       debugPrint("Signup Status: ❌");
-      showTopAlertDialog(context, text: 'Something went wrong!');
-      return 'Exception caught';
+      showTopAlertDialog(text: 'Something went wrong!');
     }
   }
 
-  Future<String> refreshToken(BuildContext context) async {
+  Future<UserModel?> refreshToken() async {
     debugPrint('Function Called: refreshToken(BuildContext context) 🔃');
     // this is done so that we don't send a token to a login endpoint, that would make no sense
     AppSecureStorage.deleteToken();
@@ -143,18 +141,15 @@ class AuthService {
 
       if (result.hasException) {
         debugPrint('Token Refreshed: ❌❌');
-        await showTopAlertDialog(context, text: 'Refresh - Something went wrong!');
-        return '';
+        await showTopAlertDialog(text: 'Refresh - Something went wrong!');
       } else {
         debugPrint('Token Refreshed: ✅');
         String accessToken = await _setAccessAndRefreshTokens('refreshToken', result);
-        _updateLoggedInUser('refreshToken', result);
-        debugPrint('Token Refreshed: ✅✅');
-        return accessToken;
+        var user = UserModel.fromMap(user: result.data?['login']['user']);
+        return user;
       }
     } catch (e) {
       debugPrint('Token Refreshed: ❌');
-      return 'Exception caught';
     }
   }
   
@@ -170,10 +165,5 @@ class AuthService {
     await AppSecureStorage.setToken(accessToken);
     await AppSecureStorage.setRefreshToken(refreshToken);
     return accessToken;
-  }
-
-  void _updateLoggedInUser(String key, QueryResult<Object?> result) {
-    var user = UserModel.fromMap(user: result.data?[key]['user']);
-    userProvider.user = user;
   }
 }

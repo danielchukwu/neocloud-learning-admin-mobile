@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/graphql/graphql_config.dart';
 import 'package:neocloud_mobile/graphql/models/ClassworkModel.dart';
+import 'package:neocloud_mobile/utils/error_handler.dart';
 
 class ClassworkService {
   static var config = GraphQLConfig();
@@ -47,22 +50,25 @@ class ClassworkService {
       ));
 
       if (result.hasException) {
-        throw Exception(result.exception);
-      } else {
-        List? classworks = result.data?['classworks'];
-
-        if (classworks == null) {
-          return [];
+        debugPrint("getClassworks Status: ❌❌");
+        String error = await handleErrors(result);
+        if (error == 'jwt expired') {
+          return await getClassworks(limit: limit);
         }
+        return [];
+      } else {
+        debugPrint("getClassworks Status: ✅");
 
+        List? classworks = result.data?['classworks'];
+        if (classworks == null) return [];
         List<ClassworkModel> cwList =
             classworks.map((cw) => ClassworkModel.fromMap(cw: cw)).toList();
-        print('classworks');
-        print(cwList);
 
         return cwList;
       }
     } catch (e) {
+      debugPrint("getClassworks Status: ❌");
+      showTopAlertDialog(text: 'Something went wrong!');
       throw Exception(e);
     }
   }

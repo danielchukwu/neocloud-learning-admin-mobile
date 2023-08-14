@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/graphql/graphql_config.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:neocloud_mobile/utils/error_handler.dart';
 // import 'package:graphql_flutter/graphql_flutter.dart';
 
 class FacultyService {
@@ -30,22 +33,25 @@ class FacultyService {
       ));
 
       if (result.hasException) {
-        throw Exception(result.exception);
-      } else {
-        List? faculties = result.data?['faculties'];
-
-        if (faculties == null) {
-          return [];
+        debugPrint("getFaculties Status: ❌❌");
+        String error = await handleErrors(result);
+        if (error == 'jwt expired') {
+          return await getFaculties(limit: limit);
         }
+        return [];
+      } else {
+        debugPrint("getFaculties Status: ✅");
 
+        List? faculties = result.data?['faculties'];
+        if (faculties == null) return [];
         List<FacultyModel> facList =
             faculties.map((fac) => FacultyModel.fromMap(faculty: fac)).toList();
-        print('Faculties');
-        print(facList);
 
         return facList;
       }
     } catch (e) {
+      debugPrint("getFaculties Status: ❌");
+      showTopAlertDialog(text: 'Something went wrong!');
       throw Exception(e);
     }
   }

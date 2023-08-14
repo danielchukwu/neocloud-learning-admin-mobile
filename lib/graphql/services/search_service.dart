@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/graphql/graphql_config.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
+import 'package:neocloud_mobile/utils/error_handler.dart';
 // import 'package:graphql_flutter/graphql_flutter.dart';
 
 class SearchService {
@@ -53,14 +56,19 @@ class SearchService {
       ));
 
       if (result.hasException) {
-        throw Exception(result.exception);
+        debugPrint("getUsersClasses Status: ❌❌");
+        String error = await handleErrors(result);
+        if (error == 'jwt expired') {
+          return await getUsersClasses(limit: limit, name: name);
+        }
+        return {'classes': [], 'users': []};
       } else {
+        debugPrint("getUsersClasses Status: ✅");
+
         List? classes = result.data?['classes'];
         List? users = result.data?['users'];
 
-        if (classes == null || users == null) {
-          return {'users': [], 'classes': []};
-        }
+        if (classes == null || users == null) return {'users': [], 'classes': []};
 
         List<ClassModel> classList =
             classes.map((clas) => ClassModel.fromMap(aClass: clas)).toList();
@@ -74,6 +82,8 @@ class SearchService {
         return {'users': userList, 'classes': classList};
       }
     } catch (e) {
+      debugPrint("getUsersClasses Status: ❌");
+      showTopAlertDialog(text: 'Something went wrong!');
       throw Exception(e);
     }
   }

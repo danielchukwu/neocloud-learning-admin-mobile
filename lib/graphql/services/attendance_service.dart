@@ -1,12 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/graphql/graphql_config.dart';
 import 'package:neocloud_mobile/graphql/models/AttendanceModel.dart';
+import 'package:neocloud_mobile/utils/error_handler.dart';
 
 class AttendanceService {
   static var config = GraphQLConfig();
   var client = config.client;
 
-  Future<List<AttendanceModel>> getAtendances({int? limit}) async {
+  Future<List<AttendanceModel>> getAttendances({int? limit}) async {
     String attQuery = """
       query ExampleQuerys(\$limit: Int) {
         attendances(limit: \$limit) {
@@ -34,22 +37,25 @@ class AttendanceService {
       ));
 
       if (result.hasException) {
-        throw Exception(result.exception);
-      } else {
-        List? attendances = result.data?['attendances'];
-
-        if (attendances == null) {
-          return [];
+        debugPrint("getAttendances Status: ❌❌");
+        String error = await handleErrors(result);
+        if (error == 'jwt expired') {
+          return await getAttendances(limit: limit);
         }
-
+        return [];
+      } else {
+        debugPrint("getAttendances Status: ✅");
+        
+        List? attendances = result.data?['attendances'];
+        if (attendances == null) return [];
         List<AttendanceModel> attList =
             attendances.map((cw) => AttendanceModel.fromMap(att: cw)).toList();
-        print('attendances');
-        print(attList);
 
         return attList;
       }
     } catch (e) {
+      debugPrint("getAttendances Status: ❌");
+      showTopAlertDialog(text: 'Something went wrong!');
       throw Exception(e);
     }
   }

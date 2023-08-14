@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/graphql/graphql_config.dart';
 import 'package:neocloud_mobile/graphql/models/NotificationModel.dart';
+import 'package:neocloud_mobile/utils/error_handler.dart';
 
 class NotificationService {
   static var config = GraphQLConfig();
@@ -48,22 +51,25 @@ class NotificationService {
       ));
 
       if (result.hasException) {
-        throw Exception(result.exception);
-      } else {
-        List? notifications = result.data?['notifications'];
-
-        if (notifications == null) {
-          return [];
+        debugPrint("getNotifications Status: ❌❌");
+        String error = await handleErrors(result);
+        if (error == 'jwt expired') {
+          return await getNotifications(limit: limit);
         }
+        return [];
+      } else {
+        debugPrint("getNotifications Status: ✅");
 
+        List? notifications = result.data?['notifications'];
+        if (notifications == null) return [];
         List<NotificationModel> notiList =
             notifications.map((notification) => NotificationModel.fromMap(n: notification)).toList();
-        print('notifications');
-        print(notiList);
 
         return notiList;
       }
     } catch (e) {
+      debugPrint("getNotifications Status: ❌");
+      showTopAlertDialog(text: 'Something went wrong!');
       throw Exception(e);
     }
   }

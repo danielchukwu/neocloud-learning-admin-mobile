@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/graphql/graphql_config.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -10,7 +11,7 @@ class ClassService {
   static var config = GraphQLConfig();
   var client = config.client;
 
-  Future<List<ClassModel>> getClasses(BuildContext context, {int? limit}) async {
+  Future<List<ClassModel>> getClasses({int? limit}) async {
     String classesQuery = """
       query Query(\$limit: Int, \$name: String) {
         classes(limit: \$limit, name: \$name) {
@@ -42,26 +43,23 @@ class ClassService {
 
       if (result.hasException) {
         debugPrint("getClasses Status: ❌❌");
-        String error = await handleErrors(context, result);
-        debugPrint(error);
+        String error = await handleErrors(result);
         if (error == 'jwt expired') {
-          print('ReFetching: getClasses(context, limit: limit)⏳');
-          return await getClasses(context, limit: limit);
+          return await getClasses(limit: limit);
         }
         return [];
       } else {
         debugPrint("getClasses Status: ✅");
+        
         List? classes = result.data?['classes'];
-
         if (classes == null) return [];
-
         List<ClassModel> classList = classes.map((clas) => ClassModel.fromMap(aClass: clas)).toList();
-        debugPrint("getClasses Status: ✅✅");
-        print(classList);
+
         return classList;
       }
     } catch (e) {
-      debugPrint("getClasses Status: ❌❌");
+      debugPrint("getClasses Status: ❌");
+      showTopAlertDialog(text: 'Something went wrong!');
       throw Exception(e);
     }
   }
