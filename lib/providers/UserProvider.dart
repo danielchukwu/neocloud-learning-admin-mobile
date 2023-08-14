@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 
 class UserProvider extends ChangeNotifier {
-  UserModel _user = UserModel(id: '', name: '');
+  UserModel? _user;
 
-  set user(UserModel user) {
+  void setUser(UserModel user) {
     _user = user;
-
+    print('NotifyListeners: user');
     notifyListeners();
   }
 
-  UserModel get user => _user;
+  UserModel? get user => _user;
 
-  bool userExists() => _user.name.isNotEmpty;
+  bool userExists() => _user != null;
 
-  removeUser() => _user = UserModel(id: '', name: '');
+  removeUser() {
+    _user = null;
+    notifyListeners();
+  }
 }
