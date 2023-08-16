@@ -1,21 +1,10 @@
-// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/app_secure_storage.dart';
-import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
-import 'package:neocloud_mobile/components/texts.dart';
-import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
-import 'package:neocloud_mobile/models/ProfileNavbarItem.dart';
 import 'package:neocloud_mobile/providers/UserProvider.dart';
-import 'package:neocloud_mobile/screens/Profile/components/intro_name_role_ratings.dart';
-import 'package:neocloud_mobile/screens/Profile/components/profile_students_classes_reviews_count.dart';
-import 'package:neocloud_mobile/screens/Profile/components/profile_navbar_and_content.dart';
-import 'package:neocloud_mobile/screens/Profile/components/stack_cover_and_profile_image.dart';
-import 'package:neocloud_mobile/screens/settings/settings_screen.dart';
-import 'package:neocloud_mobile/utils/utils.dart';
+import 'package:neocloud_mobile/screens/Profile/screens/general_profile.dart';
 import 'package:provider/provider.dart';
 
-// @RoutePage()
+
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({Key? key, this.user}) : super(key: key);
   static String screenName = "profile";
@@ -27,54 +16,18 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final String coverImg = 'assets/images/nct-office.jpg';
 
   @override
   Widget build(BuildContext context) {
-    if (widget.user == null) {
-      widget.user = context.watch<UserProvider>().user;
-    }
+    widget.user ??= context.watch<UserProvider>().user;
     UserModel user = widget.user!;
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          buildSliverAppBar(title: ProfileScreen.screenName, bgColor: kWhite, actionIcon1: Icons.settings, isDark: true, routeName1: getRouteName(SettingsScreen.screenName), showLeading: false),
 
-          SliverToBoxAdapter(
-            child: Column(
-              children: <Widget>[
-
-                // Stack Required Section - cover img, round bg, profile img
-                StackCoverAndProfileImage(
-                  cover: coverImg,
-                  avatar: widget.user!.avatar ?? 'null',
-                  roleSvg: getRoleSvgFileName(role: widget.user!.role?.name),
-                  containerSize: defaultSize * 14.5,
-                  coverSize: defaultSize * 13,
-                  coverOverlay: kBlack.withOpacity(.2),
-                  profileImgBorderSize: defaultSize * .3,
-                  profileImageVerticalPosition: defaultSize * 2.5,
-                ),
-
-                // User Short Intro - name, role, ratings zxz⭐
-                IntroNameRoleRatings(user: user),
-
-                // // Info Cards (Students, Courses, Reviews)
-                SizedBox(height: defaultSize * 1),
-                ProfileStudentsClassesReviewsCount(user: user),
-
-                // Profile Navbar and Profiles Content (Courses, Activity, Info)
-                SizedBox(height: defaultSize * 3),
-                ProfileNavbarAndContent(
-                    navItems: ProfileNavbarItems.items),
-
-                // SizedBox(height: defaultSize *3),
-              ],
-            ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: AppsBottomNavBar(),
-    );
+    switch (widget.user?.role?.name) {
+      case 'student':
+        return GeneralProfile(user: user,);
+      default:
+        return GeneralProfile(user: user,);
+    }
+    
   }
 }
