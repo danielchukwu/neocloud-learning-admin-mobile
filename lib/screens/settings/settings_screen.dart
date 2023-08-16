@@ -1,4 +1,4 @@
-import 'package:auto_route/annotations.dart';
+// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Settings.dart';
@@ -7,10 +7,10 @@ import 'package:neocloud_mobile/screens/settings/screens/manage_account_screen.d
 import 'package:neocloud_mobile/size_config.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
 
-@RoutePage()
+// @RoutePage()
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
-  static String screenName = "Settings";
+  static String screenName = "settings";
 
   @override
   Widget build(BuildContext context) {

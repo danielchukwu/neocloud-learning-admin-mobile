@@ -1,4 +1,4 @@
-import 'package:auto_route/annotations.dart';
+// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/ratings.dart';
@@ -13,10 +13,10 @@ import 'package:neocloud_mobile/screens/course/components/reviews.dart';
 import 'package:neocloud_mobile/size_config.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
 
-@RoutePage()
+// @RoutePage()
 class CourseScreen extends StatelessWidget {
   const CourseScreen({Key? key, required this.course}) : super(key: key);
-  static String screenName = "Course";
+  static String screenName = "course";
 
   final Course course;
 

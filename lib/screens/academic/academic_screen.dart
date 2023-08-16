@@ -1,4 +1,4 @@
-import 'package:auto_route/annotations.dart';
+// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/Lists/class_list.dart';
 import 'package:neocloud_mobile/components/Lists/class_schedule_list.dart';
@@ -7,17 +7,13 @@ import 'package:neocloud_mobile/components/Lists/faculty_list.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
 import 'package:neocloud_mobile/components/options/DisplayOptions.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/Class.dart';
-import 'package:neocloud_mobile/models/ClassSchedule.dart';
-import 'package:neocloud_mobile/models/Faculty.dart';
 import 'package:neocloud_mobile/models/Options.dart';
-import 'package:neocloud_mobile/models/ClassWork.dart';
 import 'package:neocloud_mobile/screens/Profile/components/current-old-header.dart';
 
-@RoutePage()
+// @RoutePage()
 class AcademicScreen extends StatefulWidget {
   const AcademicScreen({Key? key}) : super(key: key);
-  static String screenName = "Academic";
+  static String screenName = "academic";
 
   @override
   State<AcademicScreen> createState() => _AcademicScreenState();

@@ -1,16 +1,16 @@
-import 'package:auto_route/annotations.dart';
+// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 
-@RoutePage()
+// @RoutePage()
 class ComingSoonScreen extends StatelessWidget {
   const ComingSoonScreen({Key? key}) : super(key: key);
 
   final String lottieFile = 'assets/lottiefiles/132660-basketball.json';
-  static String screenName = 'Coming Soon';
+  static String screenName = 'comingsoon';
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class ComingSoonScreen extends StatelessWidget {
               ),
               SizedBox(height: defaultSize * 3),
               Container(
-                child: WelcomeButton(title: 'Go Back', press: Navigator.pop),
+                child: WelcomeButton(title: 'Go Back', press: () => Navigator.pop(context)),
               )
             ],
           ),
