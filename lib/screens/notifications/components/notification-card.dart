@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/Notification.dart';
+import 'package:neocloud_mobile/graphql/models/NotificationModel.dart';
+
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({
@@ -11,7 +12,7 @@ class NotificationCard extends StatelessWidget {
     required this.typeColor,
   });
 
-  final AppNotification notification;
+  final NotificationModel notification;
   final Color? typeColor;
 
   @override
@@ -39,16 +40,16 @@ class NotificationCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 // Users Full Name
-                TextLarge(title: notification.user.fullName, weight: FontWeight.w600, color: kBlack90,),
+                TextLarge(title: notification.user.name, weight: FontWeight.w600, color: kBlack90,),
           
                 // Notification Type (type - date)
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     // Class Week - Class Count
-                    TextMedium(title: notification.type, color: typeColor, weight: FontWeight.w500),
+                    TextMedium(title: notification.type.name, color: typeColor, weight: FontWeight.w500),
                     // Live or Time it's coming
-                    TextMedium(title: notification.dueDate ?? '', color: kBlack70, weight: FontWeight.w500),
+                    // TextMedium(title: notification. ?? '', color: kBlack70, weight: FontWeight.w500),
                   ],
                 ),
           
