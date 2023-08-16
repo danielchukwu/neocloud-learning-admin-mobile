@@ -1,5 +1,4 @@
 import 'package:neocloud_mobile/graphql/models/ClassInstanceModel.dart';
-import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassworkModel.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/NotificationType.dart';
@@ -9,7 +8,7 @@ import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 class NotificationModel {
   final String id;
   final String body;
-  final NotificationTypeModel notificationType;
+  final NotificationTypeModel type;
   final UserModel user;
   final ClassInstanceModel? classInstance;
   final ClassworkModel? classwork;
@@ -18,7 +17,7 @@ class NotificationModel {
 
   NotificationModel({
     required this.id,
-    required this.notificationType,
+    required this.type,
     required this.user,
     required this.body,
     this.classInstance,
@@ -29,7 +28,7 @@ class NotificationModel {
   static NotificationModel fromMap({required Map n}) => NotificationModel(
         id: n['_id'],
         body: n['body'],
-        notificationType: NotificationTypeModel.fromMap(nt: n['notificationType']),
+        type: NotificationTypeModel.fromMap(nt: n['type']),
         user: UserModel.fromMap(user: n['user']),
         classInstance: n.containsKey('classInstance') ? ClassInstanceModel.fromMap(ci: n['classInstance']) : null,
         classwork: n.containsKey('classwork') ? ClassworkModel.fromMap(cw: n['classwork']) : null,
