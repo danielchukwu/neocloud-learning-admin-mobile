@@ -1,3 +1,4 @@
+import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/RoleModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
@@ -22,6 +23,8 @@ class usersFacultiesRolesModel {
     user: UserModel(
       id: ufr['user']['_id'],
       name: ufr['user']['name'],
+      avatar: ufr['user']['avatar'] ?? defaultProfileAvatar,
+      cover: ufr['user']['cover'] ?? defaultProfileCover
     ),
     role: RoleModel(
       id: ufr['role']['_id'],
