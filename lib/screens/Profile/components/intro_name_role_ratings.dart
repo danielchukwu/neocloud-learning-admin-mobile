@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/ratings.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
@@ -23,8 +22,8 @@ class IntroNameRoleRatings extends StatelessWidget {
           TextExtraLarge(title: user.name, color: kBlack80, weight: FontWeight.w600),
 
           // User Role
-          SizedBox(height: defaultSize * .3),
-          TextMedium(title: user.role != null ? user.role!.name : 'role unassigned', color: kBlack50),
+          SizedBox(height: defaultSize * .5),
+          TextMedium(title: user.role != null ? user.role!.name : 'role unassigned', color: kBlack50)
 
           // User Ratings
           // SizedBox(height: defaultSize * .5),
