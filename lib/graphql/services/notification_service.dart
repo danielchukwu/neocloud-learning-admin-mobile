@@ -31,7 +31,7 @@ class NotificationService {
             _id
             name
           }
-          notificationType {
+          type {
             _id
             name
           }
