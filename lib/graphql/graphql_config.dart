@@ -7,7 +7,7 @@ class GraphQLConfig {
 
   static final AuthLink authLink = AuthLink(
     getToken: () async {
-      String token = await AppSecureStorage.getToken();
+      String? token = await AppSecureStorage.getToken();
       return 'Bearer $token';
     },
     headerKey: 'Authorization',

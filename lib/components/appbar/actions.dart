@@ -31,9 +31,11 @@ class actionUserButton extends StatelessWidget {
         onTap: () {
           if (routeName.length == 0 && routeWidget != null){
             // Push
-            return navigateToScreenPush(context: context, widget: routeWidget!);
+            // return navigateToScreenPush(context: context, widget: routeWidget!);
+            Navigator.push(context, MaterialPageRoute(builder: (context) => routeWidget!,));
+            return;
           }
-          navigateToScreen(context: context, routeName: routeName);
+          Navigator.pushNamed(context, routeName);
         },
         child: Container(
           color: Colors.transparent,

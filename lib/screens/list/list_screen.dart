@@ -1,8 +1,8 @@
-import 'package:auto_route/annotations.dart';
+// import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/constraints.dart';
 
-@RoutePage()
+// @RoutePage()
 class ListScreen extends StatelessWidget {
   const ListScreen({
     Key? key,

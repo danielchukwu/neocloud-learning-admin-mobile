@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 
 class GrantPermission extends StatelessWidget {
   const GrantPermission({
@@ -47,7 +48,8 @@ class GrantPermission extends StatelessWidget {
                   SizedBox(height: defaultSize * 2),
                   AppsButton(
                     title: 'Grant',
-                    press: (context) => navigateToComingSoon(context: context),
+                    // press: (context) => context.router.push(const ComingSoonRoute()),
+                    press: (_) => Navigator.push(context, MaterialPageRoute(builder: (_) => ComingSoonScreen(),)),
                     bgColor: kBlue,
                     padTopBottom: defaultSize * .5,
                     borderRadius: defaultSize * 4,

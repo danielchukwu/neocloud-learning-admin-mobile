@@ -3,6 +3,7 @@ import 'package:neocloud_mobile/components/Lists/reviews_list.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
+import 'package:neocloud_mobile/screens/list/list_screen.dart';
 
 class Reviews extends StatelessWidget {
   const Reviews({super.key, required this.reviews});
@@ -28,11 +29,7 @@ class Reviews extends StatelessWidget {
         reviews.length > 3
             ? TextLink(
                 title: "See All ${reviews.length} Reviews",
-                press: (context) => navigateToListScreen(
-                  context: context,
-                  screenName: 'Reviews',
-                  widgetList: ReviewsList(reviewsList: reviews),
-                ),
+                press: (context) => Navigator.push(context, MaterialPageRoute(builder: (_) => ListScreen(widgetList: ReviewsList(reviewsList: reviews), screenName: 'Reviews'),)),
                 color: kBlue,
                 weight: FontWeight.w600,
                 fontSize: defaultSize * 1.6,

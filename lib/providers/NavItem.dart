@@ -55,7 +55,7 @@ class NavbarProvider extends ChangeNotifier {
       itemLabel: "Notification",
       destination: NotificationScreen(),
     ),
-    const NavItem(
+    NavItem(
       svgActive: "assets/icons/navbar/user-fill.svg",
       svgInactive: "assets/icons/navbar/user-outline.svg",
       itemLabel: "Profile",

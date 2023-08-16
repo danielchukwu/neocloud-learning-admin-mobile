@@ -3,7 +3,6 @@ import 'package:neocloud_mobile/components/ratings.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
-import 'package:neocloud_mobile/models/Students.dart';
 
 class IntroNameRoleRatings extends StatelessWidget {
   const IntroNameRoleRatings({
@@ -25,7 +24,7 @@ class IntroNameRoleRatings extends StatelessWidget {
 
           // User Role
           SizedBox(height: defaultSize * .3),
-          TextMedium(title: user.role != null ? user.role!.name : 'role is null', color: kBlack50),
+          TextMedium(title: user.role != null ? user.role!.name : 'role unassigned', color: kBlack50),
 
           // User Ratings
           // SizedBox(height: defaultSize * .5),

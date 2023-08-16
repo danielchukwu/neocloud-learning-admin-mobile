@@ -1,3 +1,4 @@
+// import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/texts.dart';
@@ -39,7 +40,8 @@ class SettingsTileButton extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         if (visitRoute != null) {
-          navigateToScreen(context: context, routeName: visitRoute!);
+          // navigateToScreen(context: context, routeName: visitRoute!);
+          Navigator.pushNamed(context, visitRoute!);
         } else {
           Navigator.push(context, MaterialPageRoute(builder: (context) =>
               SettingsEditScreen(

@@ -14,13 +14,13 @@ class WelcomeButton extends StatelessWidget {
   });
 
   final String title;
-  final press;
+  final Function() press;
   final bool iconIsLeading;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => press(context),
+      onPressed: press,
       style: buildButtonStyle(),
       child: Container(
         // width: defaultSize * 22,

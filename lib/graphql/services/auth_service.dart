@@ -133,7 +133,7 @@ class AuthService {
     """;
 
     try {
-      String rToken = await AppSecureStorage.getRefreshToken();
+      String? rToken = await AppSecureStorage.getRefreshToken();
       var result = await client.value.mutate(MutationOptions(
         document: gql(signupMutation),
         variables: {'refreshToken': rToken},

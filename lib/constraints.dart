@@ -6,8 +6,6 @@ import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
-import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
-import 'package:neocloud_mobile/screens/list/list_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
 // Images
@@ -15,7 +13,7 @@ import 'package:neocloud_mobile/size_config.dart';
 // const nctBannerBlack = 'assets/images/logos/logo-banner-dark.png';
 // const nctBannerWhite = 'assets/images/logos/logo-banner-light.png';
 const nctFaviconBlue = 'assets/icons/logos/favicon-blue.svg';
-const nctBannerBlueBlack = 'assets/icons/logos/banner-blueblack.svg';
+const nctBannerBlueBlack = 'assets/icons/logos/banner-blue-black.svg';
 const nctBannerWhite = 'assets/icons/logos/banner-blue.svg';
 
 // Sizes (Integers and Doubles)
@@ -84,42 +82,32 @@ TextStyle getAppsTextStyle({
   );
 }
 
-// - Navigators
-void navigateToComingSoon({BuildContext? context}) {
-  Navigator.push(
-    context!,
-    MaterialPageRoute(
-      builder: (context) => const ComingSoonScreen(),
-    ),
-  );
-}
+// void navigateToScreen(
+//     {required BuildContext context, required String routeName}) {
+//   Navigator.pushNamed(context, routeName);
+// }
 
-void navigateToScreen(
-    {required BuildContext context, required String routeName}) {
-  Navigator.pushNamed(context, routeName);
-}
+// void navigateToScreenPush(
+//     {required BuildContext context, required Widget widget}) {
+//   Navigator.push(
+//       context,
+//       MaterialPageRoute(
+//         builder: (_) => widget,
+//       ));
+// }
 
-void navigateToScreenPush(
-    {required BuildContext context, required Widget widget}) {
-  Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => widget,
-      ));
-}
-
-void navigateToListScreen(
-    {required BuildContext context,
-    required String screenName,
-    required Widget widgetList}) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) =>
-          ListScreen(widgetList: widgetList, screenName: screenName),
-    ),
-  );
-}
+// void navigateToListScreen(
+//     {required BuildContext context,
+//     required String screenName,
+//     required Widget widgetList}) {
+//   Navigator.push(
+//     context,
+//     MaterialPageRoute(
+//       builder: (context) =>
+//           ListScreen(widgetList: widgetList, screenName: screenName),
+//     ),
+//   );
+// }
 
 // - Build Widgets
 PreferredSize buildAppBar({
