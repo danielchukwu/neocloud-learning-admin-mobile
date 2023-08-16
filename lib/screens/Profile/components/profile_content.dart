@@ -110,7 +110,7 @@ class ProfileAbout extends StatelessWidget {
               user.role.length,
               (index) => IconText(
                 title: user.role[index],
-                svg: getRoleSvgFileName(roleList: [user.role[index]]),
+                svg: getRoleSvgFileName(role: user.role[index]),
                 iconIsLeft: true,
               ),
             ),

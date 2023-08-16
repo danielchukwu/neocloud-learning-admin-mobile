@@ -68,7 +68,7 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
               color: kBlack80,
               fontWeight: FontWeight.w600,
               fontSize: defaultSize * 2.2,
-              svg: getRoleSvgFileName(roleList: users[0].role),
+              svg: getRoleSvgFileName(role: users[0].role[0]),
               iconSize: defaultSize * 2,
             ),
           ],

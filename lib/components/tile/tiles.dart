@@ -163,7 +163,7 @@ class UserActivityTile extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 fontSize: defaultSize * 1.6,
                 iconIsLeft: false,
-                svg: getRoleSvgFileName(roleList:[user.role!.name]),
+                svg: getRoleSvgFileName(role: user.role?.name),
                 iconSize: 16,
               ),
 
