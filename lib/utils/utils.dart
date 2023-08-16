@@ -129,16 +129,23 @@ Widget buildStackedClassImgs(
 }
 
 // Get Role Icon Filename
-String getRoleSvgFileName({required List<String> roleList}) {
+String getRoleSvgFileName({required String? role}) {
   String svg = "assets/icons/roles/";
-  if (roleList.contains("SuperAdmin")) {
-    svg += "superadmin.svg";
-  } else if (roleList.contains("Admin")) {
-    svg += "admin.svg";
-  } else if (roleList.contains("Educator")) {
-    svg += "educator.svg";
-  } else if (roleList.contains("Student")) {
-    svg += "student.svg";
+  switch (role) {
+    case 'SuperAdmin':
+      svg += "superadmin.svg";
+      break;
+    case 'Admin':
+      svg += "admin.svg";
+      break;
+    case 'Educator':
+      svg += "educator.svg";
+      break;
+    case 'Student':
+      svg += "student.svg";
+      break;
+    default:
+      svg += 'role is null';
   }
 
   return svg;
