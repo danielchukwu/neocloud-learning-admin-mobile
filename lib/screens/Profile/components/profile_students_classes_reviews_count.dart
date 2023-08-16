@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/Lists/class_list.dart';
-import 'package:neocloud_mobile/components/Lists/reviews_list.dart';
 import 'package:neocloud_mobile/components/Lists/user_list.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
-import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/screens/list/list_screen.dart';
 
 class ProfileStudentsClassesReviewsCount extends StatelessWidget {
@@ -28,19 +26,10 @@ class ProfileStudentsClassesReviewsCount extends StatelessWidget {
       },
       {
         'title': 'Classes',
-        'icon': Icons.video_library,
+        'icon': Icons.menu,
         'count': 2,
         'widget': ClassList(showClassAvatar: true),
         'padding': false
-      },
-      {
-        'title': 'Reviews',
-        'icon': Icons.reviews_sharp,
-        'count': 33,
-        'widget': ReviewsList(
-          reviewsList: reviewsList,
-        ),
-        'padding': true
       },
     ];
 
