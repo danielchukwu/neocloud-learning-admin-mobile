@@ -1,12 +1,13 @@
 // : (){} "" <> ? _ ! *
+import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/RoleModel.dart';
 
 class UserModel {
   final String id;
   final String name;
+  final String cover;
+  final String avatar;
   final String? email;
-  final String? cover;
-  final String? avatar;
   final String? bio;
   final String? phone;
   final RoleModel? role;
@@ -14,9 +15,9 @@ class UserModel {
   UserModel({
     required this.id,
     required this.name,
+    required this.cover,
+    required this.avatar,
     this.email,
-    this.cover,
-    this.avatar,
     this.bio,
     this.phone,
     this.role,
@@ -26,8 +27,8 @@ class UserModel {
     id: user['_id'],
     name: user['name'],
     email: user['email'],
-    cover: user['cover'],
-    avatar: user['avatar'],
+    cover: user['cover'] ?? defaultProfileCover,
+    avatar: user['avatar'] ?? defaultProfileAvatar,
     bio: user['bio'],
     phone: user['phone'],
     role: user.containsKey('role') && user['role'] != null ? RoleModel.fromMap(role: user['role']) : null,
