@@ -1,7 +1,6 @@
 // ignore_for_file: unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/app_secure_storage.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
@@ -47,6 +46,9 @@ class _LoginFormState extends State<LoginForm> {
         MaterialPageRoute(
           builder: (context) => const DashboardScreen(),
         ));
+    String dashboardLink = DashboardScreen.screenName.toLowerCase();
+    print(dashboardLink);
+    Navigator.pushNamed(context, '/$dashboardLink');
   }
 
   @override
