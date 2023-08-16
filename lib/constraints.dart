@@ -15,6 +15,10 @@ import 'package:neocloud_mobile/size_config.dart';
 const nctFaviconBlue = 'assets/icons/logos/favicon-blue.svg';
 const nctBannerBlueBlack = 'assets/icons/logos/banner-blue-black.svg';
 const nctBannerWhite = 'assets/icons/logos/banner-blue.svg';
+// Profile
+const defaultProfileCover = 'assets/images/nct-office.jpg';
+const defaultProfileAvatar = 'assets/avatars/coffee-avatar.png';
+
 
 // Sizes (Integers and Doubles)
 var defaultSize = SizeConfig.defaultSize!;
