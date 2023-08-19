@@ -29,7 +29,7 @@ class GeneralProfile extends StatelessWidget {
                 // Stack Required Section - cover img, round bg, profile img
                 StackCoverAndProfileImage(
                   cover: defaultProfileCover,
-                  avatar: user.avatar ?? defaultProfileAvatar,
+                  avatar: user.avatar,
                   roleSvg: getRoleSvgFileName(role: user.role?.name),
                   containerSize: defaultSize * 14.5,
                   coverSize: defaultSize * 13,
