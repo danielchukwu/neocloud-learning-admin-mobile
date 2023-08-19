@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:neocloud_mobile/components/stacks.dart';
-import 'package:neocloud_mobile/components/texts.dart';
-import 'package:neocloud_mobile/constraints.dart';
+// import 'package:neocloud_mobile/components/texts.dart';
+// import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/models/Students.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 // replaces all the " " space in a string with an underscore "_" and
 // returns a lowercase version of the new string and then prepends a forward
@@ -149,4 +150,12 @@ String getRoleSvgFileName({required String? role}) {
   }
 
   return svg;
+}
+
+DateTime convertToDateTime(int date) {
+  return DateTime.fromMillisecondsSinceEpoch(date);
+}
+
+dynamic getTimeAgo(DateTime dateTime) {
+  return timeago.format(dateTime, locale: 'en_short');
 }
