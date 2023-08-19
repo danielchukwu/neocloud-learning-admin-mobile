@@ -13,7 +13,7 @@ class NotificationList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(
-          dataList!.length,
+          dataList.length,
           (index) => NotificationCard(
               notification: dataList[index], typeColor: kBlack70)),
     );
