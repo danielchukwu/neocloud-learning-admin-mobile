@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/class_schedule_card.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/graphql/services/class_schedule_service.dart';
-import 'package:neocloud_mobile/models/ClassSchedule.dart';
+
+import '../widgets.dart';
 
 class ClassSchedulesList extends StatefulWidget {
-  const ClassSchedulesList({super.key, this.classScheduleList});
+  const ClassSchedulesList({super.key, this.classScheduleList, this.spinnerScreeMaxHeight});
 
   final List<ClassScheduleModel>? classScheduleList;
+  final double? spinnerScreeMaxHeight;
 
   @override
   State<ClassSchedulesList> createState() => _ClassSchedulesListState();
@@ -38,9 +40,9 @@ class _ClassSchedulesListState extends State<ClassSchedulesList> {
   @override
   Widget build(BuildContext context) {
     return dataList == null
-        ? Center(child: CircularProgressIndicator())
+        ? spinnerScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
         : dataList!.isEmpty
-            ? Center(child: Text('No Class Schedules Found'))
+            ? nothingWasFoundScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
             : Column(
                 children: List.generate(
                   dataList!.length,
