@@ -7,6 +7,9 @@ import 'package:neocloud_mobile/graphql/services/notification_service.dart';
 import 'package:neocloud_mobile/models/Options.dart';
 import 'package:neocloud_mobile/screens/notifications/components/notification_list.dart';
 
+import '../../components/widgets.dart';
+import '../../size_config.dart';
+
 // @RoutePage()
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key}) : super(key: key);
@@ -18,7 +21,7 @@ class NotificationScreen extends StatefulWidget {
 
 class _NotificationScreenState extends State<NotificationScreen> {
   var notiService = NotificationService();
-  List<NotificationModel>? dataList = [];
+  List<NotificationModel>? dataList;
 
   // final List<AppNotification> notifications = notificationsList;
   // final notificationTypeColors = {'Classwork': kGreen, 'Classwork Score': kGreen, 'Submitted Classwork': kGreen, 'Announcement': kOrange, 'Missed': kRed};
@@ -54,9 +57,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
         // App Body
         SliverToBoxAdapter(
           child: dataList == null
-              ? Center(child: CircularProgressIndicator())
+              ? spinnerScreen(screenMaxHeight: SizeConfig.screenHeight! / 1.3)
               : dataList!.isEmpty
-                  ? Center(child: Text('No Classes Found'))
+                  ? nothingWasFoundScreen()
                   : NotificationList(dataList: dataList!),
         ),
       ]),
