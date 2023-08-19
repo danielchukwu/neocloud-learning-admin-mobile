@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/class_card.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/graphql/services/class_service.dart';
+import 'package:neocloud_mobile/components/widgets.dart';
 
 class ClassList extends StatefulWidget {
   const ClassList({
@@ -9,11 +10,13 @@ class ClassList extends StatefulWidget {
     this.classList,
     this.showClassAvatar = false,
     this.bodySeparationSize = 15,
+    this.spinnerScreeMaxHeight,
   }) : super(key: key);
 
   final List<ClassModel>? classList;
   final bool showClassAvatar;
   final double bodySeparationSize;
+  final double? spinnerScreeMaxHeight;
 
   @override
   State<ClassList> createState() => _ClassListState();
@@ -38,7 +41,7 @@ class _ClassListState extends State<ClassList> {
           dataList = classes;
         });
       });
-    } else { 
+    } else {
       dataList = widget.classList;
     }
   }
@@ -46,13 +49,12 @@ class _ClassListState extends State<ClassList> {
   @override
   Widget build(BuildContext context) {
     return dataList == null
-        ? Center(child: CircularProgressIndicator())
+        ? spinnerScreen()
         : dataList!.isEmpty
-            ? Center(child: Text('No Classes Found'))
+            ? nothingWasFoundScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
             : Column(
                 children: List.generate(
                   dataList!.length,
-                  // (index) => ListTile(title: Text('It worked'),),
                   (index) => ClassCard(
                     clas: dataList![index],
                     showClassAvatar: widget.showClassAvatar,
@@ -61,4 +63,6 @@ class _ClassListState extends State<ClassList> {
                 ),
               );
   }
+
+  
 }
