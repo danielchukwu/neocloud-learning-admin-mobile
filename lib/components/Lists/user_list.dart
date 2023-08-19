@@ -4,13 +4,17 @@ import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/graphql/services/user_service.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 
+import '../widgets.dart';
+
 class UserList extends StatefulWidget {
   const UserList({
     super.key,
     this.usersList,
+    this.spinnerScreeMaxHeight
   });
 
   final List<UserModel>? usersList;
+  final double? spinnerScreeMaxHeight;
 
   @override
   State<UserList> createState() => _UserListState();
@@ -41,9 +45,9 @@ class _UserListState extends State<UserList> {
     if (widget.usersList != null) { dataList = widget.usersList; }
     
     return dataList == null
-        ? Center(child: CircularProgressIndicator())
+        ? spinnerScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
         : dataList!.isEmpty
-            ? Center(child: Text('No Classes Found'))
+            ? nothingWasFoundScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: List.generate(
