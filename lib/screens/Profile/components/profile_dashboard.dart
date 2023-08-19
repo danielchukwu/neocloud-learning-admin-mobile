@@ -3,9 +3,9 @@ import 'package:neocloud_mobile/components/Lists/class_schedule_list.dart';
 import 'package:neocloud_mobile/components/Lists/class_works_list.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/models/ClassSchedule.dart';
-import 'package:neocloud_mobile/models/ClassWork.dart';
 import 'package:neocloud_mobile/screens/Profile/components/current-old-header.dart';
+
+import '../../../size_config.dart';
 
 class ProfileDashboard extends StatefulWidget {
   const ProfileDashboard({
@@ -39,16 +39,12 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
 
           // List
           selectedIndex == 0
-              ? ClassSchedulesList()
+              ? ClassSchedulesList(spinnerScreeMaxHeight: SizeConfig.screenHeight! / 3.5,)
               : SizedBox(),
 
           selectedIndex == 1
-              ? ClassworksList()
+              ? ClassworksList(spinnerScreeMaxHeight: SizeConfig.screenHeight! / 3.5,)
               : SizedBox(),
-
-          selectedIndex == 2
-            ? ClassworksList()
-            : SizedBox(),
         ],
       ),
     );
