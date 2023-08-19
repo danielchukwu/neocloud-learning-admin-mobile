@@ -3,9 +3,10 @@ import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/NotificationModel.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 
-class NotificationCard extends StatelessWidget {
+class NotificationCard extends StatefulWidget {
   const NotificationCard({
     super.key,
     required this.notification,
@@ -16,14 +17,41 @@ class NotificationCard extends StatelessWidget {
   final Color? typeColor;
 
   @override
+  State<NotificationCard> createState() => _NotificationCardState();
+}
+
+class _NotificationCardState extends State<NotificationCard> {
+  Color _containerColor = kBlueLight.withOpacity(.3);
+  final _animationDuration = const Duration(seconds: 2);
+
+  void _startAnimation(bool seen) {
+    // Perform animation if notification have not been seen by user
+    if (seen == false) {
+      Future.delayed(const Duration(milliseconds: 1000), () {
+        setState(() {
+          _containerColor = Colors.transparent;
+        });
+      });
+    }
+  }
+
+  @override
+  void initState () {
+    super.initState();
+    _startAnimation(widget.notification.seen);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: defaultSize * 2, horizontal: defaultSize * 1.5),
+    var notification = widget.notification;
+    
+    return AnimatedContainer(
+      duration: _animationDuration,
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: kBlack50, width: .2)
-        )
+        color: notification.seen ? Colors.transparent : _containerColor,
+        border: Border(bottom: BorderSide(color: kBlack50, width: .2))
       ),
+      padding: EdgeInsets.symmetric(vertical: defaultSize * 2, horizontal: defaultSize * 1.5),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -42,20 +70,22 @@ class NotificationCard extends StatelessWidget {
                 // Users Full Name
                 TextLarge(title: notification.user.name, weight: FontWeight.w600, color: kBlack90,),
           
-                // Notification Type (type - date)
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    // Class Week - Class Count
-                    TextMedium(title: notification.type.name, color: typeColor, weight: FontWeight.w500),
-                    // Live or Time it's coming
-                    // TextMedium(title: notification. ?? '', color: kBlack70, weight: FontWeight.w500),
-                  ],
-                ),
+                // Notification Type
+                // SizedBox(height: defaultSize * .2),
+                TextMedium(title: notification.type.name, color: widget.typeColor, weight: FontWeight.w500),
           
                 // Notification Body
-                SizedBox(height: defaultSize),
-                TextMedium(title: notification.body, color: kBlack70),
+                SizedBox(height: defaultSize * .5),
+                // TextMedium(title: notification.body + '. ${getTimeAgo(notification.createdAt)}', color: kBlack70),
+                Text.rich(
+                  TextSpan(
+                    style: getAppsTextStyle(color: kBlack70, fontWeight: FontWeight.w400),
+                    children: [
+                      TextSpan(text: notification.body),
+                      TextSpan(text: '  ${getTimeAgo(notification.createdAt)}', style: getAppsTextStyle(color: kBlack50, fontWeight: FontWeight.w400, fontSize: 14))
+                    ]
+                  )
+                )
           
               ],
             ),
@@ -64,4 +94,5 @@ class NotificationCard extends StatelessWidget {
       ),
     );
   }
+  
 }
