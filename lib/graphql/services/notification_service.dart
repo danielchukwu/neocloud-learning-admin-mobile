@@ -15,6 +15,7 @@ class NotificationService {
         notifications(limit: \$limit) {
           _id
           body
+          seen
           classInstance {
             _id
             isCompleted
@@ -40,6 +41,7 @@ class NotificationService {
             avatar
             name
           }
+          createdAt
         }
       }
     """;
@@ -62,8 +64,18 @@ class NotificationService {
 
         List? notifications = result.data?['notifications'];
         if (notifications == null) return [];
+        debugPrint('Notifications: $notifications');
+
+        // this helps us set all notifications seen to true only 
+        // if the notifications result was fetched from cache
+        // which would mean that it had already been fetched and seen 
+        // before by the user before it was cached, so therefore if user fetches 
+        // it again but this time from cache, all the notifications should be marked as seen = true
+        bool? seen = result.source == QueryResultSource.cache ? true : null;
+        debugPrint('RESULTS SOURCE: ${result.source}');
         List<NotificationModel> notiList =
-            notifications.map((notification) => NotificationModel.fromMap(n: notification)).toList();
+            notifications.map((notification) => NotificationModel.fromMap(n: notification, seen: seen)).toList();
+        debugPrint('NotiList: $notiList');
 
         return notiList;
       }
