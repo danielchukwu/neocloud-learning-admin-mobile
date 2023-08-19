@@ -3,13 +3,20 @@ import 'package:neocloud_mobile/components/cards/class_works_card.dart';
 import 'package:neocloud_mobile/graphql/models/ClassworkModel.dart';
 import 'package:neocloud_mobile/graphql/services/classwork_service.dart';
 
+import '../widgets.dart';
+
 class ClassworksList extends StatefulWidget {
-  const ClassworksList(
-      {Key? key, this.classworkList, this.showFeedback = false})
-      : super(key: key);
+  const ClassworksList({
+    Key? key,
+    this.classworkList,
+    this.showFeedback = false,
+    this.spinnerScreeMaxHeight
+  }) : super(key: key);
 
   final List<ClassworkModel>? classworkList;
   final bool showFeedback;
+  final double? spinnerScreeMaxHeight;
+
   @override
   State<ClassworksList> createState() => _ClassworksListState();
 }
@@ -26,10 +33,12 @@ class _ClassworksListState extends State<ClassworksList> {
 
   void loadData() {
     if (!mounted) return;
-    
-    if (widget.classworkList == null){
+
+    if (widget.classworkList == null) {
       classworkService.getClassworks().then((classes) {
-        setState(() { dataList = classes; });
+        setState(() {
+          dataList = classes;
+        });
       });
     } else {
       dataList = widget.classworkList;
@@ -38,20 +47,19 @@ class _ClassworksListState extends State<ClassworksList> {
 
   @override
   Widget build(BuildContext context) {
-    
     return dataList == null
-        ? Center(child: CircularProgressIndicator())
+        ? spinnerScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
         : dataList!.isEmpty
-            ? Center(child: Text('No Classes Found'))
+            ? nothingWasFoundScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
             : Column(
-      children: List.generate(
-        dataList!.length,
-        (index) => ClassWorkCard(
-          classwork: dataList![index],
-          enableGestureDecorator: true,
-          showFeedback: false,
-        ),
-      ),
-    );
+                children: List.generate(
+                  dataList!.length,
+                  (index) => ClassWorkCard(
+                    classwork: dataList![index],
+                    enableGestureDecorator: true,
+                    showFeedback: false,
+                  ),
+                ),
+              );
   }
 }
