@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:neocloud_mobile/auth/auth_guard.dart';
 import 'package:neocloud_mobile/providers/NavItem.dart';
 import 'package:neocloud_mobile/providers/UserProvider.dart';
@@ -20,8 +21,10 @@ import 'package:neocloud_mobile/screens/splash/splash_screen.dart';
 import 'package:neocloud_mobile/screens/welcome/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  // runApp(const MyApp());
+void main() async {
+  // This helps us in caching our flutter_graphql fetched data
+  // await initHiveForFlutter();
+  
   runApp(
     MultiProvider(
       providers: [
