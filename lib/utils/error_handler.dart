@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:neocloud_mobile/app_secure_storage.dart';
-import 'package:neocloud_mobile/components/popups.dart';
+import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/graphql/services/auth_service.dart';
 
 handleErrors(QueryResult<Object?> result) async {

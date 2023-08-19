@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:neocloud_mobile/components/popups.dart';
+import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/graphql/graphql_config.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';

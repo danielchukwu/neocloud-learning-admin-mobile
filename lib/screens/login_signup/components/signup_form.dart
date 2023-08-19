@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/app_secure_storage.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
-import 'package:neocloud_mobile/components/popups.dart';
+import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/graphql/services/auth_service.dart';

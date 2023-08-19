@@ -46,8 +46,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'NCT Admin',
       theme: buildTheme(),
-      initialRoute: '/' + WelcomeScreen.screenName,
-      navigatorObservers: [AuthGuardObserver()],
+      initialRoute: '/' + DashboardScreen.screenName,
+      // navigatorObservers: [AuthGuardObserver()],  // Middleware observer
       routes: {
         '/': (context) => const SplashScreen(),
         '/auth': (context) => LoginSignupScreen(),

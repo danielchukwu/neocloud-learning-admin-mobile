@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
-import 'package:neocloud_mobile/components/popups.dart';
+import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
