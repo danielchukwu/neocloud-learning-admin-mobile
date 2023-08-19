@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/faculty_card.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/services/faculty_service.dart';
-// import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Faculty.dart';
 
+import '../widgets.dart';
+
 class FacultyList extends StatefulWidget {
-  const FacultyList({Key? key, this.facultyList}) : super(key: key);
+  const FacultyList({Key? key, this.facultyList, this.spinnerScreeMaxHeight}) : super(key: key);
 
   final List<FacultyModel>? facultyList;
+  final double? spinnerScreeMaxHeight;
 
   @override
   State<FacultyList> createState() => _FacultyListState();
@@ -47,9 +49,9 @@ class _FacultyListState extends State<FacultyList> {
     //     (index) => FacultyCard(faculty: facultiesList[index])),
     // );
     return dataList == null
-        ? Center(child: CircularProgressIndicator())
+        ? spinnerScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
         : dataList!.isEmpty
-            ? Center(child: Text('No Faculties Found'))
+            ? nothingWasFoundScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
             : Column(
                 children: List.generate(
                   facultiesList.length,
