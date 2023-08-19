@@ -3,7 +3,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:neocloud_mobile/app_secure_storage.dart';
 
 class GraphQLConfig {
-  static HttpLink httpLink = HttpLink('https://neocloud-school-portal-bk.onrender.com/graphql');
+  static HttpLink _httpLink = HttpLink('https://neocloud-school-portal-bk.onrender.com/graphql');
 
   static final AuthLink authLink = AuthLink(
     getToken: () async {
@@ -13,12 +13,13 @@ class GraphQLConfig {
     headerKey: 'Authorization',
   );
 
-  static final Link link = authLink.concat(httpLink);
+  static final Link link = authLink.concat(_httpLink);
   
   
   // GraphQLClient client = GraphQLClient(cache: GraphQLCache(), link: link);
   final ValueNotifier<GraphQLClient> client = ValueNotifier(
     GraphQLClient(
+      // cache: GraphQLCache(store: HiveStore()),
       cache: GraphQLCache(),
       link: link,
     ),
