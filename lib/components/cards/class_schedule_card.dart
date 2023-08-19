@@ -24,9 +24,12 @@ class ClassScheduleCard extends StatelessWidget {
         children: <Widget>[
           // Educator {Avatar - Name}
           SizedBox(height: defaultSize * 2),
+          // TODO: use actual educators when a form that connects everything has been used to connect things up
           buildAvatarAndName(
-            avatar: 'classSchedule.classModule.avatar',
-            name: classSchedule.classModule!.clas!.educators![0].name,
+            // avatar: classwork.clas!.educators![0].avatar,
+            // name: classwork.clas!.educators![0].name,
+            avatar: defaultProfileAvatar,
+            name: 'John Default',
             fontSize: defaultSize * 1.6,
             weight: FontWeight.w600,
           ),
