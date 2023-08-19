@@ -4,10 +4,11 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/graphql/services/class_service.dart';
-import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_dashboard.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
+
+import '../../../components/widgets.dart';
 
 class ProfileContent extends StatelessWidget {
   const ProfileContent({Key? key, required this.type}) : super(key: key);
@@ -59,9 +60,9 @@ class _ProfileClassesState extends State<ProfileClasses> {
   @override
   Widget build(BuildContext context) {
     return classList == null
-        ? Center(child: CircularProgressIndicator())
+        ? spinnerScreen()
         : classList!.isEmpty
-            ? Center(child: Text('No Classes Found'))
+            ? nothingWasFoundScreen()
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: List.generate(
