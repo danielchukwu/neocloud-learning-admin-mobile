@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:neocloud_mobile/components/cards/class_academic_card.dart';
 // import 'package:neocloud_mobile/components/cards/components/card_sections.dart';
 import 'package:neocloud_mobile/components/cards/components/text_big_small.dart';
-import 'package:neocloud_mobile/components/tablets.dart';
+import 'package:neocloud_mobile/components/cards/components/tablets.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/images.dart';
-import 'package:neocloud_mobile/components/tablets.dart';
+import 'package:neocloud_mobile/components/cards/components/tablets.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
