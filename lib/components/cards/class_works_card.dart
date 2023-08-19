@@ -175,9 +175,12 @@ class TheClassworkCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: defaultSize),
+          // TODO: use actual educators when a form that connects everything has been used to connect things up
           buildAvatarAndName(
-              avatar: classwork.clas!.educators![0].avatar ?? '',
-              name: classwork.clas!.educators![0].name,
+              // avatar: classwork.clas!.educators![0].avatar,
+              // name: classwork.clas!.educators![0].name,
+              avatar: defaultProfileAvatar,
+              name: 'John Default',
               fontSize: defaultSize * 1.6,
               weight: FontWeight.w600),
 
@@ -210,6 +213,7 @@ class TheClassworkCard extends StatelessWidget {
               ),
             ],
           ),
+          
         ],
       ),
     );
