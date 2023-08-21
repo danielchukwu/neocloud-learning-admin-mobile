@@ -10,6 +10,8 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Options.dart';
 import 'package:neocloud_mobile/screens/Profile/components/current-old-header.dart';
 
+import '../../components/popups/popups.dart';
+
 // @RoutePage()
 class AcademicScreen extends StatefulWidget {
   const AcademicScreen({Key? key}) : super(key: key);
@@ -100,7 +102,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
       bottomNavigationBar: const AppsBottomNavBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // show
+          showCreateFacultyScreen();
         },
         backgroundColor: kBlue,
         child: Icon(Icons.add, color: kWhite),
