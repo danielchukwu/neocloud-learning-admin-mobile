@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neocloud_mobile/components/cards/components/label_text.dart';
-import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/utils/validation.dart';
 
@@ -216,5 +214,70 @@ class _AppsTextFieldState extends State<AppsTextField> {
         hideCancel = true;
       });
     }
+  }
+}
+
+
+class FormInputField extends StatelessWidget {
+  const FormInputField({
+    super.key,
+    this.hintText = 'Enter Something',
+    this.fontSize = 16, 
+    this.fontWeight = FontWeight.w400,
+    required this.validator,
+    required this.press,
+  });
+
+  final String hintText;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final String? Function(String? value) validator;
+  final Function(String? value) press;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      style: getAppsTextStyle(fontSize: fontSize, color: Colors.black87, fontWeight: fontWeight),
+      decoration: InputDecoration(
+        hintText: hintText,
+        contentPadding: EdgeInsets.zero,
+        hintStyle: getAppsTextStyle(fontSize: fontSize, color: Colors.black38),
+        border: const OutlineInputBorder(borderSide: BorderSide.none)
+      ),
+      validator: validator,
+      onSaved: press,
+    );
+  }
+}
+
+class FormTextarea extends StatelessWidget {
+  const FormTextarea({
+    super.key,
+    this.hintText = 'Textarea', 
+    this.maxLines = 10,
+    required this.validator,
+    required this.press,
+  });
+
+  final String hintText;
+  final int maxLines;
+  final String? Function(String? value) validator;
+  final Function(String? value) press;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      minLines: 1,
+      maxLines: maxLines,
+      style: getAppsTextStyle(color: Colors.black87),
+      decoration: InputDecoration(
+        hintText: hintText,
+        contentPadding: EdgeInsets.symmetric(vertical: defaultSize * 1.5),
+        hintStyle: getAppsTextStyle(color: kBlack70),
+        border: const OutlineInputBorder(borderSide: BorderSide.none)
+      ),
+      validator: validator,
+      onSaved: press,
+    );
   }
 }
