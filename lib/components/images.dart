@@ -131,3 +131,33 @@ class IconOrSvg extends StatelessWidget {
     }
   }
 }
+
+
+// This widget is basically basically a circle that displays any provided widget in its center 
+class AvatarInsertWidget extends StatelessWidget {
+  const AvatarInsertWidget({
+    super.key,
+    required this.widget,
+    this.size = 35,
+    this.backgroundColor = Colors.blue
+  });
+
+  final double size;
+  final Widget widget;
+  final Color backgroundColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(size)
+      ),
+      child: Center(
+        child: widget
+      ),
+    );
+  }
+}
