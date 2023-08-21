@@ -113,7 +113,7 @@ class AppsButton extends StatelessWidget {
       onPressed: !isLoading ? () => press(context) : null,
       style: buildButtonStyle(),
       child: Container(
-        constraints: BoxConstraints(minHeight: defaultSize * 4, maxHeight: defaultSize * 4),        
+        constraints: BoxConstraints(minHeight: defaultSize * 4, maxHeight: defaultSize * 4),    
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -251,5 +251,61 @@ class _AppsDropdownButtonState extends State<AppsDropdownButton> {
         );
       }).toList(),
     );
+  }
+}
+
+// Icon Text Button
+class IconTextButton extends StatelessWidget {
+  const IconTextButton(this.text, {
+    super.key,
+    this.icon = Icons.add,
+    this.iconColor = Colors.black54,
+    this.textColor = Colors.black38,
+    this.backgroundColor = Colors.blue,
+    this.borderWidth = 1.5,
+    this.borderColor = Colors.black,
+    this.fullWidth = false,
+    required this.press,
+  });
+  
+  final String text;
+  final IconData? icon;
+  final Color iconColor;
+  final Color textColor;
+  final Color backgroundColor;
+  final double borderWidth;
+  final Color borderColor;
+  final bool fullWidth;
+  final Function() press;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: defaultSize * 4.5,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        border: Border.all(width: borderWidth, color: borderColor),
+        borderRadius: BorderRadius.circular(defaultSize)
+      ),
+      child: TextButton(
+        onPressed: press,
+        style: ButtonStyle(
+          padding: MaterialStatePropertyAll<EdgeInsets>(
+            EdgeInsets.symmetric(horizontal: defaultSize * .7, vertical: 0)
+          )
+          
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: fullWidth ? MainAxisSize.max : MainAxisSize.min,
+          children: [
+            Icon(icon, color: Colors.black38, size: 30),
+            const SizedBox(width: 5),
+            TextLarge(title: text, weight: FontWeight.w500, color: textColor),
+            const SizedBox(width: 5),
+          ],
+        ),
+        ),
+      );
   }
 }
