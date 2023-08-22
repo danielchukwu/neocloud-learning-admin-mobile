@@ -136,8 +136,7 @@ class EducatorCard extends StatelessWidget {
 
   Widget buildAvatar() {
     return RoundBoxAvatar(
-      width: defaultSize * 11,
-      height: defaultSize * 11,
+      size: defaultSize * 11,
       borderSize: 0.35,
       image: user.avatar,
     );
