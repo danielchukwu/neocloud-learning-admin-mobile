@@ -15,8 +15,8 @@ class LabelText extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(children: [
-        TextSpan(text: label + ":  ", style: getAppsTextStyle(fontWeight: FontWeight.w400, color: kBlack70)),
-        TextSpan(text: text, style: getAppsTextStyle(fontWeight: FontWeight.w600, color: kBlack70)),
+        TextSpan(text: label + ":  ", style: appsTextStyle(fontWeight: FontWeight.w400, color: kBlack70)),
+        TextSpan(text: text, style: appsTextStyle(fontWeight: FontWeight.w600, color: kBlack70)),
       ]),
     );
   }
