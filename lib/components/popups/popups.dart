@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
+import 'package:neocloud_mobile/graphql/models/UserModel.dart';
+import 'package:neocloud_mobile/screens/create/create_class_screen.dart';
+import 'package:neocloud_mobile/screens/create/create_faculty_screen.dart';
+import 'package:neocloud_mobile/screens/create/select_faculty_screen.dart';
+import 'package:neocloud_mobile/screens/create/select_user_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
 
@@ -8,7 +14,7 @@ showTopAlertDialog({required String text, bool isError = true}) {
   // Animation Controller
   AnimationController controller = AnimationController(
     vsync: Navigator.of(SizeConfig.appContext!).overlay!,
-    duration: Duration(milliseconds: 150),
+    duration: const Duration(milliseconds: 150),
   );
 
   OverlayEntry overlayEntry;
@@ -21,8 +27,8 @@ showTopAlertDialog({required String text, bool isError = true}) {
         opacity: Tween<double>(begin: 0, end: 1).animate(controller),
         child: SlideTransition(
           position: Tween<Offset>(
-            begin: Offset(0, -.43),
-            end: Offset(0, -.40),
+            begin: const Offset(0, -.43),
+            end: const Offset(0, -.40),
           ).animate(controller),
           child: Center(
             child: Container(
@@ -38,33 +44,62 @@ showTopAlertDialog({required String text, bool isError = true}) {
         ),
       ),
     );
-  });
+  }
+);
 
-  Future.delayed(Duration(seconds: 3), () {
+  Future.delayed(const Duration(seconds: 3), () {
     controller.reverse();
-    Future.delayed(Duration(milliseconds: 500), () => overlayEntry.remove());
+    Future.delayed(const Duration(milliseconds: 500), () => overlayEntry.remove());
   });
 
   Overlay.of(SizeConfig.appContext!).insert(overlayEntry);
 }
 
 
-showCenterAlertDialog(BuildContext context) {
+showCreateFacultyScreen() {
   return showDialog(
-    // barrierColor: Colors.transparent,
-    context: context,
+    context: SizeConfig.appContext!,
     builder: (context) {
-      return Center(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(defaultSize * .5)),
-            color: kRed,
-          ),
-          child: TextMedium(
-            title: 'An Error Just Occured!',
-          ),
-        ),
-      );
+      return const CreateFacultyScreen();
+    },
+  );
+}
+
+showCreateClassScreen() {
+  return showDialog(
+    context: SizeConfig.appContext!,
+    builder: (context) {
+      return const CreateClassScreen();
+    },
+  );
+}
+
+showSelectUsersDialog(
+  {
+    required List<UserModel> usersToSelectFrom, 
+    required List<UserModel> selectedUsers, 
+    required Function(List<UserModel> data) press,
+    selectionLimit = 10, 
+  }) {
+  return showDialog(
+    context: SizeConfig.appContext!, 
+    builder: (context) {
+      return SelectUsersScreen(users: usersToSelectFrom, selectedUsers: selectedUsers, selectionLimit: selectionLimit, press: press);
+    },
+  );
+}
+
+showSelectFacultyDialog(
+  {
+    required List<FacultyModel> facultyToSelectFrom, 
+    required List<FacultyModel> selectedFaculties, 
+    required Function(List<FacultyModel> data) press,
+    selectionLimit = 10, 
+  }) {
+  return showDialog(
+    context: SizeConfig.appContext!, 
+    builder: (context) {
+      return SelectFacultyScreen(faculties: facultyToSelectFrom, selectedFaculties: selectedFaculties, selectionLimit: selectionLimit, press: press);
     },
   );
 }
