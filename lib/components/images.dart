@@ -25,22 +25,20 @@ class DisplayAssetImage extends StatelessWidget {
 class RoundBoxAvatar extends StatelessWidget {
   const RoundBoxAvatar({
     super.key,
-    required this.width,
-    required this.height,
+    required this.size,
     required this.image,
     this.borderSize = 0,
   });
 
-  final double width;
-  final double height;
+  final double size;
   final String image;
   final double borderSize;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
-      height: height,
+      width: size,
+      height: size,
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
         border: Border.all(color: kWhite, width: defaultSize * borderSize),
