@@ -49,7 +49,7 @@ class _LoginInputFieldState extends State<LoginInputField> {
   InputDecoration buildInputDecoration() {
     return InputDecoration(
       labelText: widget.labelText,
-      labelStyle: getAppsTextStyle(color: kBlack50),
+      labelStyle: appsTextStyle(color: kBlack50),
       filled: true,
       fillColor: kBlack.withOpacity(.05),
       border: InputBorder.none,
@@ -164,7 +164,7 @@ class _AppsTextFieldState extends State<AppsTextField> {
       controller: _controller,
       maxLines: 1,
       textInputAction: TextInputAction.search,
-      style: getAppsTextStyle(fontWeight: FontWeight.w400, color: kBlack80),
+      style: appsTextStyle(fontWeight: FontWeight.w400, color: kBlack80),
       onSubmitted: widget.onSubmitPress,
       onChanged: (String value) { 
         hideOrRevealCancel();
@@ -237,11 +237,11 @@ class FormInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: getAppsTextStyle(fontSize: fontSize, color: Colors.black87, fontWeight: fontWeight),
+      style: appsTextStyle(fontSize: fontSize, color: Colors.black87, fontWeight: fontWeight),
       decoration: InputDecoration(
         hintText: hintText,
         contentPadding: EdgeInsets.zero,
-        hintStyle: getAppsTextStyle(fontSize: fontSize, color: Colors.black38),
+        hintStyle: appsTextStyle(fontSize: fontSize, color: Colors.black38),
         border: const OutlineInputBorder(borderSide: BorderSide.none)
       ),
       validator: validator,
@@ -269,11 +269,11 @@ class FormTextarea extends StatelessWidget {
     return TextFormField(
       minLines: 1,
       maxLines: maxLines,
-      style: getAppsTextStyle(color: Colors.black87),
+      style: appsTextStyle(color: Colors.black87),
       decoration: InputDecoration(
         hintText: hintText,
         contentPadding: EdgeInsets.symmetric(vertical: defaultSize * 1.5),
-        hintStyle: getAppsTextStyle(color: kBlack70),
+        hintStyle: appsTextStyle(color: kBlack70),
         border: const OutlineInputBorder(borderSide: BorderSide.none)
       ),
       validator: validator,
