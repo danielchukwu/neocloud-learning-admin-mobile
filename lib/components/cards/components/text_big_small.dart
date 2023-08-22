@@ -29,7 +29,7 @@ class TextBigSmall extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        style: getAppsTextStyle(
+        style: appsTextStyle(
           fontWeight: bigTextWeight,
           fontSize: bigTextSize,
           color: bigTextColor
@@ -38,7 +38,7 @@ class TextBigSmall extends StatelessWidget {
           TextSpan(text: bigText),
           TextSpan(
             text: ' $smallText',
-            style: getAppsTextStyle(
+            style: appsTextStyle(
                 fontWeight: smallTextWeight, fontSize: smallTextSize, color: smallTextColor),
           ),
         ],
