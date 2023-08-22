@@ -111,8 +111,7 @@ class ClassWorkCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 0),
                 child: RoundBoxAvatar(
-                    width: defaultSize * 5,
-                    height: defaultSize * 5,
+                    size: defaultSize * 5,
                     image: classwork.clas!.educators![0].avatar ?? ''),
               ),
 
