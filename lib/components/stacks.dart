@@ -62,8 +62,7 @@ class StackedImages extends StatelessWidget {
                 right: length > 3 ? (index + 1) *
                     overlapDifference : index * overlapDifference, // overlapDifference = 30 default
                 child: RoundBoxAvatar(
-                  width: imgSize,
-                  height: imgSize,
+                  size: imgSize,
                   image: imgList[index],
                   borderSize: .2,
                 ),
@@ -100,7 +99,7 @@ class StackedImageAndDot extends StatelessWidget {
       // color: Colors.amber,
       child: Stack(
         children: [
-          RoundBoxAvatar(width: imgSize, height: imgSize, image: img),
+          RoundBoxAvatar(size: imgSize, image: img),
 
           // Round Info Box (is stacked ontop of the avatar)
           Positioned(
