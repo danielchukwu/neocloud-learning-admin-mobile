@@ -15,9 +15,12 @@ import 'package:neocloud_mobile/size_config.dart';
 const nctFaviconBlue = 'assets/icons/logos/favicon-blue.svg';
 const nctBannerBlueBlack = 'assets/icons/logos/banner-blue-black.svg';
 const nctBannerWhite = 'assets/icons/logos/banner-blue.svg';
-// Profile
+// default avatars
 const defaultProfileCover = 'assets/images/nct-office.jpg';
 const defaultProfileAvatar = 'assets/avatars/coffee-avatar.png';
+const defaultSlugAvatar = 'assets/avatars/cool-slug-avatar.png';
+const defaultBookStackAvatar = 'assets/avatars/book-stack-avatar.png';
+
 
 
 // Sizes (Integers and Doubles)
@@ -69,11 +72,11 @@ double appsSplashRadius = defaultSize * 5;
 
 // - Styles
 
-TextStyle getAppsTextStyle({
+TextStyle appsTextStyle({
   String fontFamily = "Poppins",
   Color color = Colors.black87,
   double fontSize = 16,
-  FontWeight fontWeight = FontWeight.w600,
+  FontWeight fontWeight = FontWeight.w400,
   TextDecoration decoration = TextDecoration.none,
 }) {
   return TextStyle(
@@ -305,8 +308,7 @@ Row buildAvatarAndName({
   return Row(
     children: <Widget>[
       RoundBoxAvatar(
-        width: imgSize,
-        height: imgSize,
+        size: imgSize,
         image: avatar,
         borderSize: imgBorderSize,
       ),
