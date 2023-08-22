@@ -5,6 +5,8 @@ import 'package:neocloud_mobile/components/Lists/class_schedule_list.dart';
 import 'package:neocloud_mobile/components/Lists/class_works_list.dart';
 import 'package:neocloud_mobile/components/Lists/faculty_list.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
+import 'package:neocloud_mobile/components/texts.dart';
+import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/screens/academic/components/DisplayOptions.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Options.dart';
@@ -47,8 +49,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
               Container(
                 padding: EdgeInsets.only(bottom: defaultSize * .5),
                 decoration: BoxDecoration(
-                    border: Border(bottom: BorderSide(color: kBlack50, width: .2)),
-                ),
+                  border: Border(bottom: BorderSide(color: kBlack50, width: .2))),
                 child: DisplayOptions(
                   items: AcademicOptions.items,
                   getSelectedIndex: AcademicOptions.getSelectedIndex,
@@ -64,14 +65,18 @@ class _AcademicScreenState extends State<AcademicScreen> {
 
               // Header - Classes, Count (styled background)
               CurrentOldHeader(
-                title: AcademicOptions.items[AcademicOptions.selectedIndex].title,
+                title:
+                    AcademicOptions.items[AcademicOptions.selectedIndex].title,
                 rightText: AcademicOptions.selectedIndex < 2 ? '2' : 'Old',
-                selectedLeft: AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent,
+                selectedLeft: AcademicOptions
+                    .items[AcademicOptions.selectedIndex].selectedCurrent,
                 pressLeft: () => setState(() {
-                  AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent = true;
+                  AcademicOptions.items[AcademicOptions.selectedIndex]
+                      .selectedCurrent = true;
                 }),
                 pressRight: () => setState(() {
-                  AcademicOptions.items[AcademicOptions.selectedIndex].selectedCurrent = false;
+                  AcademicOptions.items[AcademicOptions.selectedIndex]
+                      .selectedCurrent = false;
                 }),
               ),
 
@@ -102,10 +107,68 @@ class _AcademicScreenState extends State<AcademicScreen> {
       bottomNavigationBar: const AppsBottomNavBar(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          showCreateFacultyScreen();
+          showDialog(
+            context: context,
+            builder: (context) {
+              return GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Material(
+                  color: Colors.transparent,
+                  child: Column(
+                    children: [
+                      Spacer(),
+              
+                      // Popup card
+                      Container(
+                        margin: screenPadding,
+                        padding: EdgeInsets.symmetric(vertical: defaultSize),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          color: Colors.white
+                        ),
+                        child: Column(
+                          children: [
+                            buildButton(title: 'Faculty', press: showCreateFacultyScreen),
+
+                            HorizontalRule(),
+                            buildButton(title: 'Class', press: showCreateClassScreen),
+                        
+                            HorizontalRule(), 
+                            buildButton(title: 'Class Instance', press: showCreateClassScreen),
+                          ],
+                        ),
+                      ),
+              
+                      Spacer(),
+                    ],
+                  )
+                ),
+              );
+            },
+          );
         },
         backgroundColor: kBlue,
         child: Icon(Icons.add, color: kWhite),
+      ),
+    );
+  }
+
+  Widget buildButton({required String title, required Function press}) {
+    return GestureDetector(
+      onTap: () {
+        print('PRESS');
+        Navigator.pop(context);
+        press();
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: defaultSize * 2),
+        color: Colors.transparent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextMedium(title: title, color: kBlack70, weight: FontWeight.w600,)
+          ] 
+        ),
       ),
     );
   }
