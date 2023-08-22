@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/stacks.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
+import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/models/Students.dart';
@@ -184,3 +186,150 @@ class UserActivityTile extends StatelessWidget {
     );
   }
 }
+
+
+/// This user tile allows for users to select them or not and if one is selected it gets a 
+/// blue background style and if not it gets no background styles. it also calls a function
+class UserSelectionTile extends StatefulWidget {
+  const UserSelectionTile({
+    super.key,
+    required this.user,
+    required this.press,
+    this.isSelected = true,
+    this.disableSelection = false,
+  });
+  
+  final UserModel user;
+  final void Function(UserModel user) press;
+  final bool disableSelection;
+  final bool isSelected;
+
+  @override
+  State<UserSelectionTile> createState() => _UserSelectionTileState();
+}
+
+class _UserSelectionTileState extends State<UserSelectionTile> {
+  late bool isSelected;
+
+  @override
+  void initState() {
+    isSelected = widget.isSelected;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print('isSelected: ${isSelected}');
+    return GestureDetector(
+      onTap: () => setState(() {
+        // only select if 
+        if (widget.disableSelection == false || isSelected == true) {
+          isSelected = !isSelected;
+          widget.press(widget.user);
+        }
+      }),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        decoration:  isSelected 
+          ? BoxDecoration(
+            color: kBlueLight.withOpacity(.12),
+            border: Border.all(width: 2, color: kBlueLight),
+            borderRadius: const BorderRadius.all(Radius.circular(10))) 
+          : BoxDecoration(
+          border: Border.all(width: 2, color: Colors.transparent),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Section - left
+            Row(
+              children: [
+                // Avatar
+                RoundBoxAvatar(size: 40, image: widget.user.avatar),
+
+                // Column - Name, Role 
+                SizedBox(width: defaultSize * 1.5),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextMedium(title: widget.user.name, weight: FontWeight.w600, color: kBlack80),
+                    const TextSmall(title: '{widget.user.role.name}', color: Colors.black54)
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+/// This faculty tile allows for users to select them or not and if one is selected it gets a 
+/// blue background style and if not it gets no background styles. it also calls a function
+class FacultySelectionTile extends StatefulWidget {
+  const FacultySelectionTile({
+    super.key,
+    required this.faculty,
+    required this.press,
+    this.isSelected = true,
+    this.disableSelection = false,
+  });
+  
+  final FacultyModel faculty;
+  final void Function(FacultyModel faculty) press;
+  final bool disableSelection;
+  final bool isSelected;
+
+  @override
+  State<FacultySelectionTile> createState() => _FacultySelectionTileState();
+}
+
+class _FacultySelectionTileState extends State<FacultySelectionTile> {
+  late bool isSelected;
+
+  @override
+  void initState() {
+    isSelected = widget.isSelected;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => setState(() {
+        // only select if 
+        if (widget.disableSelection == false || isSelected == true) {
+          isSelected = !isSelected;
+          widget.press(widget.faculty);
+        }
+      }),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        decoration:  isSelected 
+          ? BoxDecoration(
+            color: kBlueLight.withOpacity(.12),
+            border: Border.all(width: 2, color: kBlueLight),
+            borderRadius: const BorderRadius.all(Radius.circular(10))) 
+          : BoxDecoration(
+          border: Border.all(width: 2, color: Colors.transparent),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Column - Title and subtitle
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextMedium(title: widget.faculty.name, weight: FontWeight.w600, color: kBlack80),
+                const TextSmall(title: '{widget.faculty.hod.name} (HOD)', color: Colors.black54)
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
