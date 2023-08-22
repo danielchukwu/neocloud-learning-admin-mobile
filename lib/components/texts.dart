@@ -279,7 +279,7 @@ class AppsTextRich extends StatelessWidget {
     return Text.rich(
       TextSpan(
         text: text1,
-        style: getAppsTextStyle(
+        style: appsTextStyle(
             color: text1Color ?? kBlack80,
             fontSize: text1FontSize,
             fontWeight: text1FontWeight,
@@ -287,7 +287,7 @@ class AppsTextRich extends StatelessWidget {
         children: [
           TextSpan(
             text: text2,
-            style: getAppsTextStyle(
+            style: appsTextStyle(
               color: text2Color ?? kBlack70,
               fontSize: text2FontSize,
               fontWeight: text2FontWeight,
