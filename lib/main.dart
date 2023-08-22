@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:neocloud_mobile/auth/auth_guard.dart';
+import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/providers/NavItem.dart';
 import 'package:neocloud_mobile/providers/UserProvider.dart';
+import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/cart/cart_screen.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'NCT Admin',
       theme: buildTheme(),
-      initialRoute: '/' + DashboardScreen.screenName,
+      initialRoute: '/' + AcademicScreen.screenName,
       // navigatorObservers: [AuthGuardObserver()],  // Middleware observer
       routes: {
         '/': (context) => const SplashScreen(),
@@ -55,12 +57,12 @@ class MyApp extends StatelessWidget {
         '/comingsoon': (context) => const ComingSoonScreen(),
         '/academic': (context) => const AcademicScreen(),
         '/dashboard': (context) => const DashboardScreen(),
-        // Removed because the ProfileScreen widget takes arguments
-        // '/profile': (context) => ProfileScreen(),
+        '/profile': (context) => ProfileScreen(),
         '/search': (context) => const SearchScreen(),
         '/cart': (context) => const CartScreen(),
-        // Removed because the CourseScreen widget takes arguments
-        // '/course': (context) => const CourseScreen(),
+
+        // Create
+        // '/create': (context) => const CreateFacultyScreen(),
 
         // Settings
         '/settings': (context) => const SettingsScreen(),
