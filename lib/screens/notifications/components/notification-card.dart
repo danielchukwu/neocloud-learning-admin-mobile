@@ -58,7 +58,7 @@ class _NotificationCardState extends State<NotificationCard> {
           // Notifications List
           Padding(
             padding: const EdgeInsets.only(top: 0),
-            child: RoundBoxAvatar(width: defaultSize * 5, height: defaultSize * 5, image: notification.user.avatar),
+            child: RoundBoxAvatar(size: defaultSize * 5, image: notification.user.avatar),
           ),
 
           // Notifications Info
@@ -79,10 +79,10 @@ class _NotificationCardState extends State<NotificationCard> {
                 // TextMedium(title: notification.body + '. ${getTimeAgo(notification.createdAt)}', color: kBlack70),
                 Text.rich(
                   TextSpan(
-                    style: getAppsTextStyle(color: kBlack70, fontWeight: FontWeight.w400),
+                    style: appsTextStyle(color: kBlack70, fontWeight: FontWeight.w400),
                     children: [
                       TextSpan(text: notification.body),
-                      TextSpan(text: '  ${getTimeAgo(notification.createdAt)}', style: getAppsTextStyle(color: kBlack50, fontWeight: FontWeight.w400, fontSize: 14))
+                      TextSpan(text: '  ${getTimeAgo(notification.createdAt)}', style: appsTextStyle(color: kBlack50, fontWeight: FontWeight.w400, fontSize: 14))
                     ]
                   )
                 )
