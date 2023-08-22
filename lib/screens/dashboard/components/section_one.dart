@@ -75,8 +75,7 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
         ),
         // Avatar
         RoundBoxAvatar(
-          width: defaultSize * 6,
-          height: defaultSize * 6,
+          size: defaultSize * 6,
           image: users[0].avatar,
         ),
       ],
