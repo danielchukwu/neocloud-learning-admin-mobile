@@ -253,22 +253,39 @@ class FormInputField extends StatelessWidget {
 class FormTextarea extends StatelessWidget {
   const FormTextarea({
     super.key,
+    this.initialValue,
     this.hintText = 'Textarea', 
     this.maxLines = 10,
     required this.validator,
     required this.press,
+    this.pressOnKeyboardDone,
+    this.controller,
+    this.onTapOutside,
+    this.autoFocus = false,
   });
 
+  final String? initialValue;
   final String hintText;
   final int maxLines;
-  final String? Function(String? value) validator;
+  final TextEditingController? controller;
   final Function(String? value) press;
+  final String? Function(String? value) validator;
+  final Function()? pressOnKeyboardDone;
+  final Function(PointerDownEvent event)? onTapOutside;
+  final bool autoFocus;
 
   @override
   Widget build(BuildContext context) {
+    controller?.text = initialValue ?? '';
+
     return TextFormField(
+      autofocus: autoFocus,
+      controller: controller,
       minLines: 1,
       maxLines: maxLines,
+      onTapOutside: onTapOutside,
+      textInputAction: pressOnKeyboardDone != null ? TextInputAction.done : null,  // Display done in keyboard
+      onEditingComplete: pressOnKeyboardDone,   // execute function when done is clicked on the keyboard
       style: appsTextStyle(color: Colors.black87),
       decoration: InputDecoration(
         hintText: hintText,
