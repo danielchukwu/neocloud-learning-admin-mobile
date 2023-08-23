@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
-import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
+import 'package:neocloud_mobile/screens/create/components/form_modules.dart';
 import 'package:neocloud_mobile/screens/create/components/form_select_faculty.dart';
 import 'package:neocloud_mobile/utils/validation.dart';
 import 'components/form_description.dart';
 import 'components/form_footer.dart';
 import 'components/form_header.dart';
-import 'components/form_select_user.dart';
 import 'components/form_select_users.dart';
 
 /// POPUP
@@ -34,6 +34,9 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
 
   List<UserModel> _selectedEducatorsList = [];
   final List<UserModel> _usersToSelectFrom = List.generate(15, (index) => UserModel(id: '$index', name: 'John Default', avatar: defaultProfileAvatar));
+  // final List<Map> _modules = [{'title': '', 'schedules': [{'title': '', 'description': '', 'classwork': {''}}]}];
+  // Modules
+  final List<ClassModuleModel> _modules = [];
 
   // handle _hod errors and _educatorsList errors
   bool _hodHasError = false;
@@ -70,6 +73,13 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
     setState(() { _selectedFaculties = fac; });
   }
 
+  final _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +99,7 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
             // Form Body
             Expanded(
               child: SingleChildScrollView(
+                controller: _scrollController,
                 child: Padding(
                   padding: screenPadding,
                   child: buildForm(),
@@ -124,7 +135,7 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
           // Add Faculty
           SizedBox(height: defaultSize * 1.5 ),
           FormSelectFaculty(buttonText: 'Faculty', selectedFacultyList: _selectedFaculties, facultiesToSelectFrom: _facultiesToSelectFrom, updateSelectedFaculty: updateSelectedFaculty),
-          _hodHasError ? TextInputError() : SizedBox(),
+          _hodHasError ? const TextInputError() : const SizedBox(),
 
           SizedBox(height: defaultSize * 2 ),
           const HorizontalRule(),
@@ -138,28 +149,14 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
           // Add Educators
           SizedBox(height: defaultSize ),
           FormSelectUsers(buttonText: 'Educators', avatarText: 'ED', selectedUsersList: _selectedEducatorsList, usersToSelectFrom: _usersToSelectFrom, updateSelectedUsers: updateSelectedEducators,),
-          _educatorsListHasError ? TextInputError() : SizedBox(),
+          _educatorsListHasError ? const TextInputError() : const SizedBox(),
 
           // Add Modules
           SizedBox(height: defaultSize * 1.3 ),
-          HorizontalRule(),
+          const HorizontalRule(),
 
           SizedBox(height: defaultSize * 2 ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // Header - Icon and Title
-              Row(
-                children: <Widget>[
-                  // Icon
-                  Icon(Icons.add, color: kBlack80,),
-                  // Title
-                  SizedBox(width: defaultSize),
-                  TextMedium(title: 'Add Modules (Class Curriculum)', color: kBlack70, weight: FontWeight.w500)
-                ],
-              )
-            ],
-          ),
+          FormModules(modules: _modules, scrollController: _scrollController),
         ],
       )
     );
