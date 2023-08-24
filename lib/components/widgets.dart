@@ -42,7 +42,6 @@ class HorizontalRule extends StatelessWidget {
     Color ruleColor = kBlack.withOpacity(.2);
 
     return Container(
-      height: defaultSize * .5,
       decoration: BoxDecoration(
         border: Border(top: BorderSide(color: ruleColor, width: 1)),
       ),
