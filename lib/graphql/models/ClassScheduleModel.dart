@@ -30,8 +30,18 @@ class ClassScheduleModel {
     order: cs['order'],
     startTime: cs['startTime'],
     endTime: cs['endTime'],
-    // classModule: ClassModuleModel(id: cs['classModule']['_id'], title: cs['classModule']['title'],)
     classModule: cs.containsKey('classModule') ? ClassModuleModel.fromMap(classModule: cs['classModule']) : null,
+  );
+
+  static ClassScheduleModel fromInstance({required ClassScheduleModel cs, String? title, String? description}) => ClassScheduleModel(
+    id: cs.id,
+    title: title ?? cs.title,
+    description: description ?? cs.description,
+    date: cs.date,
+    order: cs.order,
+    startTime: cs.startTime,
+    endTime: cs.endTime,
+    classModule: cs.classModule
   );
 }
 
