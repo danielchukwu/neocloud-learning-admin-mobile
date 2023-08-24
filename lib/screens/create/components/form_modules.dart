@@ -57,13 +57,10 @@ class _FormModulesState extends State<FormModules> {
     );
   }
 
-  updateModule(module, title) {
-    if (title.isNotEmpty) {
-      for (var i = 0; i < _modules.length; i++) {
-        if (_modules[i].id == module.id) {
-          var newModule = ClassModuleModel(id: '${module.id}', title: title);
-          setState(() { _modules[i] = newModule; });
-        }
+  updateModule(ClassModuleModel module, ClassModuleModel newModule) {
+    for (var i = 0; i < _modules.length; i++) {
+      if (_modules[i].id == module.id) {
+        setState(() { _modules[i] = newModule; });
       }
     }
   }
@@ -98,21 +95,14 @@ class _FormModulesState extends State<FormModules> {
   }
 
   Widget buildHeader() {
-    return Row(
-      children: <Widget>[
-        // Icon
-        Icon(
-          Icons.align_horizontal_center_rounded,
-          color: kBlack50,
-          size: defaultSize * 2,
-        ),
-        // Title
-        SizedBox(width: defaultSize),
-        const TextMedium(
-            title: 'Modules (Curriculum)',
-            color: Colors.black54,
-            weight: FontWeight.w500)
-      ],
+    return IconText(
+      title: 'Modules (Curriculum)',
+      color: Colors.black54,
+      fontWeight: FontWeight.w500,
+      icon: Icons.schema_outlined,
+      iconColor: kBlack60,
+      iconSize: defaultSize * 1.8,
+      spaceBetweenSize: defaultSize * 1,
     );
   }
 }
