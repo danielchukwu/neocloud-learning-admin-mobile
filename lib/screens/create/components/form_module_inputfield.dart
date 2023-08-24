@@ -50,8 +50,10 @@ class _FormModuleInputFieldState extends State<FormModuleInputField> {
         child: IconText(
           title: 'Add Module',
           icon: Icons.add,
+          iconSize: defaultSize * 2.4,
           fontWeight: FontWeight.w500,
           color: kBlack70,
+          iconColor: kBlack70,
         ),
       ),
     );
