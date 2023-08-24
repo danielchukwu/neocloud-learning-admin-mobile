@@ -192,6 +192,7 @@ class IconText extends StatelessWidget {
     this.icon,
     this.svg,
     this.iconSize = 16,
+    this.spaceBetweenSize = 5,
     this.iconColor,
     this.color,
     this.fontSize = 16,
@@ -203,6 +204,7 @@ class IconText extends StatelessWidget {
   final String? svg;
   final String title;
   final double iconSize;
+  final double spaceBetweenSize;
   final Color? iconColor;
   final Color? color;
   final double fontSize;
@@ -225,7 +227,7 @@ class IconText extends StatelessWidget {
             : SizedBox(),
 
         // Count
-        iconIsLeft ? SizedBox(width: defaultSize * .5) : SizedBox(),
+        iconIsLeft ? SizedBox(width: spaceBetweenSize) : SizedBox(),
         TextCustom(
           title: title,
           color: color ?? kBlack70,
@@ -234,7 +236,7 @@ class IconText extends StatelessWidget {
         ),
 
         // Icon
-        !iconIsLeft ? SizedBox(width: defaultSize * .5) : SizedBox(),
+        !iconIsLeft ? SizedBox(width: spaceBetweenSize) : SizedBox(),
         !iconIsLeft
             ? IconOrSvg(
                 svg: svg,
