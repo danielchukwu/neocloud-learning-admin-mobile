@@ -29,6 +29,14 @@ class ClassModuleModel {
     ? List.generate(classModule['classSchedules'].length, (index) =>  ClassScheduleModel.fromMap(cs: classModule['classSchedules'][index]),).toList() 
     : null,
   );
+
+  static ClassModuleModel fromInstance({required ClassModuleModel module, String? title}) => ClassModuleModel(
+    id: module.id,
+    title: module.title,
+    order: module.order,
+    clas: module.clas,
+    classSchedules: module.classSchedules,
+  );
 }
 
 // query ExampleQuery(\$classId: ID) {
