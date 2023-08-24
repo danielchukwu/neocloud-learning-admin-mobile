@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
+import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
+import 'package:neocloud_mobile/screens/create/components/form_header.dart';
+import 'package:neocloud_mobile/screens/create/components/form_schedules.dart';
 import 'package:neocloud_mobile/screens/create/create_class_screen.dart';
 import 'package:neocloud_mobile/screens/create/create_faculty_screen.dart';
 import 'package:neocloud_mobile/screens/create/select_faculty_screen.dart';
@@ -100,6 +104,20 @@ showSelectFacultyDialog(
     context: SizeConfig.appContext!, 
     builder: (context) {
       return SelectFacultyScreen(faculties: facultyToSelectFrom, selectedFaculties: selectedFaculties, selectionLimit: selectionLimit, press: press);
+    },
+  );
+}
+
+showCreateScheduleDialog(
+  {
+    required ClassModuleModel module,
+    required int moduleCount,
+    required Function(ClassModuleModel module, ClassModuleModel newModule) updateModule,
+  }) {
+  return showDialog(
+    context: SizeConfig.appContext!, 
+    builder: (context) {
+      return FormSchedules(module: module, moduleCount: moduleCount, updateModule: updateModule);
     },
   );
 }
