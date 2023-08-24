@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:neocloud_mobile/auth/auth_guard.dart';
-import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/providers/NavItem.dart';
 import 'package:neocloud_mobile/providers/UserProvider.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
