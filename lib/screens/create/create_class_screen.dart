@@ -3,6 +3,7 @@ import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
+import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_modules.dart';
@@ -34,9 +35,8 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
 
   List<UserModel> _selectedEducatorsList = [];
   final List<UserModel> _usersToSelectFrom = List.generate(15, (index) => UserModel(id: '$index', name: 'John Default', avatar: defaultProfileAvatar));
-  // final List<Map> _modules = [{'title': '', 'schedules': [{'title': '', 'description': '', 'classwork': {''}}]}];
   // Modules
-  final List<ClassModuleModel> _modules = [];
+  final List<ClassModuleModel> _modules = [ClassModuleModel(id: '1', title: 'Introduction to Tech', classSchedules: [ClassScheduleModel(id: '1', title: 'What is Tech')])];
 
   // handle _hod errors and _educatorsList errors
   bool _hodHasError = false;
