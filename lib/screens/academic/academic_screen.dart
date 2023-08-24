@@ -130,10 +130,10 @@ class _AcademicScreenState extends State<AcademicScreen> {
                           children: [
                             buildButton(title: 'Faculty', press: showCreateFacultyScreen),
 
-                            HorizontalRule(),
+                            const HorizontalRule(),
                             buildButton(title: 'Class', press: showCreateClassScreen),
                         
-                            HorizontalRule(), 
+                            const HorizontalRule(), 
                             buildButton(title: 'Class Instance', press: showCreateClassScreen),
                           ],
                         ),
@@ -156,7 +156,6 @@ class _AcademicScreenState extends State<AcademicScreen> {
   Widget buildButton({required String title, required Function press}) {
     return GestureDetector(
       onTap: () {
-        print('PRESS');
         Navigator.pop(context);
         press();
       },
