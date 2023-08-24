@@ -20,8 +20,8 @@ class FormModuleTile extends StatefulWidget {
 
   final ClassModuleModel module;
   final int count;
-  final Function(ClassModuleModel module, String title) pressUpdateModule;
-  final Function(ClassModuleModel module) pressDeleteModule;
+  final Function(ClassModuleModel module, ClassModuleModel newModule) pressUpdateModule;
+  final Function(ClassModuleModel module)pressDeleteModule;
 
   @override
   State<FormModuleTile> createState() => _FormModuleTileState();
@@ -30,6 +30,12 @@ class FormModuleTile extends StatefulWidget {
 class _FormModuleTileState extends State<FormModuleTile> {
   final _controller = TextEditingController();
   bool _editMode = false;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +75,7 @@ class _FormModuleTileState extends State<FormModuleTile> {
           ? TextMedium(  title: widget.module.title, color: kBlack80, weight: FontWeight.w500)
           : buildUDModuleInputField(),
     
-          // row - schedules count, add schedules
+          // row - schedules count, view schedules
           SizedBox(height: defaultSize * .8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,15 +86,12 @@ class _FormModuleTileState extends State<FormModuleTile> {
                 color: Colors.black54,
               ),
     
-              // add schedules
+              // view schedules
               GestureDetector(
-                onTap: () => showTopAlertDialog(text: 'add schedules', isError: false),
-                child: IconText(
-                  title: 'Add Schedule',
-                  icon: Icons.add,
+                onTap: () => showCreateScheduleDialog(module: widget.module, moduleCount: widget.count, updateModule: widget.pressUpdateModule),
+                child: TextSmall(
+                  title: 'View Schedules',
                   color: Colors.black54,
-                  iconColor: Colors.black54,
-                  fontSize: defaultSize * 1.4,
                 ),
               )
             ],
@@ -149,7 +152,7 @@ class _FormModuleTileState extends State<FormModuleTile> {
   }
 
   updateModule() {
-    widget.pressUpdateModule(widget.module, _controller.text);
+    widget.pressUpdateModule(widget.module, ClassModuleModel.fromInstance(module: widget.module, title: _controller.text));
     updateEditMode(false);
   }
 }
