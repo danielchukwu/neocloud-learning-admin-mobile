@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
-import 'package:neocloud_mobile/screens/create/components/form_module_inputfield.dart';
+import 'package:neocloud_mobile/screens/create/components/form_inputfield_and_addbutton.dart';
 import 'package:neocloud_mobile/screens/create/components/form_module_tile.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 /// This widget displays the modules (or curriculum) of a class, it is also used
 /// to further add more modules,add schedules for those modules and delete modules
@@ -50,8 +51,8 @@ class _FormModulesState extends State<FormModules> {
             ),
           ),
 
-          // Input - Module TextArea and Add Button
-          FormModuleInputField(press: addModule, count: _modules.length + 1),
+          // Input - Module InputField and Add Button
+          FormInputFieldAndAddButton(press: addModule, count: _modules.length + 1),
         ],
       ),
     );
@@ -66,18 +67,16 @@ class _FormModulesState extends State<FormModules> {
   }
 
   deleteModule(module) {
-    setState(() => _modules.remove(module) );
-
-    // for (var i = 0; i < _modules.length; i++) {
-    //   if (_modules[i].id == module.id) {
-    //     print('REMOVING AT: $i');
-    //     setState(() { _modules.removeAt(i); });
-    //   }
-    // }
+    for (var i = 0; i < _modules.length; i++) {
+      if (_modules[i].id == module.id) {
+        debugPrint('REMOVE');
+        setState(() { _modules.removeAt(i); });
+      }
+    }
   }
 
   void addModule(String value) {
-    scrollToBottom();
+    scrollToBottom(scrollController: widget.scrollController);
 
     if (value.isNotEmpty) {
       var newModule = ClassModuleModel(
@@ -86,12 +85,6 @@ class _FormModulesState extends State<FormModules> {
         _modules.add(newModule);
       });
     }
-  }
-
-  scrollToBottom() {
-    var scrollController = widget.scrollController;
-    scrollController.animateTo(scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 600), curve: Curves.easeOut);
   }
 
   Widget buildHeader() {
