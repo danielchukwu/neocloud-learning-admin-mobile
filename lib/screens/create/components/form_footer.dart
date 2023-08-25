@@ -10,7 +10,7 @@ class FormFooter extends StatelessWidget {
   const FormFooter({
     super.key, 
     this.title = 'Create',
-    required this.formKey,
+    this.formKey,
     required this.press,
   });
   final String title;
