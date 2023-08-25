@@ -254,6 +254,9 @@ class FormTextarea extends StatelessWidget {
   const FormTextarea({
     super.key,
     this.initialValue,
+    this.fontSize = 14,
+    this.fontWeight = FontWeight.w400,
+    this.textColor = Colors.black87,
     this.hintText = 'Textarea', 
     this.maxLines = 10,
     required this.validator,
@@ -264,6 +267,9 @@ class FormTextarea extends StatelessWidget {
     this.autoFocus = false,
   });
 
+  final double fontSize;
+  final FontWeight fontWeight;
+  final Color textColor;
   final String? initialValue;
   final String hintText;
   final int maxLines;
@@ -286,11 +292,11 @@ class FormTextarea extends StatelessWidget {
       onTapOutside: onTapOutside,
       textInputAction: pressOnKeyboardDone != null ? TextInputAction.done : null,  // Display done in keyboard
       onEditingComplete: pressOnKeyboardDone,   // execute function when done is clicked on the keyboard
-      style: appsTextStyle(color: Colors.black87),
+      style: appsTextStyle(color: textColor, fontSize: fontSize, fontWeight: fontWeight),
       decoration: InputDecoration(
         hintText: hintText,
         contentPadding: EdgeInsets.symmetric(vertical: defaultSize * 1.5),
-        hintStyle: appsTextStyle(color: kBlack70),
+        hintStyle: appsTextStyle(color: textColor, fontSize: fontSize, fontWeight: fontWeight),
         border: const OutlineInputBorder(borderSide: BorderSide.none)
       ),
       validator: validator,
