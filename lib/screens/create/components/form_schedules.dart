@@ -4,8 +4,11 @@ import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
+import 'package:neocloud_mobile/screens/create/components/form_footer.dart';
 import 'package:neocloud_mobile/screens/create/components/form_header.dart';
+import 'package:neocloud_mobile/screens/create/components/form_inputfield_and_addbutton.dart';
 import 'package:neocloud_mobile/screens/create/components/form_schedule_tile.dart';
+import 'package:neocloud_mobile/utils/utils.dart';
 
 /// POPUP
 /// This screen is used in a showDialog dialog context, so it basically will be shown in a pop up context 
@@ -43,59 +46,98 @@ class _FormSchedulesState extends State<FormSchedules> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: defaultSize , vertical: defaultSize * 3),
-      child: Material(
-        borderRadius: BorderRadius.all(Radius.circular(defaultSize * 2)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Row - Title and Cancel Icon
-            FormHeader(),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(defaultSize * 2)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Row - Title and Cancel Icon
+              FormHeader(),
+        
+              const HorizontalRule(),
+        
+              buildModuleCountAndTitle(),
+              
+              SizedBox(height: defaultSize * 2),
+              const HorizontalRule(),
+        
+              buildBody(),
 
-            const HorizontalRule(),
+              const HorizontalRule(),
 
-            buildModuleCountAndTitle(),
-            
-            SizedBox(height: defaultSize * 2),
-            const HorizontalRule(),
-
-            SizedBox(height: defaultSize * 2),
-            
-            Expanded(
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                padding: screenPadding,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Schedule Header - Icon and Schedule Title
-                    buildScheduleListHeader(),
-
-                     // Column - List of class schedules (curriculum)
-                    Column(
-                      children: List.generate(
-                        _schedules.length,
-                        (index) => FormScheduleTile(
-                          schedule: _schedules[index], 
-                          count: index + 1, 
-                          pressUpdateSchedule: updateSchedule, 
-                          pressDeleteSchedule: deleteSchedule,
-                        )
-                      ),
-                    ),
-
-                    // Input - Module TextArea and Add Button
-                    // FormModuleInputField(press: addModule, count: _schedules.length + 1),
-
-                  ],
-                ),
-              )
-            )
-            
-          ],
-
+              FormFooter(title: 'Done', press: () => Navigator.pop(context))
+              
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  Expanded buildBody() {
+    return Expanded(
+      child: SingleChildScrollView(
+        controller: _scrollController,
+        padding: EdgeInsets.only(left: defaultSize * 2, right: defaultSize * 2, bottom: defaultSize * 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Schedule Header - Icon and Schedule Title
+            SizedBox(height: defaultSize * 2),
+            buildScheduleListHeader(),
+
+              // Column - List of class schedules (curriculum)
+            Column(
+              children: List.generate(
+                _schedules.length,
+                (index) => FormScheduleTile(
+                  schedule: _schedules[index], 
+                  count: index + 1, 
+                  pressUpdateSchedule: updateSchedule, 
+                  pressDeleteSchedule: deleteSchedule,
+                )
+              ),
+            ),
+
+            // Input - Module TextArea and Add Button
+            FormInputFieldAndAddButton(press: createSchedule, count: _schedules.length + 1),
+
+          ],
+        ),
+      )
+            );
+  }
+
+  createSchedule(String title) {
+    scrollToBottom(scrollController: _scrollController);
+    
+    var newSchedule = ClassScheduleModel(id: '${_schedules.length + 1}', title: title);
+    setState(() => _schedules.add(newSchedule) );
+    widget.updateModule(widget.module, widget.module);
+  }
+  
+  updateSchedule(ClassScheduleModel oldSchedule, ClassScheduleModel newSchedule) {
+    for (var i = 0; i < widget.module.classSchedules!.length; i++) {
+      if (_schedules[i].id == oldSchedule.id) {
+        setState(() => _schedules[i] = newSchedule );
+      }
+    }
+  }
+
+  deleteSchedule(schedule) {
+    for (var i = 0; i < _schedules.length; i++) {
+      if (_schedules[i].id == schedule.id) {
+        setState(() => _schedules.removeAt(i));
+        // update Module so it reflects current schedules state in the CreateClassScreen 
+        // or whatever screen uses this class that has a module
+        widget.updateModule(widget.module, widget.module);
+      }
+    }
   }
 
   Widget buildScheduleListHeader() {
@@ -118,28 +160,14 @@ class _FormSchedulesState extends State<FormSchedules> {
         children: [
           // Module Count
           SizedBox(height: defaultSize * 2),
-          TextMedium(title: 'Module ${widget.moduleCount}', weight: FontWeight.w600, color: Colors.black54,),
+          TextSmall(title: 'Module ${widget.moduleCount}', weight: FontWeight.w600, color: Colors.black54,),
           
           // Module Title
-          SizedBox(height: defaultSize),
-          TextMedium(title: 'Module ${_module.title}', weight: FontWeight.w600, color: kBlack80),
+          SizedBox(height: defaultSize * .5),
+          TextLarge(title: 'Module ${_module.title}', weight: FontWeight.w600, color: kBlack80),
         ],
       ),
     );
-  }
-
-  updateSchedule(ClassScheduleModel oldSchedule, ClassScheduleModel newSchedule) {
-    for (var i = 0; i < _schedules.length; i++) {
-      if (_schedules[i].id == oldSchedule.id) {
-        setState(() { _schedules[i] = newSchedule; });
-        widget.updateModule(widget.module, ClassModuleModel.fromInstance(module: widget.module));
-      }
-    }
-  }
-
-  deleteSchedule(schedule) {
-    setState(() => _schedules.remove(schedule) );
-    widget.updateModule(widget.module, ClassModuleModel.fromInstance(module: widget.module));
   }
 }
 
