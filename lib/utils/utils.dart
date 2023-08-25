@@ -159,3 +159,11 @@ DateTime convertToDateTime(int date) {
 dynamic getTimeAgo(DateTime dateTime) {
   return timeago.format(dateTime, locale: 'en_short');
 }
+
+// This form does exactly what it says, it scrolls to the bottom of a screen
+scrollToBottom({required ScrollController scrollController, int milliseconds = 600}) {
+  scrollController.animateTo(
+    scrollController.position.maxScrollExtent,
+    duration: Duration(milliseconds: milliseconds), curve: Curves.easeOut,
+  );
+}
