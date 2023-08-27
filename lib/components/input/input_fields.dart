@@ -221,6 +221,7 @@ class _AppsTextFieldState extends State<AppsTextField> {
 class FormInputField extends StatelessWidget {
   const FormInputField({
     super.key,
+    this.controller,
     this.hintText = 'Enter Something',
     this.fontSize = 16, 
     this.fontWeight = FontWeight.w400,
@@ -228,6 +229,7 @@ class FormInputField extends StatelessWidget {
     required this.press,
   });
 
+  final TextEditingController? controller;
   final String hintText;
   final double fontSize;
   final FontWeight fontWeight;
@@ -237,6 +239,7 @@ class FormInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       style: appsTextStyle(fontSize: fontSize, color: Colors.black87, fontWeight: fontWeight),
       decoration: InputDecoration(
         hintText: hintText,
@@ -282,7 +285,7 @@ class FormTextarea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller?.text = initialValue ?? '';
+    // controller?.text = initialValue ?? '';
 
     return TextFormField(
       autofocus: autoFocus,
@@ -296,7 +299,7 @@ class FormTextarea extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         contentPadding: EdgeInsets.symmetric(vertical: defaultSize * 1.5),
-        hintStyle: appsTextStyle(color: textColor, fontSize: fontSize, fontWeight: fontWeight),
+        hintStyle: appsTextStyle(color: textColor.withOpacity(.7), fontSize: fontSize, fontWeight: fontWeight),
         border: const OutlineInputBorder(borderSide: BorderSide.none)
       ),
       validator: validator,
