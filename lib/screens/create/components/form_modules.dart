@@ -44,7 +44,7 @@ class _FormModulesState extends State<FormModules> {
               _modules.length,
               (index) => FormModuleTile(
                 module: _modules[index],
-                count: index + 1,
+                index: index,
                 pressDeleteModule: deleteModule,
                 pressUpdateModule: updateModule,
               ),
@@ -58,21 +58,12 @@ class _FormModulesState extends State<FormModules> {
     );
   }
 
-  updateModule(ClassModuleModel module, ClassModuleModel newModule) {
-    for (var i = 0; i < _modules.length; i++) {
-      if (_modules[i].id == module.id) {
-        setState(() { _modules[i] = newModule; });
-      }
-    }
+  updateModule(int index, ClassModuleModel newModule) {
+    setState(() { _modules[index] = newModule; });
   }
 
-  deleteModule(module) {
-    for (var i = 0; i < _modules.length; i++) {
-      if (_modules[i].id == module.id) {
-        debugPrint('REMOVE');
-        setState(() { _modules.removeAt(i); });
-      }
-    }
+  deleteModule(index) {
+    setState(() { _modules.removeAt(index); });
   }
 
   void addModule(String value) {
