@@ -133,7 +133,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
                             const HorizontalRule(),
                             buildButton(title: 'Class', press: showCreateClassScreen),
                         
-                            const HorizontalRule(), 
+                            const HorizontalRule(),
                             buildButton(title: 'Class Instance', press: showCreateClassScreen),
                           ],
                         ),
