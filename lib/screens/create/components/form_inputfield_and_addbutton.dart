@@ -49,7 +49,7 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
 
   Widget buildSubmitButton() {
     return Padding(
-      padding: EdgeInsets.only(left: defaultSize * 3.8, top: showModuleInputField ? 0 : defaultSize * 2),
+      padding: EdgeInsets.only(left: defaultSize * 4, top: showModuleInputField ? 0 : defaultSize * 2),
       child: GestureDetector(
         onTap: addModule,
         child: TextMedium(title: widget.buttonText, color: kBlack70, weight: FontWeight.w500,),
