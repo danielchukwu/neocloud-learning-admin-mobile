@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
+import 'package:neocloud_mobile/components/popups/popups.dart';
+import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
+import 'package:neocloud_mobile/graphql/models/ClassworkModel.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_modules.dart';
@@ -27,6 +30,7 @@ class CreateClassScreen extends StatefulWidget {
 
 class _CreateClassScreenState extends State<CreateClassScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _scrollController = ScrollController();
 
   String? _titleField;
   String? _descriptionField;
@@ -36,7 +40,7 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
   List<UserModel> _selectedEducatorsList = [];
   final List<UserModel> _usersToSelectFrom = List.generate(15, (index) => UserModel(id: '$index', name: 'John Default', avatar: defaultProfileAvatar));
   // Modules
-  final List<ClassModuleModel> _modules = [ClassModuleModel(id: '1', title: 'Introduction to Tech', classSchedules: [ClassScheduleModel(id: '1', title: 'What is Tech')])];
+  final List<ClassModuleModel> _modules = [ClassModuleModel(id: '1', title: 'Introduction to Tech', classSchedules: [ClassScheduleModel(id: '1', title: 'What is Tech', classwork: ClassworkModel(id: '1', title: 'Binary Sort Tree', body: 'just do it', duration: 2))])];
 
   // handle _hod errors and _educatorsList errors
   bool _hodHasError = false;
@@ -72,8 +76,6 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
   updateSelectedFaculty(List<FacultyModel> fac) {
     setState(() { _selectedFaculties = fac; });
   }
-
-  final _scrollController = ScrollController();
 
   @override
   void dispose() {
@@ -123,8 +125,12 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          SizedBox(height: defaultSize * 3),
+
+          // Class Avatar / Cover
+          FormAddCover(),
           
-          // Faculty Name
+          // Class Name
           SizedBox(height: defaultSize * 3),
           FormInputField(
             hintText: 'Class Name', fontSize: defaultSize * 2, fontWeight: FontWeight.w500,
@@ -156,9 +162,42 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
           const HorizontalRule(),
 
           SizedBox(height: defaultSize * 2 ),
-          FormModules(modules: _modules, scrollController: _scrollController),
+        FormModules(modules: _modules, scrollController: _scrollController),
         ],
       )
+    );
+  }
+}
+
+class FormAddCover extends StatelessWidget {
+  const FormAddCover({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () { showTopAlertDialog(text: 'Implement image picker & image cropper', isError: false); },
+      child: Container(
+        height: defaultSize * 20,
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.all(Radius.circular(defaultSize * .5)),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Image
+              SizedBox(height: defaultSize * 1.5),
+              Icon(Icons.image, color: Colors.black38, size: defaultSize * 4),
+              // Text
+              SizedBox(height: defaultSize * .5),
+              TextMedium(title: 'Add Cover', weight: FontWeight.w600, color: Colors.black26,),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
