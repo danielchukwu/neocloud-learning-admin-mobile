@@ -7,8 +7,9 @@ import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 class ClassworkModel {
   final String id;
   final String title;
-  final String body;
-  final String? deadline;
+  final String body;          // TODO: rename this field to description
+  final int duration;
+  final String? deadline;     // TODO: REMOVE THIS FIELD IN FRONTEND AND BACKEND
   final ClassScheduleModel? classSchedule;
   final ClassModel? clas;
   final FacultyModel? faculty;
@@ -18,6 +19,7 @@ class ClassworkModel {
     required this.id,
     required this.title,
     required this.body,
+    required this.duration,
     this.deadline,
     this.classSchedule,
     this.clas,
@@ -28,7 +30,8 @@ class ClassworkModel {
         id: cw['_id'],
         title: cw['title'],
         body: cw['body'],
-        deadline: cw['deadline'],
+        duration: 3,          // TODO: GET ACTUAL VALUE FROM BACKEND
+        deadline: cw['deadline'], 
         classSchedule: cw.containsKey('classSchedule') ? ClassScheduleModel.fromMap(cs: cw['classSchedule']) : null,
         clas: cw.containsKey('class') ? ClassModel.fromMap(aClass: cw['class']) : null,
         faculty: cw.containsKey('faculty') ? FacultyModel.fromMap(faculty: cw['faculty']) : null,
