@@ -23,46 +23,30 @@ class CreateFacultyScreen extends StatefulWidget {
 
 class _CreateFacultyScreenState extends State<CreateFacultyScreen> {
   final _formKey = GlobalKey<FormState>();
-
-  String? _titleField;
-  String? _descriptionField;
+  final _titleController = TextEditingController();
+  final _descriptionController = TextEditingController();
   List<UserModel> _selectedHods = [];
   List<UserModel> _selectedEducatorsList = []; 
   final List<UserModel> _usersToSelectFrom = List.generate(15, (index) => UserModel(id: '$index', name: 'John Default', avatar: defaultProfileAvatar));
-
-  // handle _hod errors and _educatorsList errors
   bool _hodHasError = false;
   bool _educatorsListHasError = false;
 
   void submitForm() {
     // confirm _hod && _educatorsList are not null 
     if (_selectedHods.isEmpty) {
-      setState(() { _hodHasError = true; });
-      return;
+      return setState(() { _hodHasError = true; });
     }
     setState(() { _hodHasError = false; });
 
     if (_selectedEducatorsList.isEmpty) {
-      setState(() { _educatorsListHasError = true; });
-      return;
+      return setState(() { _educatorsListHasError = true; });
     }
     setState(() { _educatorsListHasError = false; });
 
-    debugPrint(_titleField);
-    debugPrint(_descriptionField);
+    debugPrint(_titleController.text);
+    debugPrint(_descriptionController.text);
     debugPrint('$_selectedHods');
     debugPrint('$_selectedEducatorsList');
-  }
-
-  updateFacultyName(value) { _titleField = value; }
-  updateDescription(value) { _descriptionField = value; }
-
-  updateSelectedEducators(List<UserModel> users) {
-    setState(() { _selectedEducatorsList = users; });
-  }
-
-  updateSelectedHod(List<UserModel> users) {
-    setState(() { _selectedHods = users; });
   }
 
 
@@ -111,9 +95,10 @@ class _CreateFacultyScreenState extends State<CreateFacultyScreen> {
           // Faculty Name
           SizedBox(height: defaultSize * 3),
           FormInputField(
+            controller: _titleController,
             hintText: 'Faculty Name', fontSize: defaultSize * 2, fontWeight: FontWeight.w500,
             validator: validateRequireField,
-            press: updateFacultyName,
+            press: (_) {},
           ),
   
           // hod Input
@@ -125,7 +110,7 @@ class _CreateFacultyScreenState extends State<CreateFacultyScreen> {
           const HorizontalRule(),
 
           // description
-          FormDescription(press: updateDescription),
+          FormDescription(controller: _descriptionController, press: (_) {}),
 
           SizedBox(height: defaultSize * .5),
           const HorizontalRule(),
@@ -137,5 +122,13 @@ class _CreateFacultyScreenState extends State<CreateFacultyScreen> {
         ],
       )
     );
+  }
+
+  updateSelectedEducators(List<UserModel> users) {
+    setState(() { _selectedEducatorsList = users; });
+  }
+
+  updateSelectedHod(List<UserModel> users) {
+    setState(() { _selectedHods = users; });
   }
 }
