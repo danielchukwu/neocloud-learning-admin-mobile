@@ -11,15 +11,15 @@ class FormModuleTile extends StatefulWidget {
   const FormModuleTile({
     super.key,
     required this.module,
-    required this.count,
+    required this.index,
     required this.pressUpdateModule,
     required this.pressDeleteModule,
   });
 
   final ClassModuleModel module;
-  final int count;
-  final Function(ClassModuleModel module, ClassModuleModel newModule) pressUpdateModule;
-  final Function(ClassModuleModel module)pressDeleteModule;
+  final int index;
+  final Function(int moduleIndex, ClassModuleModel newModule) pressUpdateModule;
+  final Function(int index)pressDeleteModule;
 
   @override
   State<FormModuleTile> createState() => _FormModuleTileState();
@@ -42,13 +42,13 @@ class _FormModuleTileState extends State<FormModuleTile> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Count
+          // Module Index
           SizedBox(width: defaultSize),
           SizedBox(
             width: defaultSize * 3, 
             child: _editMode == false
-            ? TextMedium(title: '${widget.count}', color: Colors.black54)
-            : SizedBox(),
+            ? TextMedium(title: '${widget.index + 1}', color: Colors.black54)
+            : const SizedBox(),
           ),
 
           // Column - Title, Row (schedules count, add schedules btn)
@@ -67,7 +67,7 @@ class _FormModuleTileState extends State<FormModuleTile> {
           // title
           _editMode == false 
           ? TextMedium(  title: _module.title, color: kBlack80, weight: FontWeight.w500)
-          : FormUpdateOrDeleteInputField(fontSize: defaultSize * 1.6, textColor: kBlack80, fontWeight: FontWeight.w500, hintText: 'Schedule Title', initialValue: _module.title, pressUpdate: updateModule, pressDelete: () => widget.pressDeleteModule(_module)),
+          : FormUpdateOrDeleteInputField(fontSize: defaultSize * 1.6, textColor: kBlack80, fontWeight: FontWeight.w500, hintText: 'Schedule Title', initialValue: _module.title, pressUpdate: updateModule, pressDelete: () => widget.pressDeleteModule(widget.index)),
     
           // row - schedules count, view schedules
           SizedBox(height: defaultSize * .8),
@@ -82,7 +82,7 @@ class _FormModuleTileState extends State<FormModuleTile> {
     
               // view schedules
               GestureDetector(
-                onTap: () => showCreateScheduleDialog(module: _module, moduleCount: widget.count, updateModule: widget.pressUpdateModule),
+                onTap: () => showCreateScheduleDialog(module: _module, moduleCount: widget.index, updateModule: widget.pressUpdateModule),
                 child: const TextSmall(
                   title: 'View Schedules',
                   color: Colors.black54,
@@ -96,7 +96,6 @@ class _FormModuleTileState extends State<FormModuleTile> {
   }
 
   updateModule(String title) {
-    // widget.pressUpdateModule(widget.module, ClassModuleModel.fromInstance(module: widget.module, title: title));
     setState(() => _editMode = false );
     if (_module.title != title) {
       setState(() { _module = ClassModuleModel(id: _module.id, title: title); });
