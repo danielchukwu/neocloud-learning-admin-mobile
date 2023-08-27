@@ -47,5 +47,14 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Grant access to Photo Library</string>
+
+	<key>NSCameraUsageDescription</key>
+	<string>Grant access to Phone Camera</string>
+
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Grant access to Microphone</string>
 </dict>
 </plist>
