@@ -8,17 +8,18 @@ import 'package:neocloud_mobile/screens/create/components/form_footer.dart';
 import 'package:neocloud_mobile/screens/create/components/form_header.dart';
 import 'package:neocloud_mobile/screens/create/components/form_inputfield_and_addbutton.dart';
 import 'package:neocloud_mobile/screens/create/components/form_schedule_tile.dart';
+import 'package:neocloud_mobile/screens/create/components/from_index_title_header.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
 
 /// POPUP
 /// This screen is used in a showDialog dialog context, so it basically will be shown in a pop up context 
 /// in the CreateClassScreen() for adding schedules to schedules that are created for a class
 class FormSchedules extends StatefulWidget {
-  const FormSchedules({super.key, required this.module, required this.moduleCount, required this.updateModule});
+  const FormSchedules({super.key, required this.module, required this.index, required this.updateModule});
 
   final ClassModuleModel module;
-  final int moduleCount;
-  final Function(ClassModuleModel module, ClassModuleModel newModule ) updateModule;
+  final int index;
+  final Function(int moduleIndex, ClassModuleModel newModule ) updateModule;
 
   @override
   State<FormSchedules> createState() => _FormSchedulesState();
@@ -61,9 +62,8 @@ class _FormSchedulesState extends State<FormSchedules> {
         
               const HorizontalRule(),
         
-              buildModuleCountAndTitle(),
+              FormIndexTextAndTitleHeader(indexText: 'Module ${widget.index + 1}', title: _module.title),
               
-              SizedBox(height: defaultSize * 2),
               const HorizontalRule(),
         
               buildBody(),
@@ -97,7 +97,7 @@ class _FormSchedulesState extends State<FormSchedules> {
                 _schedules.length,
                 (index) => FormScheduleTile(
                   schedule: _schedules[index], 
-                  count: index + 1, 
+                  index: index, 
                   pressUpdateSchedule: updateSchedule, 
                   pressDeleteSchedule: deleteSchedule,
                 )
@@ -118,26 +118,17 @@ class _FormSchedulesState extends State<FormSchedules> {
     
     var newSchedule = ClassScheduleModel(id: '${_schedules.length + 1}', title: title);
     setState(() => _schedules.add(newSchedule) );
-    widget.updateModule(widget.module, widget.module);
+    widget.updateModule(widget.index, widget.module);
   }
   
-  updateSchedule(ClassScheduleModel oldSchedule, ClassScheduleModel newSchedule) {
-    for (var i = 0; i < widget.module.classSchedules!.length; i++) {
-      if (_schedules[i].id == oldSchedule.id) {
-        setState(() => _schedules[i] = newSchedule );
-      }
-    }
+  updateSchedule(int index, ClassScheduleModel newSchedule) {
+    print('NEW SCHEDULE');
+    setState(() => _schedules[index] = newSchedule );
   }
 
-  deleteSchedule(schedule) {
-    for (var i = 0; i < _schedules.length; i++) {
-      if (_schedules[i].id == schedule.id) {
-        setState(() => _schedules.removeAt(i));
-        // update Module so it reflects current schedules state in the CreateClassScreen 
-        // or whatever screen uses this class that has a module
-        widget.updateModule(widget.module, widget.module);
-      }
-    }
+  deleteSchedule(int index) {
+    setState(() => _schedules.removeAt(index));
+    widget.updateModule(widget.index, widget.module);
   }
 
   Widget buildScheduleListHeader() {
@@ -149,24 +140,6 @@ class _FormSchedulesState extends State<FormSchedules> {
       iconColor: kBlack60,
       iconSize: defaultSize * 1.8,
       spaceBetweenSize: defaultSize * 1,
-    );
-  }
-  
-  Widget buildModuleCountAndTitle() {
-    return Padding(
-      padding: screenPadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Module Count
-          SizedBox(height: defaultSize * 2),
-          TextSmall(title: 'Module ${widget.moduleCount}', weight: FontWeight.w600, color: Colors.black54,),
-          
-          // Module Title
-          SizedBox(height: defaultSize * .5),
-          TextLarge(title: 'Module ${_module.title}', weight: FontWeight.w600, color: kBlack80),
-        ],
-      ),
     );
   }
 }
