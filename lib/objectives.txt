@@ -32,19 +32,12 @@ Objectives
 // : (){} "" <> ? _ ! * $
 
 
+TODO
 
+UI
+- When an item is deleted (in respect to created modules or schedules and it has items that precede it)
 
-
-Improvements
-- WelcomeScreen
-  - for the button, animate the the icon >
-- DashboardScreen
-  - Change the color of the Navbar when it gets to a certain point (the white background)
-- Navbar
-  - Test out a different navbar
-
-
-
-UI DEsigns
-- course view screen
-- 
+Backend
+- add classwork to ClassScheduleModel (query and mutations)
+- change deadline to duration in ClassworkModel
+- change body to description
