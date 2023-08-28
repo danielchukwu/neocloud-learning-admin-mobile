@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/providers/NavItem.dart';
 import 'package:neocloud_mobile/providers/UserProvider.dart';
@@ -20,9 +21,15 @@ import 'package:neocloud_mobile/screens/splash/splash_screen.dart';
 import 'package:neocloud_mobile/screens/welcome/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
+import 'utils/locator.dart';
+
 void main() async {
   // This helps us in caching our flutter_graphql fetched data
   // await initHiveForFlutter();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  // Register App Services
+  setupServiceLocator();
   
   runApp(
     MultiProvider(
