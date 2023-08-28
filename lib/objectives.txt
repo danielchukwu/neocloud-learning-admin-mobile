@@ -41,3 +41,15 @@ Backend
 - add classwork to ClassScheduleModel (query and mutations)
 - change deadline to duration in ClassworkModel
 - change body to description
+
+GOALS
+- Use Image image_picker ✅
+- Use Image image_cropper ✅
+- Implement pop up that asks if we would like to use gallery or camera
+- Use Firebase storage to store images, files etc
+- Implement set date for items
+  - add btn to schedule tile
+  - implement new set date pop up
+  - 
+- Deleting of Modules & Schedules no longer working
+- Complete Error handling for classes form
