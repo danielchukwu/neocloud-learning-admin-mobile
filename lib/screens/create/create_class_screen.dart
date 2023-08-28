@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
@@ -11,6 +14,9 @@ import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_modules.dart';
 import 'package:neocloud_mobile/screens/create/components/form_select_faculty.dart';
+import 'package:neocloud_mobile/utils/flutter_storage.dart';
+import 'package:neocloud_mobile/utils/image_helper.dart';
+import 'package:neocloud_mobile/utils/locator.dart';
 import 'package:neocloud_mobile/utils/validation.dart';
 import 'components/form_description.dart';
 import 'components/form_footer.dart';
@@ -147,13 +153,14 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
           const HorizontalRule(),
 
           // Description
+          SizedBox(height: defaultSize * .8 ),
           FormDescription(press: updateDescription),
 
           SizedBox(height: defaultSize * .5),
           const HorizontalRule(),
 
           // Add Educators
-          SizedBox(height: defaultSize ),
+          SizedBox(height: defaultSize * 1.5 ),
           FormSelectUsers(buttonText: 'Educators', avatarText: 'ED', selectedUsersList: _selectedEducatorsList, usersToSelectFrom: _usersToSelectFrom, updateSelectedUsers: updateSelectedEducators,),
           _educatorsListHasError ? const TextInputError() : const SizedBox(),
 
@@ -162,29 +169,55 @@ class _CreateClassScreenState extends State<CreateClassScreen> {
           const HorizontalRule(),
 
           SizedBox(height: defaultSize * 2 ),
-        FormModules(modules: _modules, scrollController: _scrollController),
+          FormModules(modules: _modules, scrollController: _scrollController),
         ],
       )
     );
   }
 }
 
-class FormAddCover extends StatelessWidget {
+// final imageHelper = ImageHelper();
+
+class FormAddCover extends StatefulWidget {
   const FormAddCover({
     super.key,
   });
 
   @override
+  State<FormAddCover> createState() => _FormAddCoverState();
+}
+
+class _FormAddCoverState extends State<FormAddCover> {
+  File? _selectedImage;
+  var imageHelper = getIt<ImageHelper>();
+  var firebaseStorage = getIt<FirebaseStorage>();
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () { showTopAlertDialog(text: 'Implement image picker & image cropper', isError: false); },
-      child: Container(
+      onTap: () async {
+        final files = await imageHelper.pickImage(); 
+        if (files.isNotEmpty) {
+          final croppedFile = await imageHelper.cropImage(file: files.first!, aspectRatio: const CropAspectRatio(ratioX: 4, ratioY: 2));
+          if (croppedFile != null) { 
+            setState(() => _selectedImage = File(croppedFile.path));
+            // debugPrint('UPLOADING IMAGE ...................... 👟👟👟');
+            // await firebaseStorage.uploadFile(_selectedImage!);
+            // debugPrint('DONE UPLOADING ........ ');
+
+          }
+        }
+      },
+      child: AnimatedContainer(
+        duration: const Duration(seconds: 2),
         height: defaultSize * 20,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: Colors.grey[200],
-          borderRadius: BorderRadius.all(Radius.circular(defaultSize * .5)),
+          // borderRadius: BorderRadius.all(Radius.circular(defaultSize * .5)),
+          image: _selectedImage != null ? DecorationImage(image: FileImage(_selectedImage!), fit: BoxFit.cover) : null,
         ),
-        child: Center(
+        child: _selectedImage == null ? Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -193,10 +226,10 @@ class FormAddCover extends StatelessWidget {
               Icon(Icons.image, color: Colors.black38, size: defaultSize * 4),
               // Text
               SizedBox(height: defaultSize * .5),
-              TextMedium(title: 'Add Cover', weight: FontWeight.w600, color: Colors.black26,),
+              const TextMedium(title: 'Add Cover', weight: FontWeight.w600, color: Colors.black26),
             ],
           ),
-        ),
+        ) : const SizedBox(),
       ),
     );
   }
