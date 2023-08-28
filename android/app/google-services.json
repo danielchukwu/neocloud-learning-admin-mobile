@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1057749403193",
+    "project_id": "neocloud-bd1f6",
+    "storage_bucket": "neocloud-bd1f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1057749403193:android:64f36b8911b72f2cac2fe8",
+        "android_client_info": {
+          "package_name": "com.example.neocloud_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1057749403193-mpnmdaulqpm3rhsh6tt5ft4rde3p8qua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq3ZomVC42RKX0qOw-nycJXcxqyQ6bMBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1057749403193-mpnmdaulqpm3rhsh6tt5ft4rde3p8qua.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1057749403193-7cmrpe70mmaq0ctv35p4uupfbhqc6bt1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.neocloudMobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
