@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1057749403193-7cmrpe70mmaq0ctv35p4uupfbhqc6bt1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1057749403193-7cmrpe70mmaq0ctv35p4uupfbhqc6bt1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC4nGpN2s_PK0_1oeG7QV52eFB2dCsm8gM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1057749403193</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.neocloudMobile</string>
+	<key>PROJECT_ID</key>
+	<string>neocloud-bd1f6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>neocloud-bd1f6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1057749403193:ios:c9a07d00a3ae829dac2fe8</string>
+</dict>
+</plist>
