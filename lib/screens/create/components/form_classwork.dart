@@ -69,13 +69,13 @@ class _FormClassworkScreenState extends State<FormClassworkScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: defaultSize , vertical: defaultSize * 4),
+      margin: const EdgeInsets.symmetric(horizontal: 10 , vertical: 40),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(defaultSize * 2)),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
           child: Form(
             key: _formKey,
@@ -115,10 +115,10 @@ class _FormClassworkScreenState extends State<FormClassworkScreen> {
     return Column(
       children: [
         // Classwork Title Input Field
-        SizedBox(height: defaultSize * 2),
+        const SizedBox(height:20),
         FormInputField(
           controller: titleController,
-          hintText: 'Classwork Title', fontSize: defaultSize * 1.8, fontWeight: FontWeight.w500,
+          hintText: 'Classwork Title', fontSize:18, fontWeight: FontWeight.w500,
           validator: validateRequireField,
           press: (_) {},
         ),
@@ -126,21 +126,21 @@ class _FormClassworkScreenState extends State<FormClassworkScreen> {
         // Description
         FormDescription(controller: descriptionController, maxLine: 5, press: (_) {},),
 
-        SizedBox(height: defaultSize * 2),
+        const SizedBox(height:20),
         const HorizontalRule(),
 
         // Duration Section - Row (iconText, duration options)
-        SizedBox(height: defaultSize* 2),
+        const SizedBox(height: 20),
         buildDuration(),
 
-        SizedBox(height: defaultSize * 2),
+        const SizedBox(height:20),
         const HorizontalRule(),
 
         // Attach file
-        SizedBox(height: defaultSize * 2),
+        const SizedBox(height:20),
         IconText(title: 'Attach file', icon: Icons.attach_file_rounded, iconColor: kBlack70,),
 
-        SizedBox(height: defaultSize * 5),
+        const SizedBox(height:50),
       ],
     );
   }
@@ -151,11 +151,11 @@ class _FormClassworkScreenState extends State<FormClassworkScreen> {
         children: [
           IconText(title: 'Duration', icon: Icons.access_time_outlined, color: kBlack70, iconColor: kBlack70),
 
-          SizedBox(width: defaultSize * 2),
+          const SizedBox(width:20),
           Expanded(
             child: Wrap(
-              runSpacing: defaultSize,
-              spacing: defaultSize,
+              runSpacing: 10,
+              spacing: 10,
               children: List.generate(
                 _durations.length, 
                 (index) => GestureDetector(
@@ -175,8 +175,8 @@ class _FormClassworkScreenState extends State<FormClassworkScreen> {
       fontWeight: FontWeight.w500,
       icon: Icons.view_agenda_outlined,
       iconColor: kBlack60,
-      iconSize: defaultSize * 1.8,
-      spaceBetweenSize: defaultSize * 1,
+      iconSize:18,
+      spaceBetweenSize:10,
     );
   }
 }
