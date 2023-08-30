@@ -44,11 +44,11 @@ class FormSelectFaculty extends StatelessWidget {
         ),
 
         // Selected faculty Avatar
-        SizedBox(width: defaultSize * 1.5),
+        const SizedBox(width: 15),
         const RoundBoxAvatar(size: 35, image: defaultBookStackAvatar),
         
         // Selected faculty Name
-        SizedBox(width: defaultSize * 1 ),
+        const SizedBox(width: 10 ),
         TextMedium(title: selectedFacultyList.isNotEmpty ? selectedFacultyList[0].name : 'Faculty Name ...', color: Colors.black54,)
       ],
     );
