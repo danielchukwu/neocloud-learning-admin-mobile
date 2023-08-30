@@ -46,13 +46,13 @@ class _FormSchedulesState extends State<FormSchedules> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: defaultSize , vertical: defaultSize * 3),
+      margin: EdgeInsets.symmetric(horizontal: defaultSize , vertical: 30),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(defaultSize * 2)),
+            borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,12 +83,12 @@ class _FormSchedulesState extends State<FormSchedules> {
     return Expanded(
       child: SingleChildScrollView(
         controller: _scrollController,
-        padding: EdgeInsets.only(left: defaultSize * 2, right: defaultSize * 2, bottom: defaultSize * 20),
+        padding: EdgeInsets.only(left: 20, right: 20, bottom: 200),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Schedule Header - Icon and Schedule Title
-            SizedBox(height: defaultSize * 2),
+            SizedBox(height: 20),
             buildScheduleListHeader(),
 
               // Column - List of class schedules (curriculum)
@@ -138,8 +138,8 @@ class _FormSchedulesState extends State<FormSchedules> {
       fontWeight: FontWeight.w500,
       icon: Icons.view_agenda_outlined,
       iconColor: kBlack60,
-      iconSize: defaultSize * 1.8,
-      spaceBetweenSize: defaultSize * 1,
+      iconSize: 18,
+      spaceBetweenSize: 10,
     );
   }
 }
