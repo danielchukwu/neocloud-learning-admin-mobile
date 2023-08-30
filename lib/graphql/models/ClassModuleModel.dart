@@ -32,7 +32,7 @@ class ClassModuleModel {
 
   static ClassModuleModel fromInstance({required ClassModuleModel module, String? title}) => ClassModuleModel(
     id: module.id,
-    title: module.title,
+    title: title ?? module.title,
     order: module.order,
     clas: module.clas,
     classSchedules: module.classSchedules,
