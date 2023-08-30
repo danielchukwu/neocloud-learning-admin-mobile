@@ -63,21 +63,21 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
   Widget build(BuildContext context) {
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: defaultSize , vertical: defaultSize * 3),
+      margin: const EdgeInsets.symmetric(horizontal: 10 , vertical: 30),
       child: Material(
-        borderRadius: BorderRadius.all(Radius.circular(defaultSize * 2)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
         child: Column(
           children: [
 
             // Row - Title and Cancel Icon
-            FormHeader(),
+            const FormHeader(),
 
-            HorizontalRule(),
+            const HorizontalRule(),
 
             // Column - Search and Selected Faculties Count
-            SizedBox(height: defaultSize,),
+            const SizedBox(height: 10),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: defaultSize * 2),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
                   // Search
@@ -91,7 +91,7 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
                   ),
                   
                   // Selected Count
-                  SizedBox(height: defaultSize,),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -112,7 +112,7 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
             ),
 
             // Column - Users List
-            SizedBox(height: defaultSize),
+            const SizedBox(height: 10),
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
@@ -123,7 +123,7 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
                     children: List.generate(
                       facultiesToSelectFrom.length, 
                       (index) => Padding(
-                        padding: EdgeInsets.only(bottom: defaultSize),
+                        padding: EdgeInsets.only(bottom: 10),
                         child: FacultySelectionTile(
                           faculty: facultiesToSelectFrom[index],
                           isSelected: facultyIsSelected(facultiesToSelectFrom[index]),
@@ -137,7 +137,7 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
               ),
             ),
 
-            HorizontalRule(),
+            const HorizontalRule(),
 
             FormFooter(title: 'Done', formKey: GlobalKey<FormState>(), press: () => Navigator.pop(context),)
           ],
