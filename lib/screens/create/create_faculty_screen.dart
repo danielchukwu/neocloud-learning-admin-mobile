@@ -57,7 +57,7 @@ class _CreateFacultyScreenState extends State<CreateFacultyScreen> {
       body: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(defaultSize * 2)
+          borderRadius: BorderRadius.circular(20)
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,32 +93,32 @@ class _CreateFacultyScreenState extends State<CreateFacultyScreen> {
         children: <Widget>[
           
           // Faculty Name
-          SizedBox(height: defaultSize * 3),
+          const SizedBox(height: 30),
           FormInputField(
             controller: _titleController,
-            hintText: 'Faculty Name', fontSize: defaultSize * 2, fontWeight: FontWeight.w500,
+            hintText: 'Faculty Name', fontSize: 20, fontWeight: FontWeight.w500,
             validator: validateRequireField,
             press: (_) {},
           ),
   
           // hod Input
-          SizedBox(height: defaultSize * 1.5 ),
+          const SizedBox(height: 15 ),
           FormSelectUser(buttonText: 'HOD', selectedUsersList: _selectedHods, usersToSelectFrom: _usersToSelectFrom, updateSelectedUser: updateSelectedHod),
-          _hodHasError ? TextInputError() : SizedBox(),
+          _hodHasError ? TextInputError() : const SizedBox(),
 
-          SizedBox(height: defaultSize * 2 ),
+          const SizedBox(height: 20 ),
           const HorizontalRule(),
 
           // description
           FormDescription(controller: _descriptionController, press: (_) {}),
 
-          SizedBox(height: defaultSize * .5),
+          const SizedBox(height: 5),
           const HorizontalRule(),
 
           // Educators
-          SizedBox(height: defaultSize * 2 ),
+          const SizedBox(height: 20 ),
           FormSelectUsers(buttonText: 'Educators', selectedUsersList: _selectedEducatorsList, usersToSelectFrom: _usersToSelectFrom, updateSelectedUsers: updateSelectedEducators,),
-          _educatorsListHasError ? TextInputError() : SizedBox(),
+          _educatorsListHasError ? TextInputError() : const SizedBox(),
         ],
       )
     );
