@@ -14,7 +14,7 @@ class ImageHelper {
   Future<List<XFile?>> pickImage({
     ImageSource source = ImageSource.gallery,
     int quality = 100,
-    pickMultiple = false,
+    pickMultiple = false, 
   }) async {
     if (pickMultiple) {
       return await _imagePicker.pickMultiImage(imageQuality: quality); 
