@@ -6,14 +6,23 @@ import 'package:flutter/material.dart';
 class FirebaseStorage {
   final storage = firebase_storage.FirebaseStorage.instance;
 
-  Future<void> uploadFile(File file) async {
+  Future<String?> uploadFile(File file, String filename) async {
     try {
-      await storage.ref('test/${DateTime.now()}').putFile(file);
-      print('FILE UPLOADED: ✅');
+      debugPrint('1.');
+      var startTime = DateTime.now();
+      var snapshot = await storage.ref('files/$filename').putFile(file);
+
+      debugPrint('2.');
+      String downloadUrl = await snapshot.ref.getDownloadURL();
+
+      debugPrint('3.');
+      var endTime = DateTime.now();
+      debugPrint('Execution Time(s): ${endTime.difference(startTime).inSeconds}');
+      
+      debugPrint('FILE UPLOADED: ✅');
+      return downloadUrl;
     } on firebase_core.FirebaseException catch (e) {
-      debugPrint(e.toString());
-      print('FILE UPLOADED: ❌');
+      debugPrint('FILE UPLOADED: ❌');
     }
   }
-  
 }
