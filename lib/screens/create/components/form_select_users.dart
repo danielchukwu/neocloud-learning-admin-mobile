@@ -53,7 +53,7 @@ class FormSelectUsers extends StatelessWidget {
         ),
 
         // Default Avatar Stack or Selected Users Avatar
-        SizedBox(width: defaultSize * 1.5),
+        const SizedBox(width: 15),
         Expanded(
           child: selectedUsersList.isEmpty
               ? avatarStack()
@@ -86,8 +86,8 @@ class FormSelectUsers extends StatelessWidget {
 
   Wrap showSelectedUsersAvatars() {
     return Wrap(
-      spacing: defaultSize,
-      runSpacing: defaultSize,
+      spacing: 10,
+      runSpacing: 10,
       children: List.generate(
         selectedUsersList.length,
         (index) => RoundBoxAvatar(size: 35, image: selectedUsersList[0].avatar),
