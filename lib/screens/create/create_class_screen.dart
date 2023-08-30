@@ -201,10 +201,11 @@ class _FormAddCoverState extends State<FormAddCover> {
           final croppedFile = await imageHelper.cropImage(file: files.first!, aspectRatio: const CropAspectRatio(ratioX: 4, ratioY: 2));
           if (croppedFile != null) { 
             setState(() => _selectedImage = File(croppedFile.path));
+            print(File(croppedFile.path));
             debugPrint('UPLOADING IMAGE ...................... 👟👟👟');
-            await firebaseStorage.uploadFile(_selectedImage!);
-            debugPrint('DONE UPLOADING ........ ');
-
+            print('FILENAME: ${files.first!.name}');
+            firebaseStorage.uploadFile(File(croppedFile.path), files.first!.name)
+            .then((value) => {debugPrint('DONE UPLOADING ........ ') });
           }
         }
       },
