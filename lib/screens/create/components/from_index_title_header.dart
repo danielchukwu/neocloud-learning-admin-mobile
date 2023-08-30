@@ -21,13 +21,13 @@ class FormIndexTextAndTitleHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Module Count
-          SizedBox(height: defaultSize * 2),
+          const SizedBox(height: 20),
           TextSmall(title: indexText, weight: FontWeight.w600, color: Colors.black54,),
           
           // Module Title
-          SizedBox(height: defaultSize * .5),
+          const SizedBox(height: 5),
           TextLarge(title: title, weight: FontWeight.w600, color: kBlack80),
-          SizedBox(height: defaultSize * 2),
+          const SizedBox(height: 20),
         ],
       ),
     );
