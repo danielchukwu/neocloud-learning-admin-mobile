@@ -44,11 +44,11 @@ class FormSelectUser extends StatelessWidget {
         ),
 
         // Selected User Avatar
-        SizedBox(width: defaultSize * 1.5),
+        const SizedBox(width: 15),
         RoundBoxAvatar(size: 35, image: selectedUsersList.isNotEmpty ? selectedUsersList[0].avatar : defaultSlugAvatar),
         
         // Selected User Name
-        SizedBox(width: defaultSize * 1 ),
+        const SizedBox(width: 10 ),
         TextMedium(title: selectedUsersList.isNotEmpty ? selectedUsersList[0].name : 'John Doe ...', color: Colors.black54,)
       ],
     );
