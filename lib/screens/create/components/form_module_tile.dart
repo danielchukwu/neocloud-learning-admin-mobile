@@ -3,6 +3,7 @@ import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
+import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/screens/create/components/form_update_or_delete_inputfield.dart';
 
 // This is a form class module tile widget that shows a modules title and it's order count
@@ -38,14 +39,14 @@ class _FormModuleTileState extends State<FormModuleTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: defaultSize * 2),
+      padding: EdgeInsets.only(top: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Module Index
-          SizedBox(width: defaultSize),
+          SizedBox(width: 10),
           SizedBox(
-            width: defaultSize * 3, 
+            width: 30, 
             child: _editMode == false
             ? TextMedium(title: '${widget.index + 1}', color: Colors.black54)
             : const SizedBox(),
@@ -67,10 +68,11 @@ class _FormModuleTileState extends State<FormModuleTile> {
           // title
           _editMode == false 
           ? TextMedium(  title: _module.title, color: kBlack80, weight: FontWeight.w500)
-          : FormUpdateOrDeleteInputField(fontSize: defaultSize * 1.6, textColor: kBlack80, fontWeight: FontWeight.w500, hintText: 'Schedule Title', initialValue: _module.title, pressUpdate: updateModule, pressDelete: () => widget.pressDeleteModule(widget.index)),
+          : FormUpdateOrDeleteInputField(
+            fontSize: 16, textColor: kBlack80, fontWeight: FontWeight.w500, hintText: 'Schedule Title', initialValue: _module.title, pressUpdate: updateModule, pressDelete: () => widget.pressDeleteModule(widget.index)),
     
           // row - schedules count, view schedules
-          SizedBox(height: defaultSize * .8),
+          SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -98,7 +100,9 @@ class _FormModuleTileState extends State<FormModuleTile> {
   updateModule(String title) {
     setState(() => _editMode = false );
     if (_module.title != title) {
-      setState(() { _module = ClassModuleModel(id: _module.id, title: title); });
+      var newModule = ClassModuleModel.fromInstance(title: title, module: _module);
+      setState(() { _module = newModule; });
+      widget.pressUpdateModule(widget.index, newModule);
     }
   }
 }
