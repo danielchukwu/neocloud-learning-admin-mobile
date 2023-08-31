@@ -14,6 +14,7 @@ class FormUpdateOrDeleteInputField extends StatefulWidget {
     this.hintText,
     this.initialValue,
     this.autoFocus = true,
+    // this.textareaPosition = 48.5,
     required this.pressUpdate,
     this.pressDelete,
   });
@@ -24,6 +25,7 @@ class FormUpdateOrDeleteInputField extends StatefulWidget {
   final String? hintText;
   final String? initialValue;
   final bool autoFocus;
+  // final double textareaPosition;
   final Function(String) pressUpdate;
   // if this is null, the delete icon 🗑️ won't show up
   final Function()? pressDelete;
@@ -47,11 +49,11 @@ class _FormUpdateOrDeleteInputFieldState extends State<FormUpdateOrDeleteInputFi
         Expanded(
           child: Container(
             // color: kRed,
-            height: defaultSize * 2.4,
+            height: 24,
             child: Stack(
               children: [
                 Positioned(
-                  height: defaultSize * 5,
+                  height: 48.5,
                   width: SizeConfig.screenWidth! / 1.4,
                   top: -10,
                   child: Container(
@@ -89,7 +91,7 @@ class _FormUpdateOrDeleteInputFieldState extends State<FormUpdateOrDeleteInputFi
               setState(() { deleteWasClicked = true; });
               widget.pressDelete!();
             },
-            child: Icon(Icons.delete_outline, color: kRed.withOpacity(.9), size: defaultSize * 2)
+            child: Icon(Icons.delete_outline, color: kRed.withOpacity(.9), size: 20)
           )
         : SizedBox(),
       ],
