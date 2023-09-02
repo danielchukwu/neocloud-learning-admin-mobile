@@ -49,7 +49,7 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
 
   Widget buildSubmitButton() {
     return Padding(
-      padding: EdgeInsets.only(left: defaultSize * 4, top: showModuleInputField ? 0 : defaultSize * 2),
+      padding: EdgeInsets.only(left: 40, top: showModuleInputField ? 0 : 20),
       child: GestureDetector(
         onTap: addModule,
         child: TextMedium(title: widget.buttonText, color: kBlack70, weight: FontWeight.w500,),
@@ -73,9 +73,9 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
         // Count
         SizedBox(width: defaultSize),
         SizedBox(
-          width: defaultSize * 3,
+          width: 30,
           child: Padding(
-            padding: EdgeInsets.only(top: defaultSize * 1.4),
+            padding: EdgeInsets.only(top: 14),
             child: TextMedium(title: '${widget.count}', color: Colors.black54),
           ),
         ),
@@ -96,7 +96,7 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
       autofocus: true,
       textInputAction: TextInputAction.done,  // Display done in keyboard
       onEditingComplete: pressOnKeyboardDone,   // execute function when done is clicked on the keyboard
-      style: appsTextStyle(color: kBlack80, fontWeight: FontWeight.w500, fontSize: defaultSize * 1.6 ),
+      style: appsTextStyle(color: kBlack80, fontWeight: FontWeight.w500, fontSize: 16 ),
       decoration: textAreaDecoration(),
     );
   }
@@ -104,7 +104,7 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
   InputDecoration textAreaDecoration() {
     return InputDecoration(
       hintText: widget.hintText,
-      contentPadding: EdgeInsets.symmetric(vertical: defaultSize * 1.5),
+      contentPadding: EdgeInsets.symmetric(vertical: 15),
       hintStyle: appsTextStyle(color: Colors.black54),
       border: const OutlineInputBorder(borderSide: BorderSide.none)
     );
