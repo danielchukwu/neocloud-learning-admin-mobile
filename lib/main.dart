@@ -93,7 +93,8 @@ class MyApp extends StatelessWidget {
           bodyLarge: TextStyle(fontFamily: 'Poppins', fontSize: 16),
         ),
         scaffoldBackgroundColor: Colors.white,
-        splashFactory: InkRipple.splashFactory
+        splashFactory: InkRipple.splashFactory,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
         );
   }
 }
