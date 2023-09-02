@@ -135,8 +135,7 @@ class AppsSliverAppBar extends AppsAppBar {
   Widget build(BuildContext context) {
     return SliverAppBar(
       backgroundColor: bgColor,
-      leadingWidth: defaultSize * 6,
-      // expandedHeight: defaultSize * 6.5,
+      leadingWidth: 60,
       elevation: elevation,
       floating: true,
       snap: true,
