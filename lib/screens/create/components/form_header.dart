@@ -13,7 +13,7 @@ class FormHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: defaultSize * 2, vertical: defaultSize * 1.5),
+      margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -22,7 +22,7 @@ class FormHeader extends StatelessWidget {
           // Cancel Button
           GestureDetector(
             onTap: () => Navigator.pop(context),
-            child: Icon(Icons.close, color: Colors.black87, size: defaultSize * 3,)),
+            child: Icon(Icons.close, color: Colors.black87, size: 30,)),
         ],
       ),
     );
