@@ -23,7 +23,7 @@ class TextSmall extends StatelessWidget {
       style: TextStyle(
         fontFamily: 'Poppins',
         color: color ?? kBlack70,
-        fontSize: defaultSize * 1.4,
+        fontSize: 14,
         fontWeight: weight,
       ),
     );
@@ -51,7 +51,7 @@ class TextMedium extends StatelessWidget {
       style: TextStyle(
         fontFamily: 'Poppins',
         color: color ?? kBlack70,
-        fontSize: defaultSize * 1.6,
+        fontSize: 16,
         fontWeight: weight,
         decoration: TextDecoration.none
       ),
@@ -80,7 +80,7 @@ class TextLarge extends StatelessWidget {
       style: TextStyle(
         fontFamily: 'Poppins',
         color: color ?? kBlack70,
-        fontSize: defaultSize * 1.8,
+        fontSize: 18,
         fontWeight: weight,
       ),
     );
@@ -108,7 +108,7 @@ class TextExtraLarge extends StatelessWidget {
       style: TextStyle(
         fontFamily: 'Poppins',
         color: color ?? kBlack70,
-        fontSize: defaultSize * 2,
+        fontSize: 20,
         fontWeight: weight,
       ),
     );
@@ -337,13 +337,13 @@ class _TextSeeMoreState extends State<TextSeeMore> {
           maxLines: !showMore ? widget.maxLines : 200,
         ),
         SizedBox(
-          height: widget.text.length > 215 ? defaultSize * 1 : 0,
+          height: widget.text.length > 215 ? 10 : 0,
         ),
         widget.text.length > 215
             ? TextLink(
                 title: !showMore ? "See more" : "See less",
                 color: widget.seeMoreColor ?? kBlue,
-                fontSize: defaultSize * 1.6,
+                fontSize: 16,
                 weight: FontWeight.w600,
                 press: (_) => setState(() => showMore = !showMore),
               )
