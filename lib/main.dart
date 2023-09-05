@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'NCT Admin',
+      title: 'NCT Adminnnnnn',
       theme: buildTheme(),
       initialRoute: '/' + AcademicScreen.screenName,
       // navigatorObservers: [AuthGuardObserver()],  // Middleware observer
