@@ -30,7 +30,7 @@ void main() async {
   await Firebase.initializeApp();
   // Register App Services
   setupServiceLocator();
-  
+
   runApp(
     MultiProvider(
       providers: [
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'NCT Adminnnnnn',
+      title: 'NCT Adminnnnnn Broski',
       theme: buildTheme(),
       initialRoute: '/' + AcademicScreen.screenName,
       // navigatorObservers: [AuthGuardObserver()],  // Middleware observer
@@ -83,18 +83,18 @@ class MyApp extends StatelessWidget {
 
   ThemeData buildTheme() {
     return ThemeData(
-        primarySwatch: Colors.blue,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          elevation: 0.0,
-        ),
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(fontFamily: 'Poppins', fontSize: 16),
-        ),
-        scaffoldBackgroundColor: Colors.white,
-        splashFactory: InkRipple.splashFactory,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        );
+      primarySwatch: Colors.blue,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        elevation: 0.0,
+      ),
+      textTheme: const TextTheme(
+        bodyLarge: TextStyle(fontFamily: 'Poppins', fontSize: 16),
+      ),
+      scaffoldBackgroundColor: Colors.white,
+      splashFactory: InkRipple.splashFactory,
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+    );
   }
 }

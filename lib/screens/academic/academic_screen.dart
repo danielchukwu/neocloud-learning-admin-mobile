@@ -49,7 +49,8 @@ class _AcademicScreenState extends State<AcademicScreen> {
               Container(
                 padding: EdgeInsets.only(bottom: defaultSize * .5),
                 decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: kBlack50, width: .2))),
+                    border:
+                        Border(bottom: BorderSide(color: kBlack50, width: .2))),
                 child: DisplayOptions(
                   items: AcademicOptions.items,
                   getSelectedIndex: AcademicOptions.getSelectedIndex,
@@ -113,36 +114,38 @@ class _AcademicScreenState extends State<AcademicScreen> {
               return GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: Material(
-                  color: Colors.transparent,
-                  child: Column(
-                    children: [
-                      Spacer(),
-              
-                      // Popup card
-                      Container(
-                        margin: screenPadding,
-                        padding: EdgeInsets.symmetric(vertical: defaultSize),
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: Colors.white
-                        ),
-                        child: Column(
-                          children: [
-                            buildButton(title: 'Faculty', press: showCreateFacultyScreen),
+                    color: Colors.transparent,
+                    child: Column(
+                      children: [
+                        Spacer(),
 
-                            const HorizontalRule(),
-                            buildButton(title: 'Class', press: showCreateClassScreen),
-                        
-                            const HorizontalRule(),
-                            buildButton(title: 'Class Instance', press: showCreateClassScreen),
-                          ],
+                        // Popup card
+                        Container(
+                          margin: screenPadding,
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              color: Colors.white),
+                          child: Column(
+                            children: [
+                              buildButton(
+                                  title: 'Faculty',
+                                  press: showCreateFacultyScreen),
+                              const HorizontalRule(),
+                              buildButton(
+                                  title: 'Class', press: showCreateClassScreen),
+                              const HorizontalRule(),
+                              buildButton(
+                                  title: 'Class Instance',
+                                  press: showCreateClassScreen),
+                            ],
+                          ),
                         ),
-                      ),
-              
-                      Spacer(),
-                    ],
-                  )
-                ),
+
+                        Spacer(),
+                      ],
+                    )),
               );
             },
           );
@@ -162,12 +165,13 @@ class _AcademicScreenState extends State<AcademicScreen> {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: defaultSize * 2),
         color: Colors.transparent,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextMedium(title: title, color: kBlack70, weight: FontWeight.w600,)
-          ] 
-        ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          TextMedium(
+            title: title,
+            color: kBlack70,
+            weight: FontWeight.w600,
+          )
+        ]),
       ),
     );
   }
