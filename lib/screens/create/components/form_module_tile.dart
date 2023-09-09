@@ -1,50 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
-import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/screens/create/components/form_update_or_delete_inputfield.dart';
+import 'package:neocloud_mobile/screens/create/controllers/create_class_controller.dart';
+
 
 // This is a form class module tile widget that shows a modules title and it's order count
 // and then it shows the number of schedules the module has and also an add schedules button
 class FormModuleTile extends StatefulWidget {
-  const FormModuleTile({
+  FormModuleTile({
     super.key,
-    required this.module,
     required this.index,
-    required this.pressUpdateModule,
-    required this.pressDeleteModule,
+    required this.module,
   });
 
-  final ClassModuleModel module;
   final int index;
-  final Function(int moduleIndex, ClassModuleModel newModule) pressUpdateModule;
-  final Function(int index)pressDeleteModule;
+  ClassModuleModel module;
 
   @override
   State<FormModuleTile> createState() => _FormModuleTileState();
 }
 
 class _FormModuleTileState extends State<FormModuleTile> {
-  late ClassModuleModel _module;
+  var c = Get.put(ClassGetXController());
   bool _editMode = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _module = widget.module;
-  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Module Index
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           SizedBox(
             width: 30, 
             child: _editMode == false
@@ -67,24 +59,31 @@ class _FormModuleTileState extends State<FormModuleTile> {
         children: [
           // title
           _editMode == false 
-          ? TextMedium(  title: _module.title, color: kBlack80, weight: FontWeight.w500)
+          ? TextMedium(  title: widget.module.title, color: kBlack80, weight: FontWeight.w500)
           : FormUpdateOrDeleteInputField(
-            fontSize: 16, textColor: kBlack80, fontWeight: FontWeight.w500, hintText: 'Schedule Title', initialValue: _module.title, pressUpdate: updateModule, pressDelete: () => widget.pressDeleteModule(widget.index)),
+              fontSize: 16, 
+              textColor: kBlack80, 
+              fontWeight: FontWeight.w500, 
+              hintText: 'Schedule Title', 
+              initialValue: widget.module.title, 
+              pressUpdate: updateModule, 
+              pressDelete: () => c.deleteModule(widget.index),
+            ),
     
           // row - schedules count, view schedules
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // schedules count
               TextSmall(
-                title: '${_module.classSchedules?.length ?? 0} Schedules',
+                title: '${widget.module.classSchedules?.length ?? 0} Schedules',
                 color: Colors.black54,
               ),
     
               // view schedules
               GestureDetector(
-                onTap: () => showCreateScheduleDialog(module: _module, moduleCount: widget.index, updateModule: widget.pressUpdateModule),
+                onTap: () => showCreateScheduleDialog(module: widget.module, moduleCount: widget.index, updateModule: c.updateModule),
                 child: const TextSmall(
                   title: 'View Schedules',
                   color: Colors.black54,
@@ -99,10 +98,9 @@ class _FormModuleTileState extends State<FormModuleTile> {
 
   updateModule(String title) {
     setState(() => _editMode = false );
-    if (_module.title != title) {
-      var newModule = ClassModuleModel.fromInstance(title: title, module: _module);
-      setState(() { _module = newModule; });
-      widget.pressUpdateModule(widget.index, newModule);
+    if (widget.module.title != title) {
+      var newModule = ClassModuleModel.fromInstance(title: title, module: widget.module);
+      c.updateModule(widget.index, newModule);
     }
   }
 }
