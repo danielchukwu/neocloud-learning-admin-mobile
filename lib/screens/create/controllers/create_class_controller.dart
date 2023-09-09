@@ -38,8 +38,8 @@ class ClassGetXController extends GetxController {
     selectedEducatorsList = users.obs;
   }
 
-  updateSelectedFaculty(RxList<FacultyModel> fac) {
-    selectedFaculties = fac;
+  updateSelectedFaculty(List<FacultyModel> fac) {
+    selectedFaculties = fac.obs;
   }
 
   // Modules
