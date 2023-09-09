@@ -64,7 +64,6 @@ class MyApp extends StatelessWidget {
         '/profile': (context) => ProfileScreen(),
         '/search': (context) => const SearchScreen(),
         '/cart': (context) => const CartScreen(),
-
         // Settings
         '/settings': (context) => const SettingsScreen(),
         '/manage-account': (context) => const ManageAccountScreen(),
