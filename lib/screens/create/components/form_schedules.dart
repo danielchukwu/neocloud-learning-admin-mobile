@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
@@ -11,15 +12,22 @@ import 'package:neocloud_mobile/screens/create/components/form_schedule_tile.dar
 import 'package:neocloud_mobile/screens/create/components/from_index_title_header.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
 
+
+
 /// POPUP
 /// This screen is used in a showDialog dialog context, so it basically will be shown in a pop up context 
 /// in the CreateClassScreen() for adding schedules to schedules that are created for a class
 class FormSchedules extends StatefulWidget {
-  const FormSchedules({super.key, required this.module, required this.index, required this.updateModule});
+  const FormSchedules({
+    super.key, 
+    required this.index, 
+    required this.module, 
+    required this.updateModule, 
+  });
 
-  final ClassModuleModel module;
   final int index;
-  final Function(int moduleIndex, ClassModuleModel newModule ) updateModule;
+  final ClassModuleModel module;
+  final Function(int moduleIndex, ClassModuleModel newModule) updateModule;
 
   @override
   State<FormSchedules> createState() => _FormSchedulesState();
@@ -50,7 +58,7 @@ class _FormSchedulesState extends State<FormSchedules> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
@@ -58,7 +66,7 @@ class _FormSchedulesState extends State<FormSchedules> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Row - Title and Cancel Icon
-              FormHeader(),
+              const FormHeader(),
         
               const HorizontalRule(),
         
@@ -83,12 +91,12 @@ class _FormSchedulesState extends State<FormSchedules> {
     return Expanded(
       child: SingleChildScrollView(
         controller: _scrollController,
-        padding: EdgeInsets.only(left: 20, right: 20, bottom: 200),
+        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 200),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Schedule Header - Icon and Schedule Title
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             buildScheduleListHeader(),
 
               // Column - List of class schedules (curriculum)
@@ -105,7 +113,7 @@ class _FormSchedulesState extends State<FormSchedules> {
             ),
 
             // Input - Module TextArea and Add Button
-            FormInputFieldAndAddButton(press: createSchedule, count: _schedules.length + 1),
+            FormInputFieldAndAddButton(press: createSchedule),
 
           ],
         ),
@@ -117,18 +125,18 @@ class _FormSchedulesState extends State<FormSchedules> {
     scrollToBottom(scrollController: _scrollController);
     
     var newSchedule = ClassScheduleModel(id: '${_schedules.length + 1}', title: title);
-    setState(() => _schedules.add(newSchedule) );
+    setState(() => _schedules.add(newSchedule));
     widget.updateModule(widget.index, widget.module);
   }
   
   updateSchedule(int index, ClassScheduleModel newSchedule) {
-    print('NEW SCHEDULE');
     setState(() => _schedules[index] = newSchedule );
   }
 
   deleteSchedule(int index) {
+    print(index);
     setState(() => _schedules.removeAt(index));
-    widget.updateModule(widget.index, widget.module);
+    // widget.updateModule(widget.index, widget.module);
   }
 
   Widget buildScheduleListHeader() {
@@ -143,5 +151,3 @@ class _FormSchedulesState extends State<FormSchedules> {
     );
   }
 }
-
-
