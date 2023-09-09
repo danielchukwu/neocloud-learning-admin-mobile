@@ -9,47 +9,61 @@ import '../../../constraints.dart';
 class FormFooter extends StatelessWidget {
   const FormFooter({
     super.key, 
-    this.title = 'Create',
-    this.formKey,
-    required this.press,
-  });
-  final String title;
-  final GlobalKey<FormState>? formKey;
-  final Function() press;
+    String title = 'Create',
+    bool btnIsLoading = false,
+    GlobalKey<FormState>? formKey,
+    required dynamic Function() press, 
+  }) : _press = press, _formKey = formKey, _title = title, _btnIsLoading = btnIsLoading;
+
+  final String _title;
+  final GlobalKey<FormState>? _formKey;
+  final Function() _press;
+  final bool _btnIsLoading;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: screenPadding,
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const SizedBox(),
+          // SizedBox(),
           TextButton(
             style: ButtonStyle(
               shape: MaterialStateProperty.all<OutlinedBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(defaultSize * .7), // Adjust the radius as needed
+                  borderRadius: BorderRadius.circular(7), // Adjust the radius as needed
                 ),
               ),
-              backgroundColor: const MaterialStatePropertyAll(Colors.black12),
-              padding: MaterialStatePropertyAll<EdgeInsets>(EdgeInsets.symmetric(horizontal: defaultSize * 2)),
+              fixedSize: const MaterialStatePropertyAll(Size(100, 40)),
+              backgroundColor: MaterialStatePropertyAll(_btnIsLoading ? Colors.blue[100] : kBlue),
+              // padding: MaterialStatePropertyAll<EdgeInsets>(EdgeInsets.symmetric(horizontal: 20)),
             ),
-            onPressed: () {
+            onPressed: _btnIsLoading ? null : () {
               try {
-                if (formKey!.currentState!.validate()) {
-                  formKey!.currentState!.save();
+                if (_formKey!.currentState!.validate()) {
+                  _formKey!.currentState!.save();
                   // submit form (or do something)
-                  press();
+                  _press();
                 }
               } catch (e) {
                 Navigator.pop(context);
               }
             },
-            child: TextSmall(title: title, weight: FontWeight.w600, color: Colors.black54,),
+            child: _btnIsLoading == false 
+              ? TextSmall(title: _title, weight: FontWeight.w600, color: Colors.white,) 
+              : buildCirularProgressIndicator(),
           )
         ],
       ),
     );
+  }
+
+  SizedBox buildCirularProgressIndicator() {
+    return SizedBox(
+            width: 10,
+            height: 10,
+            child: CircularProgressIndicator(color: Colors.grey[800], strokeWidth: 2),
+          );
   }
 }
