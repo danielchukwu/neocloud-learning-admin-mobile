@@ -5,7 +5,7 @@ import 'package:neocloud_mobile/size_config.dart';
 import 'package:neocloud_mobile/utils/validation.dart';
 
 /// This widget displays an input field that enables a user to update ... It is special because when it's tapped on it displays an input
-class FormUpdateOrDeleteInputField extends StatefulWidget {
+class FormUpdateOrDeleteInputField extends StatelessWidget {
   const FormUpdateOrDeleteInputField({
     super.key,
     this.fontSize,
@@ -14,9 +14,8 @@ class FormUpdateOrDeleteInputField extends StatefulWidget {
     this.hintText,
     this.initialValue,
     this.autoFocus = true,
-    // this.textareaPosition = 48.5,
-    required this.pressUpdate,
     this.pressDelete,
+    required this.pressUpdate,
   });
 
   final double? fontSize;
@@ -31,24 +30,15 @@ class FormUpdateOrDeleteInputField extends StatefulWidget {
   final Function()? pressDelete;
 
   @override
-  State<FormUpdateOrDeleteInputField> createState() => _FormUpdateOrDeleteInputFieldState();
-}
-
-class _FormUpdateOrDeleteInputFieldState extends State<FormUpdateOrDeleteInputField> {
-  bool deleteWasClicked = false;
-  
-
-  @override
   Widget build(BuildContext context) {
     final controller = TextEditingController();
-    controller.text = widget.initialValue ?? '';
+    controller.text = initialValue ?? '';
 
-    return  Row(
+    return Row(
       children: [
         // Textarea - Edit Title
         Expanded(
-          child: Container(
-            // color: kRed,
+          child: SizedBox(
             height: 24,
             child: Stack(
               children: [
@@ -56,44 +46,40 @@ class _FormUpdateOrDeleteInputFieldState extends State<FormUpdateOrDeleteInputFi
                   height: 48.5,
                   width: SizeConfig.screenWidth! / 1.4,
                   top: -10,
-                  child: Container(
-                    // color: kGreen,
-                    child: FormTextarea(
-                      fontSize: widget.fontSize ?? 14,
-                      fontWeight: widget.fontWeight ?? FontWeight.w400,
-                      textColor: widget.textColor ?? Colors.black87,
-                      hintText: widget.hintText ?? '',
-                      initialValue: widget.initialValue,
-                      controller: controller,
-                      maxLines: 1,
-                      validator: validateRequireField, 
-                      press: (_) {}, 
-                      autoFocus: widget.autoFocus,
-                      pressOnKeyboardDone: () => widget.pressUpdate(controller.text),
-                      onTapOutside: (_) {
-                        // // We delay the call of this just incase the user tapped on the delete icon, 
-                        // // this wouldn't prevent the delete action
-                        Future.delayed(const Duration(seconds: 2), deleteWasClicked == false ? widget.pressUpdate(controller.text) : () { debugPrint('FormUpdateDeleteInputField: 🗑️🗑️🗑️'); });
-                      },
-                    ),
+                  child: FormTextarea(
+                    fontSize: fontSize ?? 14,
+                    fontWeight: fontWeight ?? FontWeight.w400,
+                    textColor: textColor ?? Colors.black87,
+                    hintText: hintText ?? '',
+                    initialValue: initialValue,
+                    controller: controller,
+                    maxLines: 1,
+                    validator: validateRequireField,
+                    press: (_) {},
+                    autoFocus: autoFocus,
+                    pressOnKeyboardDone: () => pressUpdate(controller.text),
+                    // onTapOutside: (_) {
+                    //   pressUpdate(controller.text);
+                    // },
                   ),
                 ),
-              ]
+              ],
             ),
           ),
         ),
-
+      
         // Icon
-        widget.pressDelete != null 
-        ? GestureDetector(
-            onTap: () { 
-              print('FormUpdateDeleteInputField: DELETING 0');
-              setState(() { deleteWasClicked = true; });
-              widget.pressDelete!();
-            },
-            child: Icon(Icons.delete_outline, color: kRed.withOpacity(.9), size: 20)
-          )
-        : SizedBox(),
+        pressDelete != null
+            ? GestureDetector(
+                onTap: () {
+                  pressDelete!();
+                },
+                child: Icon(
+                  Icons.delete_outline,
+                  color: kRed.withOpacity(.9), 
+                  size: 20,
+                ))
+            : const SizedBox(),
       ],
     );
     ;
