@@ -42,13 +42,13 @@ class WelcomeScreen extends StatelessWidget {
                   // Link - access courses
                   SizedBox(height: defaultSize * 5),
                   TextLink(
-                      title: 'Access Virtual Course',
-                      color: kBlack70,
-                      press: (_) => Navigator.pushNamed(context, '/' + ComingSoonScreen.screenName)
-                      ),
+                    title: 'Access Virtual Course',
+                    color: kBlack70,
+                    press: (_) => Navigator.pushNamed(context, '/' + ComingSoonScreen.screenName)
+                  ),
             
                   // Link - certificate validation
-                  Spacer(flex: 1),
+                  const Spacer(flex: 1),
                   TextLink(
                     title: 'Certificate Validation',
                     color: kBlack70,
