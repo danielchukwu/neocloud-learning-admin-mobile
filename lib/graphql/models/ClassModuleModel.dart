@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
-import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
-import 'package:neocloud_mobile/graphql/models/UserModel.dart';
-// : (){} "" <> ? _ ! *
+
 
 class ClassModuleModel {
   final String id;
