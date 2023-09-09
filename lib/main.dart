@@ -65,9 +65,6 @@ class MyApp extends StatelessWidget {
         '/search': (context) => const SearchScreen(),
         '/cart': (context) => const CartScreen(),
 
-        // Create
-        // '/create': (context) => const CreateFacultyScreen(),
-
         // Settings
         '/settings': (context) => const SettingsScreen(),
         '/manage-account': (context) => const ManageAccountScreen(),
