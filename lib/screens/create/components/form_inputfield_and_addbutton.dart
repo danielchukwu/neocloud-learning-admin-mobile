@@ -10,11 +10,9 @@ class FormInputFieldAndAddButton extends StatefulWidget {
     super.key,
     this.hintText = 'Title',
     this.buttonText = 'Add Item',
-    required this.count,
     required this.press,
   });
 
-  final int count;
   final String buttonText;
   final String hintText;
   final Function(String value) press;
@@ -72,11 +70,11 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
       children: [
         // Count
         SizedBox(width: defaultSize),
-        SizedBox(
+        const SizedBox(
           width: 30,
           child: Padding(
             padding: EdgeInsets.only(top: 14),
-            child: TextMedium(title: '${widget.count}', color: Colors.black54),
+            child: TextMedium(title: '--', color: Colors.black54),
           ),
         ),
 
