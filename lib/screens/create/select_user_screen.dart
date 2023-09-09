@@ -19,9 +19,9 @@ class SelectUsersScreen extends StatefulWidget {
     this.press,
   });
 
+  final int selectionLimit;
   final List<UserModel> users;
   final List<UserModel> selectedUsers;
-  final int selectionLimit;
   final Function(List<UserModel>)? press;
 
   @override
