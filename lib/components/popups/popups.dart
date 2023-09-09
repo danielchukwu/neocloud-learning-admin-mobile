@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
-import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
-import 'package:neocloud_mobile/screens/create/components/form_header.dart';
 import 'package:neocloud_mobile/screens/create/components/form_schedules.dart';
+import 'package:neocloud_mobile/screens/create/components/form_set_date_and_time.dart';
+import 'package:neocloud_mobile/screens/create/components/form_set_time.dart';
 import 'package:neocloud_mobile/screens/create/create_class_screen.dart';
 import 'package:neocloud_mobile/screens/create/components/form_classwork.dart';
 import 'package:neocloud_mobile/screens/create/create_faculty_screen.dart';
@@ -63,11 +63,19 @@ showTopAlertDialog({required String text, bool isError = true}) {
 
 
 showCreateFacultyScreen() {
-  return showDialog(
-    context: SizeConfig.appContext!,
-    builder: (context) {
-      return const CreateFacultyScreen();
-    },
+  // return showDialog(
+  //   context: SizeConfig.appContext!,
+  //   builder: (context) {
+  //     return const CreateFacultyScreen();
+  //   },
+  // );
+  return Navigator.of(SizeConfig.appContext!).push(
+    DialogRoute(
+      context: SizeConfig.appContext!,
+      builder: (_) => const Center(
+        child: CreateFacultyScreen(),
+      )
+    ),
   );
 }
 
@@ -75,7 +83,7 @@ showCreateClassScreen() {
   return showDialog(
     context: SizeConfig.appContext!,
     builder: (context) {
-      return const CreateClassScreen();
+      return CreateClassScreen();
     },
   );
 }
@@ -109,7 +117,6 @@ showSelectFacultyDialog(
     },
   );
 }
-
 showCreateScheduleDialog(
   {
     required ClassModuleModel module,
@@ -137,3 +144,33 @@ showCreateClassworkDialog(
     },
   );
 }
+
+showSetDateAndTime({
+  required ClassScheduleModel schedule,
+  required int index,
+  required Function(int scheduleIndex, ClassScheduleModel newSchedule) updateSchedule,
+}) {
+  return showDialog(
+    context: SizeConfig.appContext!,
+    builder: (context) {
+      return FormSetDateAndTime(schedule: schedule, index: index, updateSchedule: updateSchedule);
+    },
+  );
+}
+
+showSetTime({
+  MyTimeOfDay? prevSelectedTime,
+  MyTimeOfDay? defaultTime,
+  required dynamic Function(MyTimeOfDay) press,
+}) {
+
+  return Navigator.of(SizeConfig.appContext!).push(
+    DialogRoute(
+      context: SizeConfig.appContext!,
+      builder: (_) => Center(
+        child: FormSetTime(press: press, defaultTime: defaultTime, prevSelectedTime: prevSelectedTime),
+      ), 
+    )
+  );
+}
+
