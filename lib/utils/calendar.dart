@@ -1,17 +1,3 @@
-// void main() {
-//   final startTime = DateTime.now();
-
-//   final myCalendar = Calendar();
-//   // print(myCalendar.getCalendarYearData(2023));
-//   // print(myCalendar.getMultipleCalendarYearData(2000, 2030));
-
-//   final endTime = DateTime.now();
-//   print(myCalendar.getCalendarYearData(2023)._months[0]._daysInMonth);
-
-//   print(endTime.difference(startTime).inMilliseconds);
-
-// }
-
 class CalendarYear {
   CalendarYear({
     required List<CalendarMonth> months, 
@@ -24,6 +10,7 @@ class CalendarYear {
   int get year => _year;
   List<CalendarMonth> get months => _months;
 }
+
 
 class CalendarMonth {
   CalendarMonth({
