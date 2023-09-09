@@ -117,7 +117,12 @@ class _CreateFacultyScreenState extends State<CreateFacultyScreen> {
 
           // Educators
           const SizedBox(height: 20 ),
-          FormSelectUsers(buttonText: 'Educators', selectedUsersList: _selectedEducatorsList, usersToSelectFrom: _usersToSelectFrom, updateSelectedUsers: updateSelectedEducators,),
+          FormSelectUsers(
+            buttonText: 'Educators', 
+            selectedUsers: _selectedEducatorsList, 
+            usersToSelectFrom: _usersToSelectFrom, 
+            updateSelectedUsers: updateSelectedEducators, 
+          ),
           _educatorsListHasError ? TextInputError() : const SizedBox(),
         ],
       )
