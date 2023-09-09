@@ -8,14 +8,14 @@ import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 
 /// This widget displays a button that can be used for selecting multiple users
 /// When users are selected, the widget then displays the selected users avatars 
-class FormSelectUsers extends StatelessWidget {
+class FormSelectUsers extends StatefulWidget {
   const FormSelectUsers(
     {
       super.key,
       this.buttonText = 'Users',
       this.avatarText = 'NC',
       this.selectionLimit = 10,
-      required this.selectedUsersList,
+      required this.selectedUsers,
       required this.usersToSelectFrom,
       required this.updateSelectedUsers,
     });
@@ -23,30 +23,48 @@ class FormSelectUsers extends StatelessWidget {
   final String buttonText;
   final String avatarText;
   final int selectionLimit;
-  final List<UserModel> selectedUsersList;
+  final List<UserModel> selectedUsers;
   final List<UserModel> usersToSelectFrom;
   final Function(List<UserModel>) updateSelectedUsers;
 
+  @override
+  State<FormSelectUsers> createState() => _FormSelectUsersState();
+}
+
+class _FormSelectUsersState extends State<FormSelectUsers> {
+  late List<UserModel> _selectedUsers;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedUsers = widget.selectedUsers;
+  }
+
   showSelectUsersPopup() {
     showSelectUsersDialog(
-      usersToSelectFrom: usersToSelectFrom,
-      selectedUsers: selectedUsersList,
-      selectionLimit: selectionLimit,
-      press: updateSelectedUsers,
+      selectionLimit: widget.selectionLimit,
+      usersToSelectFrom: widget.usersToSelectFrom,
+      selectedUsers: _selectedUsers,
+      press: (users) {
+        widget.updateSelectedUsers(users);
+        setState(() {
+          _selectedUsers = users;
+        });
+      },
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: selectedUsersList.isEmpty
+      crossAxisAlignment: _selectedUsers.isEmpty
           ? CrossAxisAlignment.center
           : CrossAxisAlignment.start,
       children: [
         
         // Educators Button
         IconTextButton(
-          buttonText,
+          widget.buttonText,
           backgroundColor: kBlue.withOpacity(.3),
           borderColor: kBlue.withOpacity(.8),
           press: showSelectUsersPopup,
@@ -55,7 +73,7 @@ class FormSelectUsers extends StatelessWidget {
         // Default Avatar Stack or Selected Users Avatar
         const SizedBox(width: 15),
         Expanded(
-          child: selectedUsersList.isEmpty
+          child: _selectedUsers.isEmpty
               ? avatarStack()
               : showSelectedUsersAvatars(),
         ),
@@ -78,7 +96,7 @@ class FormSelectUsers extends StatelessWidget {
         // Avatar - AB
         AvatarInsertWidget(
           backgroundColor: kBlue,
-          widget: TextMedium(title: avatarText, weight: FontWeight.w600,color: Colors.white),
+          widget: TextMedium(title: widget.avatarText, weight: FontWeight.w600,color: Colors.white),
         ),
       ],
     );
@@ -89,8 +107,8 @@ class FormSelectUsers extends StatelessWidget {
       spacing: 10,
       runSpacing: 10,
       children: List.generate(
-        selectedUsersList.length,
-        (index) => RoundBoxAvatar(size: 35, image: selectedUsersList[0].avatar),
+        _selectedUsers.length,
+        (index) => RoundBoxAvatar(size: 35, image: _selectedUsers[0].avatar),
       ),
     );
   }
