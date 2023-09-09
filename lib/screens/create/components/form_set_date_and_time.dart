@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/calendar_widget.dart';
+import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_footer.dart';
 import 'package:neocloud_mobile/screens/create/components/form_header.dart';
-import 'package:neocloud_mobile/utils/calendar.dart';
-import 'package:neocloud_mobile/utils/locator.dart';
+import 'package:neocloud_mobile/size_config.dart';
 
 
 class FormSetDateAndTime extends StatelessWidget {
-  const FormSetDateAndTime({
+  FormSetDateAndTime({
     super.key,
     required this.schedule, required this.index, required this.updateSchedule
   });
 
-  final ClassScheduleModel schedule;
+  ClassScheduleModel schedule;
   final int index;
   final Function(int scheduleIndex, ClassScheduleModel newSchedule) updateSchedule;
 
@@ -37,168 +38,195 @@ class FormSetDateAndTime extends StatelessWidget {
             children: [
               const FormHeader(),
 
-              // Set Start time and End time
-              Row(
-                children: [
-                  // Start Time
-                  Column(
-                    children: [
-                      // Text
-                      TextMedium(title: 'Start Time', color: Colors.grey[700]),
-
-                      // Btn
-                      TextButton(
-                        onPressed: () {},
-                        style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll(Colors.black12),
-                          shape: MaterialStatePropertyAll<OutlinedBorder>(
-                            RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10)), side: BorderSide(width: 1.5, color: Colors.black54))
-                          )
-                        ),
-                        child: Row(
-                          children: [
-                            TextMedium(title: 'Set time'),
-                            Icon(Icons.add, color: Colors.grey[600], size: 16,)
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  // End Time
-                ],
+              // Date Buttons
+              _StartEndTimeButtons(
+                schedule: schedule, 
+                index: index, 
+                updateSchedule: (scheduleIndex, newSchedule) {
+                  schedule = newSchedule;
+                  updateSchedule(scheduleIndex, newSchedule);
+                },
               ),
-              
 
-              // Days
-              Container(
-                height: 50,
-                padding: screenPadding,
-                child: GridView.count(
-                  crossAxisCount: 7, 
-                  children: List.generate(
-                    weekdaysName.length, 
-                    (index) => Center(child: TextMedium(title: weekdaysName[index], weight: FontWeight.w600, color: Colors.grey[600],)),
-                  ),
+              // Days (MO  TU  WE  TH  FR  SA  SU)
+              const SizedBox(height: 10),
+              buildDays(weekdaysName),
+
+              const HorizontalRule(),
+
+              // Calendar
+              Expanded(
+                child: CalendarWidget(
+                  defaultDateSelection: schedule.date,
+                  updateDateSelection: updateDateSelection,
                 ),
               ),
 
               const HorizontalRule(),
 
-
-              const Expanded(
-                child: CalendarWidget(),
-              ),
-
-              const HorizontalRule(),
-
-              FormFooter(title: 'Done', press: () => Navigator.pop(context), ),
+              FormFooter(title: 'Done', press: () => Navigator.pop(context)),
             ],
           ),
         ),
       ),
     );
   }
+
+  Container buildDays(List<String> weekdaysName) {
+    return Container(
+      height: 50,
+      padding: screenPadding,
+      child: GridView.count(
+        crossAxisCount: 7, 
+        children: List.generate(
+          weekdaysName.length, 
+          (index) => Center(child: TextMedium(title: weekdaysName[index], weight: FontWeight.w600, color: Colors.grey[600],)),
+        ),
+      ),
+    );
+  }
+
+  updateDateSelection(dateSelection) {
+    var newSchedule = ClassScheduleModel.fromInstance(cs: schedule, dateSelection: dateSelection);
+    schedule = newSchedule;
+    updateSchedule(index, newSchedule);
+  }
 }
 
-// {2020: {Jan: {startDay: 2, daysInMonth: 31}, Feb: {startDay: 5, daysInMonth: 31}, Mar: {startDay: 6, daysInMonth: 29}, Apr: {startDay: 2, daysInMonth: 31}, May: {startDay: 4, daysInMonth: 30}, Jun: {startDay: 7, daysInMonth: 31}, Jul: {startDay: 2, daysInMonth: 30}, Aug: {startDay: 5, daysInMonth: 31}, Sep: {startDay: 1, daysInMonth: 31}, Oct: {startDay: 3, daysInMonth: 30}, Nov: {startDay: 6, daysInMonth: 31}, Dec: {startDay: 1, daysInMonth: 30}}, 2021: {Jan: {startDay: 4, daysInMonth: 31}, Feb: {startDay: 7, daysInMonth: 31}, Mar: {startDay: 7, daysInMonth: 28}, Apr: {startDay: 3, daysInMonth: 31}, May: {startDay: 5, daysInMonth: 30}, Jun: {startDay: 1, daysInMonth: 31}, Jul: {startDay: 3, daysInMonth: 30}, Aug: {startDay: 6, daysInMonth: 31}, Sep: {startDay: 2, daysInMonth: 31}, Oct: {startDay: 4, daysInMonth: 30}, Nov: {startDay: 7, daysInMonth: 31}, Dec: {startDay: 2, daysInMonth: 30}},}
 
-class CalendarWidget extends StatefulWidget {
-  const CalendarWidget({
+class _StartEndTimeButtons extends StatefulWidget {
+  const _StartEndTimeButtons({
     super.key,
+    required this.index,
+    required this.schedule,
+    required this.updateSchedule,
   });
 
+  final ClassScheduleModel schedule;
+  final int index;
+  final Function(int scheduleIndex, ClassScheduleModel newSchedule) updateSchedule;
+
   @override
-  State<CalendarWidget> createState() => _CalendarWidgetState();
+  State<_StartEndTimeButtons> createState() => _StartEndTimeButtonsState();
 }
 
-class _CalendarWidgetState extends State<CalendarWidget> {
-  Calendar calendar = getIt<Calendar>();
-  late List<CalendarYear> calendarYears;
-  // This is used to know the exact location of the month section that should be scrolled automatically to when this widget mounts
-  final _widgetKey = GlobalKey();
+class _StartEndTimeButtonsState extends State<_StartEndTimeButtons> {
+  // if startTime is true, apply highlighted styles to
+  // startTime button if not do so to endTime button
+  bool? selectedStartTime;
+  late ClassScheduleModel _schedule;
 
   @override
   void initState() {
     super.initState();
-    calendarYears = calendar.getMultipleCalendarYearData(2023, 2024);
+    _schedule = widget.schedule;
   }
 
   @override
   Widget build(BuildContext context) {
-    // This is used to know the exact location of the month section that should be scrolled automatically to when this widget mounts
-    // final _widgetKey = GlobalKey();
 
-    return SingleChildScrollView(
-      child: Container(
-        color: Colors.grey[100],
-        padding: screenPadding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: List.generate(
-            calendarYears.length, 
-            (yearIndex) {
-              CalendarYear calendarYear = calendarYears[yearIndex];
-              List<CalendarMonth> calendarMonths = calendarYear.months;
-      
-              print(calendarYear);
-              print(calendarMonths);
-      
-              // return SizedBox();
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: List.generate(
-                  calendarMonths.length, 
-                  (monthIndex) => Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 20),
-                      
-                      // Title - Month and Year
-                      TextMedium(title: '${calendarMonths[monthIndex].month} ${calendarYear.year}', color: Colors.grey[700], weight: FontWeight.w500),
-
-                      // Days
-                      const SizedBox(height: 10),
-                      GridView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 7, mainAxisSpacing: 5, crossAxisSpacing: 5), 
-                        itemCount: calendarMonths[monthIndex].daysInMonth + calendarMonths[monthIndex].startDay,
-                        itemBuilder: (context, index) {
-                          var now = DateTime.now();
-                          bool isCurrentMonth = calendarYear.year == now.year && calendarMonths[monthIndex].monthNumber == now.month;
-                          int day = (index + 1) - calendarMonths[monthIndex].startDay;
-    
-                          // print(calendarMonths[monthIndex].startDay);
-                          if (index < calendarMonths[monthIndex].startDay) {
-                            return const SizedBox();
-                          } else {
-                            return Container(
-                              height: 10,
-                              width: 10,
-                              decoration: BoxDecoration(
-                                color: isCurrentMonth && day == now.day ? kBlueLight : null,
-                                borderRadius: BorderRadius.all(Radius.circular(10))
-                              ),
-                              child: Center(
-                                child: TextMedium(title: '$day', color: isCurrentMonth && day == now.day ? Colors.white : Colors.grey[900],),
-                              ),
-                            );
-                          }
-                        },
-                      ),
-              
-                      const SizedBox(height: 20),
-                      const HorizontalRule(),
-              
-                    ],
-                  )
-                ),
+    return Padding(
+      padding: screenPadding,
+      child: Row(
+        children: [
+          // Start Time
+          _TitleAndTextButton(
+            title: 'Start Time',
+            highlighted: selectedStartTime ?? false,
+            // highlightedColor: _schedule.startTime != null ? Colors.green[500] : null,
+            done: _schedule.startTime != null,
+            disabled: false,
+            press: () {
+              setState(() => selectedStartTime = true );
+              showSetTime(
+                defaultTime: _schedule.startTime, 
+                press: (newTime) {
+                  var newSchedule = ClassScheduleModel.fromInstance(cs: _schedule, startTime: newTime);
+                  setState(() => _schedule = newSchedule);
+                  widget.updateSchedule(widget.index, newSchedule);
+                },
               );
-            } 
-          ).toList(),
-        ),
+            }
+          ),
+          const Spacer(),
+          
+          // End Time
+          _TitleAndTextButton(
+            title: 'End Time', 
+            highlighted: selectedStartTime == false,
+            done: _schedule.endTime != null,
+            disabled: _schedule.startTime == null,
+            press: () {
+              setState(() => selectedStartTime = false );
+              showSetTime(
+                prevSelectedTime: _schedule.startTime,
+                defaultTime: _schedule.endTime ?? _schedule.startTime,
+                press: (newTime) {
+                  var newSchedule = ClassScheduleModel.fromInstance(cs: _schedule, endTime: newTime);
+                  setState(() => _schedule = newSchedule);
+                  widget.updateSchedule(widget.index, newSchedule);
+                },
+              );
+            }),
+          // End Time
+        ],
       ),
     );
   }
 }
 
+
+class _TitleAndTextButton extends StatelessWidget {
+  const _TitleAndTextButton({
+    super.key,
+    required this.title,
+    required this.press,
+    this.highlighted = true,
+    this.disabled = true,
+    this.done = false,
+    this.highlightedColor,
+  });
+
+  final Function() press;
+  final String title;
+  final bool highlighted;
+  final bool disabled;
+  final bool done;
+  final Color? highlightedColor;
+
+  @override
+  Widget build(BuildContext context) {
+    var hColor = disabled == false ? highlightedColor ?? kBlueLight : kBlack.withOpacity(.15);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Text
+        TextSmall(title: title, color:  highlighted || disabled ? hColor :Colors.grey[700]),
+
+        // Btn
+        const SizedBox(height: 5),
+        TextButton(
+          onPressed: disabled ? null : press,
+          style: ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(kBlack.withOpacity(.05)),
+            shape: MaterialStatePropertyAll<OutlinedBorder>(
+              RoundedRectangleBorder(borderRadius: const BorderRadius.all(Radius.circular(10)), side: BorderSide(width: 1.5, color:  highlighted || disabled ? hColor : Colors.black26))
+            )
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(4),
+            child: Row(
+              children: [
+                TextMedium(title: 'Set time', weight: FontWeight.w500, color: highlighted || disabled ? hColor : Colors.grey[600]),
+                SizedBox(width: SizeConfig.screenWidth! / 9),
+                done 
+                ? Icon(Icons.check, color:  Colors.green[500], size: 25)
+                : Icon(Icons.add, color:  highlighted || disabled ? hColor :Colors.grey[600], size: 25),
+              ],
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
