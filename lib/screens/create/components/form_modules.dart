@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/screens/create/components/form_inputfield_and_addbutton.dart';
@@ -31,14 +32,14 @@ class FormModules extends StatelessWidget {
 
           // Column - List of class modules (curriculum)
           Obx(() => Column(
-            children: List.generate(
-              c.modules.length,
-              (index) => FormModuleTile(
-                module: c.modules[index],
-                index: index,
-              ),
-            ),
-          )),
+                children: List.generate(
+                  c.modules.length,
+                  (index) => FormModuleTile(
+                    module: c.modules[index],
+                    index: index,
+                  ),
+                ),
+              )),
 
           // Input - Module InputField and Add Button
           FormInputFieldAndAddButton(press: addModule),
@@ -48,14 +49,30 @@ class FormModules extends StatelessWidget {
   }
 
   Widget buildHeader() {
-    return IconText(
-      title: 'Modules (Curriculum)',
-      color: Colors.black54,
-      fontWeight: FontWeight.w500,
-      icon: Icons.schema_outlined,
-      iconColor: kBlack60,
-      iconSize: 18,
-      spaceBetweenSize: 10,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // Class Modules
+        IconText(
+          title: 'Modules',
+          color: Colors.black54,
+          fontWeight: FontWeight.w500,
+          icon: Icons.schema_outlined,
+          iconColor: kBlack60,
+          iconSize: 18,
+          spaceBetweenSize: 10,
+        ),
+
+        // Generate Date and Time
+        TextLink(
+          title: 'Generate DT',
+          weight: FontWeight.w500,
+          color: kBlueLight,
+          press: (_) {
+            showScheduleTimeGenerator();
+          },
+        )
+      ],
     );
   }
 }
