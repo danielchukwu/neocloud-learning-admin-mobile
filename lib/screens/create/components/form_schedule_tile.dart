@@ -20,7 +20,8 @@ class FormScheduleTile extends StatefulWidget {
 
   final ClassScheduleModel schedule;
   final int index;
-  final Function(int scheduleIndex, ClassScheduleModel newSchedule) pressUpdateSchedule;
+  final Function(int scheduleIndex, ClassScheduleModel newSchedule)
+      pressUpdateSchedule;
   final Function(int scheduleIndex) pressDeleteSchedule;
   final bool enableUpdateDescriptionAndClasswork;
   final bool enableUpdateDateTime;
@@ -50,10 +51,11 @@ class _FormScheduleTileState extends State<FormScheduleTile> {
           // Index
           const SizedBox(width: 10),
           SizedBox(
-            width: 30, 
+            width: 30,
             child: _editTitleMode == false
-            ? TextMedium(title: '${widget.index + 1}', color: Colors.black54)
-            : const SizedBox(),
+                ? TextMedium(
+                    title: '${widget.index + 1}', color: Colors.black54)
+                : const SizedBox(),
           ),
 
           // Column - Title, Row (schedules Index, add schedules btn)
@@ -68,119 +70,162 @@ class _FormScheduleTileState extends State<FormScheduleTile> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // title
-        _editTitleMode == false 
-        ? GestureDetector(
-            onTap: () => setState(() { _editTitleMode = true; }),
-            child: TextMedium(  title: _schedule.title, color: kBlack80, weight: FontWeight.w500),
-          )
-        : FormUpdateOrDeleteInputField(fontSize: 16, textColor: kBlack80, fontWeight: FontWeight.w500, hintText: 'Schedule Title', initialValue: _schedule.title, pressUpdate: updateScheduleTitle, pressDelete: deleteSchedule),
+        _editTitleMode == false
+            ? GestureDetector(
+                onTap: () => setState(() {
+                  _editTitleMode = true;
+                }),
+                child: TextMedium(
+                    title: _schedule.title,
+                    color: kBlack80,
+                    weight: FontWeight.w500),
+              )
+            : FormUpdateOrDeleteInputField(
+                fontSize: 16,
+                textColor: kBlack80,
+                fontWeight: FontWeight.w500,
+                hintText: 'Schedule Title',
+                initialValue: _schedule.title,
+                press: () => setState(() => _editTitleMode = false),
+                pressUpdate: updateScheduleTitle,
+                pressDelete: deleteSchedule,
+              ),
 
         // description
         _editDescriptionMode == false
-        ? _schedule.description != null 
-          ? GestureDetector(
-                onTap: () => setState(() { _editDescriptionMode = true; }),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 3),
-                  child: TextSmall(title: _schedule.description ?? ''),
-                ),
-            )
-          : const SizedBox()
-        : FormUpdateOrDeleteInputField(fontSize: 14, textColor: kBlack70, hintText: 'Description', initialValue: _schedule.description, pressUpdate: updateScheduleDescription),
+            ? _schedule.description != null
+                ? GestureDetector(
+                    onTap: () => setState(() {
+                      _editDescriptionMode = true;
+                    }),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 3),
+                      child: TextSmall(title: _schedule.description ?? ''),
+                    ),
+                  )
+                : const SizedBox()
+            : FormUpdateOrDeleteInputField(
+                fontSize: 14,
+                textColor: kBlack70,
+                hintText: 'Description',
+                press: () => setState(() => _editDescriptionMode = false),
+                initialValue: _schedule.description,
+                pressUpdate: updateScheduleDescription),
 
-    
         // row - add description, add classwork
         const SizedBox(height: 10),
-        widget.enableUpdateDescriptionAndClasswork == false ? const SizedBox() :
-        Row(
-          children: [
-            // add description btn
-            _schedule.description == null && _editDescriptionMode == false
-            ? GestureDetector(
-                onTap: () => setState(() => _editDescriptionMode = true  ),
-                child: const TextSmall(title: 'Add Description', 
-                color: Colors.black54,
+        widget.enableUpdateDescriptionAndClasswork == false
+            ? const SizedBox()
+            : Row(
+                children: [
+                  // add description btn
+                  _schedule.description == null && _editDescriptionMode == false
+                      ? GestureDetector(
+                          onTap: () =>
+                              setState(() => _editDescriptionMode = true),
+                          child: const TextSmall(
+                            title: 'Add Description',
+                            color: Colors.black54,
+                          ),
+                        )
+                      : const SizedBox(),
+
+                  // add classwork btn
+                  _schedule.description == null && _editDescriptionMode == false
+                      ? const SizedBox(width: 20)
+                      : const SizedBox(),
+                  GestureDetector(
+                    onTap: pressAddClasswork,
+                    child: TextSmall(
+                      title: _schedule.classwork == null
+                          ? 'Add Classwork'
+                          : 'View Classwork',
+                      color: Colors.black54,
+                    ),
+                  ),
+                ],
               ),
-            )
-            : const SizedBox(),
-    
-            // add classwork btn
-            _schedule.description == null && _editDescriptionMode == false ? const SizedBox(width: 20) : const SizedBox(),
-            GestureDetector(
-              onTap: pressAddClasswork,
-              child: TextSmall(
-                title: _schedule.classwork == null ? 'Add Classwork' : 'View Classwork',
-                color: Colors.black54, 
-              ),
-            ),
-          ],
-        ),
 
         // set date and time btn
-        widget.enableUpdateDateTime == false 
-        ? const SizedBox() 
-        : GestureDetector(
-              onTap: pressSetDateAndTime,
-              child: _schedule.dateAndTimeIsPresent()
-                ? IconText(
-                  title: 'Schedule Set',
-                  icon: Icons.check_circle_outline_outlined,
-                  spaceBetweenSize: 7,
-                  iconColor: Colors.green[500],
-                  fontSize: 14,
-                  iconSize: 16,
-                )
-                : IconText(
-                    title: 'Set Date and Time',
-                    icon: Icons.edit_calendar_outlined,
-                    spaceBetweenSize: 7,
-                    iconColor: Colors.grey[700],
-                    fontSize: 14,
-                    iconSize: 16,
-                  ),
-            )
+        widget.enableUpdateDateTime == false
+            ? const SizedBox()
+            : GestureDetector(
+                onTap: pressSetDateAndTime,
+                child: _schedule.dateAndTimeIsPresent()
+                    ? IconText(
+                        title: 'Schedule Set',
+                        icon: Icons.check_circle_outline_outlined,
+                        spaceBetweenSize: 7,
+                        iconColor: Colors.green[500],
+                        fontSize: 14,
+                        iconSize: 16,
+                      )
+                    : IconText(
+                        title: 'Set Date and Time',
+                        icon: Icons.edit_calendar_outlined,
+                        spaceBetweenSize: 7,
+                        iconColor: Colors.grey[700],
+                        fontSize: 14,
+                        iconSize: 16,
+                      ),
+              )
       ],
     );
   }
 
   void pressSetDateAndTime() {
     showSetDateAndTime(
-      schedule: _schedule, 
-      index: widget.index, 
+      schedule: _schedule,
+      index: widget.index,
       updateSchedule: (scheduleIndex, newSchedule) {
         // update this tile
-        setState(() {_schedule = newSchedule;});
+        setState(() {
+          _schedule = newSchedule;
+        });
         // update parent
         widget.pressUpdateSchedule(scheduleIndex, newSchedule);
       },
     );
   }
 
-  void pressAddClasswork(){
+  void pressAddClasswork() {
     showCreateClassworkDialog(
       schedule: _schedule,
       index: widget.index,
       updateSchedule: (scheduleIndex, newSchedule) {
         // update this tile
-        setState(() {_schedule = newSchedule;});
-        // update parent 
+        setState(() {
+          _schedule = newSchedule;
+        });
+        // update parent
         widget.pressUpdateSchedule(scheduleIndex, newSchedule);
       },
     );
   }
 
   updateScheduleTitle(String title) {
-    setState(() => _editTitleMode = false );
+    setState(() => _editTitleMode = false);
     if (title.isNotEmpty && title != widget.schedule.title) {
-      setState(() { _schedule = ClassScheduleModel.fromInstance(cs: _schedule, title: title); });
+      setState(() {
+        _schedule =
+            ClassScheduleModel.fromInstance(cs: _schedule, title: title);
+      });
     }
   }
 
   updateScheduleDescription(String description) {
-    setState(() { _editDescriptionMode = false; });
+    setState(() {
+      _editDescriptionMode = false;
+    });
     if (description.isNotEmpty && description != _schedule.description) {
-      setState(() { _schedule = ClassScheduleModel.fromInstance(cs: _schedule, description: description); });
-      widget.pressUpdateSchedule(widget.index,  ClassScheduleModel.fromInstance(cs: _schedule, description: description));
+      setState(() {
+        _schedule = ClassScheduleModel.fromInstance(
+            cs: _schedule, description: description);
+      });
+      widget.pressUpdateSchedule(
+          widget.index,
+          ClassScheduleModel.fromInstance(
+              cs: _schedule, description: description));
     }
   }
 
