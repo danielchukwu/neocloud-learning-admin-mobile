@@ -5,6 +5,7 @@ import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
+import 'package:neocloud_mobile/screens/create/components/form_schedule_date_time_generator.dart';
 import 'package:neocloud_mobile/screens/create/components/form_schedules.dart';
 import 'package:neocloud_mobile/screens/create/components/form_set_date_and_time.dart';
 import 'package:neocloud_mobile/screens/create/components/form_set_time.dart';
@@ -159,6 +160,7 @@ showSetDateAndTime({
 }
 
 showSetTime({
+  String title = 'Set Time',
   MyTimeOfDay? prevSelectedTime,
   MyTimeOfDay? defaultTime,
   required dynamic Function(MyTimeOfDay) press,
@@ -168,9 +170,19 @@ showSetTime({
     DialogRoute(
       context: SizeConfig.appContext!,
       builder: (_) => Center(
-        child: FormSetTime(press: press, defaultTime: defaultTime, prevSelectedTime: prevSelectedTime),
+        child: FormSetTime(title: title, press: press, defaultTime: defaultTime, prevSelectedTime: prevSelectedTime),
       ), 
     )
+  );
+}
+
+showScheduleTimeGenerator() {
+
+  return showDialog(
+    context: SizeConfig.appContext!,
+    builder: (_) {
+      return FormScheduleTimeGenerator();
+    },
   );
 }
 
