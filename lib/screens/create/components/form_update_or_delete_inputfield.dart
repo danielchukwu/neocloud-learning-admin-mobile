@@ -15,7 +15,8 @@ class FormUpdateOrDeleteInputField extends StatelessWidget {
     this.initialValue,
     this.autoFocus = true,
     this.pressDelete,
-    required this.pressUpdate,
+    required this.pressUpdate, 
+    this.press,
   });
 
   final double? fontSize;
@@ -28,6 +29,7 @@ class FormUpdateOrDeleteInputField extends StatelessWidget {
   final Function(String) pressUpdate;
   // if this is null, the delete icon 🗑️ won't show up
   final Function()? pressDelete;
+  final Function()? press;
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +74,7 @@ class FormUpdateOrDeleteInputField extends StatelessWidget {
         pressDelete != null
             ? GestureDetector(
                 onTap: () {
+                  if (press!= null) press!();
                   pressDelete!();
                 },
                 child: Icon(
