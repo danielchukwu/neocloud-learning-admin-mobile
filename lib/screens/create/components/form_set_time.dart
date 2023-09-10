@@ -36,11 +36,13 @@ class _TimeController extends GetxController {
 class FormSetTime extends StatelessWidget {
   const FormSetTime({
     super.key,
+    this.title = 'Set Time',
     this.prevSelectedTime,
     this.defaultTime,
     required this.press,
   });
 
+  final String title;
   final MyTimeOfDay? defaultTime;
   final MyTimeOfDay? prevSelectedTime;
   final Function(MyTimeOfDay data) press;
@@ -59,7 +61,7 @@ class FormSetTime extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const FormHeader(title: 'Set Time'),
+              FormHeader(title: title),
 
               _Body(defaultTime: defaultTime, prevSelectedTime: prevSelectedTime),
 
