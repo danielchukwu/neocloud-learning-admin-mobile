@@ -141,6 +141,7 @@ class CreateClassScreen extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 20),
             child: TextInputError(text: c.modulesErrorMessage.value),
           ) : const SizedBox(),
+          
           FormModules(),
 
         ],
