@@ -176,12 +176,15 @@ showSetTime({
   );
 }
 
-showScheduleTimeGenerator() {
+showScheduleTimeGenerator({
+  required List<ClassModuleModel> modules,
+  required Function(List<ClassModuleModel> modules) press,
+}) {
 
   return showDialog(
     context: SizeConfig.appContext!,
     builder: (_) {
-      return FormScheduleTimeGenerator();
+      return FormScheduleTimeGenerator(modules: modules, press: press);
     },
   );
 }
