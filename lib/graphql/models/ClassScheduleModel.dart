@@ -3,14 +3,14 @@ import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassworkModel.dart';
 
 class DateSelection {
-  final int _year;
-  final int _month;
-  final int _day;
+  final int year;
+  final int month;
+  final int day;
   
-  DateSelection({required int year, required int month, required int day}) : _year = year, _month = month, _day = day;
+  DateSelection({required this.year, required this.month, required this.day});
 
   static bool compareDateSelection(DateSelection ds1, DateSelection ds2) {
-    return ds1._year == ds2._year && ds1._month == ds2._month && ds1._day == ds2._day; 
+    return ds1.year == ds2.year && ds1.month == ds2.month && ds1.day == ds2.day; 
   }
 }
 
