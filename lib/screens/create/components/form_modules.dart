@@ -69,7 +69,12 @@ class FormModules extends StatelessWidget {
           weight: FontWeight.w500,
           color: kBlueLight,
           press: (_) {
-            showScheduleTimeGenerator();
+            showScheduleTimeGenerator(
+              modules: c.modules,
+              press: (modules) {
+                print(modules);
+              },
+            );
           },
         )
       ],
