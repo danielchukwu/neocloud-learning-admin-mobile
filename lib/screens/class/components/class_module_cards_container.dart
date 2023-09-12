@@ -25,19 +25,19 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SizedBox(height: defaultSize),
+        const SizedBox(height: 10),
         // e.g Module 1 - Introduction to Networking
         HeaderWithDropdown(
           title: "Module ${widget.index + 1} - ${widget.module.title}",
           color: kBlack70,
-          fontSize: defaultSize * 1.6,
+          fontSize: 16,
           icon: Icons.add,
           press: () => setState(() => showContent = !showContent),
           showContent: showContent,
         ),
 
         // list of cards
-        SizedBox(height: defaultSize * .5),
+        const SizedBox(height: 5),
         showContent
             ? Column(
                 children: List<Widget>.generate(
@@ -48,7 +48,7 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
                   ),
                 ),
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }
@@ -56,22 +56,22 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
   Widget buildClassModuleCard(
       {required ClassScheduleModel clas, required int index}) {
     return Padding(
-      padding: EdgeInsets.only(top: defaultSize),
+      padding: const EdgeInsets.only(top: 10),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Count
           Container(
             alignment: Alignment.topRight,
-            width: defaultSize * 2,
+            width: 20,
             child: TextMedium(
               title: '${index + 1}',
             ),
           ),
 
           // Course title, type - duration
-          SizedBox(
-            width: defaultSize,
+          const SizedBox(
+            width: 10,
           ),
           Expanded(
             child: Column(
@@ -85,32 +85,32 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
                 ),
 
                 // Type - Duration
-                SizedBox(height: defaultSize * .5),
+                const SizedBox(height: 5),
                 TextSmall(
                   title: clas.description ?? 'This is a description',
                   color: kBlack70,
                 ),
 
                 // Duration
-                SizedBox(height: defaultSize * .5),
+                const SizedBox(height: 5),
                 Row(
                   children: [
                     // Class Duration
                     IconText(
                       title: '${clas.startTime} - ${clas.endTime}',
                       icon: Icons.watch_later_rounded,
-                      fontSize: defaultSize * 1.4,
-                      iconSize: defaultSize * 1.6,
+                      fontSize: 14,
+                      iconSize: 16,
                       iconColor: kBlack70,
                     ),
 
                     // Classworks
-                    SizedBox(width: defaultSize * 2),
+                    const SizedBox(width: 20),
                     IconText(
                       title: '2 Classworks',
                       icon: Icons.table_chart_rounded,
-                      fontSize: defaultSize * 1.4,
-                      iconSize: defaultSize * 1.6,
+                      fontSize: 14,
+                      iconSize: 16,
                       iconColor: kBlack70,
                     ),
                   ],
