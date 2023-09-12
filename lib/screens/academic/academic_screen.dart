@@ -45,9 +45,9 @@ class _AcademicScreenState extends State<AcademicScreen> {
               // Academic Options (
               // [     Classes    ] [    Faculties    ]
               // [   Classworks   ] [ Class Schedules ]
-              SizedBox(height: defaultSize),
+              const SizedBox(height: 10),
               Container(
-                padding: EdgeInsets.only(bottom: defaultSize * .5),
+                padding: const EdgeInsets.only(bottom: 5),
                 decoration: BoxDecoration(
                     border:
                         Border(bottom: BorderSide(color: kBlack50, width: .2))),
@@ -60,7 +60,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
 
               // Underneath Background Layer Separator
               Container(
-                height: defaultSize * .7,
+                height: 7,
                 color: kBlack.withOpacity(.03),
               ),
 
@@ -84,22 +84,22 @@ class _AcademicScreenState extends State<AcademicScreen> {
               // Load Body
               // Classes
               AcademicOptions.selectedIndex == 0
-                  ? ClassList()
+                  ? const ClassList()
                   : const SizedBox(),
 
               // Faculty
               AcademicOptions.selectedIndex == 1
-                  ? FacultyList()
+                  ? const FacultyList()
                   : const SizedBox(),
 
               // Classworks
               AcademicOptions.selectedIndex == 2
-                  ? ClassworksList(showFeedback: false)
+                  ? const ClassworksList(showFeedback: false)
                   : const SizedBox(),
 
               // Class Schedules
               AcademicOptions.selectedIndex == 3
-                  ? ClassSchedulesList()
+                  ? const ClassSchedulesList()
                   : const SizedBox(),
             ],
           ),
@@ -117,12 +117,12 @@ class _AcademicScreenState extends State<AcademicScreen> {
                     color: Colors.transparent,
                     child: Column(
                       children: [
-                        Spacer(),
+                        const Spacer(),
 
                         // Popup card
                         Container(
                           margin: screenPadding,
-                          padding: EdgeInsets.symmetric(vertical: 10),
+                          padding: const EdgeInsets.symmetric(vertical: 10),
                           decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20)),
@@ -143,7 +143,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
                           ),
                         ),
 
-                        Spacer(),
+                        const Spacer(),
                       ],
                     )),
               );
@@ -163,7 +163,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
         press();
       },
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: defaultSize * 2),
+        padding: const EdgeInsets.symmetric(vertical: 20),
         color: Colors.transparent,
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           TextMedium(
