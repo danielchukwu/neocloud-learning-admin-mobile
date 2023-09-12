@@ -38,7 +38,7 @@ class _ClassScreenState extends State<ClassScreen> {
               ClassCard(
                 clas: clas,
                 allowSeeMore: true,
-                bodySeparationSize: defaultSize * 1.5,
+                bodySeparationSize: 15,
                 enableGestureDecorator: false,
                 showBottomBorder: false,
               ),

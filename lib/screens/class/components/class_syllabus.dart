@@ -7,9 +7,9 @@ import 'package:neocloud_mobile/graphql/services/class_module_service.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'class_modules_list.dart';
 
-
 class ClassSyllabus extends StatefulWidget {
-  const ClassSyllabus({super.key, required this.modules, required this.classId});
+  const ClassSyllabus(
+      {super.key, required this.modules, required this.classId});
 
   final List<ClassModule> modules;
   final String classId;
@@ -30,7 +30,9 @@ class _ClassSyllabusState extends State<ClassSyllabus> {
   }
 
   void loadData() {
-    classModuleService.getClassModules(classId: widget.classId).then((cModules) {
+    classModuleService
+        .getClassModules(classId: widget.classId)
+        .then((cModules) {
       setState(() {
         classModulesList = cModules;
       });
@@ -45,20 +47,20 @@ class _ClassSyllabusState extends State<ClassSyllabus> {
         buildHeaderDropdown(),
 
         // Modules count, lectures count, Time involved count
-        SizedBox(height: defaultSize * 1.5),
+        const SizedBox(height: 15),
         buildModulesLecturesTimeCount(),
 
         // Modules and Their contents
-        SizedBox(height: defaultSize),
+        const SizedBox(height: 10),
         showContent
             ? classModulesList == null
-              ? Center(child: CircularProgressIndicator())
-              : classModulesList!.isEmpty
-                  ? Center(child: Text('No Classes Found'))
-                  : ClassModulesList(
-                      modules: classModulesList!,
-                    )
-            : SizedBox(),
+                ? const Center(child: CircularProgressIndicator())
+                : classModulesList!.isEmpty
+                    ? const Center(child: Text('No Classes Found'))
+                    : ClassModulesList(
+                        modules: classModulesList!,
+                      )
+            : const SizedBox(),
       ],
     );
   }
@@ -78,20 +80,21 @@ class _ClassSyllabusState extends State<ClassSyllabus> {
       children: <Widget>[
         // Items
         IconText(
-            title: 'Weeks (${classModulesList != null ? classModulesList!.length : 0})',
+            title:
+                'Weeks (${classModulesList != null ? classModulesList!.length : 0})',
             icon: Icons.dataset,
             iconColor: kBlack70,
-            fontSize: defaultSize * 1.4),
+            fontSize: 14),
         IconText(
             title: 'Meetups (68)',
             icon: Icons.messenger_outlined,
             iconColor: kBlack70,
-            fontSize: defaultSize * 1.4),
+            fontSize: 14),
         IconText(
             title: 'CWs (14)',
             icon: Icons.timer,
             iconColor: kBlack70,
-            fontSize: defaultSize * 1.4)
+            fontSize: 14)
       ],
     );
   }

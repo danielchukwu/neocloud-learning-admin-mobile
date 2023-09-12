@@ -33,13 +33,13 @@ class _ClassModulesListState extends State<ClassModulesList> {
             ),
           ).toList() +
           <Widget>[
-            SizedBox(
-              height: defaultSize * 1,
+            const SizedBox(
+              height: 10,
             ),
             TextLink(
               title: !showMore ? "See more" : "See less",
               color: kBlue,
-              fontSize: defaultSize * 1.6,
+              fontSize: 16,
               weight: FontWeight.w600,
               press: (_) => setState(() => showMore = !showMore),
             ),
