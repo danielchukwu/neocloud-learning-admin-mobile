@@ -21,7 +21,7 @@ class FormScheduleTimeGenerator extends StatelessWidget {
   final Function(List<ClassModuleModel> modules) press;
   List<String> classStartsList = ['This week', 'Next week', 'Next 2 weeks', 'Next 3 weeks', 'Next Month'];
   // selections
-  int classStartsSelection = 0;
+  int classStartsIndex = 0;
   List<DayandTime> selectedDayTimes = [];
 
   @override
@@ -81,117 +81,101 @@ class FormScheduleTimeGenerator extends StatelessWidget {
   }
 
   submitForm(_) {
+    debugPrint('');
+    debugPrint('');
+    debugPrint('');
     assert(selectedDayTimes.isNotEmpty);
 
     // STEP 0: to store end result
     List<ClassScheduleModel> result = [];
 
     // STEP 1: get start date
-    DateTime dateTime = getStartDatetime();
+    // DateTime dateTime = getStartDatetime();
+    DateTime dateTime = DateTime(2023, 12, 29);
 
     // STEP 2: sort selected days data
     var selectedDaysSorted = DayandTime.sort(selectedDayTimes);
     var dayIndex = 0;
 
     // STEP 3: setting schedules
-    if (classStartsSelection < 4) {
+    for (var i = 0; i < modules.length; i++) {
+      if (modules[i].classSchedules == null) continue;
+      DateTime dateTime2;
 
-      // if selection is'nt Next Month in other words
-      for (var i = 0; i < modules.length; i++) {
-        if (modules[i].classSchedules == null) continue;
-        DateTime dateTime2;
+      // loop over schedules
+      for (var j = 0; j < modules[i].classSchedules!.length; j++) {
+        //  if all weekdays for this particular week has been allocated to schedule, let's jump to next week
+        if (dayIndex == selectedDaysSorted.length) {
+          dayIndex = 0;
+          dateTime = getDatetimeNextWeek(dateTime);
+        }
+        
+        int selectedDay = selectedDaysSorted[dayIndex].weekday;
+        int nextDay = selectedDay - dateTime.weekday;
 
-        // loop over schedules
-        for (var j = 0; j < modules[i].classSchedules!.length; j++) {
-          //  if all weekdays for this particular week has been allocated to schedule, let's jump to next week
-          if (dayIndex == selectedDaysSorted.length) {
+        // set a day that is not behind current day selection
+        while(nextDay < 0) {
+          dayIndex += 1;
+          if (dayIndex == selectedDaysSorted.length){
             dayIndex = 0;
             dateTime = getDatetimeNextWeek(dateTime);
+            nextDay = selectedDay - dateTime.weekday;
+            break;
           }
-
-          // get selected day in week
-          int selectedDay = selectedDaysSorted[dayIndex].weekday;
-
-          dateTime2 = dateTime.add(Duration(days: selectedDay - 1));
-
-          var schedule = modules[i].classSchedules![j];
-          var newSchedule = ClassScheduleModel.fromInstance(
-            cs: schedule,
-            dateSelection: DateSelection(year: dateTime2.year, month: dateTime2.month, day: dateTime2.day),
-            startTime: selectedDaysSorted[dayIndex].startTime ?? const MyTimeOfDay(hour: 10, minute: 30, isAm: true),
-            endTime: selectedDaysSorted[dayIndex].endTime ??  const MyTimeOfDay(hour: 12, minute: 30, isAm: true),
-          );
-          result.add(newSchedule);
-          
-          dayIndex += 1;
+          nextDay = selectedDaysSorted[dayIndex].weekday - dateTime.weekday;
         }
+
+        dateTime2 = dateTime.add(Duration(days: nextDay));
+
+        var schedule = modules[i].classSchedules![j];
+        var newSchedule = ClassScheduleModel.fromInstance(
+          cs: schedule,
+          dateSelection: DateSelection(year: dateTime2.year, month: dateTime2.month, day: dateTime2.day),
+          startTime: selectedDaysSorted[dayIndex].startTime ?? const MyTimeOfDay(hour: 10, minute: 0, isAm: true),
+          endTime: selectedDaysSorted[dayIndex].endTime ??  const MyTimeOfDay(hour: 12, minute: 0, isAm: true),
+        );
+        result.add(newSchedule);
+
+        debugPrint('Title: ${newSchedule.title}');
+        debugPrint('DayTime: Day: ${newSchedule.date!.day} | Start ${newSchedule.startTime} | End: ${newSchedule.endTime}');
+        debugPrint('');
+        
+        dayIndex += 1;
       }
     }
 
-    for (var item in result) {
-      print('Title: ${item.title}');
-      print('DayTime: Day: ${item.date!.day} | Start ${item.startTime} | End: ${item.endTime}');
-    }
+    // Submit updated modules
+    press(modules);
   }
 
   getStartDatetime() {
     var now = DateTime.now();
 
-    int skipDays = now.day + (classStartsSelection * 7);
-    int monthDaysCount = DateTime(now.year, now.month + 1, 0).day;
-    // debugPrint("skipDays: $skipDays");
-    // debugPrint("monthDaysCount: $monthDaysCount");
-    // debugPrint("Month: ${now.month}");
+    if (classStartsList[classStartsIndex] == 'Next Month') {
+      return DateTime(now.year, now.month + 1, 1);
+    } 
+    // start day
+    int startDay = now.day + (classStartsIndex * 7); // this week x + (0 * 7), next week x + (1 * 7), next 2 weeks x + (2 * 7)
 
-    DateTime startDatetime;
-
-    if (skipDays > monthDaysCount) {
-      skipDays = skipDays % monthDaysCount;
-      if (now.month == 12) {
-        // Next Year, first month
-        startDatetime = DateTime(now.year + 1, 1, skipDays);
-      } else {
-        // Same Year, next month
-        startDatetime = DateTime(now.year, now.month + 1, skipDays);
-      }
-    } else {
-      startDatetime = DateTime(now.year, now.month, skipDays);
+    // ensure next week is set to weekday 1 (monday) of next week
+    if (now.day != startDay) {
+      // start day datetime
+      var dateTime = DateTime(now.year, now.month, startDay);
+      // start day set to monday of whatever week we are in
+      startDay = startDay - (dateTime.weekday - 1);
     }
-
-    return startDatetime;
+    
+    return DateTime(now.year, now.month, startDay);
   }
 
   getDatetimeNextWeek(DateTime date){
-    int year = date.year;
-    int month = date.month;
-
     if (date.weekday == 1) {
       int day = date.day + 7;
-      return _getNextWeek(year, month, day);
+      return DateTime(date.year, date.month, day);
+    } 
 
-    } else {
-      int day = date.day + (7 - date.weekday);
-      return _getNextWeek(year, month, day);
-
-    }
-  }
-
-  DateTime _getNextWeek(int year, int month, int day) {
-    int daysInMonth = DateTime(year, month + 1, 0).day;
-
-    if (month == 12) {
-      if (day > daysInMonth) {
-        day = day % daysInMonth;
-        month = 1;
-        year = year + 1;
-      }
-    } else {
-      if (day > daysInMonth) {
-        day = day % daysInMonth;
-        month = month + 1;
-      }
-    }
-    return DateTime(year, month, day);
+    int day = date.day + (8 - date.weekday);
+    return DateTime(date.year, date.month, day);
   }
 
   Widget buildClassStartsSelection() {
@@ -213,58 +197,12 @@ class FormScheduleTimeGenerator extends StatelessWidget {
             selectionBgColor: Colors.black87, 
             items: classStartsList,
             pressAdd: (indexes) {
-              classStartsSelection = indexes[0];
+              classStartsIndex = indexes[0];
             },
           ),
         ],
       ),
     );
-  }
-}
-
-
-class DayandTime {
-  DayandTime({
-    required this.weekday,
-    required this.title,
-    this.startTime,
-    this.endTime,
-  });
-
-  final int weekday;
-  final String title;
-  MyTimeOfDay? startTime;
-  MyTimeOfDay? endTime;
-
-  static List<DayandTime> sort(List<DayandTime> list) {
-    if (list.length == 1) return list;
-    int mid = (list.length / 2).floor();
-    var left = list.sublist(0, mid);
-    var right = list.sublist(mid);
-    
-    return _merge(sort(left), sort(right));
-  }
-
-  static List<DayandTime> _merge(List<DayandTime> left, List<DayandTime> right) {
-    final List<DayandTime> result = [];
-
-    int leftIndex = 0;
-    int rightIndex = 0;
-
-    while (leftIndex < left.length && rightIndex < right.length) {
-      if (left[leftIndex].weekday <  right[rightIndex].weekday){
-        result.add(left[leftIndex]);
-        leftIndex++;
-      } else {
-        result.add(right[rightIndex]);
-        rightIndex++;
-      }
-    }
-
-    result.addAll(left.sublist(leftIndex));
-    result.addAll(right.sublist(rightIndex));
-
-    return result;
   }
 }
 
