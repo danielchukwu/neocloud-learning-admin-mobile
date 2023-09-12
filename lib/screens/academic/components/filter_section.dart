@@ -55,64 +55,64 @@ class _FilterSectionState extends State<FilterSection> {
                 children: <Widget>[
                   // Month, Year
                   widget.showMonthYear
-                      ? SizedBox(height: defaultSize)
-                      : SizedBox(),
-                  widget.showMonthYear ? buildMonthYearField() : SizedBox(),
+                      ? const SizedBox(height: 10)
+                      : const SizedBox(),
+                  widget.showMonthYear ? buildMonthYearField() : const SizedBox(),
 
                   // range
-                  widget.showRange ? SizedBox(height: defaultSize) : SizedBox(),
+                  widget.showRange ? const SizedBox(height: 10) : const SizedBox(),
                   widget.showRange
                       ? buildAppsDropdownButton(
                           list: dateRangeFilters,
                           press: updateFilter(k: "range"),
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
 
                   // Status
                   widget.showStatus
-                      ? SizedBox(height: defaultSize)
-                      : SizedBox(),
+                      ? const SizedBox(height: 10)
+                      : const SizedBox(),
                   widget.showStatus
                       ? buildAppsDropdownButton(
                           list: statusFilters,
                           press: updateFilter(k: "status"),
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
 
                   // Class
-                  widget.showClass ? SizedBox(height: defaultSize) : SizedBox(),
+                  widget.showClass ? const SizedBox(height: 10) : const SizedBox(),
                   widget.showClass
                       ? buildAppsDropdownButton(
                           list: coursesFilter,
                           press: updateFilter(k: "class"),
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
 
                   // Section
                   widget.showSection
-                      ? SizedBox(height: defaultSize)
-                      : SizedBox(),
+                      ? const SizedBox(height: 10)
+                      : const SizedBox(),
                   widget.showSection
                       ? buildAppsDropdownButton(
                           list: sectionFilters,
                           press: updateFilter(k: "section"),
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
 
                   // Session
                   widget.showSession
-                      ? SizedBox(height: defaultSize)
-                      : SizedBox(),
+                      ? const SizedBox(height: 10)
+                      : const SizedBox(),
                   widget.showSession
                       ? buildAppsDropdownButton(
                           list: sessionFilters,
                           press: updateFilter(k: "session"),
                           selected: sessionFilters.last,
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
 
                   // Button
-                  SizedBox(height: defaultSize),
+                  const SizedBox(height: 10),
                   buildFilterButton(
                     press: (context) {
                       widget.press(filter);
@@ -121,7 +121,7 @@ class _FilterSectionState extends State<FilterSection> {
                   ),
                 ],
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }
@@ -136,7 +136,7 @@ class _FilterSectionState extends State<FilterSection> {
             press: updateFilter(k: "month"),
           ),
         ),
-        SizedBox(width: defaultSize * 2),
+        const SizedBox(width: 20),
         Expanded(
           child: buildAppsDropdownButton(
             list: yearsFilter,

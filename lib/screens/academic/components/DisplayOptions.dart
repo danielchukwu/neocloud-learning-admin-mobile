@@ -27,12 +27,12 @@ class DisplayOptions extends StatelessWidget {
       children: List.generate(
         rowCount,
         (index) => Container(
-          padding: EdgeInsets.symmetric(vertical: defaultSize * .5, horizontal: defaultSize * 2),
+          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               buildOptionButton(index * 2),
-              SizedBox(width: defaultSize * 2),
+              SizedBox(width: 20),
               buildOptionButton((index * 2) + 1),
             ],
           ),
@@ -46,8 +46,9 @@ class DisplayOptions extends StatelessWidget {
       child: OptionButton(
         title: items[index].title,
         press: () => press(index),
-        bgColor:
-            (index) == getSelectedIndex() ? kBlueLight : kBlack.withOpacity(.05),
+        bgColor: (index) == getSelectedIndex()
+            ? kBlueLight
+            : kBlack.withOpacity(.05),
       ),
     );
   }
