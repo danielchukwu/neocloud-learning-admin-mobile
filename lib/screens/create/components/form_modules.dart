@@ -32,14 +32,15 @@ class FormModules extends StatelessWidget {
 
           // Column - List of class modules (curriculum)
           Obx(() => Column(
-                children: List.generate(
-                  c.modules.length,
-                  (index) => FormModuleTile(
-                    module: c.modules[index],
-                    index: index,
-                  ),
+              children: List.generate(
+                c.modules.length,
+                (index) => FormModuleTile(
+                  module: c.modules[index],
+                  index: index,
                 ),
-              )),
+              ),
+            ),
+          ),
 
           // Input - Module InputField and Add Button
           FormInputFieldAndAddButton(press: addModule),
@@ -73,6 +74,7 @@ class FormModules extends StatelessWidget {
               modules: c.modules,
               press: (modules) {
                 print(modules);
+                c.modules = modules.obs;
               },
             );
           },
