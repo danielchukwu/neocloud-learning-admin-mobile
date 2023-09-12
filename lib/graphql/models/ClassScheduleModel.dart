@@ -30,6 +30,51 @@ class MyTimeOfDay extends TimeOfDay {
   }
 }
 
+class DayandTime {
+  DayandTime({
+    required this.weekday,
+    required this.title,
+    this.startTime,
+    this.endTime,
+  });
+
+  final int weekday;
+  final String title;
+  MyTimeOfDay? startTime;
+  MyTimeOfDay? endTime;
+
+  static List<DayandTime> sort(List<DayandTime> list) {
+    if (list.length == 1) return list;
+    int mid = (list.length / 2).floor();
+    var left = list.sublist(0, mid);
+    var right = list.sublist(mid);
+    
+    return _merge(sort(left), sort(right));
+  }
+
+  static List<DayandTime> _merge(List<DayandTime> left, List<DayandTime> right) {
+    final List<DayandTime> result = [];
+
+    int leftIndex = 0;
+    int rightIndex = 0;
+
+    while (leftIndex < left.length && rightIndex < right.length) {
+      if (left[leftIndex].weekday <  right[rightIndex].weekday){
+        result.add(left[leftIndex]);
+        leftIndex++;
+      } else {
+        result.add(right[rightIndex]);
+        rightIndex++;
+      }
+    }
+
+    result.addAll(left.sublist(leftIndex));
+    result.addAll(right.sublist(rightIndex));
+
+    return result;
+  }
+}
+
 
 class ClassScheduleModel {
   final String id;
