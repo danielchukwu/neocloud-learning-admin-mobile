@@ -9,6 +9,7 @@ import 'package:neocloud_mobile/screens/create/components/form_schedule_date_tim
 import 'package:neocloud_mobile/screens/create/components/form_schedules.dart';
 import 'package:neocloud_mobile/screens/create/components/form_set_date_and_time.dart';
 import 'package:neocloud_mobile/screens/create/components/form_set_time.dart';
+import 'package:neocloud_mobile/screens/create/create_class_instance.dart';
 import 'package:neocloud_mobile/screens/create/create_class_screen.dart';
 import 'package:neocloud_mobile/screens/create/components/form_classwork.dart';
 import 'package:neocloud_mobile/screens/create/create_faculty_screen.dart';
@@ -89,6 +90,15 @@ showCreateClassScreen() {
   );
 }
 
+showCreateClassInstanceScreen() {
+  return showDialog(
+    context: SizeConfig.appContext!,
+    builder: (context) {
+      return CreateClassInstanceScreen();
+    },
+  );
+}
+
 showSelectUsersDialog(
   {
     required List<UserModel> usersToSelectFrom, 
@@ -122,7 +132,7 @@ showCreateScheduleDialog(
   {
     required ClassModuleModel module,
     required int moduleCount,
-    required Function(int moduleIndex, ClassModuleModel newModule) updateModule,
+    required Function(int moduleIndex, ClassModuleModel newModule) updateModule, 
   }) {
   return showDialog(
     context: SizeConfig.appContext!, 
