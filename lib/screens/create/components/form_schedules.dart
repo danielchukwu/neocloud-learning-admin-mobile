@@ -10,6 +10,7 @@ import 'package:neocloud_mobile/screens/create/components/form_header.dart';
 import 'package:neocloud_mobile/screens/create/components/form_inputfield_and_addbutton.dart';
 import 'package:neocloud_mobile/screens/create/components/form_schedule_tile.dart';
 import 'package:neocloud_mobile/screens/create/components/from_index_title_header.dart';
+import 'package:neocloud_mobile/screens/create/controllers/create_class_controller.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
 
 
@@ -35,6 +36,7 @@ class FormSchedules extends StatefulWidget {
 
 class _FormSchedulesState extends State<FormSchedules> {
   final _scrollController = ScrollController();
+  var c = Get.put(ClassGetXController());
   late ClassModuleModel _module;
   late List<ClassScheduleModel> _schedules;
 
@@ -53,6 +55,7 @@ class _FormSchedulesState extends State<FormSchedules> {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: EdgeInsets.symmetric(horizontal: defaultSize , vertical: 30),
       child: Scaffold(
@@ -100,20 +103,23 @@ class _FormSchedulesState extends State<FormSchedules> {
             buildScheduleListHeader(),
 
               // Column - List of class schedules (curriculum)
-            Column(
-              children: List.generate(
-                _schedules.length,
-                (index) => FormScheduleTile(
-                  schedule: _schedules[index], 
-                  index: index, 
-                  pressUpdateSchedule: updateSchedule, 
-                  pressDeleteSchedule: deleteSchedule,
-                )
+            for (var i=0; i < _schedules.length; i++)
+              FormScheduleTile(
+                schedule: _schedules[i],
+                index: i,
+                enableUpdateTitle: c.enableUpdateTitle.value,
+                enableSetDateAndTime: c.enableSetDateAndTime.value,
+                enableAddClasswork: c.enableAddScheduleClasswork.value,
+                enableAddDescription: c.enableAddScheduleDescription.value,
+                enableUpdateClasswork: c.enableUpdateScheduleClasswork.value,
+                enableUpdateDescription: c.enableUpdateScheduleDescription.value,
+                pressUpdateSchedule: updateSchedule,
+                pressDeleteSchedule: deleteSchedule,
               ),
-            ),
 
             // Input - Module TextArea and Add Button
-            FormInputFieldAndAddButton(press: createSchedule),
+            if (c.enableAddSchedules.value == true)
+              FormInputFieldAndAddButton(press: createSchedule),
 
           ],
         ),
@@ -134,9 +140,9 @@ class _FormSchedulesState extends State<FormSchedules> {
   }
 
   deleteSchedule(int index) {
-    print(index);
     setState(() => _schedules.removeAt(index));
-    // widget.updateModule(widget.index, widget.module);
+
+    widget.updateModule(widget.index, widget.module);
   }
 
   Widget buildScheduleListHeader() {
