@@ -26,6 +26,14 @@ class CreateClassScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    c.enableUpdateTitle = true.obs;
+    c.enableAddModules = true.obs;
+    c.enableAddSchedules = true.obs;
+    c.enableAddScheduleDescription = true.obs;
+    c.enableUpdateScheduleDescription = true.obs;
+    c.enableAddScheduleClasswork = true.obs;
+    c.enableUpdateScheduleClasswork = true.obs;
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
@@ -57,9 +65,9 @@ class CreateClassScreen extends StatelessWidget {
               press: () async {
                 c.isSubmittingForm = true.obs;
                 // submit form if form data is valid
-                if (c.formDataIsValid()) {
+                if (c.createClassFormDataIsValid()) {
                   // submit form
-                  await c.submitForm();
+                  await c.submitCreateClassForm();
                 }
                 c.isSubmittingForm = false.obs;
               }
