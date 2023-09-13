@@ -28,6 +28,9 @@ class MyTimeOfDay extends TimeOfDay {
       isAm: isAm ?? t.isAm, 
     );
   }
+  static bool compare(MyTimeOfDay t1, MyTimeOfDay t2) {
+    return t1.hour == t2.hour && t1.minute == t2.minute && t1.isAm == t2.isAm; 
+  }
 }
 
 class DayandTime {
