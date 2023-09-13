@@ -63,3 +63,8 @@ Sept 12th
     - Complete Class Creation and submission
   - Create Class Instance
     - Complete
+
+- Fix
+  - fix deleting of modules and schedules
+  - fix set time
+  - use ListView builder for the calendar
