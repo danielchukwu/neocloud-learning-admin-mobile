@@ -27,12 +27,16 @@ class ClassModuleModel {
     : null,
   );
 
-  static ClassModuleModel fromInstance({required ClassModuleModel module, String? title}) => ClassModuleModel(
+  static ClassModuleModel fromInstance({
+    required ClassModuleModel module, 
+    String? title,
+    List<ClassScheduleModel>? schedules,
+  }) => ClassModuleModel(
     id: module.id,
     title: title ?? module.title,
     order: module.order,
     clas: module.clas,
-    classSchedules: module.classSchedules,
+    classSchedules: schedules ?? module.classSchedules,
   );
 }
 
