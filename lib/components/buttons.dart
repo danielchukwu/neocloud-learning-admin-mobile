@@ -117,11 +117,11 @@ class AppsButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            icon != null ? Icon(icon, color: iconColor) : SizedBox(),
-            icon != null ? SizedBox(width: textIconSeperationSize) : SizedBox(),
-            !isLoading
-              ? TextMedium(title: title, color: color, weight: weight)
-              : SizedBox(height: 23, width: 23, child: CircularProgressIndicator(color: kWhite)),
+            icon != null ? Icon(icon, color: iconColor) : const SizedBox(),
+            icon != null ? SizedBox(width: textIconSeperationSize) : const SizedBox(),
+            isLoading
+              ? SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: kWhite, strokeWidth: 3))
+              : TextMedium(title: title, color: color, weight: weight),
           ],
         ),
       ),
@@ -135,7 +135,7 @@ class AppsButton extends StatelessWidget {
         RoundedRectangleBorder(
           side: border > 0
               ? BorderSide(width: border, color: kBlack50)
-              : BorderSide(color: Colors.transparent),
+              : const BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.all(
             Radius.circular(borderRadius),
           ),
