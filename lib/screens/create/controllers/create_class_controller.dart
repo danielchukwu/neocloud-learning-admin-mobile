@@ -10,16 +10,16 @@ import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 
 
 class ClassGetXController extends GetxController {
-  final formKey = GlobalKey<FormState>().obs;
-  final scrollController = ScrollController().obs;
+  var formKey = GlobalKey<FormState>().obs;
+  var scrollController = ScrollController().obs;
 
   // Mock Data
-  final RxList<FacultyModel> facultiesToSelectFrom = List.generate(15, (index) => FacultyModel(id: '$index', name: 'Cyber Security')).obs;
-  final RxList<UserModel> usersToSelectFrom = List.generate(15, (index) => UserModel(id: '$index', name: 'John Default', avatar: defaultProfileAvatar)).obs;
+  RxList<FacultyModel> facultiesToSelectFrom = List.generate(15, (index) => FacultyModel(id: '$index', name: 'Cyber Security')).obs;
+  RxList<UserModel> usersToSelectFrom = List.generate(15, (index) => UserModel(id: '$index', name: 'John Default', avatar: defaultProfileAvatar)).obs;
 
   // Fields
-  final titleController = TextEditingController().obs;
-  final descriptionController = TextEditingController().obs;
+  var titleController = TextEditingController().obs;
+  var descriptionController = TextEditingController().obs;
   Rx<File?> coverImgFile = null.obs;
   RxList<FacultyModel> selectedFaculties = RxList();
   RxList<UserModel> selectedEducatorsList = RxList();
@@ -33,6 +33,19 @@ class ClassGetXController extends GetxController {
   RxString modulesErrorMessage = ''.obs;
 
   RxBool isSubmittingForm = false.obs;
+
+  // features enabling variables
+  RxBool enableAddModules = false.obs;
+  RxBool enableAddSchedules = false.obs;
+  RxBool enableAutomateDateTime = false.obs;
+  RxBool enableUpdateTitle = false.obs;
+
+  // form schedule tiles
+  RxBool enableSetDateAndTime = false.obs;
+  RxBool enableAddScheduleDescription = false.obs;
+  RxBool enableAddScheduleClasswork = false.obs;
+  RxBool enableUpdateScheduleDescription = false.obs;
+  RxBool enableUpdateScheduleClasswork = false.obs;
 
   updateSelectedEducators(List<UserModel> users) {
     selectedEducatorsList = users.obs;
@@ -51,21 +64,19 @@ class ClassGetXController extends GetxController {
 
   deleteModule(index) {
     modules.removeAt(index);
+    modules = [...modules.value].obs;
   }
 
-  void addModule(String value) {
-    if (value.isNotEmpty) {
-      var newModule = ClassModuleModel(
-        id: '${modules.length + 1}', 
-        title: value, 
-        classSchedules: [],
-      );
-      modules.add(newModule);
-    }
+  void addModule(ClassModuleModel module) {
+    modules.add(module);
+  }
+
+  void setModules(List<ClassModuleModel> newModule) {
+    modules = newModule.obs;
   }
 
   // Class form
-  bool formDataIsValid() {
+  bool createClassFormDataIsValid() {
     // cover must be provided
     if (coverImgFile == null) {
       coverImgFileHasError = true.obs;
@@ -110,7 +121,47 @@ class ClassGetXController extends GetxController {
     return true;
   }
 
-  Future<void> submitForm() async {
+  Future<void> submitCreateClassForm() async {
     await Future.delayed(const Duration(seconds: 5));
+  }
+
+  // RESET
+  reset() {
+    formKey = GlobalKey<FormState>().obs;
+    scrollController = ScrollController().obs;
+
+    // Mock Data
+    facultiesToSelectFrom = List.generate(15, (index) => FacultyModel(id: '$index', name: 'Cyber Security')).obs;
+    usersToSelectFrom = List.generate(15, (index) => UserModel(id: '$index', name: 'John Default', avatar: defaultProfileAvatar)).obs;
+
+    // Fields
+    titleController = TextEditingController().obs;
+    descriptionController = TextEditingController().obs;
+    coverImgFile = null.obs;
+    selectedFaculties = RxList();
+    selectedEducatorsList = RxList();
+    modules = RxList();
+
+    // error handling variables
+    coverImgFileHasError = false.obs;
+    hodHasError = false.obs;
+    educatorsListHasError = false.obs;
+    modulesHasError = false.obs;
+    modulesErrorMessage = ''.obs;
+
+    isSubmittingForm = false.obs;
+
+    // features enabling variables
+    enableAddModules = false.obs;
+    enableAddSchedules = false.obs;
+    enableAutomateDateTime = false.obs;
+    enableUpdateTitle = false.obs;
+
+    // form schedule tiles
+    enableSetDateAndTime = false.obs;
+    enableAddScheduleDescription = false.obs;
+    enableAddScheduleClasswork = false.obs;
+    enableUpdateScheduleDescription = false.obs;
+    enableUpdateScheduleClasswork = false.obs;
   }
 }
