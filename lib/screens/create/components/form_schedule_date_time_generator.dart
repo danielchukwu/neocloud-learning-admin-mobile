@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/pills.dart';
 import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
+import 'package:neocloud_mobile/components/tile/tiles.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_header.dart';
 
-class FormScheduleTimeGenerator extends StatelessWidget {
-  FormScheduleTimeGenerator({
+class FormScheduleTimeGenerator extends StatefulWidget {
+  const FormScheduleTimeGenerator({
     super.key, 
     required this.modules,
     required this.press,
@@ -19,10 +19,27 @@ class FormScheduleTimeGenerator extends StatelessWidget {
 
   final List<ClassModuleModel> modules;
   final Function(List<ClassModuleModel> modules) press;
-  List<String> classStartsList = ['This week', 'Next week', 'Next 2 weeks', 'Next 3 weeks', 'Next Month'];
-  // selections
-  int classStartsIndex = 0;
-  List<DayandTime> selectedDayTimes = [];
+
+  @override
+  State<FormScheduleTimeGenerator> createState() => _FormScheduleTimeGeneratorState();
+}
+
+class _FormScheduleTimeGeneratorState extends State<FormScheduleTimeGenerator> {
+  List<String> _classStartsList = ['This week', 'Next week', 'Next 2 weeks', 'Next 3 weeks', 'Next Month'];
+
+  int _classStartsIndex = 0;
+  List<DayandTime> _selectedClassDays = [];
+
+  bool _isGenerating = false;
+
+  late List<ClassModuleModel> _modules;
+
+  @override
+  void initState() {
+    super.initState();
+    _modules = widget.modules;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +70,7 @@ class FormScheduleTimeGenerator extends StatelessWidget {
                 
                       AddScheduleDateAndTime(
                         press: (dayTimeList) {
-                          selectedDayTimes = dayTimeList;
+                          _selectedClassDays = dayTimeList;
                         }
                       ),
                 
@@ -68,7 +85,9 @@ class FormScheduleTimeGenerator extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: AppsButton(
                   title: 'Generate', 
-                  press: submitForm
+                  isLoading: _isGenerating,
+                  bgColorLoading: Colors.black12,
+                  press: generateSchedulesDateAndTime
                 ),
               ),
 
@@ -80,61 +99,61 @@ class FormScheduleTimeGenerator extends StatelessWidget {
     );
   }
 
-  submitForm(_) {
-    debugPrint('');
-    debugPrint('');
-    debugPrint('');
-    assert(selectedDayTimes.isNotEmpty);
+  generateSchedulesDateAndTime(_) async {
+    setState(() => _isGenerating = true );
+    
+    if (_selectedClassDays.isEmpty) {
+      showTopAlertDialog(text: 'No days were selected!');
+    }
 
     // STEP 0: to store end result
-    List<ClassScheduleModel> result = [];
+    List<ClassModuleModel> result = [];
 
     // STEP 1: get start date
-    // DateTime dateTime = getStartDatetime();
-    DateTime dateTime = DateTime(2023, 12, 29);
+    DateTime dateTime = getStartDatetime();
 
     // STEP 2: sort selected days data
-    var selectedDaysSorted = DayandTime.sort(selectedDayTimes);
+    var selectedClassDaysSorted = DayandTime.sort(_selectedClassDays);
     var dayIndex = 0;
 
     // STEP 3: setting schedules
-    for (var i = 0; i < modules.length; i++) {
-      if (modules[i].classSchedules == null) continue;
-      DateTime dateTime2;
+    for (var module in _modules) {
+      if (module.classSchedules == null) continue;
+      DateTime newDatetime;
+      List<ClassScheduleModel> schedules = [];
 
       // loop over schedules
-      for (var j = 0; j < modules[i].classSchedules!.length; j++) {
+      for (var schedule in module.classSchedules!) {
         //  if all weekdays for this particular week has been allocated to schedule, let's jump to next week
-        if (dayIndex == selectedDaysSorted.length) {
+        if (dayIndex == selectedClassDaysSorted.length) {
           dayIndex = 0;
           dateTime = getDatetimeNextWeek(dateTime);
         }
-        
-        int selectedDay = selectedDaysSorted[dayIndex].weekday;
+
+        int selectedDay = selectedClassDaysSorted[dayIndex].weekday;
         int nextDay = selectedDay - dateTime.weekday;
 
         // set a day that is not behind current day selection
         while(nextDay < 0) {
           dayIndex += 1;
-          if (dayIndex == selectedDaysSorted.length){
+          if (dayIndex == selectedClassDaysSorted.length){
             dayIndex = 0;
             dateTime = getDatetimeNextWeek(dateTime);
             nextDay = selectedDay - dateTime.weekday;
             break;
           }
-          nextDay = selectedDaysSorted[dayIndex].weekday - dateTime.weekday;
+          nextDay = selectedClassDaysSorted[dayIndex].weekday - dateTime.weekday;
         }
 
-        dateTime2 = dateTime.add(Duration(days: nextDay));
+        newDatetime = dateTime.add(Duration(days: nextDay));
 
-        var schedule = modules[i].classSchedules![j];
         var newSchedule = ClassScheduleModel.fromInstance(
           cs: schedule,
-          dateSelection: DateSelection(year: dateTime2.year, month: dateTime2.month, day: dateTime2.day),
-          startTime: selectedDaysSorted[dayIndex].startTime ?? const MyTimeOfDay(hour: 10, minute: 0, isAm: true),
-          endTime: selectedDaysSorted[dayIndex].endTime ??  const MyTimeOfDay(hour: 12, minute: 0, isAm: true),
+          dateSelection: DateSelection(year: newDatetime.year, month: newDatetime.month, day: newDatetime.day),
+          startTime: selectedClassDaysSorted[dayIndex].startTime ?? const MyTimeOfDay(hour: 10, minute: 0, isAm: true),
+          endTime: selectedClassDaysSorted[dayIndex].endTime ??  const MyTimeOfDay(hour: 12, minute: 0, isAm: true),
         );
-        result.add(newSchedule);
+        schedules.add(newSchedule);
 
         debugPrint('Title: ${newSchedule.title}');
         debugPrint('DayTime: Day: ${newSchedule.date!.day} | Start ${newSchedule.startTime} | End: ${newSchedule.endTime}');
@@ -142,20 +161,30 @@ class FormScheduleTimeGenerator extends StatelessWidget {
         
         dayIndex += 1;
       }
+
+      // add module with new updated schedule
+      var moduleWithUpatedSchedules = ClassModuleModel.fromInstance(module: module, schedules: schedules);
+      result.add(moduleWithUpatedSchedules);
     }
 
     // Submit updated modules
-    press(modules);
+    widget.press(result);
+    
+    await Future.delayed(const Duration(seconds: 1));
+
+    showTopAlertDialog(text: 'All Schedules date and time set! 👍', isError: false);
+    setState(() => _isGenerating = false );
   }
 
   getStartDatetime() {
     var now = DateTime.now();
 
-    if (classStartsList[classStartsIndex] == 'Next Month') {
+    if (_classStartsList[_classStartsIndex] == 'Next Month') {
       return DateTime(now.year, now.month + 1, 1);
-    } 
+    }
+
     // start day
-    int startDay = now.day + (classStartsIndex * 7); // this week x + (0 * 7), next week x + (1 * 7), next 2 weeks x + (2 * 7)
+    int startDay = now.day + (_classStartsIndex * 7); // this week x + (0 * 7), next week x + (1 * 7), next 2 weeks x + (2 * 7)
 
     // ensure next week is set to weekday 1 (monday) of next week
     if (now.day != startDay) {
@@ -195,9 +224,9 @@ class FormScheduleTimeGenerator extends StatelessWidget {
           SelectPillsWithLimit(
             selectionLimit: 1, 
             selectionBgColor: Colors.black87, 
-            items: classStartsList,
+            items: _classStartsList,
             pressAdd: (indexes) {
-              classStartsIndex = indexes[0];
+              _classStartsIndex = indexes[0];
             },
           ),
         ],
@@ -287,102 +316,5 @@ class _AddScheduleDateAndTimeState extends State<AddScheduleDateAndTime> {
         ],
       ),
     );
-  }
-}
-
-
-
-class TitleAndSetTimeTile extends StatefulWidget {
-  const TitleAndSetTimeTile({
-    super.key,
-    required this.daytime,
-  });
-
-  final DayandTime daytime;
-
-  @override
-  State<TitleAndSetTimeTile> createState() => _TitleAndSetTimeTileState();
-}
-
-class _TitleAndSetTimeTileState extends State<TitleAndSetTimeTile> {
-  late DayandTime _daytime;
-  
-  @override
-  void initState() {
-    super.initState();
-    _daytime = widget.daytime;
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        // Title
-        TextMedium(
-          title: widget.daytime.title,
-          color: Colors.grey[800],
-          weight: FontWeight.w600,
-        ),
-        
-        // Set Time or Time Selected
-        InkWell(
-          onTap: () {
-            showSetTime(
-              title: 'End Time',
-              defaultTime: _daytime.endTime,
-              press: (timeOfDay) {
-                if (_daytime.startTime != null && compareTimeOfDay(timeOfDay, _daytime.startTime!)) return;
-                setState(() => _daytime.endTime = timeOfDay );
-              }
-            );
-            showSetTime(
-              title: 'Start Time',
-              defaultTime: _daytime.startTime,
-              press: (timeOfDay) {
-                if (_daytime.endTime != null && compareTimeOfDay(timeOfDay, _daytime.endTime!)) return;
-                setState(() => _daytime.startTime = timeOfDay );
-              }
-            );
-          },
-          child: Container(
-            width: 120,
-            height: 30,
-            decoration: BoxDecoration(
-              color: timeIsSet(widget.daytime) ? Colors.white : kBlueLight,
-              border: Border.all(color: Colors.black26, width: 1),
-              borderRadius: const BorderRadius.all(Radius.circular(5))
-            ),
-            child: Center(
-              child: TextMedium(
-                title: timeIsSet(widget.daytime) ? getTimeFormat(widget.daytime) : 'Set Time',
-                color: timeIsSet(widget.daytime) ? Colors.black87 : Colors.white,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
-  bool compareTimeOfDay(TimeOfDay t1, TimeOfDay t2) {
-    return t1.hour == t2.hour && t1.minute == t2.minute;
-  }
-
-  bool timeIsSet(DayandTime daytime) {
-    return daytime.startTime != null && daytime.endTime != null;
-  }
-
-  String getTimeFormat(DayandTime daytime) {
-    String getMinuteFormat(int num) => num < 10 ? '0$num' : '$num';
-    String startHour = getMinuteFormat(daytime.startTime!.hour);
-    String startMinute = getMinuteFormat(daytime.startTime!.minute);
-    String endHour = getMinuteFormat(daytime.endTime!.hour);
-    String endMinute = getMinuteFormat(daytime.endTime!.minute);
-
-    String start = startHour + ':' + startMinute;
-    String end = endHour + ':' + endMinute;
-
-    return '$start - $end';
   }
 }
