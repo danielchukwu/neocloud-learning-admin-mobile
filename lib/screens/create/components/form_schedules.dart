@@ -54,7 +54,7 @@ class _FormSchedulesState extends State<FormSchedules> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: defaultSize , vertical: 30),
+      margin: const EdgeInsets.symmetric(horizontal: 10 , vertical: 30),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(

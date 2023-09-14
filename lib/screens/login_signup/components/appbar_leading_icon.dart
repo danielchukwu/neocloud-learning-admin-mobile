@@ -7,9 +7,9 @@ class LoginAppBarBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: defaultSize),
+      margin: const EdgeInsets.only(left: 10),
       child: IconButton(
-        splashRadius: defaultSize * 2.8,
+        splashRadius: 28,
         icon: Icon(
           Icons.arrow_back_ios,
           color: kBlack70,

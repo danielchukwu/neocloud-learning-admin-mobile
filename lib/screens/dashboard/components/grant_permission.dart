@@ -15,52 +15,59 @@ class GrantPermission extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // Grant Permission
-        SizedBox(height: defaultSize * 3),
+        const SizedBox(height: 30),
         Padding(
           padding: screenPadding,
           child: TextCustom(
             title: "Grant Permission",
-            fontSize: defaultSize * 2.2,
+            fontSize: 22,
             color: kBlack80,
             weight: FontWeight.w600,
           ),
         ),
-        SizedBox(height: defaultSize * 2),
+        const SizedBox(height: 20),
 
         // Thumbs up and Text
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(width: defaultSize * 4),
-            Image(
-              image: const AssetImage('assets/icons/thumbs-up.png'),
-              width: defaultSize * 5,
+            const SizedBox(width: 40),
+            const Image(
+              image: AssetImage('assets/icons/thumbs-up.png'),
+              width: 50,
             ),
-            SizedBox(width: defaultSize * 2),
+            const SizedBox(width: 20),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   TextMedium(
-                    title: 'Grant Permission for Students or Educators to be able to take certain courses at NCT',
+                    title:
+                        'Grant Permission for Students or Educators to be able to take certain courses at NCT',
                     color: kBlack60,
                   ),
-                  SizedBox(height: defaultSize * 2),
+                  const SizedBox(height: 20),
                   AppsButton(
                     title: 'Grant',
                     // press: (context) => context.router.push(const ComingSoonRoute()),
-                    press: (_) => Navigator.push(context, MaterialPageRoute(builder: (_) => ComingSoonScreen(),)),
+                    press: (_) => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const ComingSoonScreen(),
+                        )),
                     bgColor: kBlue,
-                    padTopBottom: defaultSize * .5,
-                    borderRadius: defaultSize * 4,
+                    padTopBottom: 5,
+                    borderRadius: 40,
                   ),
                 ],
               ),
             ),
-            SizedBox(width: defaultSize * 4),
+            const SizedBox(width: 40),
           ],
         ),
-        SizedBox(height: defaultSize * 5,)
+        const SizedBox(
+          height: 50,
+        )
       ],
     );
   }

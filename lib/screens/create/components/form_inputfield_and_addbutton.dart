@@ -69,7 +69,7 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Count
-        SizedBox(width: defaultSize),
+        SizedBox(width: 10),
         const SizedBox(
           width: 30,
           child: Padding(

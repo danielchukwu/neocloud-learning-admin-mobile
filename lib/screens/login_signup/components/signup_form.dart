@@ -14,7 +14,7 @@ import 'package:neocloud_mobile/utils/validation.dart';
 import 'package:provider/provider.dart';
 
 class SignupForm extends StatefulWidget {
-  SignupForm({Key? key}) : super(key: key);
+  const SignupForm({Key? key}) : super(key: key);
 
   @override
   State<SignupForm> createState() => SignupFormState();
@@ -58,7 +58,7 @@ class SignupFormState extends State<SignupForm> {
       child: Column(
         children: <Widget>[
           // Name
-          SizedBox(height: defaultSize * 2),
+          SizedBox(height: 20),
           LoginInputField(
             labelText: 'Name',
             validate: validateRequireField,
@@ -69,7 +69,7 @@ class SignupFormState extends State<SignupForm> {
             },
           ),
           // Email
-          SizedBox(height: defaultSize * 2),
+          SizedBox(height: 20),
           LoginInputField(
             labelText: 'Email',
             validate: validateEmail,
@@ -80,7 +80,7 @@ class SignupFormState extends State<SignupForm> {
             },
           ),
           // Phone
-          SizedBox(height: defaultSize * 2),
+          SizedBox(height: 20),
           LoginInputField(
             labelText: 'Phone Number',
             validate: validatePhoneNumber,
@@ -92,7 +92,7 @@ class SignupFormState extends State<SignupForm> {
           ),
 
           // Password
-          SizedBox(height: defaultSize * 2),
+          SizedBox(height: 20),
           LoginInputField(
             labelText: 'Password',
             obsureText: true,
@@ -105,7 +105,7 @@ class SignupFormState extends State<SignupForm> {
           ),
 
           // Button - used for submitting form
-          SizedBox(height: defaultSize * 4),
+          SizedBox(height: 40),
           AppsButton(
               title: 'Sign up',
               bgColor: kBlueLight,
@@ -117,7 +117,7 @@ class SignupFormState extends State<SignupForm> {
                   signup();
                 }
               }),
-          SizedBox(height: defaultSize * 2),
+          SizedBox(height: 20),
         ],
       ),
     );

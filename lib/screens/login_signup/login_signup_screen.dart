@@ -40,19 +40,19 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                 children: <Widget>[
                   // Logo
                   // Image(image: AssetImage(nctFaviconBlue), width: 50,),
-                  Spacer(),
+                  const Spacer(),
                   SvgPicture.asset(nctFaviconBlue, width: 70, color: kBlueLight,),
         
                   // Section 1 - Intro Text'
-                  SizedBox(height: defaultSize),
+                  const SizedBox(height: 10),
                   TextExtraLarge(title: widget.showLogin ? "Log into your Account" : "Create your Account", weight: FontWeight.w600),
         
                   // Section 2 - Form
-                  SizedBox(height: defaultSize),
-                  widget.showLogin ? LoginForm() : SignupForm(),
+                  const SizedBox(height: 10),
+                  widget.showLogin ? const LoginForm() : const SignupForm(),
         
                   // Section 3 - switch forms
-                  Spacer(),
+                  const Spacer(),
                   Center(
                     child: TextMedium(
                         title: widget.showLogin
@@ -61,14 +61,14 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                         color: kBlack.withOpacity(.4)),
                   ),
 
-                  SizedBox(height: defaultSize),
+                  const SizedBox(height: 10),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         OutlinedButton(
                           onPressed: () => setState(() => widget.showLogin = !widget.showLogin),
                           child: Container(
-                            constraints: BoxConstraints(minHeight: defaultSize * 5.5, maxHeight: defaultSize * 5.5),        
+                            constraints: const BoxConstraints(minHeight: 55, maxHeight: 55),        
                             child: Center(child: TextMedium(title: widget.showLogin ? 'Sign up' : 'Login')),
                           ),
                           style: ButtonStyle(
@@ -79,7 +79,7 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                         )
                       ]),
         
-                  SizedBox(height: defaultSize * 2),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

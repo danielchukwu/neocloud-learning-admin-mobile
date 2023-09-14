@@ -18,7 +18,7 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: defaultSize * 2),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Center(
             child: Container(
               constraints: BoxConstraints(maxHeight: SizeConfig.screenHeight ?? 800),
@@ -28,11 +28,11 @@ class WelcomeScreen extends StatelessWidget {
                 children: <Widget>[
             
                   // Logo - neocloud logo icon
-                  Spacer(flex: 2),
-                  SvgPicture.asset(nctBannerBlueBlack, width: defaultSize * 25, color: kBlueLight),
+                  const Spacer(flex: 2),
+                  SvgPicture.asset(nctBannerBlueBlack, width: 250, color: kBlueLight),
             
                   // Button - takes us to the login page
-                  Spacer(flex: 2,),
+                  const Spacer(flex: 2,),
                   WelcomeButton(
                     title: 'Login',
                     press: () => Navigator.pushNamed(context, '/' + LoginSignupScreen.screenName),
@@ -40,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
             
                   // Link - access courses
-                  SizedBox(height: defaultSize * 5),
+                  const SizedBox(height: 50),
                   TextLink(
                     title: 'Access Virtual Course',
                     color: kBlack70,
@@ -54,7 +54,7 @@ class WelcomeScreen extends StatelessWidget {
                     color: kBlack70,
                     press: (_) => Navigator.pushNamed(context, '/' + ComingSoonScreen.screenName)
                   ),
-                  SizedBox(height: defaultSize * 5,)
+                  const SizedBox(height: 50,)
                 ],
               ),
             ),

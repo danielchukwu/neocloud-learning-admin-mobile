@@ -5,7 +5,7 @@ import 'package:neocloud_mobile/screens/settings/components/settings_form_header
 import 'package:neocloud_mobile/size_config.dart';
 
 class SettingsEditScreen extends StatelessWidget {
-  SettingsEditScreen({
+  const SettingsEditScreen({
     Key? key,
     this.screenName = '',
     required this.title,
@@ -37,11 +37,11 @@ class SettingsEditScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header
-              SizedBox(height: defaultSize * 3),
+              const SizedBox(height: 30),
               SettingsFormHeader(title: 'Update ${title}', subTitle: subTitle),
 
               // Form
-              SettingsForm(inputFieldsList: inputFieldsList, data: {}),
+              SettingsForm(inputFieldsList: inputFieldsList, data: const {}),
             ],
           ),
         ),

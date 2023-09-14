@@ -51,12 +51,16 @@ class _SearchScreenState extends State<SearchScreen> {
           print('SET STATE');
           usersList = data['users'] as List<UserModel>;
           classesList = data['classes'] as List<ClassModel>;
-      });
+        });
       }
     });
   }
 
-  void updateIndex(int index) { setState(() { _selectedIndex = index; }); }
+  void updateIndex(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,12 +72,13 @@ class _SearchScreenState extends State<SearchScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Search
-              SizedBox(height: defaultSize * 2),
+              const SizedBox(height: 20),
 
               // SearchHeader(updateSearch: search),
               Padding(
                 padding: screenPadding,
-                child: buildSearchTextField(press: (String v){}, onChangePress: loadData),
+                child: buildSearchTextField(
+                    press: (String v) {}, onChangePress: loadData),
               ),
 
               // Filter
@@ -84,29 +89,49 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
 
               // Result
-              SizedBox(height: defaultSize),
+              const SizedBox(height: 10),
               Padding(
                 padding: _selectedIndex != 3
-                    ? EdgeInsets.fromLTRB(defaultSize * 2, 0, defaultSize * 2, defaultSize * 2)
-                    : EdgeInsets.all(0),
+                    ? const EdgeInsets.fromLTRB(20, 0, 20, 20)
+                    : const EdgeInsets.all(0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     // Users List
-                    _selectedIndex == 0 && usersList != null ? 
-                      UserList(usersList: usersList!.where((user) => (user.role!.name.toLowerCase() == "educator" || user.role!.name.toLowerCase() == 'student') ).toList())
-                    : SizedBox(),
-                    
-                    _selectedIndex == 1 && usersList != null ? 
-                    UserList(usersList: usersList!.where((user) => (user.role!.name.toLowerCase() == "educator") ).toList()) : SizedBox(),
+                    _selectedIndex == 0 && usersList != null
+                        ? UserList(
+                            usersList: usersList!
+                                .where((user) => (user.role!.name
+                                            .toLowerCase() ==
+                                        "educator" ||
+                                    user.role!.name.toLowerCase() == 'student'))
+                                .toList())
+                        : const SizedBox(),
 
-                    _selectedIndex == 2 && usersList != null ? 
-                    UserList(usersList: usersList!.where((user) => (user.role!.name.toLowerCase() == 'student') ).toList() ) : SizedBox(),
+                    _selectedIndex == 1 && usersList != null
+                        ? UserList(
+                            usersList: usersList!
+                                .where((user) =>
+                                    (user.role!.name.toLowerCase() ==
+                                        "educator"))
+                                .toList())
+                        : const SizedBox(),
 
-                    _selectedIndex == 3 ? 
-                    ClassList( classList: classesList!, showClassAvatar: true ) : SizedBox(),
+                    _selectedIndex == 2 && usersList != null
+                        ? UserList(
+                            usersList: usersList!
+                                .where((user) =>
+                                    (user.role!.name.toLowerCase() ==
+                                        'student'))
+                                .toList())
+                        : const SizedBox(),
 
-                    SizedBox(height: defaultSize * 3),
+                    _selectedIndex == 3
+                        ? ClassList(
+                            classList: classesList!, showClassAvatar: true)
+                        : const SizedBox(),
+
+                    const SizedBox(height: 30),
                   ],
                 ),
               )

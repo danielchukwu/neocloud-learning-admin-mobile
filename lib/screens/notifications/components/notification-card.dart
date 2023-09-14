@@ -5,7 +5,6 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/NotificationModel.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
 
-
 class NotificationCard extends StatefulWidget {
   const NotificationCard({
     super.key,
@@ -36,7 +35,7 @@ class _NotificationCardState extends State<NotificationCard> {
   }
 
   @override
-  void initState () {
+  void initState() {
     super.initState();
     _startAnimation(widget.notification.seen);
   }
@@ -44,49 +43,59 @@ class _NotificationCardState extends State<NotificationCard> {
   @override
   Widget build(BuildContext context) {
     var notification = widget.notification;
-    
+
     return AnimatedContainer(
       duration: _animationDuration,
       decoration: BoxDecoration(
-        color: notification.seen ? Colors.transparent : _containerColor,
-        border: Border(bottom: BorderSide(color: kBlack50, width: .2))
-      ),
-      padding: EdgeInsets.symmetric(vertical: defaultSize * 2, horizontal: defaultSize * 1.5),
+          color: notification.seen ? Colors.transparent : _containerColor,
+          border: Border(bottom: BorderSide(color: kBlack50, width: .2))),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           // Notifications List
           Padding(
             padding: const EdgeInsets.only(top: 0),
-            child: RoundBoxAvatar(size: defaultSize * 5, image: notification.user.avatar),
+            child: RoundBoxAvatar(size: 50, image: notification.user.avatar),
           ),
 
           // Notifications Info
-          SizedBox(width: defaultSize * 1.5,),
+          const SizedBox(
+            width: 15,
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 // Users Full Name
-                TextLarge(title: notification.user.name, weight: FontWeight.w600, color: kBlack90,),
-          
+                TextLarge(
+                  title: notification.user.name,
+                  weight: FontWeight.w600,
+                  color: kBlack90,
+                ),
+
                 // Notification Type
-                // SizedBox(height: defaultSize * .2),
-                TextMedium(title: notification.type.name, color: widget.typeColor, weight: FontWeight.w500),
-          
+                // SizedBox(height: 2),
+                TextMedium(
+                    title: notification.type.name,
+                    color: widget.typeColor,
+                    weight: FontWeight.w500),
+
                 // Notification Body
-                SizedBox(height: defaultSize * .5),
+                const SizedBox(height: 5),
                 // TextMedium(title: notification.body + '. ${getTimeAgo(notification.createdAt)}', color: kBlack70),
-                Text.rich(
-                  TextSpan(
-                    style: appsTextStyle(color: kBlack70, fontWeight: FontWeight.w400),
+                Text.rich(TextSpan(
+                    style: appsTextStyle(
+                        color: kBlack70, fontWeight: FontWeight.w400),
                     children: [
                       TextSpan(text: notification.body),
-                      TextSpan(text: '  ${getTimeAgo(notification.createdAt)}', style: appsTextStyle(color: kBlack50, fontWeight: FontWeight.w400, fontSize: 14))
-                    ]
-                  )
-                )
-          
+                      TextSpan(
+                          text: '  ${getTimeAgo(notification.createdAt)}',
+                          style: appsTextStyle(
+                              color: kBlack50,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14))
+                    ]))
               ],
             ),
           )
@@ -94,5 +103,4 @@ class _NotificationCardState extends State<NotificationCard> {
       ),
     );
   }
-  
 }
