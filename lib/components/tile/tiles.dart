@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/images.dart';
+import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/stacks.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
+import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/models/Class.dart';
@@ -333,4 +335,97 @@ class _FacultySelectionTileState extends State<FacultySelectionTile> {
 
 
 
+class TitleAndSetTimeTile extends StatefulWidget {
+  const TitleAndSetTimeTile({
+    super.key,
+    required this.daytime,
+  });
 
+  final DayandTime daytime;
+
+  @override
+  State<TitleAndSetTimeTile> createState() => _TitleAndSetTimeTileState();
+}
+
+class _TitleAndSetTimeTileState extends State<TitleAndSetTimeTile> {
+  late DayandTime _daytime;
+  
+  @override
+  void initState() {
+    super.initState();
+    _daytime = widget.daytime;
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // Title
+        TextMedium(
+          title: widget.daytime.title,
+          color: Colors.grey[800],
+          weight: FontWeight.w600,
+        ),
+        
+        // Set Time or Time Selected
+        InkWell(
+          onTap: () {
+            showSetTime(
+              title: 'End Time',
+              defaultTime: _daytime.endTime,
+              press: (timeOfDay) {
+                if (_daytime.startTime != null && compareTimeOfDay(timeOfDay, _daytime.startTime!)) return;
+                setState(() => _daytime.endTime = timeOfDay );
+              }
+            );
+            showSetTime(
+              title: 'Start Time',
+              defaultTime: _daytime.startTime,
+              press: (timeOfDay) {
+                if (_daytime.endTime != null && compareTimeOfDay(timeOfDay, _daytime.endTime!)) return;
+                setState(() => _daytime.startTime = timeOfDay );
+              }
+            );
+          },
+          child: Container(
+            width: 120,
+            height: 30,
+            decoration: BoxDecoration(
+              color: timeIsSet(widget.daytime) ? Colors.white : kBlueLight,
+              border: Border.all(color: Colors.black26, width: 1),
+              borderRadius: const BorderRadius.all(Radius.circular(5))
+            ),
+            child: Center(
+              child: TextMedium(
+                title: timeIsSet(widget.daytime) ? getTimeFormat(widget.daytime) : 'Set Time',
+                color: timeIsSet(widget.daytime) ? Colors.black87 : Colors.white,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  bool compareTimeOfDay(TimeOfDay t1, TimeOfDay t2) {
+    return t1.hour == t2.hour && t1.minute == t2.minute;
+  }
+
+  bool timeIsSet(DayandTime daytime) {
+    return daytime.startTime != null && daytime.endTime != null;
+  }
+
+  String getTimeFormat(DayandTime daytime) {
+    String getMinuteFormat(int num) => num < 10 ? '0$num' : '$num';
+    String startHour = getMinuteFormat(daytime.startTime!.hour);
+    String startMinute = getMinuteFormat(daytime.startTime!.minute);
+    String endHour = getMinuteFormat(daytime.endTime!.hour);
+    String endMinute = getMinuteFormat(daytime.endTime!.minute);
+
+    String start = startHour + ':' + startMinute;
+    String end = endHour + ':' + endMinute;
+
+    return '$start - $end';
+  }
+}

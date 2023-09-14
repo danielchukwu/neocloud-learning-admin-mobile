@@ -34,7 +34,7 @@ class _TimeController extends GetxController {
 /// The `FormSetTime` class is a stateless widget that displays a form for setting the time and includes
 /// a header, a time picker, a "Done" button, and some padding.
 class FormSetTime extends StatelessWidget {
-  const FormSetTime({
+  FormSetTime({
     super.key,
     this.title = 'Set Time',
     this.prevSelectedTime,
@@ -46,10 +46,13 @@ class FormSetTime extends StatelessWidget {
   final MyTimeOfDay? defaultTime;
   final MyTimeOfDay? prevSelectedTime;
   final Function(MyTimeOfDay data) press;
+  final _TimeController c = Get.put(_TimeController());
 
   @override
   Widget build(BuildContext context) {
-    final _TimeController c = Get.put(_TimeController());
+    if (defaultTime != null){
+      c.setDefault(defaultTime);
+    }
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -72,6 +75,12 @@ class FormSetTime extends StatelessWidget {
                   title: 'Done',
                   press: (_) {
                     var timeOfDay = MyTimeOfDay(hour: c.hour.value, minute: c.minute.value, isAm: c.isAm.value);
+
+                    if (defaultTime != null && MyTimeOfDay.compare(timeOfDay, defaultTime!)) {
+                      Navigator.pop(context);
+                      return;
+                    }
+                    
                     press(timeOfDay);
                     Navigator.pop(context);
                   },

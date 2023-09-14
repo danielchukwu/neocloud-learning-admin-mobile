@@ -42,7 +42,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              // Academic Options (
+              // Academic Options
               // [     Classes    ] [    Faculties    ]
               // [   Classworks   ] [ Class Schedules ]
               const SizedBox(height: 10),
@@ -130,15 +130,19 @@ class _AcademicScreenState extends State<AcademicScreen> {
                           child: Column(
                             children: [
                               buildButton(
-                                  title: 'Faculty',
-                                  press: showCreateFacultyScreen),
+                                title: 'Faculty',
+                                press: showCreateFacultyScreen,
+                              ),
                               const HorizontalRule(),
                               buildButton(
-                                  title: 'Class', press: showCreateClassScreen),
+                                title: 'Class',
+                                press: showCreateClassScreen,
+                              ),
                               const HorizontalRule(),
                               buildButton(
-                                  title: 'Class Instance',
-                                  press: showCreateClassScreen),
+                                title: 'Class Instance',
+                                press: showCreateClassInstanceScreen,
+                              ),
                             ],
                           ),
                         ),

@@ -9,7 +9,6 @@ import 'package:neocloud_mobile/screens/create/components/form_modules.dart';
 import 'package:neocloud_mobile/screens/create/components/form_select_faculty.dart';
 import 'package:neocloud_mobile/screens/create/controllers/create_class_controller.dart';
 import 'package:neocloud_mobile/utils/validation.dart';
-import 'components/form_description.dart';
 import 'components/form_footer.dart';
 import 'components/form_header.dart';
 import 'components/form_select_users.dart';
@@ -18,21 +17,23 @@ import 'components/form_select_users.dart';
 /// POPUP
 /// This Screen is used in a showDialog, so it will basically not have 
 /// its own screen per say but will be used in a pop up environment instead
-class CreateClassScreen extends StatelessWidget {
-  CreateClassScreen({super.key});
+class CreateClassInstanceScreen extends StatelessWidget {
+  CreateClassInstanceScreen({super.key});
 
-  static String screenName = 'create class';
+  static String screenName = 'create class instance';
   var c = Get.put(ClassGetXController());
 
   @override
   Widget build(BuildContext context) {
-    c.enableUpdateTitle = true.obs;
-    c.enableAddModules = true.obs;
-    c.enableAddSchedules = true.obs;
-    c.enableAddScheduleDescription = true.obs;
-    c.enableUpdateScheduleDescription = true.obs;
-    c.enableAddScheduleClasswork = true.obs;
-    c.enableUpdateScheduleClasswork = true.obs;
+    // c.enableUpdateTitle = true.obs;
+    // c.enableAddModules = true.obs;
+    // c.enableAddSchedules = true.obs;
+    // c.enableAddScheduleDescription = true.obs;
+    // c.enableUpdateScheduleDescription = true.obs;
+    // c.enableAddScheduleClasswork = true.obs;
+    // c.enableUpdateScheduleClasswork = true.obs;
+    c.reset();
+    c.enableSetDateAndTime = true.obs;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -118,13 +119,6 @@ class CreateClassScreen extends StatelessWidget {
 
           c.hodHasError.value ? const TextInputError() : const SizedBox(),
           const SizedBox(height: 15),
-
-          const HorizontalRule(),
-
-          // Description
-          const SizedBox(height: 8),
-          FormDescription(controller: c.descriptionController.value, press: (_) {}),
-          const SizedBox(height: 5),
 
           const HorizontalRule(),
 

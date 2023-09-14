@@ -139,7 +139,7 @@ class _StartEndTimeButtonsState extends State<_StartEndTimeButtons> {
             press: () {
               setState(() => selectedStartTime = true );
               showSetTime(
-                defaultTime: _schedule.startTime, 
+                defaultTime: _schedule.startTime,
                 press: (newTime) {
                   var newSchedule = ClassScheduleModel.fromInstance(cs: _schedule, startTime: newTime);
                   setState(() => _schedule = newSchedule);

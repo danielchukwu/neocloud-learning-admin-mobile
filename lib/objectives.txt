@@ -21,7 +21,7 @@ Objectives
 - Reviews view Page ✅
 - View Cards (of all kinds) Page 
 - Carts ✅
-- Notifications Page
+- Notifications Page 
 - Virtual Students Feed
 - Search Page ✅
 - Upload Course Page
@@ -43,13 +43,28 @@ Backend
 - change body to description
 
 GOALS
+⭐ August - September 
 - Use Image image_picker ✅
 - Use Image image_cropper ✅
 - Implement pop up that asks if we would like to use gallery or camera
-- Use Firebase storage to store images, files etc
-- Implement set date for items
-  - add btn to schedule tile
-  - implement new set date pop up
+- Use Firebase storage to store images, files etc ✅
+- Implement set date for items ✅
+  - add btn to schedule tile ✅
+  - implement new set date pop up ✅
   - 
-- Deleting of Modules & Schedules no longer working
-- Complete Error handling for classes form
+- Deleting of Modules & Schedules no longer working ✅
+- Complete Error handling for classes form✅
+
+Sept 12th
+- Screens
+  - Create Class
+    - Generate DT Screen
+      - add spinner to button when date and time is being generated for schedules
+    - Complete Class Creation and submission
+  - Create Class Instance
+    - Complete
+
+- Fix
+  - fix deleting of modules and schedules
+  - fix set time
+  - use ListView builder for the calendar
