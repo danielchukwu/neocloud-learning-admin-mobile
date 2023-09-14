@@ -32,13 +32,12 @@ class CourseScreen extends StatelessWidget {
           routeName1: getRouteName(CartScreen.screenName),
           actionIcon1: Icons.shopping_cart_outlined,
         ),
-        
         SliverToBoxAdapter(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // Image
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Padding(
                 padding: screenPadding,
                 child: Column(
@@ -46,64 +45,64 @@ class CourseScreen extends StatelessWidget {
                   children: <Widget>[
                     // Image
                     buildCourseImage(),
-        
+
                     // Title
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     buildCourseTitle(),
-        
+
                     // Ratings
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Ratings(
                         rating: course.rating,
                         reviewsCount: course.reviews_count ?? 0),
-        
+
                     // Created by ....
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     buildCreatedBy(),
-        
+
                     // Students count & reviews
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     buildStudentsCountAndReviews(),
-        
+
                     // Duration
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     buildDuration(),
-        
+
                     // Cost
-                    SizedBox(height: 18),
+                    const SizedBox(height: 18),
                     buildCourseCost(),
-        
+
                     // Buy Btn & Cart Btn
-                    SizedBox(height: 18),
+                    const SizedBox(height: 18),
                     buildBuyCartButton(),
-        
+
                     // What You'll Learn
                     CoursePerks(
                         title: "What you'll learn",
                         list: course.accomplishments ?? ['Loading']),
-        
+
                     // Requirements
                     CoursePerks(
                         title: "Requirements",
                         list: course.requirements ?? ['Loading']),
-        
+
                     // Course Outline
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     CourseOutline(modules: modulesList),
-        
+
                     // Educator Info
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     EducatorInfo(user: course.user),
-        
+
                     // Reviews
-                    SizedBox(height: 50),
+                    const SizedBox(height: 50),
                     Reviews(reviews: reviewsList),
                   ],
                 ),
               ),
-        
+
               // Similar Courses
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Padding(
                 padding: screenPadding,
                 child: TextLarge(
@@ -112,8 +111,8 @@ class CourseScreen extends StatelessWidget {
                   color: kBlack80,
                 ),
               ),
-        
-              SizedBox(height: 20),
+
+              const SizedBox(height: 20),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -124,7 +123,7 @@ class CourseScreen extends StatelessWidget {
                             course: coursesList[index % 6]),
                       ) +
                       <Widget>[
-                        SizedBox(
+                        const SizedBox(
                           width: 20,
                         )
                       ],
@@ -151,7 +150,7 @@ class CourseScreen extends StatelessWidget {
         ),
 
         // Wishlist
-        SizedBox(width: defaultSize),
+        const SizedBox(width: 10),
         SizedBox(
           width: 60,
           child: AppsIconButton(
@@ -165,7 +164,7 @@ class CourseScreen extends StatelessWidget {
         ),
 
         // Cart
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         SizedBox(
           width: 60,
           child: AppsIconButton(
@@ -234,7 +233,7 @@ class CourseScreen extends StatelessWidget {
                 text2FontSize: 16,
                 text1FontWeight: FontWeight.w600,
               )
-            : TextMedium(title: "No reviews yet"),
+            : const TextMedium(title: "No reviews yet"),
       ],
     );
   }
