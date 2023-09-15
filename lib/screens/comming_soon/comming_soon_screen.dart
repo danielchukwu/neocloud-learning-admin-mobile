@@ -17,21 +17,19 @@ class ComingSoonScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: defaultSize * 2),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: <Widget>[
-              Lottie.asset(lottieFile, width: defaultSize * 20),
-              SizedBox(height: defaultSize * 5),
+              Lottie.asset(lottieFile, width: 200),
+              const SizedBox(height: 50),
               TextCustom(
                 title: 'Coming Soon',
-                fontSize: defaultSize * 2.5,
+                fontSize: 25,
                 weight: FontWeight.w600,
                 color: kBlue,
               ),
-              SizedBox(height: defaultSize * 3),
-              Container(
-                child: WelcomeButton(title: 'Go Back', press: () => Navigator.pop(context)),
-              )
+              const SizedBox(height: 30),
+              WelcomeButton(title: 'Go Back', press: () => Navigator.pop(context))
             ],
           ),
         ),

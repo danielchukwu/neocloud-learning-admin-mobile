@@ -41,9 +41,9 @@ class _FacultyDashboardState extends State<FacultyDashboard> {
             ),
 
             // Personel List - Display based on selectedNavBarItem
-            SizedBox(height: defaultSize * 2),
+            const SizedBox(height: 20),
             Container(
-              constraints: BoxConstraints(minHeight: defaultSize * 44),
+              constraints: const BoxConstraints(minHeight: 440),
               padding: screenPadding,
               decoration: BoxDecoration(border: Border(bottom: appsBorder)),
               child: Column(
@@ -65,12 +65,12 @@ class _FacultyDashboardState extends State<FacultyDashboard> {
                           users: getFilteredUsersList(2), maxContentCount: 5)
                       : const SizedBox(),
 
-                  SizedBox(height: defaultSize * 2)
+                  const SizedBox(height: 20)
                 ],
               ),
             ),
 
-            SizedBox(height: defaultSize * 2)
+            const SizedBox(height: 20)
           ],
         )
       ],
@@ -111,16 +111,16 @@ class _ListClassTilesState extends State<ListClassTiles> {
                       ? widget.maxContentCount
                       : widget.classList.length,
                   // (index) => ClassTile(clas: widget.classList[index]),
-                  (index) => Text('ClassTile'),
+                  (index) => const Text('ClassTile'),
                 ) +
                 // See More
                 (widget.classList.length > widget.maxContentCount
                     ? <Widget>[
-                        // SizedBox(height: defaultSize * 1),
+                        // SizedBox(height: 10),
                         TextLink(
                           title: !showMore ? "See more" : "See less",
                           color: kBlue,
-                          fontSize: defaultSize * 1.6,
+                          fontSize: 16,
                           weight: FontWeight.w600,
                           press: (_) => setState(() => showMore = !showMore),
                         ),
@@ -129,8 +129,8 @@ class _ListClassTilesState extends State<ListClassTiles> {
           )
         // 0 personels
         : SizedBox(
-            width: SizeConfig.screenWidth! - defaultSize * 4,
-            height: defaultSize * 25,
+            width: SizeConfig.screenWidth! - 40,
+            height: 250,
             child: Center(
                 child: TextExtraLarge(
               title: "0 Accounts Found",

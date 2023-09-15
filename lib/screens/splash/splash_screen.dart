@@ -16,8 +16,12 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
           child: Container(
-        margin: EdgeInsets.only(bottom: defaultSize * 5),
-        child: SvgPicture.asset(nctFaviconBlue, width: defaultSize * 12, color: kBlueLight,),
+        margin: const EdgeInsets.only(bottom: 50),
+        child: SvgPicture.asset(
+          nctFaviconBlue,
+          width: 120,
+          color: kBlueLight,
+        ),
       )),
     );
   }

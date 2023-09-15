@@ -23,18 +23,18 @@ class _ModuleItemState extends State<ModuleItem> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        SizedBox(height: defaultSize),
+        const SizedBox(height: 10),
         HeaderWithDropdown(
           title: "Module ${widget.index + 1} - ${widget.module.title}",
           color: kBlack50,
-          fontSize: defaultSize * 1.6,
+          fontSize: 16,
           icon: Icons.add,
           press: () => setState(() => showContent = !showContent),
           showContent: showContent,
         ),
 
         // Videos of a particular module
-        SizedBox(height: defaultSize * .5),
+        const SizedBox(height: 5),
         showContent
             ? Column(
                 children: List<Widget>.generate(
@@ -45,7 +45,7 @@ class _ModuleItemState extends State<ModuleItem> {
                   ),
                 ),
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }
@@ -59,9 +59,9 @@ class _ModuleItemState extends State<ModuleItem> {
 
       // Count
       leading: Container(
-        padding: EdgeInsets.only(top: defaultSize * .5),
+        padding: const EdgeInsets.only(top: 5),
         alignment: Alignment.topRight,
-        width: defaultSize * 2,
+        width: 20,
         child: TextMedium(
           title: '${index + 1}',
         ),
@@ -79,7 +79,7 @@ class _ModuleItemState extends State<ModuleItem> {
           ),
 
           // Type - Duration
-          SizedBox(height: defaultSize * .5),
+          const SizedBox(height: 5),
           TextSmall(
             title: "${material.type} - ${material.duration} mins",
             color: kBlack70,
@@ -89,10 +89,10 @@ class _ModuleItemState extends State<ModuleItem> {
 
       // Play btn (if made previewable for sampling)
       trailing: Container(
-        padding: EdgeInsets.only(top: defaultSize * .5),
+        padding: const EdgeInsets.only(top: 5),
         alignment: Alignment.topRight,
         // color: Colors.blue,
-        width: defaultSize * 4,
+        width: 40,
         child: Icon(
           Icons.play_arrow,
           color: kBlue,

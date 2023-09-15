@@ -4,7 +4,7 @@ import 'package:neocloud_mobile/components/ratings.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Students.dart';
-import 'package:neocloud_mobile/screens/course/course_screen.dart';
+// import 'package:neocloud_mobile/screens/course/course_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
 
@@ -24,11 +24,11 @@ class EducatorInfo extends StatelessWidget {
         ),
 
         // Educator gradient card info
-        SizedBox(height: defaultSize * 2),
+        SizedBox(height: 20),
         EducatorCard(user: user),
 
         // About Educator
-        SizedBox(height: defaultSize * 2),
+        SizedBox(height: 20),
         TextSeeMore(text: user.about),
       ],
     );
@@ -44,19 +44,19 @@ class EducatorCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: SizeConfig.screenWidth,
-      height: defaultSize * 20,
+      height: 200,
       decoration: buildDecoration(),
       child: Row(
         children: <Widget>[
           // Avatar
-          SizedBox(width: defaultSize * 2),
+          SizedBox(width: 20),
           buildAvatar(),
 
           // User Info
-          SizedBox(width: defaultSize * 2),
+          SizedBox(width: 20),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(right: defaultSize * 2),
+              padding: EdgeInsets.only(right: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -65,15 +65,15 @@ class EducatorCard extends StatelessWidget {
                   buildName(),
 
                   // Ratings
-                  SizedBox(height: defaultSize * .5),
+                  SizedBox(height: 5),
                   buildRatings(),
 
                   // Row (reviews & courses)
-                  SizedBox(height: defaultSize * 1.5),
+                  SizedBox(height: 15),
                   buildReviesCoursesCount(),
 
                   // Students
-                  SizedBox(height: defaultSize * .5),
+                  SizedBox(height: 5),
                   buildStudentsCount(),
 
                   Spacer(),
@@ -119,8 +119,8 @@ class EducatorCard extends StatelessWidget {
     return Ratings(
       rating: user.ratings,
       reviewsCount: user.reviews_count,
-      fontSize: defaultSize * 1.5,
-      iconSize: defaultSize * 2,
+      fontSize: 15,
+      iconSize: 20,
       color: kWhite,
       showReviews: false,
     );
@@ -136,7 +136,7 @@ class EducatorCard extends StatelessWidget {
 
   Widget buildAvatar() {
     return RoundBoxAvatar(
-      size: defaultSize * 11,
+      size: 110,
       borderSize: 0.35,
       image: user.avatar,
     );
@@ -149,7 +149,7 @@ class EducatorCard extends StatelessWidget {
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
       ),
-      borderRadius: BorderRadius.circular(defaultSize * 2),
+      borderRadius: BorderRadius.circular(20),
     );
   }
 }

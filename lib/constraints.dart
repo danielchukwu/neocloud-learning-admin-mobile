@@ -30,17 +30,17 @@ var defaultSize = SizeConfig.defaultSize!;
 BorderSide appsBorder = BorderSide(color: kBlack50, width: .2);
 
 // Border Radius
-BorderRadius appsBorderRadius = BorderRadius.all(Radius.circular(defaultSize));
+BorderRadius appsBorderRadius = const BorderRadius.all(Radius.circular(10));
 
 // Paddings
-double appsBodyPadding = defaultSize * 2;
+double appsBodyPadding = 20;
 EdgeInsets screenPadding =
     EdgeInsets.symmetric(horizontal: appsBodyPadding); // 20px 20px
 SizedBox pageBottomPadding({double height = 120}) => SizedBox(height: height);
 
 // Border
-double buttonBorderWidth = defaultSize * .05;
-double buttonBorderRadius = defaultSize * .5;
+double buttonBorderWidth = .5;
+double buttonBorderRadius = 5;
 
 // Colors
 Color kBlue = const Color(0xFF1679F7);
@@ -66,7 +66,7 @@ Color kGreen = const Color(0xFF2B5D18);
 Color kRed = const Color(0xFFD0102B);
 
 Color appsSplashColor = kBlack.withOpacity(.05);
-double appsSplashRadius = defaultSize * 5;
+double appsSplashRadius = 50;
 
 // FUNCTIONS
 
@@ -138,7 +138,7 @@ PreferredSize buildAppBar({
       : null;
 
   return PreferredSize(
-    preferredSize: Size.fromHeight(defaultSize * 6.5),
+    preferredSize: const Size.fromHeight(65),
     child: AppsAppBar(
       title: title,
       isDark: isDark,
@@ -205,9 +205,9 @@ Container buildAppsDropdownButton({
   String? selected,
 }) {
   return Container(
-    height: defaultSize * 4,
+    height: 40,
     decoration: getDropDownBoxDecoration(),
-    padding: EdgeInsets.symmetric(horizontal: defaultSize),
+    padding: const EdgeInsets.symmetric(horizontal: 10),
     child: AppsDropdownButton(list: list, selected: selected, press: press),
   );
 }
@@ -243,7 +243,7 @@ AppsButton buildAddButton({
     press: press != null ? press : (context) {},
     icon: Icons.add,
     bgColor: kBlack80,
-    padTopBottom: defaultSize * 0.3,
+    padTopBottom: 3,
     borderRadius: buttonBorderRadius,
   );
 }
@@ -251,15 +251,15 @@ AppsButton buildAddButton({
 // CARDS
 
 // variables
-EdgeInsets cardBottomMargin = EdgeInsets.only(bottom: defaultSize * 2);
-EdgeInsets cardPadding = EdgeInsets.all(defaultSize * 2);
+EdgeInsets cardBottomMargin = const EdgeInsets.only(bottom: 20);
+EdgeInsets cardPadding = const EdgeInsets.all(20);
 
 // - e.g label
 //       text
 Widget buildCardHeader({required String title}) {
   return TextCustom(
     title: title,
-    fontSize: defaultSize * 2.2,
+    fontSize: 22,
     color: kBlack80,
     weight: FontWeight.w600,
   );
@@ -285,8 +285,8 @@ Row buildDownloadButton({required Function(BuildContext? context) press}) {
       AppsButton(
         title: "download",
         bgColor: kBlack80,
-        padTopBottom: defaultSize * .2,
-        // borderRadius: defaultSize * .5,
+        padTopBottom: 2,
+        // borderRadius: 5,
         icon: Icons.download,
         press: press,
       ),
@@ -312,7 +312,7 @@ Row buildAvatarAndName({
         image: avatar,
         borderSize: imgBorderSize,
       ),
-      SizedBox(width: defaultSize),
+      const SizedBox(width:10),
       Expanded(
         child: TextCustomMaxLine(
           title: name,
@@ -343,15 +343,15 @@ Widget buildSmallMiniCourseCard({required Course course}) {
 Widget buildMediumMiniCourseCard({required Course course}) {
   return MiniCourseCard(
     course: course,
-    cardSize: defaultSize * 20,
-    fontSize: defaultSize * 1.6,
+    cardSize: 200,
+    fontSize: 16,
   );
 }
 
 Widget buildBigMiniCourseCard({required Course course}) {
   return MiniCourseCard(
     course: course,
-    cardSize: defaultSize * 30,
-    fontSize: defaultSize * 1.8,
+    cardSize: 300,
+    fontSize: 18,
   );
 }

@@ -21,7 +21,7 @@ class Body extends StatelessWidget {
           showAction1: false,
           showAction2: false,
         ),
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,12 +29,11 @@ class Body extends StatelessWidget {
             DashboardSlider(),
 
             // Section 2
-            SizedBox(height: defaultSize * 2),
+            SizedBox(height: 20),
             PersonelDashboard(),
 
             // buildGrantPermission(),
             GrantPermission(),
-
           ],
         )),
       ],
@@ -51,7 +50,7 @@ class DashboardSlider extends StatefulWidget {
 
 class _DashboardSliderState extends State<DashboardSlider> {
   int selectedIndex = 1;
-  
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -63,7 +62,7 @@ class _DashboardSliderState extends State<DashboardSlider> {
             options: CarouselOptions(
               initialPage: 1,
               viewportFraction: 1,
-              height: defaultSize * 30,
+              height: 300,
               enableInfiniteScroll: true,
               onPageChanged: (index, reason) {
                 setState(() {
@@ -72,15 +71,15 @@ class _DashboardSliderState extends State<DashboardSlider> {
               },
             ),
             items: [
-              Container(child: Center(child: Text('AnotherOne'))),
-              AttendanceClassesCwDashboard(),
-              Container(child: Center(child: Text('AnotherThree'))),
+              Container(child: const Center(child: Text('AnotherOne'))),
+              const AttendanceClassesCwDashboard(),
+              Container(child: const Center(child: Text('AnotherThree'))),
             ],
           ),
         ),
 
         // Indicator ... for letting users know interface is swipe able
-        SizedBox(height: defaultSize * 2),
+        const SizedBox(height: 20),
         buildRoundDot(selectedIndex),
       ],
     );
@@ -88,20 +87,20 @@ class _DashboardSliderState extends State<DashboardSlider> {
 
   Row buildRoundDot(int selectedIndex) {
     return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(
-          3,
-          (index) => AnimatedContainer(
-            duration: Duration(milliseconds: 100),
-            height: 7,
-            width: 7,
-            decoration: BoxDecoration(
-              color: index == selectedIndex ? kBlueLight : kBlack.withOpacity(.2),
-              borderRadius: BorderRadius.circular(defaultSize),
-            ),
-            margin: EdgeInsets.symmetric(horizontal: defaultSize * .5),
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(
+        3,
+        (index) => AnimatedContainer(
+          duration: const Duration(milliseconds: 100),
+          height: 7,
+          width: 7,
+          decoration: BoxDecoration(
+            color: index == selectedIndex ? kBlueLight : kBlack.withOpacity(.2),
+            borderRadius: BorderRadius.circular(10),
           ),
+          margin: const EdgeInsets.symmetric(horizontal: 5),
         ),
-      );
+      ),
+    );
   }
 }

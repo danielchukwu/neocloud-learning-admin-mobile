@@ -36,7 +36,7 @@ class SystemLogosScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            SizedBox(height: defaultSize * 3),
+            SizedBox(height: 30),
             SettingsFormHeader(
                 title: '$screenName Settings', subTitle: subText),
 
@@ -44,29 +44,30 @@ class SystemLogosScreen extends StatelessWidget {
             Column(
               children: List<Widget>.generate(
                 logosList.length,
-                (index) => Column(
-                  children: <Widget>[
+                (index) => Column(children: <Widget>[
+                  // Card Header  (Title and Change Btn)
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextMedium(title: 'Black Logo'),
+                      TextLink(
+                          title: 'Change',
+                          press: (context) {},
+                          color: kBlue,
+                          fontSize: 16),
+                    ],
+                  ),
 
-                    // Card Header  (Title and Change Btn)
-                    SizedBox(height: defaultSize * 2),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextMedium(title: 'Black Logo'),
-                        TextLink(title: 'Change', press: (context) {}, color: kBlue, fontSize: defaultSize * 1.6),
-                      ],
-                    ),
-
-                    // Card
-                    GradientCard(contentWidget: Image(
-                        image: AssetImage(logosList[index]))
-                    ),
-                  ]
-                ),
+                  // Card
+                  GradientCard(
+                      contentWidget:
+                          Image(image: AssetImage(logosList[index]))),
+                ]),
               ),
             ),
 
-            pageBottomPadding(height: defaultSize * 6),
+            pageBottomPadding(height: 60),
           ],
         ),
       ),

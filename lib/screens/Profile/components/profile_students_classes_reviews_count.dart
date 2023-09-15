@@ -49,13 +49,13 @@ class ProfileStudentsClassesReviewsCount extends StatelessWidget {
                 ),
               )),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: defaultSize * .5),
+            padding: EdgeInsets.symmetric(horizontal: 5),
             child: IconText(
                 title:
                     "${iconTextRowList[index]['title']} (${iconTextRowList[index]['count']})",
                 icon: iconTextRowList[index]['icon'],
                 iconColor: kBlack70,
-                fontSize: defaultSize * 1.5),
+                fontSize: 15),
           ),
         ),
       ),

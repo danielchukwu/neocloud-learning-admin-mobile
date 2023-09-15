@@ -35,9 +35,9 @@ class _PersonelDashboardState extends State<PersonelDashboard> {
             ),
 
             // Personel List - Display based on selectedNavBarItem
-            SizedBox(height: defaultSize * 2),
+            const SizedBox(height: 20),
             Container(
-              constraints: BoxConstraints(minHeight: defaultSize * 27),
+              constraints: const BoxConstraints(minHeight: 270),
               padding: screenPadding,
               decoration: BoxDecoration(border: Border(bottom: appsBorder)),
               child: Column(

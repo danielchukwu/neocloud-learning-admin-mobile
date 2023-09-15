@@ -11,7 +11,7 @@ class AccountInfoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      SizedBox(height: defaultSize),
+      SizedBox(height: 10),
       ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         horizontalTitleGap: 0,
@@ -25,7 +25,7 @@ class AccountInfoTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 TextCustomMaxLine(
-                  fontSize: defaultSize * 1.6,
+                  fontSize: 16,
                   maxLines: 1,
                   title: data.info,
                   color: kBlack80,

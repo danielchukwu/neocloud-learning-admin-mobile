@@ -19,15 +19,18 @@ class IntroNameRoleRatings extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           // User Name
-          TextExtraLarge(title: user.name, color: kBlack80, weight: FontWeight.w600),
+          TextExtraLarge(
+              title: user.name, color: kBlack80, weight: FontWeight.w600),
 
           // User Role
-          SizedBox(height: defaultSize * .5),
-          TextMedium(title: user.role != null ? user.role!.name : 'role unassigned', color: kBlack50)
+          const SizedBox(height: 5),
+          TextMedium(
+              title: user.role != null ? user.role!.name : 'role unassigned',
+              color: kBlack50)
 
           // User Ratings
-          // SizedBox(height: defaultSize * .5),
-          // Ratings(rating: user.ratings, reviewsCount: user.reviews_count, fontSize: defaultSize * 1.6, alignCenter: true,)
+          // SizedBox(height: 5),
+          // Ratings(rating: user.ratings, reviewsCount: user.reviews_count, fontSize: 16, alignCenter: true,)
         ],
       ),
     );

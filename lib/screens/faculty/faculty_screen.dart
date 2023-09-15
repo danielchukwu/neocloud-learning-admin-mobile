@@ -42,8 +42,8 @@ class _FacultyScreenState extends State<FacultyScreen> {
               FacultyBlueCardSection(faculty: widget.faculty),
 
               // Faculty Dashboard
-              // SizedBox(height: defaultSize * 2),
-              FacultyDashboard(),
+              // SizedBox(height: 20),
+              const FacultyDashboard(),
             ],
           ),
         ),
@@ -79,34 +79,34 @@ class FacultyBlueCardSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Title
-          SizedBox(height: defaultSize * 2),
+          const SizedBox(height: 20),
           TextCustom(
             title: faculty.name ?? '',
             color: kWhite,
-            fontSize: defaultSize * 4,
+            fontSize: 40,
             weight: FontWeight.w600,
           ),
 
           // HOD
-          SizedBox(height: defaultSize),
+          const SizedBox(height: 10),
           TextSmall(
             title: 'HOD',
             color: kWhite,
             weight: FontWeight.w400,
           ),
 
-          SizedBox(height: defaultSize * .5),
+          const SizedBox(height: 5),
           buildAvatarAndName(
             avatar: faculty.hod!.avatar ?? '',
             name: faculty.hod!.name ?? '',
-            fontSize: defaultSize * 1.6,
+            fontSize: 16,
             color: kWhite,
             weight: FontWeight.w500,
             imgBorderSize: .2,
           ),
 
           // About
-          SizedBox(height: defaultSize * 2),
+          const SizedBox(height: 20),
           TextSeeMore(
             text: faculty.about ?? '',
             color: kWhite,
@@ -115,8 +115,8 @@ class FacultyBlueCardSection extends StatelessWidget {
           ),
 
           // Body
-          SizedBox(
-            height: defaultSize * 4,
+          const SizedBox(
+            height: 40,
           ),
         ],
       ),

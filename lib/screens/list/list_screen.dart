@@ -28,7 +28,7 @@ class ListScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: addScreenPadding ? screenPadding : EdgeInsets.zero,
         child: Container(
-          padding: EdgeInsets.only(bottom: defaultSize * 6),
+          padding: const EdgeInsets.only(bottom: 60),
           child: widgetList,
         ),
       ),
