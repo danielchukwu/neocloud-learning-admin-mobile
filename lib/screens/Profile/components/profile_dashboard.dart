@@ -23,7 +23,7 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: defaultSize * 1),
+      margin: const EdgeInsets.only(top: 10),
       child: Column(
         children: [
           // Row - Shedule, CW, Feedbacks
@@ -39,12 +39,16 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
 
           // List
           selectedIndex == 0
-              ? ClassSchedulesList(spinnerScreeMaxHeight: SizeConfig.screenHeight! / 3.5,)
-              : SizedBox(),
+              ? ClassSchedulesList(
+                  spinnerScreeMaxHeight: SizeConfig.screenHeight! / 3.5,
+                )
+              : const SizedBox(),
 
           selectedIndex == 1
-              ? ClassworksList(spinnerScreeMaxHeight: SizeConfig.screenHeight! / 3.5,)
-              : SizedBox(),
+              ? ClassworksList(
+                  spinnerScreeMaxHeight: SizeConfig.screenHeight! / 3.5,
+                )
+              : const SizedBox(),
         ],
       ),
     );
@@ -52,13 +56,13 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
 
   Padding buildNavbar() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: defaultSize),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: List.generate(
           sections.length,
           (index) => Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: defaultSize * .5),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: AppsButton(
                 title: sections[index],
                 padTopBottom: 0,

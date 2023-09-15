@@ -7,7 +7,7 @@ import 'package:neocloud_mobile/screens/Profile/components/profile_content.dart'
 import 'package:neocloud_mobile/size_config.dart';
 
 class ProfileNavbarAndContent extends StatefulWidget {
-  ProfileNavbarAndContent({super.key, required this.navItems});
+  const ProfileNavbarAndContent({super.key, required this.navItems});
 
   final List<ProfileNavbarItem> navItems;
 
@@ -50,8 +50,8 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
         Positioned(
           child: Divider(
             color: kBlack.withOpacity(.2),
-            height: defaultSize * .5,
-            thickness: defaultSize * .1,
+            height: 5,
+            thickness: 1,
           ),
         ),
         // Selector
@@ -62,7 +62,7 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
           duration: const Duration(milliseconds: 100),
           child: Container(
             color: kBlack80,
-            height: defaultSize * .2,
+            height: 2,
           ),
         )
       ],

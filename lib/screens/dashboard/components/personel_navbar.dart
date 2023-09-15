@@ -29,8 +29,7 @@ class PersonelNavBar extends StatelessWidget {
             splashColor: appsSplashColor,
             radius: appsSplashRadius,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(
-                  defaultSize * 2, defaultSize * 1.5, defaultSize * 2, 0),
+              padding: EdgeInsets.fromLTRB(20, 15, 20, 0),
               child: Column(
                 children: <Widget>[
                   // Title
@@ -40,12 +39,12 @@ class PersonelNavBar extends StatelessWidget {
                     color: index == selectedIndex ? kBlack90 : kBlack50,
                   ),
                   // Selector
-                  SizedBox(height: defaultSize * 1),
+                  SizedBox(height: 10),
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 100),
                     curve: Curves.easeIn,
-                    height: defaultSize * .4,
-                    width: defaultSize * 4,
+                    height: 4,
+                    width: 40,
                     color: index == selectedIndex
                         ? kBlack.withOpacity(.5)
                         : Colors.transparent,
@@ -57,6 +56,6 @@ class PersonelNavBar extends StatelessWidget {
         ),
       ),
     );
-    ;
+    // dead code removed
   }
 }

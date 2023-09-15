@@ -6,7 +6,7 @@ class SearchFilter extends StatelessWidget {
   const SearchFilter({
     super.key,
     required this.updateIndex,
-    required this.selectedIndex, 
+    required this.selectedIndex,
     required this.searchFilter,
   });
 
@@ -28,17 +28,17 @@ class SearchFilter extends StatelessWidget {
                 onTap: () => updateIndex(index),
                 child: Container(
                   color: Colors.transparent,
-                  margin: EdgeInsets.only(top: defaultSize),
+                  margin: const EdgeInsets.only(top: 10),
                   padding: index == 0
-                      ? EdgeInsets.fromLTRB(
-                          defaultSize * 4,
-                          defaultSize * 1,
-                          defaultSize * 1.8,
-                          defaultSize * 1,
+                      ? const EdgeInsets.fromLTRB(
+                          40,
+                          10,
+                          18,
+                          10,
                         )
-                      : EdgeInsets.symmetric(
-                          horizontal: defaultSize * 1.8,
-                          vertical: defaultSize * 1,
+                      : const EdgeInsets.symmetric(
+                          horizontal: 18,
+                          vertical: 10,
                         ),
                   child: TextMedium(
                     title: searchFilter[index],

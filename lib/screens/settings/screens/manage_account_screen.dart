@@ -23,7 +23,7 @@ class ManageAccountScreen extends StatelessWidget {
         child: Column(
           children: [
             // General Settings
-            SizedBox(height: defaultSize),
+            const SizedBox(height: 10),
             Padding(
                 padding: screenPadding,
                 child: SettingsList(list: settingsManageAccountList),

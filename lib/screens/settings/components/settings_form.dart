@@ -41,22 +41,21 @@ class _SettingsFormState extends State<SettingsForm> {
           Column(
             children: List.generate(
               widget.inputFieldsList.length,
-                  (index) => Padding(
-                padding: EdgeInsets.only(top: defaultSize * 2.5),
+              (index) => Padding(
+                padding: const EdgeInsets.only(top: 25),
                 child: InputFieldSettings(
                     fieldName: widget.inputFieldsList[index],
                     press: (String key, String value) {
                       setState(() {
                         widget.data[key] = value;
                       });
-                    }
-                ),
+                    }),
               ),
             ),
           ),
 
           // Submit Form
-          SizedBox(height: defaultSize * 3.5),
+          const SizedBox(height: 35),
           AppsButton(
             title: 'Save',
             press: (context) {
@@ -67,9 +66,9 @@ class _SettingsFormState extends State<SettingsForm> {
                 submitForm(data: widget.data);
               }
             },
-            padTopBottom: defaultSize * .7,
-            borderRadius: defaultSize * .7,
-          )
+            padTopBottom: 7,
+            borderRadius: 7,
+          ),
         ],
       ),
     );

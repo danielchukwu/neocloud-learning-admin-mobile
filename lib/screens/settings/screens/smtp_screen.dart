@@ -35,7 +35,7 @@ class SmtpScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            SizedBox(height: defaultSize * 3),
+            const SizedBox(height: 30),
             SettingsFormHeader(title: 'SMTP Settings', subTitle: subText),
 
             // Form

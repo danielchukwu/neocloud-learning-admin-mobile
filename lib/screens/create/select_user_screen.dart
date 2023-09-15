@@ -14,8 +14,8 @@ class SelectUsersScreen extends StatefulWidget {
   const SelectUsersScreen({
     super.key,
     required this.users,
-    required this.selectedUsers, 
-    required this.selectionLimit, 
+    required this.selectedUsers,
+    required this.selectionLimit,
     this.press,
   });
 
@@ -60,46 +60,52 @@ class _SelectUsersScreenState extends State<SelectUsersScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: defaultSize , vertical: defaultSize * 3),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
       child: Material(
-        borderRadius: BorderRadius.all(Radius.circular(defaultSize * 2)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
         child: Column(
           children: [
-
             // Row - Title and Cancel Icon
-            FormHeader(),
+            const FormHeader(),
 
-            HorizontalRule(),
+            const HorizontalRule(),
 
             // Column - Search and Selected Users Count
-            SizedBox(height: defaultSize,),
+            const SizedBox(
+              height: 10,
+            ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: defaultSize * 2),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
                   // Search
                   buildSearchTextField(
-                    press: (value) => {}, 
+                    press: (value) => {},
                     onChangePress: (value) {
                       setState(() {
-                        usersToSelectFrom = widget.users.where((user) => user.name.toLowerCase().contains(value.toLowerCase())).toList();
+                        usersToSelectFrom = widget.users
+                            .where((user) => user.name
+                                .toLowerCase()
+                                .contains(value.toLowerCase()))
+                            .toList();
                       });
                     },
                   ),
-                  
+
                   // Selected Count
-                  SizedBox(height: defaultSize,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       AppsTextRich(
-                        text1: '${widget.selectedUsers.length}', 
-                        text2: ' Selected', 
-                        text1Color: kBlack70, 
-                        text1FontWeight: FontWeight.w600, 
-                        text1FontSize: 14, 
+                        text1: '${widget.selectedUsers.length}',
+                        text2: ' Selected',
+                        text1Color: kBlack70,
+                        text1FontWeight: FontWeight.w600,
+                        text1FontSize: 14,
                         text2Color: Colors.black54,
                         text2FontWeight: FontWeight.w500,
                         text2FontSize: 14,
@@ -111,34 +117,38 @@ class _SelectUsersScreenState extends State<SelectUsersScreen> {
             ),
 
             // Column - Users List
-            SizedBox(height: defaultSize),
+            const SizedBox(height: 10),
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
                   padding: screenPadding,
                   decoration: const BoxDecoration(),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: List.generate(
-                      usersToSelectFrom.length, 
-                      (index) => Padding(
-                        padding: EdgeInsets.only(bottom: defaultSize),
-                        child: UserSelectionTile(
-                          user: usersToSelectFrom[index],
-                          isSelected: userIsSelected(usersToSelectFrom[index]),
-                          disableSelection: selectionLimitExceeded() ? true : false,
-                          press: addOrRemoveUser,
-                        ),
-                      )
-                    ).toList()
-                  ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: List.generate(
+                          usersToSelectFrom.length,
+                          (index) => Padding(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: UserSelectionTile(
+                                  user: usersToSelectFrom[index],
+                                  isSelected:
+                                      userIsSelected(usersToSelectFrom[index]),
+                                  disableSelection:
+                                      selectionLimitExceeded() ? true : false,
+                                  press: addOrRemoveUser,
+                                ),
+                              )).toList()),
                 ),
               ),
             ),
 
-            HorizontalRule(),
+            const HorizontalRule(),
 
-            FormFooter(title: 'Done', formKey: GlobalKey<FormState>(), press: () => Navigator.pop(context),)
+            FormFooter(
+              title: 'Done',
+              formKey: GlobalKey<FormState>(),
+              press: () => Navigator.pop(context),
+            )
           ],
         ),
       ),
@@ -154,7 +164,7 @@ class _SelectUsersScreenState extends State<SelectUsersScreen> {
     }
     return null;
   }
-  
+
   bool userIsSelected(UserModel user) {
     for (var u in widget.selectedUsers) {
       if (u.id == user.id) {

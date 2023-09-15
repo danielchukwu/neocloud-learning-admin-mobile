@@ -40,12 +40,13 @@ class SystemGeneralScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header
-              SizedBox(height: defaultSize * 3),
-              SettingsFormHeader(title: '$screenName Settings', subTitle: subText),
+              const SizedBox(height: 30),
+              SettingsFormHeader(
+                  title: '$screenName Settings', subTitle: subText),
 
               // Form
-              SettingsForm(inputFieldsList: inputFieldsList, data: {}),
-              pageBottomPadding(height: defaultSize * 6),
+              SettingsForm(inputFieldsList: inputFieldsList, data: const {}),
+              pageBottomPadding(height: 60),
             ],
           ),
         ),

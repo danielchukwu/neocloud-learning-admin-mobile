@@ -86,19 +86,19 @@ class SettingsTile extends StatelessWidget {
               ? Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             IconOrSvg(
               svg: leadingSvg,
-              size: defaultSize * 2,
+              size: 20,
               color: kBlack80,
             ),
           ])
               : const SizedBox(),
-          leadingSvg != null ? SizedBox(width: defaultSize * 2,) : SizedBox(),
+          leadingSvg != null ? const SizedBox(width: 20,) : const SizedBox(),
           TextMedium(title: title, weight: FontWeight.w500),
         ],
       ),
       contentPadding: EdgeInsets.zero,
       horizontalTitleGap: 0,
       trailing: Container(
-        height: defaultSize * 2,
+        height: 20,
         width: actionTextBoxWidth == null ? SizeConfig.screenWidth! / 2 : actionTextBoxWidth,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -107,8 +107,8 @@ class SettingsTile extends StatelessWidget {
             TextSmall(
                 title: shortenText(text: actionText, limit: 20),
                 color: kBlack50),
-            SizedBox(width: defaultSize),
-            Icon(actionIcon, size: defaultSize * 1.5),
+            const SizedBox(width: 10),
+            Icon(actionIcon, size: 15),
           ],
         ),
       ),

@@ -25,11 +25,11 @@ class _CourseOutlineState extends State<CourseOutline> {
         buildHeaderDropdown(),
 
         // Modules count, lectures count, Time involved count
-        SizedBox(height: defaultSize),
+        SizedBox(height: 10),
         buildModulesLecturesTimeCount(),
 
         // Modules and Their contents
-        SizedBox(height: defaultSize * 2),
+        SizedBox(height: 20),
         showContent
             ? ModulesList(
                 modules: modulesList,
@@ -57,17 +57,17 @@ class _CourseOutlineState extends State<CourseOutline> {
             title: 'Modules (45)',
             icon: Icons.featured_play_list_sharp,
             iconColor: kBlack70,
-            fontSize: defaultSize * 1.4),
+            fontSize: 14),
         IconText(
             title: 'Lectures (158)',
             icon: Icons.video_library,
             iconColor: kBlack70,
-            fontSize: defaultSize * 1.4),
+            fontSize: 14),
         IconText(
             title: 'Time (115hrs)',
             icon: Icons.watch_later,
             iconColor: kBlack70,
-            fontSize: defaultSize * 1.4)
+            fontSize: 14)
       ],
     );
   }

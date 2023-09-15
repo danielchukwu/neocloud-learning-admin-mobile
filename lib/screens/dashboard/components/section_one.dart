@@ -20,20 +20,20 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           // Header - Hi, Goodmorning \n {users name}
-          SizedBox(height: defaultSize * 2),
+          SizedBox(height: 20),
           buildHeader(context),
 
           // Classes - count - stackedImages | classworks - count - stackedImages
-          SizedBox(height: defaultSize * 3),
+          SizedBox(height: 30),
           buildTextCountStackedImages(
               title: "Attendance", users: users, length: users.length),
-          SizedBox(height: defaultSize * 3),
+          SizedBox(height: 30),
           buildTextCountStackedImages(
             title: "Classes",
             classes: coursesList,
             length: coursesList.length,
           ),
-          SizedBox(height: defaultSize * 3),
+          SizedBox(height: 30),
           buildTextCountStackedImages(
               title: "Classwork's", users: users, length: users.length),
         ],
@@ -62,20 +62,20 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
             ),
             
             // {Name}{Role Icon} e.g Chukwu Daniel ⚡
-            // TextRoleIcon(title: "Edwin Vladimir", svg: getRoleSvgFileName(roleList: users[0].role), fontSize: defaultSize * 2.2, color: kBlack80, weight: FontWeight.w600, iconSize: defaultSize * 2),
+            // TextRoleIcon(title: "Edwin Vladimir", svg: getRoleSvgFileName(roleList: users[0].role), fontSize: 22, color: kBlack80, weight: FontWeight.w600, iconSize: 20),
             IconText(
               title: user?.name ?? 'null',
               color: kBlack80,
               fontWeight: FontWeight.w600,
-              fontSize: defaultSize * 2.2,
+              fontSize: 22,
               svg: getRoleSvgFileName(role: users[0].role[0]),
-              iconSize: defaultSize * 2,
+              iconSize: 20,
             ),
           ],
         ),
         // Avatar
         RoundBoxAvatar(
-          size: defaultSize * 6,
+          size: 60,
           image: users[0].avatar,
         ),
       ],
@@ -109,7 +109,7 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
 
   SizedBox buildTextCount(String title, int length) {
     return SizedBox(
-      width: (SizeConfig.screenWidth! / 2) - defaultSize * 2,
+      width: (SizeConfig.screenWidth! / 2) - 20,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

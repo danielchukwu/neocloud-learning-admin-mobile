@@ -25,16 +25,16 @@ class Reviews extends StatelessWidget {
         ReviewsList(reviewsList: reviews.sublist(0, 3)),
 
         // See All {Count} Reviews
-        SizedBox(height: reviews.length > 3 ? (defaultSize * 2) : 0),
+        SizedBox(height: reviews.length > 3 ? (20) : 0),
         reviews.length > 3
             ? TextLink(
                 title: "See All ${reviews.length} Reviews",
                 press: (context) => Navigator.push(context, MaterialPageRoute(builder: (_) => ListScreen(widgetList: ReviewsList(reviewsList: reviews), screenName: 'Reviews'),)),
                 color: kBlue,
                 weight: FontWeight.w600,
-                fontSize: defaultSize * 1.6,
+                fontSize: 16,
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }

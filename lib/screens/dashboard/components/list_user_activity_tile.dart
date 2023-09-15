@@ -32,7 +32,7 @@ class _ListUserActivityTileState extends State<ListUserActivityTile> {
                       ? widget.maxContentCount
                       : widget.users.length,
                   (index) => Padding(
-                    padding: EdgeInsets.only(bottom: defaultSize * 2),
+                    padding: const EdgeInsets.only(bottom: 20),
                     child: UserActivityTile(
                       user: widget.users[index],
                     ),
@@ -41,11 +41,11 @@ class _ListUserActivityTileState extends State<ListUserActivityTile> {
                 // See More
                 (widget.users.length > widget.maxContentCount
                     ? <Widget>[
-                        // SizedBox(height: defaultSize * 1),
+                        // SizedBox(height: 10),
                         TextLink(
                           title: !showMore ? "See more" : "See less",
                           color: kBlue,
-                          fontSize: defaultSize * 1.6,
+                          fontSize: 16,
                           weight: FontWeight.w600,
                           press: (_) => setState(() => showMore = !showMore),
                         ),
@@ -54,8 +54,8 @@ class _ListUserActivityTileState extends State<ListUserActivityTile> {
           )
         // 0 personels
         : Container(
-            width: SizeConfig.screenWidth! - defaultSize * 4,
-            height: defaultSize * 25,
+            width: SizeConfig.screenWidth! - 40,
+            height: 250,
             child: Center(
                 child: TextExtraLarge(
               title: "0 Accounts Found",

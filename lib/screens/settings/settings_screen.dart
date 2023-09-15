@@ -28,13 +28,13 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           children: [
             // General Settings
-            SizedBox(height: defaultSize),
+            const SizedBox(height: 10),
             Padding(
                 padding: screenPadding,
                 child: SettingsList(list: settingsMainList, actionTextBoxWidth: SizeConfig.screenWidth! / 3,)),
 
             // Account Settings
-            Divider(),
+            const Divider(),
             Padding(
                 padding: screenPadding,
                 child: SettingsList(list: settingsAccountList)),

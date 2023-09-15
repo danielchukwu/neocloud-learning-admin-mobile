@@ -89,21 +89,21 @@ class ProfileAbout extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // About Section
-          SizedBox(height: defaultSize * 1.5),
+          const SizedBox(height: 15),
           TextLarge(title: 'ABOUT', weight: FontWeight.w500, color: kBlack80),
           // Body
-          SizedBox(height: defaultSize),
+          const SizedBox(height: 10),
           TextMedium(
             title: user.about,
             color: kBlack80,
           ),
 
           // Roles Section
-          SizedBox(height: defaultSize * 3),
+          const SizedBox(height: 30),
           TextLarge(title: 'ROLES', weight: FontWeight.w500, color: kBlack80),
 
           // Icons List
-          SizedBox(height: defaultSize),
+          const SizedBox(height: 10),
           Wrap(
             spacing: 10,
             runSpacing: 10,

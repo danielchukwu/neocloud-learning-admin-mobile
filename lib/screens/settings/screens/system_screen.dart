@@ -23,7 +23,7 @@ class SystemScreen extends StatelessWidget {
         child: Column(
           children: [
             // General Settings
-            SizedBox(height: defaultSize),
+            const SizedBox(height: 10),
 
             SettingsList(list: settingsSystemList)
           ],

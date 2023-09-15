@@ -21,7 +21,7 @@ class CurrentOldHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: defaultSize),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           border: Border(
               top: BorderSide(color: kBlack50, width: .2),
@@ -29,7 +29,7 @@ class CurrentOldHeader extends StatelessWidget {
       child: Row(
         children: <Widget>[
           // Title
-          SizedBox(width: defaultSize * 2),
+          const SizedBox(width: 20),
           InkWell(
               onTap: () => pressLeft(),
               child: TextLarge(
@@ -39,31 +39,31 @@ class CurrentOldHeader extends StatelessWidget {
               )),
 
           // Count
-          Spacer(),
+          const Spacer(),
 
           InkWell(
             onTap: () => pressRight(),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(defaultSize * 1.5),
-              bottomLeft: Radius.circular(defaultSize * 1.5),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(15),
+              bottomLeft: Radius.circular(15),
             ),
             child: Container(
-              width: defaultSize * 10,
-              height: defaultSize * 4,
+              width: 100,
+              height: 40,
               decoration: BoxDecoration(
                   color: selectedLeft ? kBlack.withOpacity(.05) : kBlack80,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(defaultSize * 1.5),
-                      bottomLeft: Radius.circular(defaultSize * 1.5))),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      bottomLeft: Radius.circular(15))),
               child: Column(
                 children: [
-                  Spacer(),
+                  const Spacer(),
                   TextLarge(
                     title: rightText,
                     color: selectedLeft ? kBlack50 : kWhite,
                     weight: FontWeight.w500,
                   ),
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
             ),

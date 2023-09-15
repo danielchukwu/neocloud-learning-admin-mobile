@@ -31,22 +31,22 @@ class GeneralProfile extends StatelessWidget {
                   cover: defaultProfileCover,
                   avatar: user.avatar,
                   roleSvg: getRoleSvgFileName(role: user.role?.name),
-                  containerSize: defaultSize * 14.5,
-                  coverSize: defaultSize * 13,
+                  containerSize: 145,
+                  coverSize: 130,
                   coverOverlay: kBlack.withOpacity(.2),
-                  profileImgBorderSize: defaultSize * .3,
-                  profileImageVerticalPosition: defaultSize * 2.5,
+                  profileImgBorderSize: 3,
+                  profileImageVerticalPosition: 25,
                 ),
 
                 // User Short Intro - name, role, ratings zxz⭐
                 IntroNameRoleRatings(user: user),
 
                 // // Info Cards (Students, Courses)
-                SizedBox(height: defaultSize * 1),
+                const SizedBox(height: 10),
                 ProfileStudentsClassesReviewsCount(user: user),
 
                 // Profile Navbar and Profiles Content (Courses, Activity, Info)
-                SizedBox(height: defaultSize * 3),
+                const SizedBox(height: 30),
                 ProfileNavbarAndContent(navItems: ProfileNavbarItems.items),
 
               ],
@@ -54,7 +54,7 @@ class GeneralProfile extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: AppsBottomNavBar(),
+      bottomNavigationBar: const AppsBottomNavBar(),
     );
   
   }

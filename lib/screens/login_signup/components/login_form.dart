@@ -14,7 +14,7 @@ import 'package:neocloud_mobile/utils/validation.dart';
 import 'package:provider/provider.dart';
 
 class LoginForm extends StatefulWidget {
-  LoginForm({Key? key}) : super(key: key);
+  const LoginForm({Key? key}) : super(key: key);
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -28,15 +28,20 @@ class _LoginFormState extends State<LoginForm> {
   late String _password;
 
   Future<void> login(BuildContext context) async {
-    setState(() { btnIsLoading = true; });
-    UserModel? user = await authService.login(email: _email, password: _password);
-    setState(() { btnIsLoading = false; });
+    setState(() {
+      btnIsLoading = true;
+    });
+    UserModel? user =
+        await authService.login(email: _email, password: _password);
+    setState(() {
+      btnIsLoading = false;
+    });
 
     debugPrint("Logged In User: ${user?.name}");
     if (user != null && user.name.isNotEmpty) {
       Provider.of<UserProvider>(context, listen: false).setUser(user);
       showTopAlertDialog(text: 'Login was Successful! 👍', isError: false);
-      Future.delayed(Duration(seconds: 2), () => navigateToHome() );
+      Future.delayed(const Duration(seconds: 2), () => navigateToHome());
     }
   }
 
@@ -58,7 +63,7 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: <Widget>[
           // Email
-          SizedBox(height: defaultSize * 2),
+          const SizedBox(height: 20),
           LoginInputField(
             labelText: 'Email',
             validate: validateEmail,
@@ -70,7 +75,7 @@ class _LoginFormState extends State<LoginForm> {
           ),
 
           // Password
-          SizedBox(height: defaultSize * 2),
+          const SizedBox(height: 20),
           LoginInputField(
             labelText: 'Password',
             obsureText: true,
@@ -83,16 +88,16 @@ class _LoginFormState extends State<LoginForm> {
           ),
 
           // forgot password
-          SizedBox(height: defaultSize * 2),
+          const SizedBox(height: 20),
           buildForgotPasswordLink(),
 
           // Button - used for submitting form
-          SizedBox(height: defaultSize * 4),
+          const SizedBox(height: 40),
           AppsButton(
               title: 'Login',
               bgColor: kBlueLight,
               bgColorLoading: kBlueLight.withOpacity(.5),
-              borderRadius: defaultSize,
+              borderRadius: 10,
               isLoading: btnIsLoading,
               press: (context) {
                 if (_formkey.currentState!.validate()) {
@@ -100,7 +105,7 @@ class _LoginFormState extends State<LoginForm> {
                   login(context);
                 }
               }),
-          SizedBox(height: defaultSize * 2),
+          const SizedBox(height: 20),
         ],
       ),
     );

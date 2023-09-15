@@ -32,13 +32,12 @@ class CourseScreen extends StatelessWidget {
           routeName1: getRouteName(CartScreen.screenName),
           actionIcon1: Icons.shopping_cart_outlined,
         ),
-        
         SliverToBoxAdapter(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // Image
-              SizedBox(height: defaultSize),
+              const SizedBox(height: 10),
               Padding(
                 padding: screenPadding,
                 child: Column(
@@ -46,64 +45,64 @@ class CourseScreen extends StatelessWidget {
                   children: <Widget>[
                     // Image
                     buildCourseImage(),
-        
+
                     // Title
-                    SizedBox(height: defaultSize * 1.5),
+                    const SizedBox(height: 15),
                     buildCourseTitle(),
-        
+
                     // Ratings
-                    SizedBox(height: defaultSize),
+                    const SizedBox(height: 10),
                     Ratings(
                         rating: course.rating,
                         reviewsCount: course.reviews_count ?? 0),
-        
+
                     // Created by ....
-                    SizedBox(height: defaultSize * .8),
+                    const SizedBox(height: 8),
                     buildCreatedBy(),
-        
+
                     // Students count & reviews
-                    SizedBox(height: defaultSize * .8),
+                    const SizedBox(height: 8),
                     buildStudentsCountAndReviews(),
-        
+
                     // Duration
-                    SizedBox(height: defaultSize * .8),
+                    const SizedBox(height: 8),
                     buildDuration(),
-        
+
                     // Cost
-                    SizedBox(height: defaultSize * 1.8),
+                    const SizedBox(height: 18),
                     buildCourseCost(),
-        
+
                     // Buy Btn & Cart Btn
-                    SizedBox(height: defaultSize * 1.8),
+                    const SizedBox(height: 18),
                     buildBuyCartButton(),
-        
+
                     // What You'll Learn
                     CoursePerks(
                         title: "What you'll learn",
                         list: course.accomplishments ?? ['Loading']),
-        
+
                     // Requirements
                     CoursePerks(
                         title: "Requirements",
                         list: course.requirements ?? ['Loading']),
-        
+
                     // Course Outline
-                    SizedBox(height: defaultSize * 3),
+                    const SizedBox(height: 30),
                     CourseOutline(modules: modulesList),
-        
+
                     // Educator Info
-                    SizedBox(height: defaultSize * 3),
+                    const SizedBox(height: 30),
                     EducatorInfo(user: course.user),
-        
+
                     // Reviews
-                    SizedBox(height: defaultSize * 5),
+                    const SizedBox(height: 50),
                     Reviews(reviews: reviewsList),
                   ],
                 ),
               ),
-        
+
               // Similar Courses
-              SizedBox(height: defaultSize * 5),
+              const SizedBox(height: 50),
               Padding(
                 padding: screenPadding,
                 child: TextLarge(
@@ -112,8 +111,8 @@ class CourseScreen extends StatelessWidget {
                   color: kBlack80,
                 ),
               ),
-        
-              SizedBox(height: defaultSize * 2),
+
+              const SizedBox(height: 20),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -124,8 +123,8 @@ class CourseScreen extends StatelessWidget {
                             course: coursesList[index % 6]),
                       ) +
                       <Widget>[
-                        SizedBox(
-                          width: defaultSize * 2,
+                        const SizedBox(
+                          width: 20,
                         )
                       ],
                 ),
@@ -145,34 +144,34 @@ class CourseScreen extends StatelessWidget {
         Expanded(
           child: AppsButton(
             title: "Buy now",
-            padTopBottom: defaultSize * .6,
+            padTopBottom: 6,
             press: (context) => {},
           ),
         ),
 
         // Wishlist
-        SizedBox(width: defaultSize),
+        const SizedBox(width: 10),
         SizedBox(
-          width: defaultSize * 6,
+          width: 60,
           child: AppsIconButton(
             press: (BuildContext? context) {},
             icon: Icons.star_border_purple500_rounded,
             iconColor: kBlack70,
-            padTopBottom: defaultSize * 1.5,
+            padTopBottom: 15,
             padLeftRight: 0,
             bgColor: kBlack.withOpacity(.05),
           ),
         ),
 
         // Cart
-        SizedBox(width: defaultSize),
+        const SizedBox(width: 10),
         SizedBox(
-          width: defaultSize * 6,
+          width: 60,
           child: AppsIconButton(
             press: (BuildContext? context) {},
             icon: Icons.add_shopping_cart_outlined,
             iconColor: kBlack70,
-            padTopBottom: defaultSize * 1.5,
+            padTopBottom: 15,
             padLeftRight: 0,
             bgColor: kBlack.withOpacity(.05),
           ),
@@ -188,7 +187,7 @@ class CourseScreen extends StatelessWidget {
         IconText(
           svg: "assets/icons/naira_symbol.svg",
           title: getMoneyFormat(course.price),
-          fontSize: defaultSize * 2.5,
+          fontSize: 25,
           fontWeight: FontWeight.w600,
           color: kBlack80,
           iconColor: kBlack80,
@@ -202,7 +201,7 @@ class CourseScreen extends StatelessWidget {
       icon: Icons.phone_android,
       title:
           "${course.duration} ${getPluralOrSingular(count: course.duration!, word: 'hour')} on demand",
-      fontSize: defaultSize * 1.6,
+      fontSize: 16,
       color: kBlack70,
       iconColor: kBlack70,
     );
@@ -217,7 +216,7 @@ class CourseScreen extends StatelessWidget {
           svg: 'assets/icons/account.svg',
           title:
               "${course.students_count} ${getPluralOrSingular(count: course.students_count!, word: 'student')}",
-          fontSize: defaultSize * 1.6,
+          fontSize: 16,
           color: kBlack70,
           iconColor: kBlack70,
         ),
@@ -230,11 +229,11 @@ class CourseScreen extends StatelessWidget {
                 text2: "left a review",
                 text1Color: kGreen,
                 text2Color: kBlack70,
-                text1FontSize: defaultSize * 1.6,
-                text2FontSize: defaultSize * 1.6,
+                text1FontSize: 16,
+                text2FontSize: 16,
                 text1FontWeight: FontWeight.w600,
               )
-            : TextMedium(title: "No reviews yet"),
+            : const TextMedium(title: "No reviews yet"),
       ],
     );
   }
@@ -242,11 +241,11 @@ class CourseScreen extends StatelessWidget {
   Widget buildCreatedBy() {
     return AppsTextRich(
       text1: "created by ",
-      text2: "${course.user.fullName}",
+      text2: course.user.fullName,
       text1Color: kBlack50,
       text2Color: kBlue,
-      text1FontSize: defaultSize * 1.6,
-      text2FontSize: defaultSize * 1.6,
+      text1FontSize: 16,
+      text2FontSize: 16,
       text2FontWeight: FontWeight.w600,
     );
   }
@@ -267,6 +266,6 @@ class CourseScreen extends StatelessWidget {
         title: course.title,
         weight: FontWeight.w700,
         color: kBlack90,
-        fontSize: defaultSize * 2.2);
+        fontSize: 22);
   }
 }
