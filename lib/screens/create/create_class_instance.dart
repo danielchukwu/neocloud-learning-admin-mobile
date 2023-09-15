@@ -13,9 +13,8 @@ import 'components/form_footer.dart';
 import 'components/form_header.dart';
 import 'components/form_select_users.dart';
 
-
 /// POPUP
-/// This Screen is used in a showDialog, so it will basically not have 
+/// This Screen is used in a showDialog, so it will basically not have
 /// its own screen per say but will be used in a pop up environment instead
 class CreateClassInstanceScreen extends StatelessWidget {
   CreateClassInstanceScreen({super.key});
@@ -25,129 +24,118 @@ class CreateClassInstanceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // c.enableUpdateTitle = true.obs;
-    // c.enableAddModules = true.obs;
-    // c.enableAddSchedules = true.obs;
-    // c.enableAddScheduleDescription = true.obs;
-    // c.enableUpdateScheduleDescription = true.obs;
-    // c.enableAddScheduleClasswork = true.obs;
-    // c.enableUpdateScheduleClasswork = true.obs;
     c.reset();
     c.enableSetDateAndTime = true.obs;
+    c.enableAutomateDateTime = true.obs;
 
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20)
-        ),
+            color: Colors.white, borderRadius: BorderRadius.circular(20)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // Header (Title, Cancel Icon)
             const FormHeader(title: ''),
-            
+
             // Form Body
             Expanded(
-              child: SingleChildScrollView(
-                controller: c.scrollController.value,
-                child: Padding(
-                  padding: screenPadding,
-                  child: buildForm(),
-                ),        
-              ) 
-            ),
+                child: SingleChildScrollView(
+              controller: c.scrollController.value,
+              child: Padding(
+                padding: screenPadding,
+                child: buildForm(),
+              ),
+            )),
 
             const HorizontalRule(),
             FormFooter(
-              formKey: c.formKey.value,
-              btnIsLoading: c.isSubmittingForm.value,
-              press: () async {
-                c.isSubmittingForm = true.obs;
-                // submit form if form data is valid
-                if (c.createClassFormDataIsValid()) {
-                  // submit form
-                  await c.submitCreateClassForm();
-                }
-                c.isSubmittingForm = false.obs;
-              }
-            ),
+                formKey: c.formKey.value,
+                btnIsLoading: c.isSubmittingForm.value,
+                press: () async {
+                  c.isSubmittingForm = true.obs;
+                  // submit form if form data is valid
+                  if (c.createClassFormDataIsValid()) {
+                    // submit form
+                    await c.submitCreateClassForm();
+                  }
+                  c.isSubmittingForm = false.obs;
+                }),
           ],
         ),
-      
       ),
-    
     );
   }
 
   Form buildForm() {
     return Form(
-      key: c.formKey.value,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const SizedBox(height: 30),
+        key: c.formKey.value,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(height: 30),
 
-          // Class Avatar / Cover
-          FormAddCover(press: (file) {
-            c.coverImgFile = file.obs;
-          },),
-          c.coverImgFileHasError.value ? const TextInputError(text: 'A class requires an image cover',) : const SizedBox(),
-          
-          // Class Name
-          const SizedBox(height: 30),
-          FormInputField(
-            controller: c.titleController.value,
-            hintText: 'Class Name', 
-            fontSize: 20, 
-            fontWeight: FontWeight.w500,
-            validator: validateRequireField, 
-            press: (_) {},
-          ),
-          c.hodHasError.value ? const TextInputError() : const SizedBox(),
+            // Class Avatar / Cover
+            FormAddCover(
+              press: (file) {
+                c.coverImgFile = file.obs;
+              },
+            ),
+            if (c.coverImgFileHasError.value == true)
+              const TextInputError(text: 'A class requires an image cover'),
 
-  
-          // Add Faculty
-          const SizedBox(height: 15),
-          FormSelectFaculty(
-            buttonText: 'Faculty', 
-            facultiesToSelectFrom: c.facultiesToSelectFrom.value, 
-            selectedFacultyList: c.selectedFaculties.value, 
-            updateSelectedFaculty: c.updateSelectedFaculty, 
-          ),
+            // Class Name
+            const SizedBox(height: 30),
+            FormInputField(
+              controller: c.titleController.value,
+              hintText: 'Class Name',
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              validator: validateRequireField,
+              press: (_) {},
+            ),
+            if (c.hodHasError.value == true) const TextInputError(),
 
-          c.hodHasError.value ? const TextInputError() : const SizedBox(),
-          const SizedBox(height: 15),
+            // Add Faculty
+            const SizedBox(height: 15),
+            FormSelectFaculty(
+              buttonText: 'Faculty',
+              facultiesToSelectFrom: c.facultiesToSelectFrom.value,
+              selectedFacultyList: c.selectedFaculties.value,
+              updateSelectedFaculty: c.updateSelectedFaculty,
+            ),
 
-          const HorizontalRule(),
+            if (c.hodHasError.value == true) const TextInputError(),
 
-          // Add Educators
-          const SizedBox(height: 15),
-          FormSelectUsers(
-            buttonText: 'Educators', 
-            avatarText: 'ED', 
-            selectedUsers: c.selectedEducatorsList, 
-            usersToSelectFrom: c.usersToSelectFrom, 
-            updateSelectedUsers: c.updateSelectedEducators, 
-          ),
-          c.educatorsListHasError.value ? const TextInputError() : const SizedBox(),
-          const SizedBox(height: 15),
+            const SizedBox(height: 15),
 
-          const HorizontalRule(),
+            const HorizontalRule(),
 
-          // Form Modules
-          const SizedBox(height: 15),
-          c.modulesHasError.value 
-          ? Padding(
-            padding: const EdgeInsets.only(bottom: 20),
-            child: TextInputError(text: c.modulesErrorMessage.value),
-          ) : const SizedBox(),
-          
-          FormModules(),
+            // Add Educators
+            const SizedBox(height: 15),
+            FormSelectUsers(
+              buttonText: 'Educators',
+              avatarText: 'ED',
+              selectedUsers: c.selectedEducatorsList,
+              usersToSelectFrom: c.usersToSelectFrom,
+              updateSelectedUsers: c.updateSelectedEducators,
+            ),
+            if (c.educatorsListHasError.value == true) const TextInputError(),
+            const SizedBox(height: 15),
 
-        ],
-      )
-    );
+            const HorizontalRule(),
+
+            // Form Modules
+            const SizedBox(height: 15),
+            if (c.modulesHasError.value == true)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: TextInputError(text: c.modulesErrorMessage.value),
+              ),
+
+            const FormModules(),
+          ],
+        ));
   }
 }
