@@ -21,11 +21,12 @@ class Body extends StatelessWidget {
           showAction1: false,
           showAction2: false,
         ),
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: const [
             // Section 1 (Intro dashboard)
+            
             DashboardSlider(),
 
             // Section 2
