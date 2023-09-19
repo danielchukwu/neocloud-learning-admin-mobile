@@ -65,12 +65,6 @@ showTopAlertDialog({required String text, bool isError = true}) {
 
 
 showCreateFacultyScreen() {
-  // return showDialog(
-  //   context: SizeConfig.appContext!,
-  //   builder: (context) {
-  //     return const CreateFacultyScreen();
-  //   },
-  // );
   return Navigator.of(SizeConfig.appContext!).push(
     DialogRoute(
       context: SizeConfig.appContext!,
@@ -99,72 +93,11 @@ showCreateClassInstanceScreen() {
   );
 }
 
-showSelectUsersDialog(
-  {
-    required List<UserModel> usersToSelectFrom, 
-    required List<UserModel> selectedUsers, 
-    required Function(List<UserModel> data) press,
-    selectionLimit = 10, 
-  }) {
+showDialogWrapper({required Widget widget}) {
   return showDialog(
     context: SizeConfig.appContext!, 
     builder: (context) {
-      return SelectUsersScreen(users: usersToSelectFrom, selectedUsers: selectedUsers, selectionLimit: selectionLimit, press: press);
-    },
-  );
-}
-
-showSelectFacultyDialog(
-  {
-    required List<FacultyModel> facultyToSelectFrom, 
-    required List<FacultyModel> selectedFaculties, 
-    required Function(List<FacultyModel> data) press,
-    selectionLimit = 10, 
-  }) {
-  return showDialog(
-    context: SizeConfig.appContext!, 
-    builder: (context) {
-      return SelectFacultyScreen(faculties: facultyToSelectFrom, selectedFaculties: selectedFaculties, selectionLimit: selectionLimit, press: press);
-    },
-  );
-}
-showCreateScheduleDialog(
-  {
-    required ClassModuleModel module,
-    required int moduleCount,
-    required Function(int moduleIndex, ClassModuleModel newModule) updateModule, 
-  }) {
-  return showDialog(
-    context: SizeConfig.appContext!, 
-    builder: (context) {
-      return FormSchedules(module: module, index: moduleCount, updateModule: updateModule);
-    },
-  );
-}
-
-showCreateClassworkDialog(
-  {
-    required ClassScheduleModel schedule,
-    required int index,
-    required Function(int scheduleIndex, ClassScheduleModel newSchedule) updateSchedule,
-  }) {
-  return showDialog(
-    context: SizeConfig.appContext!, 
-    builder: (context) {
-      return FormClassworkScreen(schedule: schedule, index: index, updateSchedule: updateSchedule);
-    },
-  );
-}
-
-showSetDateAndTime({
-  required ClassScheduleModel schedule,
-  required int index,
-  required Function(int scheduleIndex, ClassScheduleModel newSchedule) updateSchedule,
-}) {
-  return showDialog(
-    context: SizeConfig.appContext!,
-    builder: (context) {
-      return FormSetDateAndTime(schedule: schedule, index: index, updateSchedule: updateSchedule);
+      return widget;
     },
   );
 }
@@ -185,17 +118,3 @@ showSetTime({
     )
   );
 }
-
-showScheduleTimeGenerator({
-  required List<ClassModuleModel> modules,
-  required Function(List<ClassModuleModel> modules) press,
-}) {
-
-  return showDialog(
-    context: SizeConfig.appContext!,
-    builder: (_) {
-      return FormScheduleTimeGenerator(modules: modules, press: press);
-    },
-  );
-}
-
