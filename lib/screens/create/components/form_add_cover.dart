@@ -49,10 +49,10 @@ class _FormAddCoverState extends State<FormAddCover> {
           // borderRadius: BorderRadius.all(Radius.circular(5)),
           image: _selectedImage != null ? DecorationImage(image: FileImage(_selectedImage!), fit: BoxFit.cover) : null,
         ),
-        child: _selectedImage == null ? const Center(
+        child: _selectedImage == null ? Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               // Image
               SizedBox(height: 15),
               Icon(Icons.image, color: Colors.black38, size: 40),
