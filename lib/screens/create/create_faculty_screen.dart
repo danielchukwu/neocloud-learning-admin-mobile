@@ -103,7 +103,7 @@ class _CreateFacultyScreenState extends State<CreateFacultyScreen> {
   
           // hod Input
           const SizedBox(height: 15 ),
-          FormSelectUser(buttonText: 'HOD', selectedUsersList: _selectedHods, usersToSelectFrom: _usersToSelectFrom, updateSelectedUser: updateSelectedHod),
+          FormSelectUser(buttonText: 'HOD', selectedUsers: _selectedHods, usersToSelectFrom: _usersToSelectFrom, updateSelectedUser: updateSelectedHod),
           _hodHasError ? TextInputError() : const SizedBox(),
 
           const SizedBox(height: 20 ),
