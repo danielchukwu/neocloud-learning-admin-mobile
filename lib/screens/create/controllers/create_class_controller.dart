@@ -23,6 +23,7 @@ class ClassGetXController extends GetxController {
   Rx<File?> coverImgFile = null.obs;
   RxList<FacultyModel> selectedFaculties = RxList();
   RxList<UserModel> selectedEducatorsList = RxList();
+  RxList<UserModel> selectedStudentsList = RxList();
   RxList<ClassModuleModel> modules = RxList();
 
   // error handling variables
@@ -140,6 +141,7 @@ class ClassGetXController extends GetxController {
     coverImgFile = null.obs;
     selectedFaculties = RxList();
     selectedEducatorsList = RxList();
+    selectedStudentsList = RxList();
     modules = RxList();
 
     // error handling variables
