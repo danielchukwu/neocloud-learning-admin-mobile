@@ -90,7 +90,7 @@ class ClassTile extends StatelessWidget {
               children: [
                 // Title
                 TextCustomMaxLine(
-                  title: clas.name,
+                  title: '${clas.name!}',
                   weight: FontWeight.w600,
                   color: kBlack90,
                   fontSize: defaultSize * 1.8,
