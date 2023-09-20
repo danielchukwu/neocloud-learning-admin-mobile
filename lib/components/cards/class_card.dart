@@ -70,7 +70,7 @@ class ClassCard extends StatelessWidget {
                 children: [
                   // Title
                   TextCustom(
-                    title: clas.name,
+                    title: clas.name!,
                     fontSize: defaultSize * 2.2,
                     color: kBlack80,
                     weight: FontWeight.w700,
