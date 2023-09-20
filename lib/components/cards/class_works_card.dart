@@ -205,7 +205,7 @@ class TheClassworkCard extends StatelessWidget {
                 width: defaultSize * 2,
               ),
               IconText(
-                title: classwork.clas!.name,
+                title: '${classwork.clas!.name!}',
                 icon: Icons.school,
                 iconColor: kBlack70,
                 fontSize: defaultSize * 1.4,
