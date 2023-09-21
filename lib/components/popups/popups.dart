@@ -67,12 +67,6 @@ showTopAlertDialog({required String text, bool isError = true}) {
 }
 
 showCreateFacultyScreen() {
-  // return showDialog(
-  //   context: SizeConfig.appContext!,
-  //   builder: (context) {
-  //     return const CreateFacultyScreen();
-  //   },
-  // );
   return Navigator.of(SizeConfig.appContext!).push(
     DialogRoute(
         context: SizeConfig.appContext!,
@@ -99,13 +93,7 @@ showCreateClassInstanceScreen() {
     },
   );
 }
-
-showSelectUsersDialog({
-  required List<UserModel> usersToSelectFrom,
-  required List<UserModel> selectedUsers,
-  required Function(List<UserModel> data) press,
-  selectionLimit = 10,
-}) {
+showDialogWrapper({required Widget widget}) {
   return showDialog(
     context: SizeConfig.appContext!,
     builder: (context) {

@@ -4,6 +4,7 @@ import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
+import 'package:neocloud_mobile/screens/create/components/form_schedules.dart';
 import 'package:neocloud_mobile/screens/create/components/form_update_or_delete_inputfield.dart';
 import 'package:neocloud_mobile/screens/create/controllers/create_class_controller.dart';
 
@@ -98,10 +99,12 @@ class _FormModuleTileState extends State<FormModuleTile> {
               // view schedules
               GestureDetector(
                 onTap: () {
-                  showCreateScheduleDialog(
-                    module: widget.module,
-                    moduleCount: widget.index,
-                    updateModule: c.updateModule,
+                  showDialogWrapper(
+                    widget: FormSchedules(
+                      module: widget.module,
+                      index: widget.index,
+                      updateModule: c.updateModule,
+                    ),
                   );
                 },
                 child: const TextSmall(

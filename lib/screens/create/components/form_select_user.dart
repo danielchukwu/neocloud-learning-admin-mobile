@@ -6,6 +6,7 @@ import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
+import 'package:neocloud_mobile/screens/create/select_user_screen.dart';
 
 /// This should display a button that allows us select a single user
 /// It shows a button and then when a user is selected it displays the users avatar and name
@@ -13,22 +14,28 @@ class FormSelectUser extends StatelessWidget {
   const FormSelectUser({
     super.key,
     this.buttonText = 'User',
-    required this.selectedUsersList,
+    required this.selectedUsers,
     required this.usersToSelectFrom,
     required this.updateSelectedUser,
+    this.bgColor,
+    this.borderColor,
   });
 
   final String buttonText;
-  final List<UserModel>selectedUsersList;
-  final List<UserModel>usersToSelectFrom;
+  final List<UserModel> selectedUsers;
+  final List<UserModel> usersToSelectFrom;
   final Function(List<UserModel>) updateSelectedUser;
+  final Color? bgColor;
+  final Color? borderColor;
 
   showSelectUsersPopup() {
-    showSelectUsersDialog(
-      usersToSelectFrom: usersToSelectFrom,
-      selectedUsers: selectedUsersList,
-      selectionLimit: 1,
-      press: updateSelectedUser
+    showDialogWrapper(
+      widget: SelectUsersScreen(
+        users: usersToSelectFrom,
+        selectedUsers: selectedUsers,
+        selectionLimit: 1,
+        press: updateSelectedUser,
+      ),
     );
   }
 
@@ -38,19 +45,27 @@ class FormSelectUser extends StatelessWidget {
       children: [
         // Button
         IconTextButton(
-          buttonText, 
-          backgroundColor: kRed.withOpacity(.1), 
-          borderColor: kRed.withOpacity(.7), 
+          buttonText,
+          backgroundColor: bgColor ?? kRed.withOpacity(.1),
+          borderColor: borderColor ?? kRed.withOpacity(.7),
           press: showSelectUsersPopup,
         ),
 
         // Selected User Avatar
         const SizedBox(width: 15),
-        RoundBoxAvatar(size: 35, image: selectedUsersList.isNotEmpty ? selectedUsersList[0].avatar : defaultSlugAvatar),
-        
+        RoundBoxAvatar(
+            size: 35,
+            image: selectedUsers.isNotEmpty
+                ? selectedUsers[0].avatar
+                : defaultSlugAvatar),
+
         // Selected User Name
-        const SizedBox(width: 10 ),
-        TextMedium(title: selectedUsersList.isNotEmpty ? selectedUsersList[0].name : 'John Doe ...', color: Colors.black54)
+        const SizedBox(width: 10),
+        TextMedium(
+            title: selectedUsers.isNotEmpty
+                ? selectedUsers[0].name
+                : 'John Doe ...',
+            color: Colors.black54)
       ],
     );
   }

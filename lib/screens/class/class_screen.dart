@@ -45,7 +45,7 @@ class _ClassScreenState extends State<ClassScreen> {
 
               Padding(
                 padding: screenPadding,
-                child: ClassSyllabus(modules: modulesList, classId: clas.id),
+                child: ClassSyllabus(modules: modulesList, classId: clas.id!),
               ),
 
               pageBottomPadding()

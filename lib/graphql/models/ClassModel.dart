@@ -3,8 +3,8 @@ import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 // : (){} "" <> ? _ ! *
 
 class ClassModel {
-  final String id;
-  final String name;
+  final String? id;
+  final String? name;
   final String? about;
   final String? avatar;
   final FacultyModel? faculty;
@@ -22,7 +22,7 @@ class ClassModel {
     // this.hod
   });
 
-  static ClassModel fromMap({required Map aClass}) => ClassModel(
+  factory ClassModel.fromMap({required Map aClass}) => ClassModel(
     id: aClass['_id'],
     name: aClass['name'],
     about: aClass['about'],

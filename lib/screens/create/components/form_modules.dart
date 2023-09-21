@@ -9,6 +9,8 @@ import 'package:neocloud_mobile/screens/create/components/form_module_tile.dart'
 import 'package:neocloud_mobile/screens/create/controllers/create_class_controller.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
 
+import 'form_schedule_date_time_generator.dart';
+
 /// This widget displays the modules (or curriculum) of a class, it is also used
 /// to further add more modules,add schedules for those modules and delete modules
 class FormModules extends StatefulWidget {
@@ -81,9 +83,11 @@ class _FormModulesState extends State<FormModules> {
         if (c.enableAutomateDateTime.value == true)
           InkWell(
             onTap: () {
-              showScheduleTimeGenerator(
-                modules: c.modules,
-                press: updateModules,
+              showDialogWrapper(
+                widget: FormScheduleTimeGenerator(
+                  modules: c.modules,
+                  press: updateModules,
+                ),
               );
             },
             child: IconText(

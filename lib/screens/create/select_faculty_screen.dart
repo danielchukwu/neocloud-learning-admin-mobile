@@ -4,7 +4,6 @@ import 'package:neocloud_mobile/components/tile/tiles.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
-import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_footer.dart';
 import 'package:neocloud_mobile/screens/create/components/form_header.dart';
 
@@ -15,8 +14,8 @@ class SelectFacultyScreen extends StatefulWidget {
   const SelectFacultyScreen({
     super.key,
     required this.faculties,
-    required this.selectedFaculties, 
-    required this.selectionLimit, 
+    required this.selectedFaculties,
+    required this.selectionLimit,
     this.press,
   });
 

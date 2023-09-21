@@ -3,7 +3,10 @@ import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
+import 'package:neocloud_mobile/screens/create/components/form_set_date_and_time.dart';
 import 'package:neocloud_mobile/screens/create/components/form_update_or_delete_inputfield.dart';
+
+import 'form_classwork.dart';
 
 // This is a form class module tile widget that shows a modules title and it's order Index
 // and then it shows the number of schedules the module has and also an add schedules button
@@ -192,32 +195,36 @@ class _FormScheduleTileState extends State<FormScheduleTile> {
   }
 
   void pressSetDateAndTime() {
-    showSetDateAndTime(
-      schedule: widget.schedule,
-      index: widget.index,
-      updateSchedule: (scheduleIndex, newSchedule) {
-        // update this tile
-        setState(() {
-          widget.schedule = newSchedule;
-        });
-        // update parent
-        widget.pressUpdateSchedule(scheduleIndex, newSchedule);
-      },
+    showDialogWrapper(
+      widget: FormSetDateAndTime(
+        schedule: widget.schedule,
+        index: widget.index,
+        updateSchedule: (scheduleIndex, newSchedule) {
+          // update this tile
+          setState(() {
+            widget.schedule = newSchedule;
+          });
+          // update parent
+          widget.pressUpdateSchedule(scheduleIndex, newSchedule);
+        },
+      ),
     );
   }
 
   void showClassworkDialog() {
-    showCreateClassworkDialog(
-      schedule: widget.schedule,
-      index: widget.index,
-      updateSchedule: (scheduleIndex, newSchedule) {
-        // update this tile
-        setState(() {
-          widget.schedule = newSchedule;
-        });
-        // update parent
-        widget.pressUpdateSchedule(scheduleIndex, newSchedule);
-      },
+    showDialogWrapper(
+      widget: FormClassworkScreen(
+        schedule: widget.schedule,
+        index: widget.index,
+        updateSchedule: (scheduleIndex, newSchedule) {
+          // update this tile
+          setState(() {
+            widget.schedule = newSchedule;
+          });
+          // update parent
+          widget.pressUpdateSchedule(scheduleIndex, newSchedule);
+        },
+      ),
     );
   }
 

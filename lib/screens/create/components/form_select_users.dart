@@ -5,20 +5,22 @@ import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
+import 'package:neocloud_mobile/screens/create/select_user_screen.dart';
 
 /// This widget displays a button that can be used for selecting multiple users
-/// When users are selected, the widget then displays the selected users avatars 
+/// When users are selected, the widget then displays the selected users avatars
 class FormSelectUsers extends StatefulWidget {
-  const FormSelectUsers(
-    {
-      super.key,
-      this.buttonText = 'Users',
-      this.avatarText = 'NC',
-      this.selectionLimit = 10,
-      required this.selectedUsers,
-      required this.usersToSelectFrom,
-      required this.updateSelectedUsers,
-    });
+  const FormSelectUsers({
+    super.key,
+    this.buttonText = 'Users',
+    this.avatarText = 'NC',
+    this.selectionLimit = 10,
+    required this.selectedUsers,
+    required this.usersToSelectFrom,
+    required this.updateSelectedUsers,
+    this.bgColor,
+    this.borderColor,
+  });
 
   final String buttonText;
   final String avatarText;
@@ -26,6 +28,8 @@ class FormSelectUsers extends StatefulWidget {
   final List<UserModel> selectedUsers;
   final List<UserModel> usersToSelectFrom;
   final Function(List<UserModel>) updateSelectedUsers;
+  final Color? bgColor;
+  final Color? borderColor;
 
   @override
   State<FormSelectUsers> createState() => _FormSelectUsersState();
@@ -41,16 +45,18 @@ class _FormSelectUsersState extends State<FormSelectUsers> {
   }
 
   showSelectUsersPopup() {
-    showSelectUsersDialog(
-      selectionLimit: widget.selectionLimit,
-      usersToSelectFrom: widget.usersToSelectFrom,
-      selectedUsers: _selectedUsers,
-      press: (users) {
-        widget.updateSelectedUsers(users);
-        setState(() {
-          _selectedUsers = users;
-        });
-      },
+    showDialogWrapper(
+      widget: SelectUsersScreen(
+        users: widget.usersToSelectFrom,
+        selectedUsers: _selectedUsers,
+        selectionLimit: widget.selectionLimit,
+        press: (users) {
+          widget.updateSelectedUsers(users);
+          setState(() {
+            _selectedUsers = users;
+          });
+        },
+      ),
     );
   }
 
@@ -61,12 +67,11 @@ class _FormSelectUsersState extends State<FormSelectUsers> {
           ? CrossAxisAlignment.center
           : CrossAxisAlignment.start,
       children: [
-        
         // Educators Button
         IconTextButton(
           widget.buttonText,
-          backgroundColor: kBlue.withOpacity(.3),
-          borderColor: kBlue.withOpacity(.8),
+          backgroundColor: widget.bgColor ?? kBlue.withOpacity(.3),
+          borderColor: widget.borderColor ?? kBlue.withOpacity(.8),
           press: showSelectUsersPopup,
         ),
 
@@ -96,7 +101,10 @@ class _FormSelectUsersState extends State<FormSelectUsers> {
         // Avatar - AB
         AvatarInsertWidget(
           backgroundColor: kBlue,
-          widget: TextMedium(title: widget.avatarText, weight: FontWeight.w600,color: Colors.white),
+          widget: TextMedium(
+              title: widget.avatarText,
+              weight: FontWeight.w600,
+              color: Colors.white),
         ),
       ],
     );
