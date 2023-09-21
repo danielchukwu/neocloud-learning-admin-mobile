@@ -128,7 +128,7 @@ class _FormScheduleTileState extends State<FormScheduleTile> {
                   setState(() => _editDescriptionMode = true);
                 },
                 child: widget.schedule.description == null
-                    ? TextSmall(
+                    ? const TextSmall(
                         title: 'Add Description',
                         color: Colors.black54,
                       )

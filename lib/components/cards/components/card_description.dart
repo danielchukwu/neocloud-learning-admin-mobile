@@ -18,11 +18,11 @@ class CardDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Label
-        SizedBox(height: defaultSize * 1.5),
+        const SizedBox(height: 15),
         TextMedium(title: label, color: kBlack70),
 
         // Content
-        SizedBox(height: defaultSize * .5),
+        const SizedBox(height: 5),
         TextMedium(
           title: content,
           color: kBlack70,

@@ -25,7 +25,7 @@ class MiniCourseCard extends StatelessWidget {
     return GestureDetector(
       onTap: () => visitCourse(context),
       child: Container(
-        padding: EdgeInsets.only(left: padLeftSpacing ?? defaultSize * 2),
+        padding: EdgeInsets.only(left: padLeftSpacing ?? 20),
         width: cardSize,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,14 +35,14 @@ class MiniCourseCard extends StatelessWidget {
               width: cardSize,
               height: cardSize / 2,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(defaultSize * .4),
+                borderRadius: BorderRadius.circular(4),
                 image: DecorationImage(
                     image: AssetImage(course.avatar), fit: BoxFit.cover),
               ),
             ),
 
             // Course Title
-            SizedBox(height: defaultSize),
+            const SizedBox(height: 10),
             TextCustomMaxLine(
               title: course.title,
               fontSize: fontSize,
@@ -53,7 +53,7 @@ class MiniCourseCard extends StatelessWidget {
             ),
 
             // Course Educator
-            SizedBox(height: defaultSize * .5),
+            const SizedBox(height: 5),
             TextCustomMaxLine(
               title: course.user.fullName,
               color: kBlack50,
@@ -62,18 +62,18 @@ class MiniCourseCard extends StatelessWidget {
             ),
 
             // Ratings
-            SizedBox(height: defaultSize * .5),
+            const SizedBox(height: 5),
             Ratings(
               rating: course.rating,
               reviewsCount: course.reviews_count ?? 0,
               fontSize: fontSize - 2,
-              iconSize: defaultSize * 1.6,
+              iconSize: 16,
               showReviews: false,
               color: kBlack70,
             ),
 
             // Cost
-            SizedBox(height: defaultSize * .5),
+            const SizedBox(height: 5),
             TextCustom(
               title: "NGN ${getMoneyFormat(course.price)}",
               weight: FontWeight.w600,

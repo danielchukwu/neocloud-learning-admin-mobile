@@ -38,12 +38,12 @@ class Ratings extends StatelessWidget {
             title: getRatingFormat(rating),
             color: color ?? kBlack70,
             weight: FontWeight.w600,
-            fontSize: fontSize ?? defaultSize * 1.6)
-        : SizedBox(),
+            fontSize: fontSize ?? 16)
+        : const SizedBox(),
 
         // Stars
-        SizedBox(width: showRatingsText ? defaultSize * .5 : 0),
-        StarRating(rating: rating, iconSize: iconSize ?? defaultSize * 2.2),
+        SizedBox(width: showRatingsText ? 10 * .5 : 0),
+        StarRating(rating: rating, iconSize: iconSize ?? 22),
 
       ],
     );

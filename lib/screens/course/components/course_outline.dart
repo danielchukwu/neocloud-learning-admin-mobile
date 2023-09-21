@@ -25,16 +25,16 @@ class _CourseOutlineState extends State<CourseOutline> {
         buildHeaderDropdown(),
 
         // Modules count, lectures count, Time involved count
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         buildModulesLecturesTimeCount(),
 
         // Modules and Their contents
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         showContent
             ? ModulesList(
                 modules: modulesList,
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }

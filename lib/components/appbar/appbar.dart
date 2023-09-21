@@ -5,7 +5,7 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 
 class AppsAppBar extends StatelessWidget {
-  AppsAppBar({
+  const AppsAppBar({
     super.key,
     required this.title,
     this.bgColor = Colors.white,
@@ -62,7 +62,6 @@ class AppsAppBar extends StatelessWidget {
   // this is a callback function that is called when the action icon or svg
   // Function(BuildContext context)? pressAction;
 
-
   // the elevation of the appBar
   final double elevation;
 
@@ -72,7 +71,7 @@ class AppsAppBar extends StatelessWidget {
   final String routeName1;
   final String routeName2;
 
-  // routeWidget to be navigated to using push. Allows us to pass data to 
+  // routeWidget to be navigated to using push. Allows us to pass data to
   // screens whose constructors requires passed in valued
   final Widget? routeWidget1;
   final Widget? routeWidget2;
@@ -81,7 +80,7 @@ class AppsAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: bgColor,
-      leadingWidth: defaultSize * 6,
+      leadingWidth: 60,
       elevation: elevation,
       leading:
           showLeading ? LeadingBackButton(isDark: isDark) : const SizedBox(),
@@ -113,7 +112,8 @@ class AppsAppBar extends StatelessWidget {
 }
 
 class AppsSliverAppBar extends AppsAppBar {
-  AppsSliverAppBar({
+  const AppsSliverAppBar({
+    super.key,
     required super.title,
     super.bgColor,
     super.isDark,
@@ -155,7 +155,7 @@ class AppsSliverAppBar extends AppsAppBar {
                 routeName: routeName2,
                 routeWidget: routeWidget2,
               )
-            : SizedBox(),
+            : const SizedBox(),
         showAction1
             ? actionUserButton(
                 icon: actionIcon1,
@@ -164,7 +164,7 @@ class AppsSliverAppBar extends AppsAppBar {
                 routeName: routeName1,
                 routeWidget: routeWidget1,
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }

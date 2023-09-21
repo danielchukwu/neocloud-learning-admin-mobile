@@ -20,20 +20,20 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           // Header - Hi, Goodmorning \n {users name}
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           buildHeader(context),
 
           // Classes - count - stackedImages | classworks - count - stackedImages
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           buildTextCountStackedImages(
               title: "Attendance", users: users, length: users.length),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           buildTextCountStackedImages(
             title: "Classes",
             classes: coursesList,
             length: coursesList.length,
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           buildTextCountStackedImages(
               title: "Classwork's", users: users, length: users.length),
         ],
@@ -99,10 +99,10 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
         // Avatars
         classes != null
             ? Expanded(child: buildStackedClassImgs(classList: classes))
-            : SizedBox(),
+            : const SizedBox(),
         users != null
             ? Expanded(child: buildStackedUserImgs(users: users))
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }

@@ -21,14 +21,14 @@ class ProfileStudentsClassesReviewsCount extends StatelessWidget {
         'title': 'Students',
         'icon': Icons.supervisor_account,
         'count': 23,
-        'widget': UserList(),
+        'widget': const UserList(),
         'padding': true
       },
       {
         'title': 'Classes',
         'icon': Icons.menu,
         'count': 2,
-        'widget': ClassList(showClassAvatar: true),
+        'widget': const ClassList(showClassAvatar: true),
         'padding': false
       },
     ];
@@ -49,7 +49,7 @@ class ProfileStudentsClassesReviewsCount extends StatelessWidget {
                 ),
               )),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: IconText(
                 title:
                     "${iconTextRowList[index]['title']} (${iconTextRowList[index]['count']})",

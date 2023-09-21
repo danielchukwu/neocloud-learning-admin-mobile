@@ -38,15 +38,15 @@ class HeaderWithDropdown extends StatelessWidget {
               child: TextCustom(
                 title: title,
                 color: color ?? kBlack80,
-                fontSize: fontSize ?? defaultSize * 1.8,
+                fontSize: fontSize ?? 18,
                 weight: weight,
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: defaultSize * 3),
+              margin: const EdgeInsets.only(left: 30),
               child: AnimatedRotation(
                 turns: turns,
-                duration: Duration(milliseconds: 100),
+                duration: const Duration(milliseconds: 100),
                 child: Icon(icon ?? Icons.arrow_drop_up, color: iconColor ?? kBlack70),
                 // child: Icon(Icons.arrow_drop_down_sharp, color: kBlack70),
               ),

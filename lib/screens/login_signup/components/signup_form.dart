@@ -39,7 +39,7 @@ class SignupFormState extends State<SignupForm> {
     if (user != null && user.name.isNotEmpty) {
       Provider.of<UserProvider>(context, listen: false).setUser(user);
       showTopAlertDialog(text: 'Account Created. Logging In 👍', isError: false);
-      Future.delayed(Duration(seconds: 2), () => navigateToHome() );
+      Future.delayed(const Duration(seconds: 2), () => navigateToHome() );
     }
   }
 
@@ -58,7 +58,7 @@ class SignupFormState extends State<SignupForm> {
       child: Column(
         children: <Widget>[
           // Name
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           LoginInputField(
             labelText: 'Name',
             validate: validateRequireField,
@@ -69,7 +69,7 @@ class SignupFormState extends State<SignupForm> {
             },
           ),
           // Email
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           LoginInputField(
             labelText: 'Email',
             validate: validateEmail,
@@ -80,7 +80,7 @@ class SignupFormState extends State<SignupForm> {
             },
           ),
           // Phone
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           LoginInputField(
             labelText: 'Phone Number',
             validate: validatePhoneNumber,
@@ -92,7 +92,7 @@ class SignupFormState extends State<SignupForm> {
           ),
 
           // Password
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           LoginInputField(
             labelText: 'Password',
             obsureText: true,
@@ -105,7 +105,7 @@ class SignupFormState extends State<SignupForm> {
           ),
 
           // Button - used for submitting form
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           AppsButton(
               title: 'Sign up',
               bgColor: kBlueLight,
@@ -117,7 +117,7 @@ class SignupFormState extends State<SignupForm> {
                   signup();
                 }
               }),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
         ],
       ),
     );

@@ -11,7 +11,7 @@ class AccountInfoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      SizedBox(height: 10),
+      const SizedBox(height: 10),
       ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         horizontalTitleGap: 0,

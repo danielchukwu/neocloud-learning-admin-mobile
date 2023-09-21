@@ -4,17 +4,16 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
 Widget appsCircularProgressIndicator() {
-  return SizedBox(
-    width: defaultSize * 2,
-    height: defaultSize * 2,
-    child:
-        const CircularProgressIndicator(strokeWidth: 3, color: Colors.black38),
+  return const SizedBox(
+    width: 20,
+    height: 20,
+    child: CircularProgressIndicator(strokeWidth: 3, color: Colors.black38),
   );
 }
 
-Widget spinnerScreen({double? screenMaxHeight}){
+Widget spinnerScreen({double? screenMaxHeight}) {
   screenMaxHeight ??= SizeConfig.screenHeight! / 2;
-  
+
   return Container(
     // color: Colors.red,
     constraints: BoxConstraints(maxHeight: screenMaxHeight),
@@ -22,12 +21,17 @@ Widget spinnerScreen({double? screenMaxHeight}){
   );
 }
 
-Widget nothingWasFoundScreen({double? screenMaxHeight}){
+Widget nothingWasFoundScreen({double? screenMaxHeight}) {
   screenMaxHeight ??= SizeConfig.screenHeight! / 2;
-  
+
   return Container(
     constraints: BoxConstraints(maxHeight: screenMaxHeight),
-    child: const Center(child: TextExtraLarge(title: 'Nothing was found', color: Colors.black38, weight: FontWeight.w600,)),
+    child: const Center(
+        child: TextExtraLarge(
+      title: 'Nothing was found',
+      color: Colors.black38,
+      weight: FontWeight.w600,
+    )),
   );
 }
 
@@ -49,21 +53,21 @@ class HorizontalRule extends StatelessWidget {
   }
 }
 
-// This is used for custom input fields in forms to display a simple text color in 
+// This is used for custom input fields in forms to display a simple text color in
 // red to indicate an error (that may occur if a value for that field wasn't provided)
 class TextInputError extends StatelessWidget {
-  const TextInputError({
-    super.key,
-    this.text = 'This field is required'
-  });
+  const TextInputError({super.key, this.text = 'This field is required'});
   final String text;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: defaultSize),
-        Text(text, style: TextStyle(color: Colors.red[800], fontSize: 12),),
+        const SizedBox(height: 10),
+        Text(
+          text,
+          style: TextStyle(color: Colors.red[800], fontSize: 12),
+        ),
       ],
     );
   }

@@ -57,39 +57,42 @@ class ClassCard extends StatelessWidget {
           children: <Widget>[
             // Course Image
             showClassAvatar
-                ? RectangularBoxImage(
-                    img: clas.avatar ?? '', height: defaultSize * 22)
-                : SizedBox(),
+                ? RectangularBoxImage(img: clas.avatar ?? '', height: 220)
+                : const SizedBox(),
 
             // Course Body - Title, tutor, price
             SizedBox(height: bodySeparationSize),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: defaultSize * 1.5),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Title
                   TextCustom(
                     title: clas.name,
-                    fontSize: defaultSize * 2.2,
+                    fontSize: 22,
                     color: kBlack80,
                     weight: FontWeight.w700,
                   ),
 
                   // Name and Ratings
-                  SizedBox(height: defaultSize),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       // Name
-                      SizedBox(height: defaultSize),
+                      const SizedBox(height: 10),
                       Expanded(
                         child: buildAvatarAndName(
-                            avatar: clas.educators != null && clas.educators!.length > 0 
-                              ? clas.educators![0].avatar ?? '' : '',
-                            name: clas.educators != null && clas.educators!.length > 0 
-                              ? clas.educators![0].name : 'daniel',
-                            fontSize: defaultSize * 1.6,
+                            avatar: clas.educators != null &&
+                                    clas.educators!.length > 0
+                                ? clas.educators![0].avatar ?? ''
+                                : '',
+                            name: clas.educators != null &&
+                                    clas.educators!.length > 0
+                                ? clas.educators![0].name
+                                : 'daniel',
+                            fontSize: 16,
                             weight: FontWeight.w600),
                       ),
 
@@ -98,33 +101,33 @@ class ClassCard extends StatelessWidget {
                         title: getRatingFormat(50),
                         weight: FontWeight.w600,
                       ),
-                      SizedBox(width: defaultSize * .5),
+                      const SizedBox(width: 5),
                       Icon(
                         Icons.star_rounded,
                         color: kStarColor,
-                        size: defaultSize * 2,
+                        size: 20,
                       ),
                     ],
                   ),
 
                   // Class Description
-                  SizedBox(height: defaultSize * 1.5),
+                  const SizedBox(height: 15),
                   allowSeeMore
                       ? TextSeeMore(
                           text: clas.about ?? '',
                           color: kBlack70,
-                          fontSize: defaultSize * 1.6,
+                          fontSize: 16,
                           maxLines: 2,
                         )
                       : TextCustomMaxLine(
                           title: clas.about ?? '',
                           color: kBlack70,
-                          fontSize: defaultSize * 1.6,
+                          fontSize: 16,
                           maxLines: 3,
                         ),
 
                   // Bottom Tablets
-                  SizedBox(height: defaultSize * 2),
+                  const SizedBox(height: 20),
                   Wrap(
                     spacing: 10,
                     runSpacing: 10,
@@ -140,7 +143,7 @@ class ClassCard extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: defaultSize * 3),
+            const SizedBox(height: 30),
           ],
         ),
       ),

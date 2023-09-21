@@ -14,7 +14,7 @@ class GradientCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: SizeConfig.screenWidth,
-      height: defaultSize * 20,
+      height: 200,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -24,7 +24,7 @@ class GradientCard extends StatelessWidget {
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
         ),
-        borderRadius: BorderRadius.circular(defaultSize * 2),
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Center(
         child: contentWidget,

@@ -224,10 +224,10 @@ class IconText extends StatelessWidget {
                 color: iconColor,
                 size: iconSize,
               )
-            : SizedBox(),
+            : const SizedBox(),
 
         // Count
-        iconIsLeft ? SizedBox(width: spaceBetweenSize) : SizedBox(),
+        iconIsLeft ? SizedBox(width: spaceBetweenSize) : const SizedBox(),
         TextCustom(
           title: title,
           color: color ?? kBlack70,
@@ -236,7 +236,7 @@ class IconText extends StatelessWidget {
         ),
 
         // Icon
-        !iconIsLeft ? SizedBox(width: spaceBetweenSize) : SizedBox(),
+        !iconIsLeft ? SizedBox(width: spaceBetweenSize) : const SizedBox(),
         !iconIsLeft
             ? IconOrSvg(
                 svg: svg,
@@ -244,7 +244,7 @@ class IconText extends StatelessWidget {
                 color: iconColor,
                 size: iconSize,
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }
@@ -347,7 +347,7 @@ class _TextSeeMoreState extends State<TextSeeMore> {
                 weight: FontWeight.w600,
                 press: (_) => setState(() => showMore = !showMore),
               )
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }

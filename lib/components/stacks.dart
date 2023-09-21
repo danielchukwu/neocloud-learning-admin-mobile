@@ -42,9 +42,9 @@ class StackedImages extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: kBlack80,
                             borderRadius:
-                                BorderRadius.circular(defaultSize * 5),
+                                BorderRadius.circular(50),
                             border: Border.all(
-                                width: defaultSize * .2, color: kWhite)),
+                                width: 2, color: kWhite)),
                         child: Center(
                             child: TextSmall(
                                 title: "+${length - 3}",
@@ -52,7 +52,7 @@ class StackedImages extends StatelessWidget {
                                 weight: FontWeight.w500)),
                       ),
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
             ] +
             List<Widget>.generate(
               imgList.length,
@@ -106,12 +106,12 @@ class StackedImageAndDot extends StatelessWidget {
             right: 0,
             bottom: 0,
             child: Container(
-              width: defaultSize * 2.7,
-              height: defaultSize * 2.7,
+              width: 27,
+              height: 27,
               decoration: BoxDecoration(
                 color: dotColor,
                 borderRadius: BorderRadius.circular(imgSize),
-                border: Border.all(color: kWhite, width: defaultSize * .2)
+                border: Border.all(color: kWhite, width: 2)
               ),
               child: Center(
                 child: TextSmall(title: text, color: kWhite, weight: FontWeight.w600),

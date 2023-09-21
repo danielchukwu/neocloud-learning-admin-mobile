@@ -17,7 +17,6 @@ import 'package:neocloud_mobile/screens/create/select_faculty_screen.dart';
 import 'package:neocloud_mobile/screens/create/select_user_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
-
 showTopAlertDialog({required String text, bool isError = true}) {
   // Animation Controller
   AnimationController controller = AnimationController(
@@ -29,7 +28,7 @@ showTopAlertDialog({required String text, bool isError = true}) {
 
   overlayEntry = OverlayEntry(builder: (context) {
     controller.forward();
-    
+
     return Positioned(
       child: FadeTransition(
         opacity: Tween<double>(begin: 0, end: 1).animate(controller),
@@ -40,29 +39,32 @@ showTopAlertDialog({required String text, bool isError = true}) {
           ).animate(controller),
           child: Center(
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: defaultSize * 1, horizontal: defaultSize * 1.5),
-              constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width / 1.3,),
-              decoration: BoxDecoration(
-                color:  isError ? const Color(0xFFeb4d4b) : const Color(0xFF1dd1a1),
-                borderRadius: BorderRadius.all(Radius.circular(defaultSize * .8))
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width / 1.3,
               ),
-              child: TextMedium(title: text, color: kWhite, textAlign: TextAlign.center),
+              decoration: BoxDecoration(
+                  color: isError
+                      ? const Color(0xFFeb4d4b)
+                      : const Color(0xFF1dd1a1),
+                  borderRadius: const BorderRadius.all(Radius.circular(8))),
+              child: TextMedium(
+                  title: text, color: kWhite, textAlign: TextAlign.center),
             ),
           ),
         ),
       ),
     );
-  }
-);
+  });
 
   Future.delayed(const Duration(seconds: 3), () {
     controller.reverse();
-    Future.delayed(const Duration(milliseconds: 500), () => overlayEntry.remove());
+    Future.delayed(
+        const Duration(milliseconds: 500), () => overlayEntry.remove());
   });
 
   Overlay.of(SizeConfig.appContext!).insert(overlayEntry);
 }
-
 
 showCreateFacultyScreen() {
   // return showDialog(
@@ -73,11 +75,10 @@ showCreateFacultyScreen() {
   // );
   return Navigator.of(SizeConfig.appContext!).push(
     DialogRoute(
-      context: SizeConfig.appContext!,
-      builder: (_) => const Center(
-        child: CreateFacultyScreen(),
-      )
-    ),
+        context: SizeConfig.appContext!,
+        builder: (_) => const Center(
+              child: CreateFacultyScreen(),
+            )),
   );
 }
 
@@ -99,59 +100,67 @@ showCreateClassInstanceScreen() {
   );
 }
 
-showSelectUsersDialog(
-  {
-    required List<UserModel> usersToSelectFrom, 
-    required List<UserModel> selectedUsers, 
-    required Function(List<UserModel> data) press,
-    selectionLimit = 10, 
-  }) {
+showSelectUsersDialog({
+  required List<UserModel> usersToSelectFrom,
+  required List<UserModel> selectedUsers,
+  required Function(List<UserModel> data) press,
+  selectionLimit = 10,
+}) {
   return showDialog(
-    context: SizeConfig.appContext!, 
+    context: SizeConfig.appContext!,
     builder: (context) {
-      return SelectUsersScreen(users: usersToSelectFrom, selectedUsers: selectedUsers, selectionLimit: selectionLimit, press: press);
+      return SelectUsersScreen(
+          users: usersToSelectFrom,
+          selectedUsers: selectedUsers,
+          selectionLimit: selectionLimit,
+          press: press);
     },
   );
 }
 
-showSelectFacultyDialog(
-  {
-    required List<FacultyModel> facultyToSelectFrom, 
-    required List<FacultyModel> selectedFaculties, 
-    required Function(List<FacultyModel> data) press,
-    selectionLimit = 10, 
-  }) {
+showSelectFacultyDialog({
+  required List<FacultyModel> facultyToSelectFrom,
+  required List<FacultyModel> selectedFaculties,
+  required Function(List<FacultyModel> data) press,
+  selectionLimit = 10,
+}) {
   return showDialog(
-    context: SizeConfig.appContext!, 
+    context: SizeConfig.appContext!,
     builder: (context) {
-      return SelectFacultyScreen(faculties: facultyToSelectFrom, selectedFaculties: selectedFaculties, selectionLimit: selectionLimit, press: press);
-    },
-  );
-}
-showCreateScheduleDialog(
-  {
-    required ClassModuleModel module,
-    required int moduleCount,
-    required Function(int moduleIndex, ClassModuleModel newModule) updateModule, 
-  }) {
-  return showDialog(
-    context: SizeConfig.appContext!, 
-    builder: (context) {
-      return FormSchedules(module: module, index: moduleCount, updateModule: updateModule);
+      return SelectFacultyScreen(
+          faculties: facultyToSelectFrom,
+          selectedFaculties: selectedFaculties,
+          selectionLimit: selectionLimit,
+          press: press);
     },
   );
 }
 
-showCreateClassworkDialog(
-  {
-    required ClassScheduleModel schedule,
-    required int index,
-    required Function(int scheduleIndex, ClassScheduleModel newSchedule) updateSchedule,
-  }) {
+showCreateScheduleDialog({
+  required ClassModuleModel module,
+  required int moduleCount,
+  required Function(int moduleIndex, ClassModuleModel newModule) updateModule,
+}) {
   return showDialog(
-    context: SizeConfig.appContext!, 
+    context: SizeConfig.appContext!,
     builder: (context) {
-      return FormClassworkScreen(schedule: schedule, index: index, updateSchedule: updateSchedule);
+      return FormSchedules(
+          module: module, index: moduleCount, updateModule: updateModule);
+    },
+  );
+}
+
+showCreateClassworkDialog({
+  required ClassScheduleModel schedule,
+  required int index,
+  required Function(int scheduleIndex, ClassScheduleModel newSchedule)
+      updateSchedule,
+}) {
+  return showDialog(
+    context: SizeConfig.appContext!,
+    builder: (context) {
+      return FormClassworkScreen(
+          schedule: schedule, index: index, updateSchedule: updateSchedule);
     },
   );
 }
@@ -159,12 +168,14 @@ showCreateClassworkDialog(
 showSetDateAndTime({
   required ClassScheduleModel schedule,
   required int index,
-  required Function(int scheduleIndex, ClassScheduleModel newSchedule) updateSchedule,
+  required Function(int scheduleIndex, ClassScheduleModel newSchedule)
+      updateSchedule,
 }) {
   return showDialog(
     context: SizeConfig.appContext!,
     builder: (context) {
-      return FormSetDateAndTime(schedule: schedule, index: index, updateSchedule: updateSchedule);
+      return FormSetDateAndTime(
+          schedule: schedule, index: index, updateSchedule: updateSchedule);
     },
   );
 }
@@ -175,22 +186,22 @@ showSetTime({
   MyTimeOfDay? defaultTime,
   required dynamic Function(MyTimeOfDay) press,
 }) {
-
-  return Navigator.of(SizeConfig.appContext!).push(
-    DialogRoute(
-      context: SizeConfig.appContext!,
-      builder: (_) => Center(
-        child: FormSetTime(title: title, press: press, defaultTime: defaultTime, prevSelectedTime: prevSelectedTime),
-      ), 
-    )
-  );
+  return Navigator.of(SizeConfig.appContext!).push(DialogRoute(
+    context: SizeConfig.appContext!,
+    builder: (_) => Center(
+      child: FormSetTime(
+          title: title,
+          press: press,
+          defaultTime: defaultTime,
+          prevSelectedTime: prevSelectedTime),
+    ),
+  ));
 }
 
 showScheduleTimeGenerator({
   required List<ClassModuleModel> modules,
   required Function(List<ClassModuleModel> modules) press,
 }) {
-
   return showDialog(
     context: SizeConfig.appContext!,
     builder: (_) {
@@ -198,4 +209,3 @@ showScheduleTimeGenerator({
     },
   );
 }
-

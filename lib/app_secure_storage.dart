@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:neocloud_mobile/graphql/graphql_config.dart';
 
 class AppSecureStorage {
-  static final _storage = new FlutterSecureStorage();
+  static const _storage = FlutterSecureStorage();
   static const _tokenKey = "access_token";
   static const _refreshTokenKey = "refresh_token";
   static String tokenPattern = r'^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+$';

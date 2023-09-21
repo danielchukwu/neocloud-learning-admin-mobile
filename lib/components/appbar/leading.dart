@@ -17,18 +17,17 @@ class LeadingBackButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-
         GestureDetector(
           onTap: () {
             Navigator.pop(context);
           },
           child: Container(
             color: kWhite,
-            padding: EdgeInsets.fromLTRB(defaultSize * 2, defaultSize * 2, defaultSize * 1.5, defaultSize * 2),
+            padding: const EdgeInsets.fromLTRB(20, 20, 15, 20),
             child: Icon(
               Icons.arrow_back_ios,
               color: isDark ? kBlack80 : kWhite,
-              size: defaultSize * 2.5,
+              size: 25,
             ),
           ),
         )

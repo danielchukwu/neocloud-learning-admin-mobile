@@ -28,14 +28,14 @@ class UserTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.transparent,
-      padding: EdgeInsets.only(bottom: defaultSize * 2),
+      padding: const EdgeInsets.only(bottom: 20),
       child: Row(
         children: <Widget>[
           // Avatar
           CircleAvatar(
-              backgroundImage: AssetImage(user.avatar ?? 'img'), radius: defaultSize * 2.8),
+              backgroundImage: AssetImage(user.avatar ?? 'img'), radius: 28),
           // StackedImageAndDot(img: avatar, text: "1"),
-          SizedBox(width: defaultSize * 2),
+          const SizedBox(width: 20),
           // Name and Role
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +43,9 @@ class UserTile extends StatelessWidget {
               TextMedium(
                   title: user.name, weight: FontWeight.w600, color: kBlack90),
               TextMedium(
-                  title: user.role!.name, weight: FontWeight.w500, color: kBlack50),
+                  title: user.role!.name,
+                  weight: FontWeight.w500,
+                  color: kBlack50),
             ],
           ),
 
@@ -79,11 +81,11 @@ class ClassTile extends StatelessWidget {
           // Class Avatar
           Image.asset(
             clas.avatar ?? '',
-            width: defaultSize * 9,
+            width: 90,
           ),
 
           // Class Info
-          SizedBox(width: defaultSize * 2),
+          const SizedBox(width: 20),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,33 +95,35 @@ class ClassTile extends StatelessWidget {
                   title: clas.name,
                   weight: FontWeight.w600,
                   color: kBlack90,
-                  fontSize: defaultSize * 1.8,
+                  fontSize: 18,
                   maxLines: 2,
                 ),
 
                 // Avatar and Name
-                SizedBox(height: defaultSize * .5),
+                const SizedBox(height: 5),
                 buildAvatarAndName(
-                  avatar: clas.educators != null && clas.educators!.length > 0 
-                    ? clas.educators![0].avatar ?? '' : '',
-                  name: clas.educators != null && clas.educators!.length > 0 
-                    ? clas.educators![0].name : 'daniel',
-                  imgSize: defaultSize * 2.5,
-                  fontSize: defaultSize * 1.6,
+                  avatar: clas.educators != null && clas.educators!.length > 0
+                      ? clas.educators![0].avatar ?? ''
+                      : '',
+                  name: clas.educators != null && clas.educators!.length > 0
+                      ? clas.educators![0].name
+                      : 'daniel',
+                  imgSize: 25,
+                  fontSize: 16,
                   weight: FontWeight.w600,
                 ),
 
                 // Time of next class
-                SizedBox(height: defaultSize * .5),
+                const SizedBox(height: 5),
                 IconText(
                   title: '10:30 - 12:30',
                   icon: Icons.watch_later_rounded,
-                  fontSize: defaultSize * 1.4,
-                  iconSize: defaultSize * 1.6,
+                  fontSize: 14,
+                  iconSize: 16,
                   iconColor: kBlack70,
                 ),
 
-                SizedBox(height: defaultSize * 2),
+                const SizedBox(height: 20),
               ],
             ),
           )
@@ -150,7 +154,7 @@ class UserActivityTile extends StatelessWidget {
           // Images
           StackedImageAndDot(img: user.avatar!, text: "2"),
           // Users name and Live - Time
-          SizedBox(width: defaultSize * 1.5),
+          const SizedBox(width: 15),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -159,13 +163,13 @@ class UserActivityTile extends StatelessWidget {
               //   svg: getRoleSvgFileName(roleList: user.role),
               //   title: user.fullName,
               //   weight: FontWeight.w600,
-              //   fontSize: defaultSize * 1.6,
+              //   fontSize: 16,
               // ),
               IconText(
                 title: user.name,
                 color: kBlack80,
                 fontWeight: FontWeight.w600,
-                fontSize: defaultSize * 1.6,
+                fontSize: 16,
                 iconIsLeft: false,
                 svg: getRoleSvgFileName(role: user.role?.name),
                 iconSize: 16,
@@ -175,8 +179,8 @@ class UserActivityTile extends StatelessWidget {
               AppsTextRich(
                 text1: "Live",
                 text2: "10:00-1:30",
-                text1FontSize: defaultSize * 1.4,
-                text2FontSize: defaultSize * 1.4,
+                text1FontSize: 14,
+                text2FontSize: 14,
                 text1Color: kBlue,
                 text2Color: kBlack50,
                 text1FontWeight: FontWeight.w700,
@@ -189,8 +193,7 @@ class UserActivityTile extends StatelessWidget {
   }
 }
 
-
-/// This user tile allows for users to select them or not and if one is selected it gets a 
+/// This user tile allows for users to select them or not and if one is selected it gets a
 /// blue background style and if not it gets no background styles. it also calls a function
 class UserSelectionTile extends StatefulWidget {
   const UserSelectionTile({
@@ -200,7 +203,7 @@ class UserSelectionTile extends StatefulWidget {
     this.isSelected = true,
     this.disableSelection = false,
   });
-  
+
   final UserModel user;
   final void Function(UserModel user) press;
   final bool disableSelection;
@@ -223,7 +226,7 @@ class _UserSelectionTileState extends State<UserSelectionTile> {
     print('isSelected: ${isSelected}');
     return GestureDetector(
       onTap: () => setState(() {
-        // only select if 
+        // only select if
         if (widget.disableSelection == false || isSelected == true) {
           isSelected = !isSelected;
           widget.press(widget.user);
@@ -231,14 +234,14 @@ class _UserSelectionTileState extends State<UserSelectionTile> {
       }),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        decoration:  isSelected 
-          ? BoxDecoration(
-            color: kBlueLight.withOpacity(.12),
-            border: Border.all(width: 2, color: kBlueLight),
-            borderRadius: const BorderRadius.all(Radius.circular(10))) 
-          : BoxDecoration(
-          border: Border.all(width: 2, color: Colors.transparent),
-        ),
+        decoration: isSelected
+            ? BoxDecoration(
+                color: kBlueLight.withOpacity(.12),
+                border: Border.all(width: 2, color: kBlueLight),
+                borderRadius: const BorderRadius.all(Radius.circular(10)))
+            : BoxDecoration(
+                border: Border.all(width: 2, color: Colors.transparent),
+              ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -248,13 +251,17 @@ class _UserSelectionTileState extends State<UserSelectionTile> {
                 // Avatar
                 RoundBoxAvatar(size: 40, image: widget.user.avatar),
 
-                // Column - Name, Role 
-                SizedBox(width: defaultSize * 1.5),
+                // Column - Name, Role
+                const SizedBox(width: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextMedium(title: widget.user.name, weight: FontWeight.w600, color: kBlack80),
-                    const TextSmall(title: '{widget.user.role.name}', color: Colors.black54)
+                    TextMedium(
+                        title: widget.user.name,
+                        weight: FontWeight.w600,
+                        color: kBlack80),
+                    const TextSmall(
+                        title: '{widget.user.role.name}', color: Colors.black54)
                   ],
                 )
               ],
@@ -266,8 +273,7 @@ class _UserSelectionTileState extends State<UserSelectionTile> {
   }
 }
 
-
-/// This faculty tile allows for users to select them or not and if one is selected it gets a 
+/// This faculty tile allows for users to select them or not and if one is selected it gets a
 /// blue background style and if not it gets no background styles. it also calls a function
 class FacultySelectionTile extends StatefulWidget {
   const FacultySelectionTile({
@@ -277,7 +283,7 @@ class FacultySelectionTile extends StatefulWidget {
     this.isSelected = true,
     this.disableSelection = false,
   });
-  
+
   final FacultyModel faculty;
   final void Function(FacultyModel faculty) press;
   final bool disableSelection;
@@ -299,7 +305,7 @@ class _FacultySelectionTileState extends State<FacultySelectionTile> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => setState(() {
-        // only select if 
+        // only select if
         if (widget.disableSelection == false || isSelected == true) {
           isSelected = !isSelected;
           widget.press(widget.faculty);
@@ -307,14 +313,14 @@ class _FacultySelectionTileState extends State<FacultySelectionTile> {
       }),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        decoration:  isSelected 
-          ? BoxDecoration(
-            color: kBlueLight.withOpacity(.12),
-            border: Border.all(width: 2, color: kBlueLight),
-            borderRadius: const BorderRadius.all(Radius.circular(10))) 
-          : BoxDecoration(
-          border: Border.all(width: 2, color: Colors.transparent),
-        ),
+        decoration: isSelected
+            ? BoxDecoration(
+                color: kBlueLight.withOpacity(.12),
+                border: Border.all(width: 2, color: kBlueLight),
+                borderRadius: const BorderRadius.all(Radius.circular(10)))
+            : BoxDecoration(
+                border: Border.all(width: 2, color: Colors.transparent),
+              ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -322,8 +328,13 @@ class _FacultySelectionTileState extends State<FacultySelectionTile> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextMedium(title: widget.faculty.name, weight: FontWeight.w600, color: kBlack80),
-                const TextSmall(title: '{widget.faculty.hod.name} (HOD)', color: Colors.black54)
+                TextMedium(
+                    title: widget.faculty.name,
+                    weight: FontWeight.w600,
+                    color: kBlack80),
+                const TextSmall(
+                    title: '{widget.faculty.hod.name} (HOD)',
+                    color: Colors.black54)
               ],
             )
           ],
@@ -332,8 +343,6 @@ class _FacultySelectionTileState extends State<FacultySelectionTile> {
     );
   }
 }
-
-
 
 class TitleAndSetTimeTile extends StatefulWidget {
   const TitleAndSetTimeTile({
@@ -349,12 +358,13 @@ class TitleAndSetTimeTile extends StatefulWidget {
 
 class _TitleAndSetTimeTileState extends State<TitleAndSetTimeTile> {
   late DayandTime _daytime;
-  
+
   @override
   void initState() {
     super.initState();
     _daytime = widget.daytime;
   }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -366,39 +376,41 @@ class _TitleAndSetTimeTileState extends State<TitleAndSetTimeTile> {
           color: Colors.grey[800],
           weight: FontWeight.w600,
         ),
-        
+
         // Set Time or Time Selected
         InkWell(
           onTap: () {
             showSetTime(
-              title: 'End Time',
-              defaultTime: _daytime.endTime,
-              press: (timeOfDay) {
-                if (_daytime.startTime != null && compareTimeOfDay(timeOfDay, _daytime.startTime!)) return;
-                setState(() => _daytime.endTime = timeOfDay );
-              }
-            );
+                title: 'End Time',
+                defaultTime: _daytime.endTime,
+                press: (timeOfDay) {
+                  if (_daytime.startTime != null &&
+                      compareTimeOfDay(timeOfDay, _daytime.startTime!)) return;
+                  setState(() => _daytime.endTime = timeOfDay);
+                });
             showSetTime(
-              title: 'Start Time',
-              defaultTime: _daytime.startTime,
-              press: (timeOfDay) {
-                if (_daytime.endTime != null && compareTimeOfDay(timeOfDay, _daytime.endTime!)) return;
-                setState(() => _daytime.startTime = timeOfDay );
-              }
-            );
+                title: 'Start Time',
+                defaultTime: _daytime.startTime,
+                press: (timeOfDay) {
+                  if (_daytime.endTime != null &&
+                      compareTimeOfDay(timeOfDay, _daytime.endTime!)) return;
+                  setState(() => _daytime.startTime = timeOfDay);
+                });
           },
           child: Container(
             width: 120,
             height: 30,
             decoration: BoxDecoration(
-              color: timeIsSet(widget.daytime) ? Colors.white : kBlueLight,
-              border: Border.all(color: Colors.black26, width: 1),
-              borderRadius: const BorderRadius.all(Radius.circular(5))
-            ),
+                color: timeIsSet(widget.daytime) ? Colors.white : kBlueLight,
+                border: Border.all(color: Colors.black26, width: 1),
+                borderRadius: const BorderRadius.all(Radius.circular(5))),
             child: Center(
               child: TextMedium(
-                title: timeIsSet(widget.daytime) ? getTimeFormat(widget.daytime) : 'Set Time',
-                color: timeIsSet(widget.daytime) ? Colors.black87 : Colors.white,
+                title: timeIsSet(widget.daytime)
+                    ? getTimeFormat(widget.daytime)
+                    : 'Set Time',
+                color:
+                    timeIsSet(widget.daytime) ? Colors.black87 : Colors.white,
                 textAlign: TextAlign.center,
               ),
             ),

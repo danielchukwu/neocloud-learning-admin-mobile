@@ -14,7 +14,6 @@ class ClassScheduleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       padding: screenPadding,
       decoration: BoxDecoration(
@@ -23,23 +22,23 @@ class ClassScheduleCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           // Educator {Avatar - Name}
-          SizedBox(height: defaultSize * 2),
+          const SizedBox(height: 20),
           // TODO: use actual educators when a form that connects everything has been used to connect things up
           buildAvatarAndName(
             // avatar: classwork.clas!.educators![0].avatar,
             // name: classwork.clas!.educators![0].name,
             avatar: defaultProfileAvatar,
             name: 'John Default',
-            fontSize: defaultSize * 1.6,
+            fontSize: 16,
             weight: FontWeight.w600,
           ),
 
           // Class Title
-          SizedBox(height: defaultSize),
+          const SizedBox(height: 10),
           buildCardHeader(title: classSchedule.title),
 
           // About
-          SizedBox(height: defaultSize * 1.5),
+          const SizedBox(height: 15),
           TextSmall(
             title: classSchedule.description ?? '',
             color: kBlack70,
@@ -47,24 +46,26 @@ class ClassScheduleCard extends StatelessWidget {
           ),
 
           // Bottom Tablets
-          SizedBox(height: defaultSize * 2),
+          const SizedBox(height: 20),
           Row(
             children: [
               IconText(
                   title: 'August 12',
                   icon: Icons.calendar_month,
                   iconColor: kBlack70,
-                  fontSize: defaultSize * 1.4),
-              SizedBox(width: defaultSize * 2,),
+                  fontSize: 14),
+              const SizedBox(
+                width: 20,
+              ),
               IconText(
                   title: '9:30 am - 12:30pm',
                   icon: Icons.timer,
                   iconColor: kBlack70,
-                  fontSize: defaultSize * 1.4),
+                  fontSize: 14),
             ],
           ),
 
-          SizedBox(height: defaultSize * 2.5),
+          const SizedBox(height: 25),
         ],
       ),
     );

@@ -41,7 +41,7 @@ class RoundBoxAvatar extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
-        border: Border.all(color: kWhite, width: defaultSize * borderSize),
+        border: Border.all(color: kWhite, width: 10 * borderSize),
         shape: BoxShape.circle,
         color: kBlack.withOpacity(.05),
       ),
@@ -69,7 +69,7 @@ class RoundBoxIcon extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        border: Border.all(color: kWhite, width: defaultSize * borderSize),
+        border: Border.all(color: kWhite, width: 10 * borderSize),
         shape: BoxShape.circle,
         color: kBlack.withOpacity(.05),
       ),

@@ -144,7 +144,7 @@ class CreateClassInstanceScreen extends StatelessWidget {
             child: TextInputError(text: c.modulesErrorMessage.value),
           ) : const SizedBox(),
           
-          FormModules(),
+          const FormModules(),
 
         ],
       )

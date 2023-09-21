@@ -28,7 +28,7 @@ class CardSections extends StatelessWidget {
   final bool showLabel;
   final bool showSeperator;
   final bool centralize;
-  final int  textOverflowLimit;
+  final int textOverflowLimit;
 
   @override
   Widget build(BuildContext context) {
@@ -41,15 +41,16 @@ class CardSections extends StatelessWidget {
               // Seperator
               index > 0 && showSeperator
                   ? Seperator(
-                      height: showLabel ? defaultSize * 4 : defaultSize * 2.1,
+                      height: showLabel ? 40 : 21,
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
               // Card Section
-              centralize ? Spacer() : SizedBox(),
-              !centralize && index > 0 ? SizedBox(width: defaultSize * 2) : SizedBox(),
+              centralize ? const Spacer() : const SizedBox(),
+              !centralize && index > 0
+                  ? const SizedBox(width: 20)
+                  : const SizedBox(),
               buildCardSection(index),
-              centralize ? Spacer() : SizedBox(),
-
+              centralize ? const Spacer() : const SizedBox(),
             ],
           ),
         );
@@ -64,14 +65,16 @@ class CardSections extends StatelessWidget {
         // Course Label
         showLabel
             ? TextMedium(
-                title: shortenText(text: '${data[index]["label"]}', limit: textOverflowLimit),
+                title: shortenText(
+                    text: '${data[index]["label"]}', limit: textOverflowLimit),
                 color: kBlack70,
                 weight: FontWeight.w500,
               )
-            : SizedBox(),
+            : const SizedBox(),
         // Course Title
         TextMedium(
-          title: shortenText(text: '${data[index]["title"]}', limit: textOverflowLimit),
+          title: shortenText(
+              text: '${data[index]["title"]}', limit: textOverflowLimit),
           color: kBlack70,
         ),
       ],

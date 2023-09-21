@@ -77,7 +77,7 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
             // Column - Search and Selected Faculties Count
             const SizedBox(height: 10),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
                   // Search
@@ -123,7 +123,7 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
                     children: List.generate(
                       facultiesToSelectFrom.length, 
                       (index) => Padding(
-                        padding: EdgeInsets.only(bottom: 10),
+                        padding: const EdgeInsets.only(bottom: 10),
                         child: FacultySelectionTile(
                           faculty: facultiesToSelectFrom[index],
                           isSelected: facultyIsSelected(facultiesToSelectFrom[index]),

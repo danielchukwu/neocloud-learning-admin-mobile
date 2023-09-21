@@ -23,7 +23,7 @@ class CartCard extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.only(bottom: defaultSize * 4),
+        padding: const EdgeInsets.only(bottom: 40),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -31,7 +31,7 @@ class CartCard extends StatelessWidget {
             buildCartImage(),
 
             // Item Details
-            SizedBox(width: defaultSize * 2),
+            const SizedBox(width: 20),
             buildCartInfo(),
           ],
         ),
@@ -49,14 +49,14 @@ class CartCard extends StatelessWidget {
               title: course.title, weight: FontWeight.w600, color: kBlack80),
 
           // Educator
-          SizedBox(height: defaultSize * .5),
+          const SizedBox(height: 5),
           TextSmall(
             title: course.user.fullName,
             color: kBlack50,
           ),
 
           // {percentage} discount
-          SizedBox(height: defaultSize * .5),
+          const SizedBox(height: 5),
           TextSmall(
             title: "${course.discount}% discount",
             color: kBlack70,
@@ -64,19 +64,19 @@ class CartCard extends StatelessWidget {
           ),
 
           // Price
-          SizedBox(height: defaultSize * .5),
+          const SizedBox(height: 5),
           AppsTextRich(
             text1: "N ${getMoneyFormat(course.price)}",
             text2:
                 "  NGN ${getMoneyFormat(course.price - (course.price * (course.discount ?? 0 / 100)))}",
-            text1FontSize: defaultSize * 1.4,
+            text1FontSize: 14,
             text1Decoration: TextDecoration.lineThrough,
             text2FontWeight: FontWeight.w600,
             text2Color: kBlack80,
           ),
 
           // Move to / Remove
-          SizedBox(height: defaultSize * 1.5),
+          const SizedBox(height: 15),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -89,7 +89,7 @@ class CartCard extends StatelessWidget {
               ),
 
               // Remove
-              SizedBox(width: defaultSize * 4),
+              const SizedBox(width: 40),
               TextLink(
                 title: "Remove",
                 press: (context) => print("Remove clicked ..."),
@@ -100,13 +100,13 @@ class CartCard extends StatelessWidget {
           ),
 
           // Purchase
-          SizedBox(height: defaultSize * 2),
+          const SizedBox(height: 20),
           AppsButton(
             title: "Purchase",
             press: (_) => print("Purchase Button clicked ..."),
-            padTopBottom: defaultSize * .3,
+            padTopBottom: 3,
             bgColor: kBlack80,
-            borderRadius: defaultSize * .5,
+            borderRadius: 5,
           )
         ],
       ),
@@ -115,8 +115,8 @@ class CartCard extends StatelessWidget {
 
   Container buildCartImage() {
     return Container(
-      height: defaultSize * 7,
-      width: defaultSize * 7,
+      height: 70,
+      width: 70,
       decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage(course.avatar), fit: BoxFit.cover)),

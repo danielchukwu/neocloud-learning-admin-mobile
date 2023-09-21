@@ -9,7 +9,7 @@ class Seperator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      width: defaultSize * .2,
+      width: 2,
       color: kBlack50,
     );
   }

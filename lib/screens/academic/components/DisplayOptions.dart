@@ -27,12 +27,12 @@ class DisplayOptions extends StatelessWidget {
       children: List.generate(
         rowCount,
         (index) => Container(
-          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               buildOptionButton(index * 2),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               buildOptionButton((index * 2) + 1),
             ],
           ),

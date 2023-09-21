@@ -23,8 +23,8 @@ class WelcomeButton extends StatelessWidget {
       onPressed: press,
       style: buildButtonStyle(),
       child: Container(
-        // width: defaultSize * 22,
-        padding: EdgeInsets.symmetric(vertical: defaultSize * 1),
+        // width: 220,
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Stack(
           children: [
             Center(
@@ -34,22 +34,22 @@ class WelcomeButton extends StatelessWidget {
             // Arrow
 
             iconIsLeading
-                ? Positioned(
-                    left: defaultSize * 1.2,
-                    top: defaultSize * .2,
+                ? const Positioned(
+                    left: 12,
+                    top: 2,
                     child: Icon(
                       Icons.arrow_back_ios,
                       color: Colors.white,
-                      size: defaultSize * 1.6,
+                      size: 16,
                     ),
                   )
-                : Positioned(
-                    right: defaultSize * 1.2,
-                    top: defaultSize * .2,
+                : const Positioned(
+                    right: 12,
+                    top: 2,
                     child: Icon(
                       Icons.arrow_forward_ios,
                       color: Colors.white,
-                      size: defaultSize * 1.6,
+                      size: 16,
                     ),
                   ),
           ],
@@ -113,7 +113,7 @@ class AppsButton extends StatelessWidget {
       onPressed: !isLoading ? () => press(context) : null,
       style: buildButtonStyle(),
       child: Container(
-        constraints: BoxConstraints(minHeight: defaultSize * 4, maxHeight: defaultSize * 4),    
+        constraints: const BoxConstraints(minHeight: 40, maxHeight: 40),    
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -284,17 +284,17 @@ class IconTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: defaultSize * 4.5,
+      height: 45,
       decoration: BoxDecoration(
         color: backgroundColor,
         border: Border.all(width: borderWidth, color: borderColor),
-        borderRadius: BorderRadius.circular(defaultSize)
+        borderRadius: BorderRadius.circular(10)
       ),
       child: TextButton(
         onPressed: press,
-        style: ButtonStyle(
+        style: const ButtonStyle(
           padding: MaterialStatePropertyAll<EdgeInsets>(
-            EdgeInsets.symmetric(horizontal: defaultSize * .7, vertical: 0)
+            EdgeInsets.symmetric(horizontal: 7, vertical: 0)
           )
           
         ),

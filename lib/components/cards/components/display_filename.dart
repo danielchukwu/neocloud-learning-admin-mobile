@@ -15,15 +15,15 @@ class DisplayFileName extends StatelessWidget {
     return Row(children: <Widget>[
       Expanded(
         child: Container(
-          padding: EdgeInsets.symmetric(
-              vertical: defaultSize * 1.5, horizontal: defaultSize * 1.5),
+          padding: const EdgeInsets.symmetric(
+              vertical: 15, horizontal: 15),
           decoration: BoxDecoration(
             color: kBlack.withOpacity(.1),
-            // borderRadius: BorderRadius.circular(defaultSize * .5),
+            // borderRadius: BorderRadius.circular(5),
           ),
           child: TextCustomMaxLine(
             title: title,
-            fontSize: defaultSize * 1.6,
+            fontSize: 16,
             weight: FontWeight.w600,
             color: kBlack50,
           ),

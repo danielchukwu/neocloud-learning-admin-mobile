@@ -36,7 +36,7 @@ class SystemLogosScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             SettingsFormHeader(
                 title: '$screenName Settings', subTitle: subText),
 
@@ -46,11 +46,11 @@ class SystemLogosScreen extends StatelessWidget {
                 logosList.length,
                 (index) => Column(children: <Widget>[
                   // Card Header  (Title and Change Btn)
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextMedium(title: 'Black Logo'),
+                      const TextMedium(title: 'Black Logo'),
                       TextLink(
                           title: 'Change',
                           press: (context) {},

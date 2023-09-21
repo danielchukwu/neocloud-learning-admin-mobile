@@ -24,11 +24,11 @@ class EducatorInfo extends StatelessWidget {
         ),
 
         // Educator gradient card info
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         EducatorCard(user: user),
 
         // About Educator
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         TextSeeMore(text: user.about),
       ],
     );
@@ -49,34 +49,34 @@ class EducatorCard extends StatelessWidget {
       child: Row(
         children: <Widget>[
           // Avatar
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           buildAvatar(),
 
           // User Info
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.only(right: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Spacer(),
+                  const Spacer(),
                   // Users full name
                   buildName(),
 
                   // Ratings
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   buildRatings(),
 
                   // Row (reviews & courses)
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   buildReviesCoursesCount(),
 
                   // Students
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   buildStudentsCount(),
 
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
             ),

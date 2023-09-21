@@ -29,7 +29,7 @@ class PersonelNavBar extends StatelessWidget {
             splashColor: appsSplashColor,
             radius: appsSplashRadius,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 15, 20, 0),
+              padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
               child: Column(
                 children: <Widget>[
                   // Title
@@ -39,7 +39,7 @@ class PersonelNavBar extends StatelessWidget {
                     color: index == selectedIndex ? kBlack90 : kBlack50,
                   ),
                   // Selector
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 100),
                     curve: Curves.easeIn,

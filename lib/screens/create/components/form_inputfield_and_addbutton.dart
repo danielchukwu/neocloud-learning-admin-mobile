@@ -69,7 +69,7 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Count
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         const SizedBox(
           width: 30,
           child: Padding(
@@ -102,7 +102,7 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
   InputDecoration textAreaDecoration() {
     return InputDecoration(
       hintText: widget.hintText,
-      contentPadding: EdgeInsets.symmetric(vertical: 15),
+      contentPadding: const EdgeInsets.symmetric(vertical: 15),
       hintStyle: appsTextStyle(color: Colors.black54),
       border: const OutlineInputBorder(borderSide: BorderSide.none)
     );

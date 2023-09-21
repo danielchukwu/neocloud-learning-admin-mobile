@@ -29,7 +29,7 @@ class ClassWorkCard extends StatelessWidget {
                   builder: (context) => ClassWorkScreen(classwork: classwork),
                 ),
               )
-          : () => SizedBox(),
+          : () => const SizedBox(),
       child: Container(
         // padding: screenPadding,
         decoration: BoxDecoration(
@@ -38,12 +38,12 @@ class ClassWorkCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             // Top Section - Title, Avatar, Body
-            SizedBox(height: defaultSize * 1.5),
+            const SizedBox(height: 15),
             TheClassworkCard(classwork: classwork),
 
             // Feedback
-            SizedBox(height: defaultSize * 2),
-            showFeedback ? buildClassworkFeedbacks() : SizedBox(),
+            const SizedBox(height: 20),
+            showFeedback ? buildClassworkFeedbacks() : const SizedBox(),
           ],
         ),
       ),
@@ -56,9 +56,9 @@ class ClassWorkCard extends StatelessWidget {
       children: [
         // Feedback Header
         Container(
-          padding: EdgeInsets.symmetric(
-            vertical: defaultSize * 1.4,
-            horizontal: defaultSize * 2,
+          padding: const EdgeInsets.symmetric(
+            vertical: 14,
+            horizontal: 20,
           ),
           decoration: BoxDecoration(
               border: Border(
@@ -72,27 +72,27 @@ class ClassWorkCard extends StatelessWidget {
                 smallText: 'Submission',
                 bigTextColor: kBlack80,
                 smallTextColor: kBlack60,
-                smallTextSize: defaultSize * 1.6,
+                smallTextSize: 16,
               ),
-              SizedBox(
-                width: defaultSize,
+              const SizedBox(
+                width: 10,
               ),
               TextBigSmall(
                 bigText: '3',
                 smallText: 'Feedbacks',
                 bigTextColor: kBlack80,
                 smallTextColor: kBlack60,
-                smallTextSize: defaultSize * 1.6,
+                smallTextSize: 16,
               ),
-              SizedBox(
-                width: defaultSize,
+              const SizedBox(
+                width: 10,
               ),
               TextBigSmall(
                 bigText: '1',
                 smallText: 'Student Left',
                 bigTextColor: kBlack80,
                 smallTextColor: kBlack60,
-                smallTextSize: defaultSize * 1.6,
+                smallTextSize: 16,
               )
             ],
           ),
@@ -100,8 +100,7 @@ class ClassWorkCard extends StatelessWidget {
 
         // Feedback Body
         Container(
-          padding: EdgeInsets.symmetric(
-              vertical: defaultSize * 2, horizontal: defaultSize * 1.5),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
           decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: kBlack50, width: .2))),
           child: Row(
@@ -111,13 +110,13 @@ class ClassWorkCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 0),
                 child: RoundBoxAvatar(
-                    size: defaultSize * 5,
+                    size: 50,
                     image: classwork.clas!.educators![0].avatar ?? ''),
               ),
 
               // Notifications Info
-              SizedBox(
-                width: defaultSize * 1.5,
+              const SizedBox(
+                width: 15,
               ),
               Expanded(
                 child: Column(
@@ -131,7 +130,7 @@ class ClassWorkCard extends StatelessWidget {
                     ),
 
                     // Notification Body
-                    SizedBox(height: defaultSize),
+                    const SizedBox(height: 10),
                     TextMedium(title: classwork.body, color: kBlack70),
                   ],
                 ),
@@ -173,46 +172,45 @@ class TheClassworkCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: defaultSize),
+          const SizedBox(height: 10),
           // TODO: use actual educators when a form that connects everything has been used to connect things up
           buildAvatarAndName(
               // avatar: classwork.clas!.educators![0].avatar,
               // name: classwork.clas!.educators![0].name,
               avatar: defaultProfileAvatar,
               name: 'John Default',
-              fontSize: defaultSize * 1.6,
+              fontSize: 16,
               weight: FontWeight.w600),
 
           // Class Title
-          SizedBox(height: defaultSize * .5),
+          const SizedBox(height: 5),
           buildCardHeader(title: classwork.title),
 
           // Description
-          SizedBox(height: defaultSize),
+          const SizedBox(height: 10),
           TextMedium(title: classwork.body ?? '', color: kBlack70),
 
           // Bottom Tablets
-          SizedBox(height: defaultSize * 2.5),
+          const SizedBox(height: 25),
           Row(
             children: [
               IconText(
                 title: 'Due August 12 - 3pm',
                 icon: Icons.watch,
                 iconColor: kBlack70,
-                fontSize: defaultSize * 1.4,
+                fontSize: 14,
               ),
-              SizedBox(
-                width: defaultSize * 2,
+              const SizedBox(
+                width: 20,
               ),
               IconText(
                 title: classwork.clas!.name,
                 icon: Icons.school,
                 iconColor: kBlack70,
-                fontSize: defaultSize * 1.4,
+                fontSize: 14,
               ),
             ],
           ),
-          
         ],
       ),
     );

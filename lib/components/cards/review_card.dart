@@ -15,7 +15,7 @@ class ReviewCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         // name
-        SizedBox(height: defaultSize * 2),
+        const SizedBox(height: 20),
         TextLarge(
           title: review.name,
           weight: FontWeight.w500,
@@ -23,16 +23,16 @@ class ReviewCard extends StatelessWidget {
         ),
 
         // ratings
-        SizedBox(height: defaultSize * .5),
+        const SizedBox(height: 5),
         Ratings(
             rating: review.rating,
             reviewsCount: 0,
-            iconSize: defaultSize * 2,
+            iconSize: 20,
             showReviews: false,
             showRatingsText: false),
 
         // content
-        SizedBox(height: defaultSize * .5),
+        const SizedBox(height: 5),
         TextMedium(title: review.content, color: kBlack70),
       ],
     );

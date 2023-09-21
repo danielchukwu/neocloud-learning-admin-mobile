@@ -37,9 +37,9 @@ class AppsBottomNavBar extends StatelessWidget {
                 splashColor: appsSplashColor,
                 radius: appsSplashRadius,
                 child: Container(
-                  padding: EdgeInsets.only(
-                    top: defaultSize,
-                    bottom: defaultSize * 2.4,
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    bottom: 24,
                   ),
                   child: SvgPicture.asset(
                     navItems.getSelectedIndex() == index

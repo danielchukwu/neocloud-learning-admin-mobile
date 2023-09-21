@@ -56,35 +56,35 @@ class FacultyCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Faculty Title
-                SizedBox(height: defaultSize * 1),
+                const SizedBox(height: 10),
                 TextBigSmall(
                   bigText: bigText,
                   smallText: smallText,
-                  bigTextSize: defaultSize * 4,
+                  bigTextSize: 40,
                   bigTextWeight: FontWeight.w200,
-                  smallTextSize: defaultSize * 1.6,
+                  smallTextSize: 16,
                   smallTextWeight: FontWeight.w600,
                 ),
 
                 // Faculty Owner
-                SizedBox(height: defaultSize),
+                const SizedBox(height: 10),
                 buildAvatarAndName(
                     avatar: faculty.hod!.avatar ?? 'assets/dps/1.jpg',
                     name: faculty.hod!.name,
-                    fontSize: defaultSize * 1.6,
+                    fontSize: 16,
                     weight: FontWeight.w600),
 
                 // Faculty intro description
-                SizedBox(height: defaultSize * 2),
+                const SizedBox(height: 20),
                 TextCustomMaxLine(
                   title: faculty.about ?? 'about not found',
                   color: kBlack70,
-                  fontSize: defaultSize * 1.6,
+                  fontSize: 16,
                   maxLines: 2,
                 ),
 
                 // Bottom Tablets
-                SizedBox(height: defaultSize * 2),
+                const SizedBox(height: 20),
                 Wrap(
                   spacing: 10,
                   runSpacing: 10,
@@ -101,7 +101,7 @@ class FacultyCard extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: defaultSize * 2.5),
+                const SizedBox(height: 25),
               ],
             ),
           ),

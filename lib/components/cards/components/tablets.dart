@@ -17,15 +17,15 @@ class TextColorTablet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-          vertical: defaultSize * .5, horizontal: defaultSize),
+      padding: const EdgeInsets.symmetric(
+          vertical: 5, horizontal: 10),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [bgColor, bgColor.withOpacity(.95)],
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
         ),
-        borderRadius: BorderRadius.circular(defaultSize * .5),
+        borderRadius: BorderRadius.circular(5),
       ),
       child: TextSmall(
         title: title,

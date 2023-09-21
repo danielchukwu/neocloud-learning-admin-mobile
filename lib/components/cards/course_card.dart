@@ -27,25 +27,25 @@ class CourseCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           // Course Image
-          RectangularBoxImage(img: course.avatar, height: defaultSize * 22),
+          RectangularBoxImage(img: course.avatar, height: 220),
 
           // Course Body - Title, tutor, price
-          SizedBox(height: defaultSize),
+          const SizedBox(height: 10),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: defaultSize * 1.5),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Title
                 TextCustom(
                   title: course.title,
-                  fontSize: defaultSize * 2.2,
+                  fontSize: 22,
                   color: kBlack80,
                   weight: FontWeight.w700,
                 ),
 
                 // Name and Ratings
-                SizedBox(height: defaultSize * .5),
+                const SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -54,7 +54,7 @@ class CourseCard extends StatelessWidget {
                     const Spacer(),
                     // Ratings
                     TextMedium(title: getRatingFormat(course.rating)),
-                    SizedBox(width: defaultSize),
+                    const SizedBox(width: 10),
                     Icon(
                       Icons.star,
                       color: kOrange,
@@ -63,7 +63,7 @@ class CourseCard extends StatelessWidget {
                 ),
 
                 // Price
-                SizedBox(height: defaultSize * .5),
+                const SizedBox(height: 5),
                 TextExtraLarge(
                   title: "N ${getMoneyFormat(course.price)}",
                   color: kBlack80,
@@ -73,7 +73,7 @@ class CourseCard extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: defaultSize * 3),
+          const SizedBox(height: 30),
         ],
       ),
     );

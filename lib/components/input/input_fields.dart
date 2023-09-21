@@ -11,7 +11,7 @@ class LoginInputField extends StatefulWidget {
   final String? Function(String? value) press;
   final String? Function(String? value) validate;
 
-  LoginInputField({
+  const LoginInputField({
     Key? key,
     required this.labelText,
     required this.press,
@@ -27,12 +27,12 @@ class _LoginInputFieldState extends State<LoginInputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(defaultSize)),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: ClipRRect(
         clipBehavior: Clip.antiAlias,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(defaultSize)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
         child: TextFormField(
           keyboardType: getKeyboardType(widget.labelText),
           obscureText: widget.obsureText,
@@ -59,12 +59,12 @@ class _LoginInputFieldState extends State<LoginInputField> {
   // Style - our form fields input text styles
   TextStyle buildInputTextStyle() {
     return TextStyle(
-      fontSize: defaultSize * 1.8,
+      fontSize: 18,
       fontWeight: FontWeight.w500,
       color: kBlack60,
     );
   }
-  
+
   TextInputType getKeyboardType(String labelText) {
     switch (labelText.toLowerCase()) {
       case "email":
@@ -103,7 +103,7 @@ class _InputFieldSettingsState extends State<InputFieldSettings> {
       decoration: InputDecoration(
         hintText: widget.fieldName,
       ),
-      style: TextStyle(),
+      style: const TextStyle(),
       validator: (value) {
         return null;
       },
@@ -115,8 +115,6 @@ class _InputFieldSettingsState extends State<InputFieldSettings> {
     );
   }
 }
-
-
 
 // TextField
 class AppsTextField extends StatefulWidget {
@@ -166,9 +164,9 @@ class _AppsTextFieldState extends State<AppsTextField> {
       textInputAction: TextInputAction.search,
       style: appsTextStyle(fontWeight: FontWeight.w400, color: kBlack80),
       onSubmitted: widget.onSubmitPress,
-      onChanged: (String value) { 
+      onChanged: (String value) {
         hideOrRevealCancel();
-        if (widget.onChangePress != null){
+        if (widget.onChangePress != null) {
           widget.onChangePress!(_controller.text);
         }
       },
@@ -178,12 +176,13 @@ class _AppsTextFieldState extends State<AppsTextField> {
 
   InputDecoration buildDecoration() {
     return InputDecoration(
-      contentPadding: EdgeInsets.symmetric(vertical: defaultSize),
-      prefixIcon:
-          widget.prefixIcon != null ? Icon(widget.prefixIcon) : SizedBox(),
+      contentPadding: const EdgeInsets.symmetric(vertical: 10),
+      prefixIcon: widget.prefixIcon != null
+          ? Icon(widget.prefixIcon)
+          : const SizedBox(),
       suffixIcon: widget.showCancel != null && !hideCancel
           ? IconButton(
-              icon: Icon(Icons.cancel, size: defaultSize * 2),
+              icon: const Icon(Icons.cancel, size: 20),
               onPressed: () {
                 _controller.clear();
                 setState(() {
@@ -191,7 +190,7 @@ class _AppsTextFieldState extends State<AppsTextField> {
                 });
               },
             )
-          : SizedBox(),
+          : const SizedBox(),
       prefixIconColor: kBlack50,
       suffixIconColor: kBlack50,
       hintText: widget.hintText,
@@ -217,13 +216,12 @@ class _AppsTextFieldState extends State<AppsTextField> {
   }
 }
 
-
 class FormInputField extends StatelessWidget {
   const FormInputField({
     super.key,
     this.controller,
     this.hintText = 'Enter Something',
-    this.fontSize = 16, 
+    this.fontSize = 16,
     this.fontWeight = FontWeight.w400,
     required this.validator,
     required this.press,
@@ -240,13 +238,13 @@ class FormInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: appsTextStyle(fontSize: fontSize, color: Colors.black87, fontWeight: fontWeight),
+      style: appsTextStyle(
+          fontSize: fontSize, color: Colors.black87, fontWeight: fontWeight),
       decoration: InputDecoration(
-        hintText: hintText,
-        contentPadding: EdgeInsets.zero,
-        hintStyle: appsTextStyle(fontSize: fontSize, color: Colors.black38),
-        border: const OutlineInputBorder(borderSide: BorderSide.none)
-      ),
+          hintText: hintText,
+          contentPadding: EdgeInsets.zero,
+          hintStyle: appsTextStyle(fontSize: fontSize, color: Colors.black38),
+          border: const OutlineInputBorder(borderSide: BorderSide.none)),
       validator: validator,
       onSaved: press,
     );
@@ -260,7 +258,7 @@ class FormTextarea extends StatelessWidget {
     this.fontSize = 14,
     this.fontWeight = FontWeight.w400,
     this.textColor = Colors.black87,
-    this.hintText = 'Textarea', 
+    this.hintText = 'Textarea',
     this.maxLines = 10,
     required this.validator,
     required this.press,
@@ -293,15 +291,21 @@ class FormTextarea extends StatelessWidget {
       minLines: 1,
       maxLines: maxLines,
       onTapOutside: onTapOutside,
-      textInputAction: pressOnKeyboardDone != null ? TextInputAction.done : null,  // Display done in keyboard
-      onEditingComplete: pressOnKeyboardDone,   // execute function when done is clicked on the keyboard
-      style: appsTextStyle(color: textColor, fontSize: fontSize, fontWeight: fontWeight),
+      textInputAction: pressOnKeyboardDone != null
+          ? TextInputAction.done
+          : null, // Display done in keyboard
+      onEditingComplete:
+          pressOnKeyboardDone, // execute function when done is clicked on the keyboard
+      style: appsTextStyle(
+          color: textColor, fontSize: fontSize, fontWeight: fontWeight),
       decoration: InputDecoration(
-        hintText: hintText,
-        contentPadding: EdgeInsets.symmetric(vertical: defaultSize * 1.5),
-        hintStyle: appsTextStyle(color: textColor.withOpacity(.7), fontSize: fontSize, fontWeight: fontWeight),
-        border: const OutlineInputBorder(borderSide: BorderSide.none)
-      ),
+          hintText: hintText,
+          contentPadding: const EdgeInsets.symmetric(vertical: 15),
+          hintStyle: appsTextStyle(
+              color: textColor.withOpacity(.7),
+              fontSize: fontSize,
+              fontWeight: fontWeight),
+          border: const OutlineInputBorder(borderSide: BorderSide.none)),
       validator: validator,
       onSaved: press,
     );
