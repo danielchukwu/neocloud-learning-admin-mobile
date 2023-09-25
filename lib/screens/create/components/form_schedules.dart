@@ -23,12 +23,20 @@ class FormSchedules extends StatefulWidget {
     super.key, 
     required this.index, 
     required this.module, 
-    required this.updateModule, 
+    required this.updateModule,
+    this.enableUpdateScheduleTitle = true,
+    this.enableUpdateScheduleDescription = true,
+    this.enableUpdateScheduleClasswork = true,
+    this.enableScheduleSetDateAndTime = true, 
   });
 
   final int index;
   final ClassModuleModel module;
   final Function(int moduleIndex, ClassModuleModel newModule) updateModule;
+  final bool enableUpdateScheduleTitle;
+  final bool enableUpdateScheduleDescription;
+  final bool enableUpdateScheduleClasswork;
+  final bool enableScheduleSetDateAndTime;
 
   @override
   State<FormSchedules> createState() => _FormSchedulesState();
@@ -107,12 +115,12 @@ class _FormSchedulesState extends State<FormSchedules> {
               FormScheduleTile(
                 schedule: _schedules[i],
                 index: i,
-                enableUpdateTitle: c.enableUpdateTitle.value,
-                enableSetDateAndTime: c.enableSetDateAndTime.value,
-                enableAddClasswork: c.enableAddScheduleClasswork.value,
-                enableAddDescription: c.enableAddScheduleDescription.value,
-                enableUpdateClasswork: c.enableUpdateScheduleClasswork.value,
-                enableUpdateDescription: c.enableUpdateScheduleDescription.value,
+                enableUpdateTitle: widget.enableUpdateScheduleTitle,
+                enableSetDateAndTime: widget.enableScheduleSetDateAndTime,
+                enableAddClasswork: widget.enableUpdateScheduleClasswork,
+                enableAddDescription: widget.enableUpdateScheduleDescription,
+                enableUpdateClasswork: widget.enableUpdateScheduleClasswork,
+                enableUpdateDescription: widget.enableUpdateScheduleDescription,
                 pressUpdateSchedule: updateSchedule,
                 pressDeleteSchedule: deleteSchedule,
               ),
