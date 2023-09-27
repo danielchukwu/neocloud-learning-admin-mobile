@@ -1,7 +1,6 @@
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 
-
 class ClassModuleModel {
   final String id;
   final String title;
@@ -9,35 +8,43 @@ class ClassModuleModel {
   final List<ClassScheduleModel>? classSchedules;
   final ClassModel? clas;
 
-  ClassModuleModel({
-    required this.id,
-    required this.title,
-    this.order,
-    this.classSchedules,
-    this.clas
-  });
+  ClassModuleModel(
+      {required this.id,
+      required this.title,
+      this.order,
+      this.classSchedules,
+      this.clas});
 
-  static ClassModuleModel fromMap({required Map classModule}) => ClassModuleModel(
-    id: classModule['_id'],
-    title: classModule['title'],
-    order: classModule['order'],
-    clas: classModule.containsKey('class') ? ClassModel.fromMap(aClass: classModule['class']) : null,
-    classSchedules: classModule.containsKey('classSchedules')
-    ? List.generate(classModule['classSchedules'].length, (index) =>  ClassScheduleModel.fromMap(cs: classModule['classSchedules'][index]),).toList() 
-    : null,
-  );
+  static ClassModuleModel fromMap({required Map classModule}) =>
+      ClassModuleModel(
+        id: classModule['_id'],
+        title: classModule['title'],
+        order: classModule['order'],
+        clas: classModule.containsKey('class')
+            ? ClassModel.fromMap(aClass: classModule['class'])
+            : null,
+        classSchedules: classModule.containsKey('classSchedules')
+            ? List.generate(
+                classModule['classSchedules'].length,
+                (index) => ClassScheduleModel.fromMap(
+                  cs: classModule['classSchedules'][index],
+                ),
+              ).toList()
+            : null,
+      );
 
   static ClassModuleModel fromInstance({
-    required ClassModuleModel module, 
+    required ClassModuleModel module,
     String? title,
     List<ClassScheduleModel>? schedules,
-  }) => ClassModuleModel(
-    id: module.id,
-    title: title ?? module.title,
-    order: module.order,
-    clas: module.clas,
-    classSchedules: schedules ?? module.classSchedules,
-  );
+  }) =>
+      ClassModuleModel(
+        id: module.id,
+        title: title ?? module.title,
+        order: module.order,
+        clas: module.clas,
+        classSchedules: schedules ?? module.classSchedules,
+      );
 }
 
 // query ExampleQuery(\$classId: ID) {
