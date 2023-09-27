@@ -15,10 +15,20 @@ class FormModuleTile extends StatefulWidget {
     super.key,
     required this.index,
     required this.module,
+    this.enableUpdateModuleTitle = true,
+    this.enableUpdateScheduleTitle = true,
+    this.enableUpdateScheduleDescription = true,
+    this.enableUpdateScheduleClasswork = true,
+    this.enableScheduleSetDateAndTime = true,
   });
 
   final int index;
   ClassModuleModel module;
+  final bool enableUpdateModuleTitle;
+  final bool enableUpdateScheduleTitle;
+  final bool enableUpdateScheduleDescription;
+  final bool enableUpdateScheduleClasswork;
+  final bool enableScheduleSetDateAndTime;
 
   @override
   State<FormModuleTile> createState() => _FormModuleTileState();
@@ -62,7 +72,7 @@ class _FormModuleTileState extends State<FormModuleTile> {
   Widget buildBody() {
     return GestureDetector(
       onTap: () {
-        if (c.enableUpdateTitle.value == true) {
+        if (widget.enableUpdateModuleTitle) {
           setState(() => _editMode = true);
         }
       },
@@ -104,6 +114,10 @@ class _FormModuleTileState extends State<FormModuleTile> {
                       module: widget.module,
                       index: widget.index,
                       updateModule: c.updateModule,
+                      enableScheduleSetDateAndTime: widget.enableScheduleSetDateAndTime,
+                      enableUpdateScheduleClasswork: widget.enableUpdateScheduleClasswork,
+                      enableUpdateScheduleDescription: widget.enableUpdateScheduleDescription,
+                      enableUpdateScheduleTitle: widget.enableUpdateModuleTitle,
                     ),
                   );
                 },
