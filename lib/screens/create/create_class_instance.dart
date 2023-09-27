@@ -5,6 +5,9 @@ import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
+import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
+import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
+import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_add_cover.dart';
 import 'package:neocloud_mobile/screens/create/components/form_modules.dart';
 import 'package:neocloud_mobile/screens/create/components/form_select_user.dart';
@@ -16,26 +19,41 @@ import 'components/form_footer.dart';
 import 'components/form_header.dart';
 import 'components/form_select_users.dart';
 
+class ClassInstanceSettings {
+  static bool disableCoverImg = true;
+  static bool disableTitle = true;
+  static bool disableAddModules = true;
+  static bool disableUpdateModules = true;
+  static bool disableUpdateScheduleDescriptionAndClasswork = true;
+  static bool disableUpdateSetDate = false;
+  static bool disableAutomateDateAndTime = false;
+}
+
 /// POPUP
 /// This Screen is used in a showDialog, so it will basically not have
 /// its own screen per say but will be used in a pop up environment instead
 class CreateClassInstanceScreen extends StatelessWidget {
   CreateClassInstanceScreen({super.key, this.clas});
 
-  final ClassModel? clas;
+  ClassModel? clas;
   static String screenName = 'create class instance';
   var c = Get.put(ClassGetXController());
+  var avatar =
+      "https://firebasestorage.googleapis.com/v0/b/neocloud-bd1f6.appspot.com/o/files%2Fassets%2Favatars%2Fbook-stack-avatar.png?alt=media&token=e167309c-51b9-4038-a9a4-e0f13987f15d";
 
   @override
   Widget build(BuildContext context) {
     c.reset();
 
-    if (clas != null) {
-      c.titleController.value.text = clas!.name;
-    }
-
-    c.enableSetDateAndTime = true.obs;
-    c.enableAutomateDateTime = true.obs;
+    clas = ClassModel(
+      id: '1',
+      name: "Programming",
+      about: 'I love to create',
+      avatar: avatar,
+      educators: [UserModel(id: '1', name: 'nathan davis', avatar: avatar)],
+      faculty: FacultyModel(id: '1', name: 'Science'),
+      modules: [ClassModuleModel(id: '1', title: 'Introduction', classSchedules: [])],
+    );
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -94,12 +112,12 @@ class CreateClassInstanceScreen extends StatelessWidget {
 
                 // Class Avatar / Cover
                 FormAddCover(
+                  defaultImage: clas!.avatar,
+                  disable: ClassInstanceSettings.disableCoverImg,
                   press: (file) {
                     c.coverImgFile = file.obs;
                   },
                 ),
-                if (c.coverImgFileHasError.value == true)
-                  const TextInputError(text: 'A class requires an image cover'),
 
                 // Class Instance
                 const SizedBox(height: 30),
@@ -107,17 +125,18 @@ class CreateClassInstanceScreen extends StatelessWidget {
                   controller: c.titleController.value,
                   hintText: 'Auto Generated Class Name',
                   fontSize: 20,
+                  isEnabled: ClassInstanceSettings.disableTitle,
                   fontWeight: FontWeight.w500,
                   validator: validateRequireField,
                   press: (_) {},
                 ),
-                if (c.hodHasError.value == true) const TextInputError(),
 
                 // Class Name
                 const SizedBox(height: 10),
                 _buildClassName(),
 
                 // Add Faculty
+                // TODO: users to select from should be fetched from the database
                 const SizedBox(height: 20),
                 FormSelectUser(
                   buttonText: 'Educator',
@@ -134,8 +153,8 @@ class CreateClassInstanceScreen extends StatelessWidget {
                 // Add Educators
                 const SizedBox(height: 15),
                 FormSelectUsers(
-                  buttonText: 'Educators',
-                  avatarText: 'ED',
+                  buttonText: 'Students',
+                  avatarText: 'ST',
                   selectedUsers: c.selectedEducatorsList,
                   usersToSelectFrom: c.usersToSelectFrom,
                   updateSelectedUsers: c.updateSelectedEducators,
@@ -148,13 +167,12 @@ class CreateClassInstanceScreen extends StatelessWidget {
 
                 // Form Modules
                 const SizedBox(height: 15),
-                if (c.modulesHasError.value == true)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: TextInputError(text: c.modulesErrorMessage.value),
-                  ),
-
-                const FormModules(),
+                FormModules(
+                  modules: clas!.modules,
+                  enableAddModules: false,
+                  enableAutomateDateTime: true,
+                  enableUpdateModule: false,
+                ),
               ],
             ),
           ),
@@ -179,7 +197,7 @@ class CreateClassInstanceScreen extends StatelessWidget {
           // Selected faculty Name
           const SizedBox(width: 10),
           TextMedium(
-              title: clas != null ? clas!.name : 'Class name...',
+              title: clas != null ? clas!.name! : 'Class name...',
               color: Colors.black54),
         ],
       ),
