@@ -225,6 +225,7 @@ class FormInputField extends StatelessWidget {
     this.hintText = 'Enter Something',
     this.fontSize = 16, 
     this.fontWeight = FontWeight.w400,
+    this.isEnabled = true,
     required this.validator,
     required this.press,
   });
@@ -233,6 +234,7 @@ class FormInputField extends StatelessWidget {
   final String hintText;
   final double fontSize;
   final FontWeight fontWeight;
+  final bool ? isEnabled;
   final String? Function(String? value) validator;
   final Function(String? value) press;
 
@@ -240,6 +242,7 @@ class FormInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      enabled: isEnabled,
       style: appsTextStyle(fontSize: fontSize, color: Colors.black87, fontWeight: fontWeight),
       decoration: InputDecoration(
         hintText: hintText,
