@@ -27,12 +27,12 @@ class _LoginInputFieldState extends State<LoginInputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(defaultSize)),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: ClipRRect(
         clipBehavior: Clip.antiAlias,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(defaultSize)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
         child: TextFormField(
           keyboardType: getKeyboardType(widget.labelText),
           obscureText: widget.obsureText,
@@ -59,7 +59,7 @@ class _LoginInputFieldState extends State<LoginInputField> {
   // Style - our form fields input text styles
   TextStyle buildInputTextStyle() {
     return TextStyle(
-      fontSize: defaultSize * 1.8,
+      fontSize: 18,
       fontWeight: FontWeight.w500,
       color: kBlack60,
     );
@@ -103,7 +103,7 @@ class _InputFieldSettingsState extends State<InputFieldSettings> {
       decoration: InputDecoration(
         hintText: widget.fieldName,
       ),
-      style: TextStyle(),
+      style: const TextStyle(),
       validator: (value) {
         return null;
       },
@@ -178,12 +178,12 @@ class _AppsTextFieldState extends State<AppsTextField> {
 
   InputDecoration buildDecoration() {
     return InputDecoration(
-      contentPadding: EdgeInsets.symmetric(vertical: defaultSize),
+      contentPadding: const EdgeInsets.symmetric(vertical: 10),
       prefixIcon:
-          widget.prefixIcon != null ? Icon(widget.prefixIcon) : SizedBox(),
+          widget.prefixIcon != null ? Icon(widget.prefixIcon) : const SizedBox(),
       suffixIcon: widget.showCancel != null && !hideCancel
           ? IconButton(
-              icon: Icon(Icons.cancel, size: defaultSize * 2),
+              icon: const Icon(Icons.cancel, size: 20),
               onPressed: () {
                 _controller.clear();
                 setState(() {
@@ -191,7 +191,7 @@ class _AppsTextFieldState extends State<AppsTextField> {
                 });
               },
             )
-          : SizedBox(),
+          : const SizedBox(),
       prefixIconColor: kBlack50,
       suffixIconColor: kBlack50,
       hintText: widget.hintText,
@@ -298,7 +298,7 @@ class FormTextarea extends StatelessWidget {
       style: appsTextStyle(color: textColor, fontSize: fontSize, fontWeight: fontWeight),
       decoration: InputDecoration(
         hintText: hintText,
-        contentPadding: EdgeInsets.symmetric(vertical: defaultSize * 1.5),
+        contentPadding: const EdgeInsets.symmetric(vertical: 15),
         hintStyle: appsTextStyle(color: textColor.withOpacity(.7), fontSize: fontSize, fontWeight: fontWeight),
         border: const OutlineInputBorder(borderSide: BorderSide.none)
       ),
