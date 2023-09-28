@@ -14,7 +14,18 @@ import 'form_schedule_date_time_generator.dart';
 /// This widget displays the modules (or curriculum) of a class, it is also used
 /// to further add more modules,add schedules for those modules and delete modules
 class FormModules extends StatefulWidget {
-  const FormModules({super.key});
+  const FormModules({
+    super.key,
+    this.modules,
+    this.enableAutomateDateTime = true,
+    this.enableAddModules = true,
+    this.enableUpdateModule = true,
+  });
+
+  final List<ClassModuleModel>? modules;
+  final bool enableAutomateDateTime;
+  final bool enableAddModules;
+  final bool enableUpdateModule;
 
   @override
   State<FormModules> createState() => _FormModulesState();
@@ -40,30 +51,41 @@ class _FormModulesState extends State<FormModules> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           // Header - Icon and Title
-          buildHeader(),
+          _buildHeader(),
 
           // Column - List of class modules (curriculum)
-          Obx(
-            () => Column(
+          if (widget.modules == null)
+            Obx(
+              () => Column(
+                children: List.generate(
+                  c.modules.length,
+                  (index) => FormModuleTile(
+                    module: c.modules[index],
+                    index: index,
+                  ),
+                ),
+              ),
+            )
+          else
+            Column(
               children: List.generate(
-                c.modules.length,
+                widget.modules!.length,
                 (index) => FormModuleTile(
-                  module: c.modules[index],
+                  module: widget.modules![index],
                   index: index,
                 ),
               ),
             ),
-          ),
 
           // Input - Module InputField and Add Button
-          if (c.enableAddModules.value == true)
+          if (widget.enableAddModules)
             FormInputFieldAndAddButton(press: addModule),
         ],
       ),
     );
   }
 
-  Widget buildHeader() {
+  Widget _buildHeader() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -80,7 +102,7 @@ class _FormModulesState extends State<FormModules> {
         ),
 
         // Generate Date and Time
-        if (c.enableAutomateDateTime.value == true)
+        if (widget.enableAutomateDateTime)
           InkWell(
             onTap: () {
               showDialogWrapper(
