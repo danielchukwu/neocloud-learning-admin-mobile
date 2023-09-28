@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/auth/auth_guard.dart';
 import 'package:neocloud_mobile/providers/NavItem.dart';
 import 'package:neocloud_mobile/providers/UserProvider.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
       title: 'NCT Pro',
       theme: buildTheme(),
       initialRoute: '/' + AcademicScreen.screenName,
-      // navigatorObservers: [AuthGuardObserver()],  // Middleware observer
+      navigatorObservers: [AuthGuardObserver()],  // Middleware observer
       routes: {
         '/': (context) => const SplashScreen(),
         '/auth': (context) => LoginSignupScreen(),

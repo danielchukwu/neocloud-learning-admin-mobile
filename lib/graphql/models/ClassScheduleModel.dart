@@ -23,7 +23,7 @@ class MyTimeOfDay extends TimeOfDay {
 
   static MyTimeOfDay fromInstance({required MyTimeOfDay t, int? hour, int? minute, bool? isAm}) {
     return MyTimeOfDay(
-      hour: hour ?? t.hour, 
+      hour: hour ?? t.hour,
       minute: minute ?? t.minute, 
       isAm: isAm ?? t.isAm, 
     );
@@ -116,9 +116,9 @@ class ClassScheduleModel {
   );
 
   static ClassScheduleModel fromInstance({
-    required ClassScheduleModel cs, 
-    String? title, 
-    String? description, 
+    required ClassScheduleModel cs,
+    String? title,
+    String? description,
     DateSelection? dateSelection,
     ClassworkModel? classwork,
     MyTimeOfDay? startTime,
