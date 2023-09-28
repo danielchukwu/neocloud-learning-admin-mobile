@@ -31,7 +31,7 @@ class CreateClassInstanceScreen extends StatelessWidget {
     c.reset();
 
     if (clas != null) {
-      c.titleController.value.text = clas!.name;
+      c.titleController.value.text = clas!.name!;
     }
 
     c.enableSetDateAndTime = true.obs;
@@ -179,7 +179,7 @@ class CreateClassInstanceScreen extends StatelessWidget {
           // Selected faculty Name
           const SizedBox(width: 10),
           TextMedium(
-              title: clas != null ? clas!.name : 'Class name...',
+              title: clas != null ? clas!.name! : 'Class name...',
               color: Colors.black54),
         ],
       ),
