@@ -60,6 +60,8 @@ dependencies:
   # shared_preferences: ^2.2.0
   # auto_route: ^7.8.0
 
+  skeletons: ^0.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
