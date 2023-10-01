@@ -1,15 +1,15 @@
+import 'package:neocloud_mobile/core/entities/user_entity.dart';
 import 'package:neocloud_mobile/core/resources/data_state.dart';
-import 'package:neocloud_mobile/features/search/domain/entities/user_entity.dart';
 import 'package:neocloud_mobile/features/search/domain/repository/user_repository.dart';
 import 'package:neocloud_mobile/features/search/domain/usecases/usecase.dart';
 
-class GetUsersUseCase implements UseCase<DataState<List<UserEntity>>, String> {
+class GetUsersUseCase implements UseCase<DataState<List<UserEntity>>, String, int> {
   final UserRepository _userRepository;
 
   const GetUsersUseCase(this._userRepository);
 
   @override
-  Future<DataState<List<UserEntity>>> call({required String param}) async {
-    return await _userRepository.getUsers(name: param);
+  Future<DataState<List<UserEntity>>> call({required String param1, int ? param2}) async {
+    return await _userRepository.getUsers(name: param1, page: param2);
   }
 }
