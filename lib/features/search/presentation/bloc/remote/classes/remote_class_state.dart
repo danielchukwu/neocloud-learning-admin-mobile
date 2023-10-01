@@ -13,6 +13,9 @@ abstract class RemoteClassesState extends Equatable {
 class RemoteClassesLoadingState extends RemoteClassesState {
   const RemoteClassesLoadingState();
 }
+class RemoteClassesLoadingMoreState extends RemoteClassesState {
+  const RemoteClassesLoadingMoreState(List<ClassEntity> ? existingClasses) : super(classes: existingClasses);
+}
 
 class RemoteClassesInitialState extends RemoteClassesState {
   const RemoteClassesInitialState();
