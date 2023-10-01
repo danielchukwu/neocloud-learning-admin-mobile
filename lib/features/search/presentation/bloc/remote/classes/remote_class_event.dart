@@ -2,10 +2,12 @@ part of 'remote_class_bloc.dart';
 
 abstract class RemoteClassesEvent {
   final String text;
+  final List<ClassEntity> existingClasses;
+  final int page;
 
-  RemoteClassesEvent(this.text);
+  RemoteClassesEvent({required this.text, required this.existingClasses, required this.page});
 }
 
 class GetClassesEvent extends RemoteClassesEvent {
-  GetClassesEvent(String text) : super(text);
+  GetClassesEvent({required super.text, required super.existingClasses, required super.page});
 }
