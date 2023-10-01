@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/class_card.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/entities/class_entity.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/graphql/services/class_service.dart';
 import 'package:neocloud_mobile/models/Students.dart';
@@ -42,7 +43,7 @@ class ProfileClasses extends StatefulWidget {
 
 class _ProfileClassesState extends State<ProfileClasses> {
   var classService = ClassService();
-  List<ClassModel>? classList;
+  List<ClassEntity>? classList;
 
   @override
   void initState() {
