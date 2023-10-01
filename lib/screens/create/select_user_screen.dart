@@ -90,7 +90,7 @@ class _SelectUsersScreenState extends State<SelectUsersScreen> {
                                 .contains(value.toLowerCase()))
                             .toList();
                       });
-                    },
+                    }, controller: TextEditingController(),
                   ),
 
                   // Selected Count
