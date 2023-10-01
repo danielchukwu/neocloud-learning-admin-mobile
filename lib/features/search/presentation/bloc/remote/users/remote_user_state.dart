@@ -1,28 +1,31 @@
 import 'package:equatable/equatable.dart';
-import 'package:neocloud_mobile/features/search/domain/entities/user_entity.dart';
+import 'package:neocloud_mobile/core/entities/user_entity.dart';
 
-abstract class RemoteUserState extends Equatable {
+abstract class RemoteUsersState extends Equatable {
   final List<UserEntity> ? users;
   final Error ? error;
 
-  const RemoteUserState({this.users, this.error});
+  const RemoteUsersState({this.users, this.error});
 
   @override
   List<Object?> get props => [users, error];
 }
 
-class RemoteUserLoadingState extends RemoteUserState {
-  const RemoteUserLoadingState();
+class RemoteUsersLoadingState extends RemoteUsersState {
+  const RemoteUsersLoadingState();
+}
+class RemoteUsersLoadingMoreState extends RemoteUsersState {
+  const RemoteUsersLoadingMoreState(List<UserEntity> ? existingUsers) : super(users: existingUsers);
 }
 
-class RemoteUserWaitingState extends RemoteUserState {
-  const RemoteUserWaitingState();
+class RemoteUsersInitialState extends RemoteUsersState {
+  const RemoteUsersInitialState();
 }
 
-class RemoteUserDoneState extends RemoteUserState {
-  const RemoteUserDoneState(List<UserEntity> users) : super(users: users);
+class RemoteUsersDoneState extends RemoteUsersState {
+  const RemoteUsersDoneState(List<UserEntity> users) : super(users: users);
 }
 
-class RemoteUserErrorState extends RemoteUserState {
-  const RemoteUserErrorState(Error error) : super(error: error);
+class RemoteUsersFailState extends RemoteUsersState {
+  const RemoteUsersFailState(Error error) : super(error: error);
 }
