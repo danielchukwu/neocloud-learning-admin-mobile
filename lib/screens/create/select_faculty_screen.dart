@@ -86,7 +86,7 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
                       setState(() {
                         facultiesToSelectFrom = widget.faculties.where((fac) => fac.name.toLowerCase().contains(value.toLowerCase())).toList();
                       });
-                    },
+                    }, controller: TextEditingController(),
                   ),
                   
                   // Selected Count
