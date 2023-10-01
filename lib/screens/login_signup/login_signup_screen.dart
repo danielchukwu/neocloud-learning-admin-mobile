@@ -6,7 +6,6 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/services/auth_service.dart';
 import 'package:neocloud_mobile/screens/login_signup/components/login_form.dart';
 import 'package:neocloud_mobile/screens/login_signup/components/signup_form.dart';
-import 'package:neocloud_mobile/screens/search/search_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
 // @RoutePage()
