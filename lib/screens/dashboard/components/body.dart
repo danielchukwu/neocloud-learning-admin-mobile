@@ -29,12 +29,12 @@ class Body extends StatelessWidget {
             
             DashboardSlider(),
 
-            // Section 2
-            SizedBox(height: 20),
-            PersonelDashboard(),
+            // // Section 2
+            // SizedBox(height: 20),
+            // PersonelDashboard(),
 
-            // buildGrantPermission(),
-            GrantPermission(),
+            // // buildGrantPermission(),
+            // GrantPermission(),
           ],
         )),
       ],
