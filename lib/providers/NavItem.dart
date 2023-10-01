@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/features/search/presentation/pages/search_screen.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/academic/academic_screen.dart';
 import 'package:neocloud_mobile/screens/dashboard/dashboard_screen.dart';
 import 'package:neocloud_mobile/screens/notifications/notifications_screen.dart';
-import 'package:neocloud_mobile/screens/search/search_screen.dart';
+import 'package:neocloud_mobile/features/search/presentation/pages/search_screen.dart';
 
 class NavItem {
   final String svgActive;
@@ -37,7 +38,7 @@ class NavbarProvider extends ChangeNotifier {
       itemLabel: "Dashboard",
       destination: DashboardScreen(),
     ),
-    const NavItem(
+    NavItem(
       svgActive: "assets/icons/navbar/search-fill.svg",
       svgInactive: "assets/icons/navbar/search-outline.svg",
       itemLabel: "Search",
