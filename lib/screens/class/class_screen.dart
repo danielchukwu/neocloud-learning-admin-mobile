@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/class_card.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/entities/class_entity.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/screens/class/components/class_syllabus.dart';
@@ -10,7 +11,7 @@ import 'package:neocloud_mobile/screens/class/components/class_syllabus.dart';
 class ClassScreen extends StatefulWidget {
   const ClassScreen({super.key, required this.clas});
   static String screenName = 'class';
-  final ClassModel clas;
+  final ClassEntity clas;
 
   @override
   State<ClassScreen> createState() => _ClassScreenState();
