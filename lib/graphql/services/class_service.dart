@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:neocloud_mobile/components/popups/popups.dart';
+import 'package:neocloud_mobile/core/entities/class_entity.dart';
+import 'package:neocloud_mobile/core/models/class_model.dart';
 import 'package:neocloud_mobile/graphql/graphql_config.dart';
-import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:neocloud_mobile/utils/error_handler.dart';
 // import 'package:graphql_flutter/graphql_flutter.dart';
@@ -11,7 +12,7 @@ class ClassService {
   static var config = GraphQLConfig();
   var client = config.client;
 
-  Future<List<ClassModel>> getClasses({int? limit}) async {
+  Future<List<ClassEntity>> getClasses({int? limit}) async {
     String classesQuery = """
       query Query(\$limit: Int, \$name: String) {
         classes(limit: \$limit, name: \$name) {
@@ -53,7 +54,7 @@ class ClassService {
         
         List? classes = result.data?['classes'];
         if (classes == null) return [];
-        List<ClassModel> classList = classes.map((clas) => ClassModel.fromMap(aClass: clas)).toList();
+        List<ClassModel> classList = classes.map((clas) => ClassModel.fromMap(data: clas)).toList();
 
         return classList;
       }
