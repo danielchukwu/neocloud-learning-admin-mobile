@@ -85,13 +85,14 @@ class _NotificationCardState extends State<NotificationCard> {
                 const SizedBox(height: 5),
                 // TextMedium(title: notification.body + '. ${getTimeAgo(notification.createdAt)}', color: kBlack70),
                 Text.rich(TextSpan(
-                    style: appsTextStyle(
+                    style: appsTextStyle(context: context,
                         color: Theme.of(context).canvasColor.withOpacity(.7), fontWeight: FontWeight.w400),
                     children: [
                       TextSpan(text: notification.body),
                       TextSpan(
                           text: '  ${getTimeAgo(notification.createdAt)}',
                           style: appsTextStyle(
+                            context: context,
                               color: Theme.of(context).canvasColor.withOpacity(.5),
                               fontWeight: FontWeight.w400,
                               fontSize: 14))

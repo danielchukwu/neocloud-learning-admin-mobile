@@ -48,7 +48,7 @@ class ClassCard extends StatelessWidget {
         decoration: showBottomBorder
             ? BoxDecoration(
                 border: Border(
-                  bottom: appsBorder,
+                  bottom: appsBorder(context),
                 ),
               )
             : const BoxDecoration(),

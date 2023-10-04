@@ -17,7 +17,7 @@ class AccountInfoTile extends StatelessWidget {
         horizontalTitleGap: 0,
         dense: true,
         leading: Icon(data.icon, color: Theme.of(context).canvasColor.withOpacity(.4)),
-        title: TextMedium(title: data.title, color: kBlack50),
+        title: TextMedium(title: data.title, color: Theme.of(context).canvasColor.withOpacity(.5)),
         trailing: SizedBox(
             width: SizeConfig.screenWidth! / 2,
             child: Column(

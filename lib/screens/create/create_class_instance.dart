@@ -54,7 +54,7 @@ class CreateClassInstanceScreen extends StatelessWidget {
             const FormHeader(title: ''),
 
             // Form Body
-            _buildBody(),
+            _buildBody(context),
 
             ..._buildFooter(),
           ],
@@ -82,7 +82,7 @@ class CreateClassInstanceScreen extends StatelessWidget {
     ];
   }
 
-  Expanded _buildBody() {
+  Expanded _buildBody(BuildContext context) {
     return Expanded(
       child: SingleChildScrollView(
         controller: c.scrollController.value,
@@ -118,7 +118,7 @@ class CreateClassInstanceScreen extends StatelessWidget {
 
                 // Class Name
                 const SizedBox(height: 10),
-                _buildClassName(),
+                _buildClassName(context),
 
                 // Add Faculty
                 const SizedBox(height: 20),
@@ -166,7 +166,7 @@ class CreateClassInstanceScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildClassName() {
+  Widget _buildClassName(BuildContext context) {
     return GestureDetector(
       onTap: () {
         if (this.clas != null) {
@@ -183,7 +183,7 @@ class CreateClassInstanceScreen extends StatelessWidget {
           const SizedBox(width: 10),
           TextMedium(
               title: clas != null ? clas!.name! : 'Class name...',
-              color: Colors.black54),
+              color: Theme.of(context).canvasColor.withOpacity(.5)),
         ],
       ),
     );

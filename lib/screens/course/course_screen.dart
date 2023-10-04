@@ -47,7 +47,7 @@ class CourseScreen extends StatelessWidget {
 
                     // Title
                     const SizedBox(height: 15),
-                    buildCourseTitle(),
+                    buildCourseTitle(context),
 
                     // Ratings
                     const SizedBox(height: 10),
@@ -57,23 +57,23 @@ class CourseScreen extends StatelessWidget {
 
                     // Created by ....
                     const SizedBox(height: 8),
-                    buildCreatedBy(),
+                    buildCreatedBy(context),
 
                     // Students count & reviews
                     const SizedBox(height: 8),
-                    buildStudentsCountAndReviews(),
+                    buildStudentsCountAndReviews(context),
 
                     // Duration
                     const SizedBox(height: 8),
-                    buildDuration(),
+                    buildDuration(context),
 
                     // Cost
                     const SizedBox(height: 18),
-                    buildCourseCost(),
+                    buildCourseCost(context),
 
                     // Buy Btn & Cart Btn
                     const SizedBox(height: 18),
-                    buildBuyCartButton(),
+                    buildBuyCartButton(context),
 
                     // What You'll Learn
                     CoursePerks(
@@ -107,7 +107,7 @@ class CourseScreen extends StatelessWidget {
                 child: TextLarge(
                   title: "Similar Courses",
                   weight: FontWeight.w600,
-                  color: kBlack80,
+                  color: Theme.of(context).canvasColor.withOpacity(.8),
                 ),
               ),
 
@@ -136,7 +136,7 @@ class CourseScreen extends StatelessWidget {
     );
   }
 
-  Widget buildBuyCartButton() {
+  Widget buildBuyCartButton(BuildContext context) {
     return Row(
       children: <Widget>[
         // Buy now
@@ -155,10 +155,10 @@ class CourseScreen extends StatelessWidget {
           child: AppsIconButton(
             press: (BuildContext? context) {},
             icon: Icons.star_border_purple500_rounded,
-            iconColor: kBlack70,
+            iconColor: Theme.of(context).canvasColor.withOpacity(.7),
             padTopBottom: 15,
             padLeftRight: 0,
-            bgColor: kBlack.withOpacity(.05),
+            bgColor: Theme.of(context).canvasColor.withOpacity(.05),
           ),
         ),
 
@@ -169,17 +169,17 @@ class CourseScreen extends StatelessWidget {
           child: AppsIconButton(
             press: (BuildContext? context) {},
             icon: Icons.add_shopping_cart_outlined,
-            iconColor: kBlack70,
+            iconColor: Theme.of(context).canvasColor.withOpacity(.7),
             padTopBottom: 15,
             padLeftRight: 0,
-            bgColor: kBlack.withOpacity(.05),
+            bgColor: Theme.of(context).canvasColor.withOpacity(.05),
           ),
         )
       ],
     );
   }
 
-  Widget buildCourseCost() {
+  Widget buildCourseCost(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
@@ -188,23 +188,23 @@ class CourseScreen extends StatelessWidget {
           title: getMoneyFormat(course.price),
           fontSize: 25,
           fontWeight: FontWeight.w600,
-          iconColor: kBlack80,
+          iconColor: Theme.of(context).canvasColor.withOpacity(.8),
         )
       ],
     );
   }
 
-  Widget buildDuration() {
+  Widget buildDuration(BuildContext context) {
     return IconText(
       icon: Icons.phone_android,
       title:
           "${course.duration} ${getPluralOrSingular(count: course.duration!, word: 'hour')} on demand",
       fontSize: 16,
-      iconColor: kBlack70,
+      iconColor: Theme.of(context).canvasColor.withOpacity(.7),
     );
   }
 
-  Widget buildStudentsCountAndReviews() {
+  Widget buildStudentsCountAndReviews(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -214,7 +214,7 @@ class CourseScreen extends StatelessWidget {
           title:
               "${course.students_count} ${getPluralOrSingular(count: course.students_count!, word: 'student')}",
           fontSize: 16,
-          iconColor: kBlack70,
+          iconColor: Theme.of(context).canvasColor.withOpacity(.7),
         ),
 
         // Reviews in Percentage
@@ -224,7 +224,7 @@ class CourseScreen extends StatelessWidget {
                     "${((course.reviews_count! / course.students_count!) * 100).toInt()}% ",
                 text2: "left a review",
                 text1Color: kGreen,
-                text2Color: kBlack70,
+                text2Color: Theme.of(context).canvasColor.withOpacity(.7),
                 text1FontSize: 16,
                 text2FontSize: 16,
                 text1FontWeight: FontWeight.w600,
@@ -234,11 +234,11 @@ class CourseScreen extends StatelessWidget {
     );
   }
 
-  Widget buildCreatedBy() {
+  Widget buildCreatedBy(BuildContext context) {
     return AppsTextRich(
       text1: "created by ",
       text2: course.user.fullName,
-      text1Color: kBlack50,
+      text1Color: Theme.of(context).canvasColor.withOpacity(.5),
       text2Color: kBlue,
       text1FontSize: 16,
       text2FontSize: 16,
@@ -257,11 +257,11 @@ class CourseScreen extends StatelessWidget {
     );
   }
 
-  Widget buildCourseTitle() {
+  Widget buildCourseTitle(BuildContext context) {
     return TextCustom(
         title: course.title,
         weight: FontWeight.w700,
-        color: kBlack90,
+        color: Theme.of(context).canvasColor.withOpacity(.9),
         fontSize: 22);
   }
 }

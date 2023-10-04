@@ -63,8 +63,8 @@ class ClassWorkCard extends StatelessWidget {
           ),
           decoration: BoxDecoration(
               border: Border(
-            top: BorderSide(color: kBlack.withOpacity(.2), width: 1),
-            bottom: BorderSide(color: kBlack.withOpacity(.2), width: 1),
+            top: BorderSide(color: Theme.of(context).canvasColor.withOpacity(.2), width: 1),
+            bottom: BorderSide(color: Theme.of(context).canvasColor.withOpacity(.2), width: 1),
           )),
           child: Row(
             children: [
@@ -172,7 +172,7 @@ class TheClassworkCard extends StatelessWidget {
 
           // Class Title
           SizedBox(height: defaultSize * .5),
-          buildCardHeader(title: classwork.title),
+          buildCardHeader(context: context, title: classwork.title),
 
           // Description
           SizedBox(height: defaultSize),

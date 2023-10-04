@@ -3,7 +3,6 @@ import 'package:neocloud_mobile/components/appbar/appbar.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/cards/mini_course_card.dart';
 import 'package:neocloud_mobile/components/images.dart';
-import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/size_config.dart';
@@ -12,7 +11,7 @@ import 'package:neocloud_mobile/size_config.dart';
 var defaultSize = SizeConfig.defaultSize!;
 
 // Border
-BorderSide appsBorder = BorderSide(color: kBlack50, width: .2);
+BorderSide appsBorder(BuildContext context) => BorderSide(color: Theme.of(context).canvasColor.withOpacity(.5), width: .2);
 
 // Border Radius
 BorderRadius appsBorderRadius = const BorderRadius.all(Radius.circular(10));
@@ -31,14 +30,6 @@ double buttonBorderRadius = 5;
 Color kBlue = const Color(0xFF1679F7);
 Color kBlueLight = const Color(0xFF1679F7).withOpacity(.7);
 
-Color kWhite = const Color(0xFFFFFFFF);
-Color kBlack = const Color(0xFF000000);
-Color kBlack50 = const Color(0xFF000000).withOpacity(.5);
-Color kBlack60 = const Color(0xFF000000).withOpacity(.6);
-Color kBlack70 = const Color(0xFF000000).withOpacity(.7);
-Color kBlack80 = const Color(0xFF000000).withOpacity(.8);
-Color kBlack90 = const Color(0xFF000000).withOpacity(.9);
-
 // - Secondary
 Color kStarColor = const Color(0XFFF7AC16);
 Color kOrange = const Color(0xFFF7941D);
@@ -52,12 +43,14 @@ double appsSplashRadius = 50;
 // - Styles
 
 TextStyle appsTextStyle({
+  required BuildContext context,
   String fontFamily = "Poppins",
-  Color color = Colors.black87,
+  Color ? color,
   double fontSize = 16,
   FontWeight fontWeight = FontWeight.w400,
   TextDecoration decoration = TextDecoration.none,
 }) {
+  color ??= Theme.of(context).canvasColor.withOpacity(.8);
   return TextStyle(
     fontFamily: fontFamily,
     color: color,
@@ -172,34 +165,36 @@ AppsSliverAppBar buildSliverAppBar({
 
 // Build AppsDropdownButton
 Container buildAppsDropdownButton({
+  required BuildContext context,
   required List<String> list,
   required Function(String value) press,
   String? selected,
 }) {
   return Container(
     height: 40,
-    decoration: getDropDownBoxDecoration(),
+    decoration: getDropDownBoxDecoration(context),
     padding: const EdgeInsets.symmetric(horizontal: 10),
     child: AppsDropdownButton(list: list, selected: selected, press: press),
   );
 }
 
-BoxDecoration getDropDownBoxDecoration() {
+BoxDecoration getDropDownBoxDecoration(BuildContext context) {
   return BoxDecoration(
-    border: Border.all(width: buttonBorderWidth, color: kBlack50),
+    border: Border.all(width: buttonBorderWidth, color: Theme.of(context).canvasColor.withOpacity(.5)),
     borderRadius: BorderRadius.circular(buttonBorderRadius),
   );
 }
 
 // build Filter Button
 AppsButton buildFilterButton({
+  required BuildContext context,
   required Function(BuildContext? context) press,
   String buttonText = "Filter",
 }) {
   return AppsButton(
     title: buttonText,
     press: press,
-    bgColor: kBlack80,
+    bgColor: Theme.of(context).canvasColor.withOpacity(.8),
     icon: null,
     borderRadius: buttonBorderRadius,
     padTopBottom: 2,
@@ -207,6 +202,7 @@ AppsButton buildFilterButton({
 }
 
 AppsButton buildAddButton({
+  required BuildContext context,
   String title = "add",
   Function(BuildContext? context)? press,
 }) {
@@ -214,7 +210,7 @@ AppsButton buildAddButton({
     title: title,
     press: press != null ? press : (context) {},
     icon: Icons.add,
-    bgColor: kBlack80,
+    bgColor: Theme.of(context).canvasColor.withOpacity(.8),
     padTopBottom: 3,
     borderRadius: buttonBorderRadius,
   );
@@ -228,11 +224,11 @@ EdgeInsets cardPadding = const EdgeInsets.all(20);
 
 // - e.g label
 //       text
-Widget buildCardHeader({required String title}) {
+Widget buildCardHeader({required BuildContext context, required String title}) {
   return TextCustom(
     title: title,
     fontSize: 22,
-    color: kBlack80,
+    color: Theme.of(context).canvasColor.withOpacity(.8),
     weight: FontWeight.w600,
   );
 }
@@ -249,14 +245,14 @@ Widget buildCardHeader({required String title}) {
 
 // - download button
 
-Row buildDownloadButton({required Function(BuildContext? context) press}) {
+Row buildDownloadButton({required BuildContext context, required Function(BuildContext? context) press}) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.end,
     children: <Widget>[
       // Download Button
       AppsButton(
         title: "download",
-        bgColor: kBlack80,
+        bgColor: Theme.of(context).canvasColor.withOpacity(.8),
         padTopBottom: 2,
         // borderRadius: 5,
         icon: Icons.download,

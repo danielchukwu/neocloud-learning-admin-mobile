@@ -38,7 +38,7 @@ class GeneralProfile extends StatelessWidget {
                   roleSvg: getRoleSvgFileName(role: user.role?.name),
                   containerSize: 145,
                   coverSize: 130,
-                  coverOverlay: kBlack.withOpacity(.2),
+                  coverOverlay: Theme.of(context).canvasColor.withOpacity(.2),
                   profileImgBorderSize: 3,
                   profileImageVerticalPosition: 25,
                 ),

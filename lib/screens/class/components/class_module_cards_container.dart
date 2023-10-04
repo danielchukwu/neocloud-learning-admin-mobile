@@ -111,7 +111,7 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
                       icon: Icons.table_chart_rounded,
                       fontSize: 14,
                       iconSize: 16,
-                      iconColor: kBlack70,
+                      iconColor: Theme.of(context).canvasColor.withOpacity(.7),
                     ),
                   ],
                 ),

@@ -8,7 +8,7 @@ class TextBigSmall extends StatelessWidget {
     required this.smallText,
     this.bigTextSize = 16,
     this.bigTextWeight = FontWeight.w600,
-    this.bigTextColor = Colors.black,
+    this.bigTextColor,
     this.smallTextSize = 16,
     this.smallTextWeight = FontWeight.w400,
     this.smallTextColor,
@@ -33,6 +33,7 @@ class TextBigSmall extends StatelessWidget {
     return RichText(
       text: TextSpan(
         style: appsTextStyle(
+          context: context,
           fontWeight: bigTextWeight,
           fontSize: bigTextSize,
           color: bigTextColor!
@@ -42,6 +43,7 @@ class TextBigSmall extends StatelessWidget {
           TextSpan(
             text: ' $smallText',
             style: appsTextStyle(
+              context: context,
                 fontWeight: smallTextWeight, fontSize: smallTextSize, color: smallTextColor!),
           ),
         ],

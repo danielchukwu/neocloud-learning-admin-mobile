@@ -5,12 +5,12 @@ import 'package:neocloud_mobile/core/utils/utils.dart';
 
 
 class ProfileCard extends StatelessWidget {
-  const ProfileCard({
+  ProfileCard({
     super.key,
     required this.title,
     required this.count,
     required this.press,
-    this.bgColor = Colors.black,
+    this.bgColor,
     this.boxHeight = 70,
     this.borderRadius = 10,
   });
@@ -18,12 +18,14 @@ class ProfileCard extends StatelessWidget {
   final String title;
   final int count;
   final Function() press;
-  final Color bgColor;
+  late Color ? bgColor;
   final double boxHeight;
   final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
+    bgColor ??= Theme.of(context).canvasColor;
+
     return Expanded(
       child: GestureDetector(
         onTap: press,

@@ -42,7 +42,7 @@ class _FacultyDashboardState extends State<FacultyDashboard> {
             Container(
               constraints: const BoxConstraints(minHeight: 440),
               padding: screenPadding,
-              decoration: BoxDecoration(border: Border(bottom: appsBorder)),
+              decoration: BoxDecoration(border: Border(bottom: appsBorder(context))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[

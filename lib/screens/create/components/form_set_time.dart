@@ -172,19 +172,19 @@ class _TimeDifference extends StatelessWidget {
         ),
         child: Text.rich(
           TextSpan(
-            style: appsTextStyle(fontWeight: FontWeight.w700, color: timeIsValid() ? Theme.of(context).canvasColor.withOpacity(.4) : getColorOpposite(Theme.of(context).canvasColor).withOpacity(.7)),
+            style: appsTextStyle(context: context, fontWeight: FontWeight.w700, color: timeIsValid() ? Theme.of(context).canvasColor.withOpacity(.4) : getColorOpposite(Theme.of(context).canvasColor).withOpacity(.7)),
             children: [
               // Hour
               TextSpan(
                 text: '${getHour()}',
-                style: appsTextStyle(color: timeIsValid() ? kBlueLight : getColorOpposite(Theme.of(context).canvasColor), fontWeight: FontWeight.w700),
+                style: appsTextStyle(context: context, color: timeIsValid() ? kBlueLight : getColorOpposite(Theme.of(context).canvasColor), fontWeight: FontWeight.w700),
               ),
               // Text - h
               const TextSpan(text: 'h  '),
               // Minute
               TextSpan(
                 text: '${getMinute()}',
-                style: appsTextStyle(color: timeIsValid() ? kBlueLight : getColorOpposite(Theme.of(context).canvasColor), fontWeight: FontWeight.w700),
+                style: appsTextStyle(context: context, color: timeIsValid() ? kBlueLight : getColorOpposite(Theme.of(context).canvasColor), fontWeight: FontWeight.w700),
               ),
               // Text - m
               const TextSpan(text: 'm'),

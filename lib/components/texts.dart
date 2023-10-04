@@ -282,6 +282,7 @@ class AppsTextRich extends StatelessWidget {
       TextSpan(
         text: text1,
         style: appsTextStyle(
+          context: context, 
             color: text1Color ?? Theme.of(context).canvasColor.withOpacity(.8),
             fontSize: text1FontSize,
             fontWeight: text1FontWeight,
@@ -290,6 +291,7 @@ class AppsTextRich extends StatelessWidget {
           TextSpan(
             text: text2,
             style: appsTextStyle(
+              context: context, 
               color: text2Color ?? Theme.of(context).canvasColor.withOpacity(.7),
               fontSize: text2FontSize,
               fontWeight: text2FontWeight,

@@ -96,10 +96,10 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
                       AppsTextRich(
                         text1: '${widget.selectedFaculties.length}',
                         text2: ' Selected',
-                        text1Color: kBlack70,
+                        text1Color: Theme.of(context).canvasColor.withOpacity(.7),
                         text1FontWeight: FontWeight.w600,
                         text1FontSize: 14,
-                        text2Color: Colors.black54,
+                        text2Color: Theme.of(context).canvasColor.withOpacity(.5),
                         text2FontWeight: FontWeight.w500,
                         text2FontSize: 14,
                       ),

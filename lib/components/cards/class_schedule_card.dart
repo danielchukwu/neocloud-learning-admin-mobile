@@ -37,7 +37,7 @@ class ClassScheduleCard extends StatelessWidget {
 
           // Class Title
           SizedBox(height: defaultSize),
-          buildCardHeader(title: classSchedule.title),
+          buildCardHeader(context: context, title: classSchedule.title),
 
           // About
           SizedBox(height: defaultSize * 1.5),

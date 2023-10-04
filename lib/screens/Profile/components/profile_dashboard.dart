@@ -3,6 +3,7 @@ import 'package:neocloud_mobile/components/Lists/class_schedule_list.dart';
 import 'package:neocloud_mobile/components/Lists/class_works_list.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/screens/Profile/components/current-old-header.dart';
 
 import '../../../size_config.dart';
@@ -68,7 +69,7 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
                 padTopBottom: 0,
                 padLeftRight: 0,
                 weight: FontWeight.w600,
-                color: selectedIndex == index ? kWhite : Theme.of(context).canvasColor.withOpacity(.7),
+                color: selectedIndex == index ? getColorOpposite(Theme.of(context).canvasColor) : Theme.of(context).canvasColor.withOpacity(.7),
                 bgColor:
                     selectedIndex == index ? Theme.of(context).canvasColor.withOpacity(.8) : Theme.of(context).canvasColor.withOpacity(.1),
                 press: (context) {

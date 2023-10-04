@@ -104,6 +104,7 @@ class _FormInputFieldAndAddButtonState
       onEditingComplete:
           pressOnKeyboardDone, // execute function when done is clicked on the keyboard
       style: appsTextStyle(
+        context: context,
           color: Theme.of(context).canvasColor.withOpacity(.8), fontWeight: FontWeight.w500, fontSize: 16),
       decoration: textAreaDecoration(),
     );
@@ -113,7 +114,7 @@ class _FormInputFieldAndAddButtonState
     return InputDecoration(
         hintText: widget.hintText,
         contentPadding: const EdgeInsets.symmetric(vertical: 15),
-        hintStyle: appsTextStyle(color: Theme.of(context).canvasColor.withOpacity(.5)),
+        hintStyle: appsTextStyle(context: context, color: Theme.of(context).canvasColor.withOpacity(.5)),
         border: const OutlineInputBorder(borderSide: BorderSide.none));
   }
 

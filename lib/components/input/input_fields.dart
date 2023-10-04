@@ -151,7 +151,7 @@ class _AppsTextFieldState extends State<AppsTextField> {
       controller: widget.controller,
       maxLines: 1,
       textInputAction: TextInputAction.search,
-      style: appsTextStyle(fontWeight: FontWeight.w400, color: Theme.of(context).canvasColor.withOpacity(.8)),
+      style: appsTextStyle(context: context, fontWeight: FontWeight.w400, color: Theme.of(context).canvasColor.withOpacity(.8)),
       onSubmitted: widget.onSubmitPress,
       onChanged: (String value) { 
         hideOrRevealCancel();
@@ -230,11 +230,11 @@ class FormInputField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       enabled: isEnabled,
-      style: appsTextStyle(fontSize: fontSize, color: Theme.of(context).canvasColor.withOpacity(.8), fontWeight: fontWeight),
+      style: appsTextStyle(context: context, fontSize: fontSize, color: Theme.of(context).canvasColor.withOpacity(.8), fontWeight: fontWeight),
       decoration: InputDecoration(
         hintText: hintText,
         contentPadding: EdgeInsets.zero,
-        hintStyle: appsTextStyle(fontSize: fontSize, color: Theme.of(context).canvasColor.withOpacity(.4)),
+        hintStyle: appsTextStyle(context: context, fontSize: fontSize, color: Theme.of(context).canvasColor.withOpacity(.4)),
         border: const OutlineInputBorder(borderSide: BorderSide.none)
       ),
       validator: validator,
@@ -286,11 +286,11 @@ class FormTextarea extends StatelessWidget {
       onTapOutside: onTapOutside,
       textInputAction: pressOnKeyboardDone != null ? TextInputAction.done : null,  // Display done in keyboard
       onEditingComplete: pressOnKeyboardDone,   // execute function when done is clicked on the keyboard
-      style: appsTextStyle(color: textColor!, fontSize: fontSize, fontWeight: fontWeight),
+      style: appsTextStyle(context: context, color: textColor!, fontSize: fontSize, fontWeight: fontWeight),
       decoration: InputDecoration(
         hintText: hintText,
         contentPadding: const EdgeInsets.symmetric(vertical: 15),
-        hintStyle: appsTextStyle(color: textColor!.withOpacity(.7), fontSize: fontSize, fontWeight: fontWeight),
+        hintStyle: appsTextStyle(context: context, color: textColor!.withOpacity(.7), fontSize: fontSize, fontWeight: fontWeight),
         border: const OutlineInputBorder(borderSide: BorderSide.none)
       ),
       validator: validator,

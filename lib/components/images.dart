@@ -71,7 +71,7 @@ class RoundBoxIcon extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        border: Border.all(color: kWhite, width: defaultSize * borderSize),
+        border: Border.all(color: getColorOpposite(Theme.of(context).canvasColor), width: defaultSize * borderSize),
         shape: BoxShape.circle,
         color: getColorOpposite(canvasColor),
       ),
