@@ -8,21 +8,6 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
-// Images
-// const nctFaviconBlue = 'assets/images/logos/logo-icon-blue.png';
-// const nctBannerBlack = 'assets/images/logos/logo-banner-dark.png';
-// const nctBannerWhite = 'assets/images/logos/logo-banner-light.png';
-const nctFaviconBlue = 'assets/icons/logos/favicon-blue.svg';
-const nctBannerBlueBlack = 'assets/icons/logos/banner-blue-black.svg';
-const nctBannerWhite = 'assets/icons/logos/banner-blue.svg';
-// default avatars
-const defaultProfileCover = 'assets/images/nct-office.jpg';
-const defaultProfileAvatar = 'assets/avatars/coffee-avatar.png';
-const defaultSlugAvatar = 'assets/avatars/cool-slug-avatar.png';
-const defaultBookStackAvatar = 'assets/avatars/book-stack-avatar.png';
-
-
-
 // Sizes (Integers and Doubles)
 var defaultSize = SizeConfig.defaultSize!;
 
@@ -45,8 +30,6 @@ double buttonBorderRadius = 5;
 // Colors
 Color kBlue = const Color(0xFF1679F7);
 Color kBlueLight = const Color(0xFF1679F7).withOpacity(.7);
-// Color kBlue = const Color(0xFF6699FF);
-// Color kBlueLight = const Color(0xFF6699FF).withOpacity(.7);
 
 Color kWhite = const Color(0xFFFFFFFF);
 Color kBlack = const Color(0xFF000000);
@@ -56,16 +39,12 @@ Color kBlack70 = const Color(0xFF000000).withOpacity(.7);
 Color kBlack80 = const Color(0xFF000000).withOpacity(.8);
 Color kBlack90 = const Color(0xFF000000).withOpacity(.9);
 
-const kTextColor = Color(0xFF202E2E);
-const kTextLigntColor = Color(0xFF7286A5);
-
 // - Secondary
 Color kStarColor = const Color(0XFFF7AC16);
 Color kOrange = const Color(0xFFF7941D);
 Color kGreen = const Color(0xFF2B5D18);
 Color kRed = const Color(0xFFD0102B);
 
-Color appsSplashColor = kBlack.withOpacity(.05);
 double appsSplashRadius = 50;
 
 // FUNCTIONS
@@ -141,7 +120,6 @@ PreferredSize buildAppBar({
     preferredSize: const Size.fromHeight(65),
     child: AppsAppBar(
       title: title,
-      isDark: isDark,
       bgColor: bgColor,
       actionIcon1: actionIcon,
       actionSvg1: actionSvg,
@@ -155,8 +133,6 @@ PreferredSize buildAppBar({
 
 AppsSliverAppBar buildSliverAppBar({
   required String title,
-  bool isDark = false,
-  Color? bgColor,
   bool showLeading = true,
   bool showAction1 = true,
   bool showAction2 = false,
@@ -171,8 +147,6 @@ AppsSliverAppBar buildSliverAppBar({
   Widget? routeWidget2,
   // Function(BuildContext context)? press,
 }) {
-  // give <kBlue> to <bgColor> if it is null
-  bgColor ??= kBlue;
   // if neither actionSvg or actionIcon was provided, then we want to
   // set a default actionSvg value (to be displayed)
   actionSvg1 = actionSvg1 == null && actionIcon1 == null
@@ -181,8 +155,6 @@ AppsSliverAppBar buildSliverAppBar({
 
   return AppsSliverAppBar(
     title: title,
-    isDark: isDark,
-    bgColor: bgColor,
     actionIcon1: actionIcon1,
     actionIcon2: actionIcon2,
     actionSvg1: actionSvg1,
@@ -296,43 +268,49 @@ Row buildDownloadButton({required Function(BuildContext? context) press}) {
 
 // - Avatar: Username
 // e.g 😎 john doe
-Row buildAvatarAndName({
-  required String avatar,
-  required String name,
-  double imgSize = 30,
-  double fontSize = 16,
-  double imgBorderSize = 0,
-  FontWeight weight = FontWeight.w400,
-  Color? color,
-}) {
-  return Row(
-    children: <Widget>[
-      RoundBoxAvatar(
-        size: imgSize,
-        image: avatar,
-        borderSize: imgBorderSize,
-      ),
-      const SizedBox(width:10),
-      Expanded(
-        child: TextCustomMaxLine(
-          title: name,
-          color: color ?? kBlack70,
-          fontSize: fontSize,
-          weight: weight,
-        ),
-      )
-    ],
-  );
-}
 
-// - Search TextField
-Widget buildSearchTextField({required Function(String value) press, required Function(String value) onChangePress}) {
-  return AppsTextField(
-    prefixIcon: Icons.search,
-    hintText: "Search",
-    onSubmitPress: press,
-    onChangePress: onChangePress,
-  );
+class CircularAvartarAndName extends StatelessWidget {
+  const CircularAvartarAndName({
+    super.key,
+    required this.avatar,
+    required this.name,
+    this.imgSize = 30,
+    this.fontSize = 16,
+    this.imgBorderSize = 0,
+    this.weight = FontWeight.w400,
+    this.color,
+  });
+
+  final String avatar;
+  final String name;
+  final double imgSize;
+  final double fontSize;
+  final double imgBorderSize;
+  final FontWeight weight;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        RoundBoxAvatar(
+          size: imgSize,
+          image: avatar,
+          borderSize: imgBorderSize,
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: TextCustomMaxLine(
+            title: name,
+            color: color ?? Theme.of(context).canvasColor.withOpacity(.7),
+            fontSize: fontSize,
+            weight: weight,
+          ),
+        )
+      ],
+    );
+    ;
+  }
 }
 
 // - Mini Course Card
