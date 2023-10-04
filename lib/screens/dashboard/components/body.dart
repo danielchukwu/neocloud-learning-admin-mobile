@@ -1,8 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/appbar/appbar.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/screens/dashboard/components/grant_permission.dart';
-import 'package:neocloud_mobile/screens/dashboard/components/personel_dashboard.dart';
 import 'package:neocloud_mobile/screens/dashboard/components/section_one.dart';
 
 class Body extends StatelessWidget {
@@ -12,11 +11,9 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        buildSliverAppBar(
+        AppsSliverAppBar(
           title: "Dashboard",
-          bgColor: kWhite,
           elevation: .1,
-          isDark: true,
           showLeading: false,
           showAction1: false,
           showAction2: false,
@@ -57,26 +54,23 @@ class _DashboardSliderState extends State<DashboardSlider> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Container(
-          // color: Colors.amber,
-          child: CarouselSlider(
-            options: CarouselOptions(
-              initialPage: 1,
-              viewportFraction: 1,
-              height: 300,
-              enableInfiniteScroll: true,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  selectedIndex = index;
-                });
-              },
-            ),
-            items: [
-              Container(child: const Center(child: Text('AnotherOne'))),
-              const AttendanceClassesCwDashboard(),
-              Container(child: const Center(child: Text('AnotherThree'))),
-            ],
+        CarouselSlider(
+          options: CarouselOptions(
+            initialPage: 1,
+            viewportFraction: 1,
+            height: 300,
+            enableInfiniteScroll: true,
+            onPageChanged: (index, reason) {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
           ),
+          items: const [
+            Center(child: Text('AnotherOne')),
+            AttendanceClassesCwDashboard(),
+            Center(child: Text('AnotherThree')),
+          ],
         ),
 
         // Indicator ... for letting users know interface is swipe able
@@ -96,7 +90,7 @@ class _DashboardSliderState extends State<DashboardSlider> {
           height: 7,
           width: 7,
           decoration: BoxDecoration(
-            color: index == selectedIndex ? kBlueLight : kBlack.withOpacity(.2),
+            color: index == selectedIndex ? kBlueLight : Theme.of(context).canvasColor.withOpacity(.2),
             borderRadius: BorderRadius.circular(10),
           ),
           margin: const EdgeInsets.symmetric(horizontal: 5),

@@ -87,7 +87,6 @@ class SettingsTile extends StatelessWidget {
             IconOrSvg(
               svg: leadingSvg,
               size: 20,
-              color: kBlack80,
             ),
           ])
               : const SizedBox(),
@@ -106,7 +105,7 @@ class SettingsTile extends StatelessWidget {
           children: <Widget>[
             TextSmall(
                 title: shortenText(text: actionText, limit: 20),
-                color: kBlack50),
+                color: Theme.of(context).canvasColor.withOpacity(.5)),
             const SizedBox(width: 10),
             Icon(actionIcon, size: 15),
           ],

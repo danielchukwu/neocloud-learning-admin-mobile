@@ -1,6 +1,7 @@
 // import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 
 // @RoutePage()
 class ListScreen extends StatelessWidget {
@@ -20,7 +21,7 @@ class ListScreen extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(
         title: screenName,
-        bgColor: kWhite,
+        bgColor: getColorOpposite(Theme.of(context).canvasColor),
         isDark: true,
         showLeading: true,
         showAction: false,

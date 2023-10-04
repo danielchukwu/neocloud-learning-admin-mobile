@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/models/Languages.dart';
 
 class LanguageScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
     return Scaffold(
       appBar: buildAppBar(
         title: LanguageScreen.screenName,
-        bgColor: kWhite,
+        bgColor: getColorOpposite(Theme.of(context).canvasColor),
         isDark: true,
         showLeading: true,
         showAction: false,

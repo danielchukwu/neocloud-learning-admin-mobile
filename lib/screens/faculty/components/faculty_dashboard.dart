@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
-// import 'package:neocloud_mobile/components/images.dart';
-// import 'package:neocloud_mobile/components/texts.dart';
-import 'package:neocloud_mobile/components/tile/tiles.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/models/Students.dart';
@@ -135,7 +132,7 @@ class _ListClassTilesState extends State<ListClassTiles> {
                 child: TextExtraLarge(
               title: "0 Accounts Found",
               weight: FontWeight.w400,
-              color: kBlack50,
+              color: Theme.of(context).canvasColor.withOpacity(.5),
             )),
           );
   }

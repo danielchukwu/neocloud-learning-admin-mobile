@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 
 class StackCoverAndProfileImage extends StatelessWidget {
-  const StackCoverAndProfileImage({
+  StackCoverAndProfileImage({
     super.key,
     required this.cover,
     required this.avatar,
@@ -12,7 +13,7 @@ class StackCoverAndProfileImage extends StatelessWidget {
     required this.roleSvg,
     this.coverSize = 280,
     this.profileImgBorderSize = 3,
-    this.coverOverlay = Colors.grey,
+    this.coverOverlay,
     this.profileImageVerticalPosition = 68,
   });
 
@@ -22,11 +23,12 @@ class StackCoverAndProfileImage extends StatelessWidget {
   final double containerSize;
   final double coverSize;
   final double profileImgBorderSize;
-  final Color coverOverlay;
+  late Color ? coverOverlay;
   final double profileImageVerticalPosition;
 
   @override
   Widget build(BuildContext context) {
+    coverOverlay ??= Theme.of(context).canvasColor.withOpacity(.2);
     return Container(
       // color: kOrange,
       height: containerSize,
@@ -37,7 +39,7 @@ class StackCoverAndProfileImage extends StatelessWidget {
           buildCoverImage(context),
 
           // profile image in circular format
-          buildProfileImage(),
+          buildProfileImage(context),
 
           // users role icon
           buildUserRoleIcon()
@@ -54,7 +56,7 @@ class StackCoverAndProfileImage extends StatelessWidget {
     );
   }
 
-  Positioned buildProfileImage() {
+  Positioned buildProfileImage(BuildContext context) {
     return Positioned(
       height: 110,
       width: 110,
@@ -65,7 +67,7 @@ class StackCoverAndProfileImage extends StatelessWidget {
         decoration: BoxDecoration(
           color: kBlue,
           shape: BoxShape.circle,
-          border: Border.all(color: kWhite, width: profileImgBorderSize),
+          border: Border.all(color: getColorOpposite(Theme.of(context).canvasColor), width: profileImgBorderSize),
           image: DecorationImage(
             image: AssetImage(avatar),
             fit: BoxFit.cover,

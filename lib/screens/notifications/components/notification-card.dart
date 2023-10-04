@@ -48,7 +48,7 @@ class _NotificationCardState extends State<NotificationCard> {
       duration: _animationDuration,
       decoration: BoxDecoration(
           color: notification.seen ? Colors.transparent : _containerColor,
-          border: Border(bottom: BorderSide(color: kBlack50, width: .2))),
+          border: Border(bottom: BorderSide(color: Theme.of(context).canvasColor.withOpacity(.5), width: .2))),
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +71,7 @@ class _NotificationCardState extends State<NotificationCard> {
                 TextLarge(
                   title: notification.user.name,
                   weight: FontWeight.w600,
-                  color: kBlack90,
+                  color: Theme.of(context).canvasColor.withOpacity(.9),
                 ),
 
                 // Notification Type
@@ -86,13 +86,13 @@ class _NotificationCardState extends State<NotificationCard> {
                 // TextMedium(title: notification.body + '. ${getTimeAgo(notification.createdAt)}', color: kBlack70),
                 Text.rich(TextSpan(
                     style: appsTextStyle(
-                        color: kBlack70, fontWeight: FontWeight.w400),
+                        color: Theme.of(context).canvasColor.withOpacity(.7), fontWeight: FontWeight.w400),
                     children: [
                       TextSpan(text: notification.body),
                       TextSpan(
                           text: '  ${getTimeAgo(notification.createdAt)}',
                           style: appsTextStyle(
-                              color: kBlack50,
+                              color: Theme.of(context).canvasColor.withOpacity(.5),
                               fontWeight: FontWeight.w400,
                               fontSize: 14))
                     ]))

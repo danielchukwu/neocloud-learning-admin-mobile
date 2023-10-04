@@ -99,6 +99,7 @@ class _LoginFormState extends State<LoginForm> {
               bgColorLoading: kBlueLight.withOpacity(.5),
               borderRadius: 10,
               isLoading: btnIsLoading,
+              minButtonHeight: 45,
               press: (context) {
                 if (_formkey.currentState!.validate()) {
                   _formkey.currentState!.save();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/screens/settings/components/settings_form.dart';
 import 'package:neocloud_mobile/screens/settings/components/settings_form_header.dart';
 
@@ -26,7 +27,7 @@ class SystemGeneralScreen extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(
         title: '',
-        bgColor: kWhite,
+        bgColor: getColorOpposite(Theme.of(context).canvasColor),
         isDark: true,
         showLeading: true,
         showAction: false,

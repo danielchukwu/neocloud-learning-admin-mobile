@@ -1,5 +1,6 @@
 // import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/appbar/appbar.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/graphql/models/NotificationModel.dart';
@@ -46,10 +47,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
         // App Bar
-        buildSliverAppBar(
+        AppsSliverAppBar(
             title: NotificationScreen.screenName,
-            bgColor: kWhite,
-            isDark: true,
             showLeading: false,
             showAction1: false,
             showAction2: false),
@@ -57,9 +56,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
         // App Body
         SliverToBoxAdapter(
           child: dataList == null
-              ? spinnerScreen(screenMaxHeight: SizeConfig.screenHeight! / 1.3)
+              ? spinnerScreen(context: context, screenMaxHeight: SizeConfig.screenHeight! / 1.3)
               : dataList!.isEmpty
-                  ? nothingWasFoundScreen()
+                  ? nothingWasFoundScreen(context: context)
                   : NotificationList(dataList: dataList!),
         ),
       ]),

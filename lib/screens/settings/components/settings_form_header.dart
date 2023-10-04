@@ -17,9 +17,9 @@ class SettingsFormHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextExtraLarge(title: title, color: kBlack90, weight: FontWeight.w500),
+        TextExtraLarge(title: title, color: Theme.of(context).canvasColor.withOpacity(.9), weight: FontWeight.w500),
         subTitle.isNotEmpty ? const SizedBox(height: 10) : const SizedBox(),
-        TextMedium(title: subTitle, color: kBlack60),
+        TextMedium(title: subTitle, color: Theme.of(context).canvasColor.withOpacity(.6)),
       ],
     );
   }

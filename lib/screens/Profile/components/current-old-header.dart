@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 
 class CurrentOldHeader extends StatelessWidget {
   const CurrentOldHeader({
@@ -24,8 +25,8 @@ class CurrentOldHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           border: Border(
-              top: BorderSide(color: kBlack50, width: .2),
-              bottom: BorderSide(color: kBlack50, width: .2))),
+              top: BorderSide(color: Theme.of(context).canvasColor.withOpacity(.5), width: .2),
+              bottom: BorderSide(color: Theme.of(context).canvasColor.withOpacity(.5), width: .2))),
       child: Row(
         children: <Widget>[
           // Title
@@ -35,7 +36,7 @@ class CurrentOldHeader extends StatelessWidget {
               child: TextLarge(
                 title: title,
                 weight: FontWeight.w700,
-                color: selectedLeft ? kBlack80 : kBlack50,
+                color: selectedLeft ? Theme.of(context).canvasColor.withOpacity(.8) : Theme.of(context).canvasColor.withOpacity(.5),
               )),
 
           // Count
@@ -51,7 +52,7 @@ class CurrentOldHeader extends StatelessWidget {
               width: 100,
               height: 40,
               decoration: BoxDecoration(
-                  color: selectedLeft ? kBlack.withOpacity(.05) : kBlack80,
+                  color: selectedLeft ? Theme.of(context).canvasColor.withOpacity(.05) : Theme.of(context).canvasColor.withOpacity(.8),
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(15),
                       bottomLeft: Radius.circular(15))),
@@ -60,7 +61,7 @@ class CurrentOldHeader extends StatelessWidget {
                   const Spacer(),
                   TextLarge(
                     title: rightText,
-                    color: selectedLeft ? kBlack50 : kWhite,
+                    color: selectedLeft ? Theme.of(context).canvasColor.withOpacity(.5) : getColorOpposite(Theme.of(context).canvasColor),
                     weight: FontWeight.w500,
                   ),
                   const Spacer(),

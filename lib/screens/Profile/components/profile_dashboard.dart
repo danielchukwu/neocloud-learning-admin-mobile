@@ -68,9 +68,9 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
                 padTopBottom: 0,
                 padLeftRight: 0,
                 weight: FontWeight.w600,
-                color: selectedIndex == index ? kWhite : kBlack70,
+                color: selectedIndex == index ? kWhite : Theme.of(context).canvasColor.withOpacity(.7),
                 bgColor:
-                    selectedIndex == index ? kBlack80 : kBlack.withOpacity(.1),
+                    selectedIndex == index ? Theme.of(context).canvasColor.withOpacity(.8) : Theme.of(context).canvasColor.withOpacity(.1),
                 press: (context) {
                   setState(() {
                     selectedIndex = index;

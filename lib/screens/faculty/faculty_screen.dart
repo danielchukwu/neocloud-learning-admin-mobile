@@ -1,9 +1,10 @@
 // import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/appbar/appbar.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
-import 'package:neocloud_mobile/models/Faculty.dart';
 import 'package:neocloud_mobile/screens/faculty/components/faculty_dashboard.dart';
 
 // @RoutePage()
@@ -27,10 +28,8 @@ class _FacultyScreenState extends State<FacultyScreen> {
 
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
-        buildSliverAppBar(
+        AppsSliverAppBar(
           title: FacultyScreen.screenName,
-          bgColor: kWhite,
-          isDark: true,
           showLeading: true,
           showAction1: false,
         ),
@@ -51,7 +50,10 @@ class _FacultyScreenState extends State<FacultyScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: kBlue,
-        child: Icon(Icons.add, color: kWhite),
+        child: Icon(
+          Icons.add,
+          color: getColorOpposite(Theme.of(context).canvasColor),
+        ),
       ),
     );
   }
@@ -81,8 +83,8 @@ class FacultyBlueCardSection extends StatelessWidget {
           // Title
           const SizedBox(height: 20),
           TextCustom(
-            title: faculty.name ?? '',
-            color: kWhite,
+            title: faculty.name,
+            color: getColorOpposite(Theme.of(context).canvasColor),
             fontSize: 40,
             weight: FontWeight.w600,
           ),
@@ -91,16 +93,16 @@ class FacultyBlueCardSection extends StatelessWidget {
           const SizedBox(height: 10),
           TextSmall(
             title: 'HOD',
-            color: kWhite,
+            color: getColorOpposite(Theme.of(context).canvasColor),
             weight: FontWeight.w400,
           ),
 
           const SizedBox(height: 5),
-          buildAvatarAndName(
-            avatar: faculty.hod!.avatar ?? '',
-            name: faculty.hod!.name ?? '',
+          CircularAvartarAndName(
+            avatar: faculty.hod!.avatar,
+            name: faculty.hod!.name,
             fontSize: 16,
-            color: kWhite,
+            color: getColorOpposite(Theme.of(context).canvasColor),
             weight: FontWeight.w500,
             imgBorderSize: .2,
           ),
@@ -109,15 +111,13 @@ class FacultyBlueCardSection extends StatelessWidget {
           const SizedBox(height: 20),
           TextSeeMore(
             text: faculty.about ?? '',
-            color: kWhite,
+            color: getColorOpposite(Theme.of(context).canvasColor),
             maxLines: 6,
-            seeMoreColor: kWhite,
+            seeMoreColor: getColorOpposite(Theme.of(context).canvasColor),
           ),
 
           // Body
-          const SizedBox(
-            height: 40,
-          ),
+          const SizedBox(height: 40),
         ],
       ),
     );

@@ -20,28 +20,35 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           // Header - Hi, Goodmorning \n {users name}
-          SizedBox(height: 20),
-          buildHeader(context),
+          const SizedBox(height: 20),
+          _buildHeader(context),
 
           // Classes - count - stackedImages | classworks - count - stackedImages
-          SizedBox(height: 30),
-          buildTextCountStackedImages(
-              title: "Attendance", users: users, length: users.length),
-          SizedBox(height: 30),
-          buildTextCountStackedImages(
+          const SizedBox(height: 30),
+          _buildTextCountStackedImages(
+              context: context,
+              title: "Attendance",
+              users: users,
+              length: users.length),
+          const SizedBox(height: 30),
+          _buildTextCountStackedImages(
+            context: context,
             title: "Classes",
             classes: coursesList,
             length: coursesList.length,
           ),
-          SizedBox(height: 30),
-          buildTextCountStackedImages(
-              title: "Classwork's", users: users, length: users.length),
+          const SizedBox(height: 30),
+          _buildTextCountStackedImages(
+              context: context,
+              title: "Classwork's",
+              users: users,
+              length: users.length),
         ],
       ),
     );
   }
 
-  Row buildHeader(BuildContext context) {
+  Row _buildHeader(BuildContext context) {
     var user = context.watch<UserProvider>().user;
     print(user?.id);
     print(user?.name);
@@ -55,17 +62,17 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // Greetings
-            TextSmall(
-              title: "Hello there",
-              color: kBlack50,
-              weight: FontWeight.w500,
-            ),
-            
-            // {Name}{Role Icon} e.g Chukwu Daniel ⚡
-            // TextRoleIcon(title: "Edwin Vladimir", svg: getRoleSvgFileName(roleList: users[0].role), fontSize: 22, color: kBlack80, weight: FontWeight.w600, iconSize: 20),
+            // TextSmall(
+            //   title: "Hello there",
+            //   color: kBlack50,
+            //   weight: FontWeight.w500,
+            // ),
+            Text("Hello there", style: TextStyle(color: Theme.of(context).canvasColor.withOpacity(.5), fontWeight: FontWeight.w500, fontSize: 14)),
+
+            // {Name}{Role Icon} e.g Chukwu Daniel
+            const SizedBox(height: 3),
             IconText(
               title: user?.name ?? 'null',
-              color: kBlack80,
               fontWeight: FontWeight.w600,
               fontSize: 22,
               svg: getRoleSvgFileName(role: users[0].role[0]),
@@ -82,11 +89,13 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
     );
   }
 
-  Row buildTextCountStackedImages(
-      {required String title,
-      List<Course>? classes,
-      List<Account>? users,
-      int length = 0}) {
+  Row _buildTextCountStackedImages({
+    required BuildContext context,
+    required String title,
+    List<Course>? classes,
+    List<Account>? users,
+    int length = 0,
+  }) {
     if (classes == null && users == null) {
       throw Exception(
           "classes and users are both null. Only 1 is allowed to be null (buildTitleCountStackedImages)");
@@ -94,35 +103,27 @@ class AttendanceClassesCwDashboard extends StatelessWidget {
     return Row(
       children: <Widget>[
         // Text - Count
-        buildTextCount(title, length),
+        buildTextCount(context, title, length),
 
         // Avatars
         classes != null
             ? Expanded(child: buildStackedClassImgs(classList: classes))
-            : SizedBox(),
+            : const SizedBox(),
         users != null
             ? Expanded(child: buildStackedUserImgs(users: users))
-            : SizedBox(),
+            : const SizedBox(),
       ],
     );
   }
 
-  SizedBox buildTextCount(String title, int length) {
+  SizedBox buildTextCount(BuildContext context, String title, int length) {
     return SizedBox(
       width: (SizeConfig.screenWidth! / 2) - 20,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          TextLarge(
-            title: title,
-            color: kBlack50,
-            weight: FontWeight.w500,
-          ),
-          TextLarge(
-            title: "$length",
-            color: kBlack80,
-            weight: FontWeight.w500,
-          ),
+          Text(title, style: TextStyle(fontSize: 18, color: Theme.of(context).canvasColor.withOpacity(.5), fontWeight: FontWeight.w500)),
+          Text("$length", style: TextStyle(fontSize: 18, color: Theme.of(context).canvasColor.withOpacity(.8), fontWeight: FontWeight.w500)),
         ],
       ),
     );

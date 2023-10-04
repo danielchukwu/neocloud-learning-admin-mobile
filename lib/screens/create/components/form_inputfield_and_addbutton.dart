@@ -18,10 +18,12 @@ class FormInputFieldAndAddButton extends StatefulWidget {
   final Function(String value) press;
 
   @override
-  State<FormInputFieldAndAddButton> createState() => _FormInputFieldAndAddButtonState();
+  State<FormInputFieldAndAddButton> createState() =>
+      _FormInputFieldAndAddButtonState();
 }
 
-class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton> {
+class _FormInputFieldAndAddButtonState
+    extends State<FormInputFieldAndAddButton> {
   final _modulesTitleController = TextEditingController();
   bool showModuleInputField = false;
 
@@ -50,14 +52,20 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
       padding: EdgeInsets.only(left: 40, top: showModuleInputField ? 0 : 20),
       child: GestureDetector(
         onTap: addModule,
-        child: TextMedium(title: widget.buttonText, color: kBlack70, weight: FontWeight.w500,),
+        child: Text(
+          widget.buttonText,
+          style: TextStyle(
+            color: Theme.of(context).canvasColor.withOpacity(.7),
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
     );
   }
 
   void addModule() {
     if (showModuleInputField == false) {
-      setState(() => showModuleInputField = true );
+      setState(() => showModuleInputField = true);
     } else {
       widget.press(_modulesTitleController.text);
       setState(() => _modulesTitleController.text = '');
@@ -69,12 +77,12 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Count
-        SizedBox(width: 10),
-        const SizedBox(
+        const SizedBox(width: 10),
+        SizedBox(
           width: 30,
           child: Padding(
             padding: EdgeInsets.only(top: 14),
-            child: TextMedium(title: '--', color: Colors.black54),
+            child: TextMedium(title: '--', color: Theme.of(context).canvasColor.withOpacity(.5)),
           ),
         ),
 
@@ -92,20 +100,21 @@ class _FormInputFieldAndAddButtonState extends State<FormInputFieldAndAddButton>
       minLines: 1,
       onTapOutside: onTapOutside,
       autofocus: true,
-      textInputAction: TextInputAction.done,  // Display done in keyboard
-      onEditingComplete: pressOnKeyboardDone,   // execute function when done is clicked on the keyboard
-      style: appsTextStyle(color: kBlack80, fontWeight: FontWeight.w500, fontSize: 16 ),
+      textInputAction: TextInputAction.done, // Display done in keyboard
+      onEditingComplete:
+          pressOnKeyboardDone, // execute function when done is clicked on the keyboard
+      style: appsTextStyle(
+          color: Theme.of(context).canvasColor.withOpacity(.8), fontWeight: FontWeight.w500, fontSize: 16),
       decoration: textAreaDecoration(),
     );
   }
 
   InputDecoration textAreaDecoration() {
     return InputDecoration(
-      hintText: widget.hintText,
-      contentPadding: EdgeInsets.symmetric(vertical: 15),
-      hintStyle: appsTextStyle(color: Colors.black54),
-      border: const OutlineInputBorder(borderSide: BorderSide.none)
-    );
+        hintText: widget.hintText,
+        contentPadding: const EdgeInsets.symmetric(vertical: 15),
+        hintStyle: appsTextStyle(color: Theme.of(context).canvasColor.withOpacity(.5)),
+        border: const OutlineInputBorder(borderSide: BorderSide.none));
   }
 
   void onTapOutside(_) {

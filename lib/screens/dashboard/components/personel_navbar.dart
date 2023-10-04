@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 
 class PersonelNavBar extends StatelessWidget {
   const PersonelNavBar({
@@ -25,28 +26,28 @@ class PersonelNavBar extends StatelessWidget {
           navItems.length,
           (index) => InkWell(
             onTap: () => press(index),
-            highlightColor: kWhite,
-            splashColor: appsSplashColor,
+            highlightColor: getColorOpposite(Theme.of(context).canvasColor),
+            splashColor: Theme.of(context).canvasColor.withOpacity(.5),
             radius: appsSplashRadius,
             child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 15, 20, 0),
+              padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
               child: Column(
                 children: <Widget>[
                   // Title
                   TextLarge(
                     title: navItems[index] + "s",
                     weight: FontWeight.w500,
-                    color: index == selectedIndex ? kBlack90 : kBlack50,
+                    color: index == selectedIndex ? Theme.of(context).canvasColor.withOpacity(.9) : Theme.of(context).canvasColor.withOpacity(.5),
                   ),
                   // Selector
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 100),
                     curve: Curves.easeIn,
                     height: 4,
                     width: 40,
                     color: index == selectedIndex
-                        ? kBlack.withOpacity(.5)
+                        ? Theme.of(context).canvasColor.withOpacity(.5)
                         : Colors.transparent,
                   )
                 ],

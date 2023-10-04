@@ -20,13 +20,13 @@ class IntroNameRoleRatings extends StatelessWidget {
         children: <Widget>[
           // User Name
           TextExtraLarge(
-              title: user.name, color: kBlack80, weight: FontWeight.w600),
+              title: user.name, color: Theme.of(context).canvasColor.withOpacity(.8), weight: FontWeight.w600),
 
           // User Role
           const SizedBox(height: 5),
           TextMedium(
               title: user.role != null ? user.role!.name : 'role unassigned',
-              color: kBlack50)
+              color: Theme.of(context).canvasColor.withOpacity(.5))
 
           // User Ratings
           // SizedBox(height: 5),

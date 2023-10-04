@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 
 
 class ProfileCard extends StatelessWidget {
@@ -36,8 +37,8 @@ class ProfileCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              TextMedium(title: title, color: kWhite, weight: FontWeight.w600),
-              TextSmall(title: "$count", color: kWhite)
+              TextMedium(title: title, color: getColorOpposite(Theme.of(context).canvasColor), weight: FontWeight.w600),
+              TextSmall(title: "$count", color: getColorOpposite(Theme.of(context).canvasColor))
             ],
           ),
         ),

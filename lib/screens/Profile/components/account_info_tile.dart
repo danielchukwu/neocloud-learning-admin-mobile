@@ -11,12 +11,12 @@ class AccountInfoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      SizedBox(height: 10),
+      const SizedBox(height: 10),
       ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 0),
         horizontalTitleGap: 0,
         dense: true,
-        leading: Icon(data.icon, color: kBlack.withOpacity(.4)),
+        leading: Icon(data.icon, color: Theme.of(context).canvasColor.withOpacity(.4)),
         title: TextMedium(title: data.title, color: kBlack50),
         trailing: SizedBox(
             width: SizeConfig.screenWidth! / 2,
@@ -28,7 +28,7 @@ class AccountInfoTile extends StatelessWidget {
                   fontSize: 16,
                   maxLines: 1,
                   title: data.info,
-                  color: kBlack80,
+                  color: Theme.of(context).canvasColor.withOpacity(.8),
                 )
               ],
             )),

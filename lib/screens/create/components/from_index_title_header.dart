@@ -22,11 +22,11 @@ class FormIndexTextAndTitleHeader extends StatelessWidget {
         children: [
           // Module Count
           const SizedBox(height: 20),
-          TextSmall(title: indexText, weight: FontWeight.w600, color: Colors.black54,),
+          TextSmall(title: indexText, weight: FontWeight.w600, color: Theme.of(context).canvasColor.withOpacity(.5),),
           
           // Module Title
           const SizedBox(height: 5),
-          TextLarge(title: title, weight: FontWeight.w600, color: kBlack80),
+          TextLarge(title: title, weight: FontWeight.w600, color: Theme.of(context).canvasColor.withOpacity(.8)),
           const SizedBox(height: 20),
         ],
       ),

@@ -3,7 +3,6 @@ import 'package:neocloud_mobile/components/cards/class_card.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/core/entities/class_entity.dart';
-import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/graphql/services/class_service.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_dashboard.dart';
@@ -61,9 +60,9 @@ class _ProfileClassesState extends State<ProfileClasses> {
   @override
   Widget build(BuildContext context) {
     return classList == null
-        ? spinnerScreen()
+        ? spinnerScreen(context: context)
         : classList!.isEmpty
-            ? nothingWasFoundScreen()
+            ? nothingWasFoundScreen(context: context)
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: List.generate(
@@ -91,17 +90,17 @@ class ProfileAbout extends StatelessWidget {
         children: [
           // About Section
           const SizedBox(height: 15),
-          TextLarge(title: 'ABOUT', weight: FontWeight.w500, color: kBlack80),
+          TextLarge(title: 'ABOUT', weight: FontWeight.w500, color: Theme.of(context).canvasColor.withOpacity(.8)),
           // Body
           const SizedBox(height: 10),
           TextMedium(
             title: user.about,
-            color: kBlack80,
+            color: Theme.of(context).canvasColor.withOpacity(.8),
           ),
 
           // Roles Section
           const SizedBox(height: 30),
-          TextLarge(title: 'ROLES', weight: FontWeight.w500, color: kBlack80),
+          TextLarge(title: 'ROLES', weight: FontWeight.w500, color: Theme.of(context).canvasColor.withOpacity(.8)),
 
           // Icons List
           const SizedBox(height: 10),

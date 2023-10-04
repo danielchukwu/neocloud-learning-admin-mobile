@@ -60,7 +60,7 @@ class _ListUserActivityTileState extends State<ListUserActivityTile> {
                 child: TextExtraLarge(
               title: "0 Accounts Found",
               weight: FontWeight.w400,
-              color: kBlack50,
+              color: Theme.of(context).canvasColor.withOpacity(.5),
             )),
           );
   }

@@ -5,6 +5,7 @@ import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/cards/gradient-card.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/screens/settings/components/settings_form_header.dart';
 
 class SystemLogosScreen extends StatelessWidget {
@@ -24,7 +25,7 @@ class SystemLogosScreen extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(
         title: '',
-        bgColor: kWhite,
+        bgColor: getColorOpposite(Theme.of(context).canvasColor),
         isDark: true,
         showLeading: true,
         showAction: false,
@@ -36,7 +37,7 @@ class SystemLogosScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             SettingsFormHeader(
                 title: '$screenName Settings', subTitle: subText),
 
@@ -46,16 +47,17 @@ class SystemLogosScreen extends StatelessWidget {
                 logosList.length,
                 (index) => Column(children: <Widget>[
                   // Card Header  (Title and Change Btn)
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextMedium(title: 'Black Logo'),
+                      const TextMedium(title: 'Black Logo'),
                       TextLink(
-                          title: 'Change',
-                          press: (context) {},
-                          color: kBlue,
-                          fontSize: 16),
+                        title: 'Change',
+                        press: (context) {},
+                        color: kBlue,
+                        fontSize: 16,
+                      ),
                     ],
                   ),
 

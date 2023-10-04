@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/models/Settings.dart';
 import 'package:neocloud_mobile/screens/settings/components/settings_list.dart';
 
@@ -13,7 +14,7 @@ class ManageAccountScreen extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(
         title: screenName,
-        bgColor: kWhite,
+        bgColor: getColorOpposite(Theme.of(context).canvasColor),
         isDark: true,
         showLeading: true,
         showAction: false,

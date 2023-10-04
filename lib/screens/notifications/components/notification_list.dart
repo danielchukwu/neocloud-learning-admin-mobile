@@ -15,7 +15,7 @@ class NotificationList extends StatelessWidget {
       children: List.generate(
           dataList.length,
           (index) => NotificationCard(
-              notification: dataList[index], typeColor: kBlack70)),
+              notification: dataList[index], typeColor: Theme.of(context).canvasColor.withOpacity(.7))),
     );
   }
 }

@@ -12,7 +12,7 @@ class LoginAppBarBackButton extends StatelessWidget {
         splashRadius: 28,
         icon: Icon(
           Icons.arrow_back_ios,
-          color: kBlack70,
+          color: Theme.of(context).canvasColor.withOpacity(.7),
         ),
         onPressed: () {
           Navigator.pop(context);

@@ -54,7 +54,7 @@ class ProfileStudentsClassesReviewsCount extends StatelessWidget {
                 title:
                     "${iconTextRowList[index]['title']} (${iconTextRowList[index]['count']})",
                 icon: iconTextRowList[index]['icon'],
-                iconColor: kBlack70,
+                iconColor: Theme.of(context).canvasColor.withOpacity(.7),
                 fontSize: 15),
           ),
         ),

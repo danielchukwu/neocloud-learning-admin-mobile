@@ -51,7 +51,7 @@ class FormUpdateOrDeleteInputField extends StatelessWidget {
                   child: FormTextarea(
                     fontSize: fontSize ?? 14,
                     fontWeight: fontWeight ?? FontWeight.w400,
-                    textColor: textColor ?? Colors.black87,
+                    textColor: textColor ?? Theme.of(context).canvasColor.withOpacity(.8),
                     hintText: hintText ?? '',
                     initialValue: initialValue,
                     controller: controller,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/models/ProfileNavbarItem.dart';
 import 'package:neocloud_mobile/models/ClassWork.dart';
 import 'package:neocloud_mobile/screens/Profile/components/profile_content.dart';
@@ -49,7 +50,7 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
         // Divider Line
         Positioned(
           child: Divider(
-            color: kBlack.withOpacity(.2),
+            color: Theme.of(context).canvasColor.withOpacity(.2),
             height: 5,
             thickness: 1,
           ),
@@ -61,7 +62,7 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
           curve: Curves.easeIn,
           duration: const Duration(milliseconds: 100),
           child: Container(
-            color: kBlack80,
+            color: Theme.of(context).canvasColor.withOpacity(.8),
             height: 2,
           ),
         )
@@ -85,14 +86,14 @@ class _ProfileNavbarAndContentState extends State<ProfileNavbarAndContent> {
                 });
               },
               child: Container(
-                color: Colors.white,
+                color: getColorOpposite(Theme.of(context).canvasColor),
                 padding: EdgeInsets.only(
                     top: index == 0 ? 3 : 0, bottom: index == 0 ? 12 : 10),
                 child: SvgPicture.asset(
                   widget.navItems[index].iconSrc,
                   color: index == ProfileNavbarItems.selectedIndex
-                      ? kBlack80
-                      : kBlack50,
+                      ? Theme.of(context).canvasColor.withOpacity(.8)
+                      : Theme.of(context).canvasColor.withOpacity(.5),
                   width: widget.navItems[index].size,
                 ),
               ),

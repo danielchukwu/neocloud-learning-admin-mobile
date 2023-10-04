@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/constants/constants.dart';
 import 'package:neocloud_mobile/screens/comming_soon/comming_soon_screen.dart';
 import 'package:neocloud_mobile/screens/login_signup/login_signup_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
@@ -29,7 +30,8 @@ class WelcomeScreen extends StatelessWidget {
             
                   // Logo - neocloud logo icon
                   const Spacer(flex: 2),
-                  SvgPicture.asset(nctBannerBlueBlack, width: 250, color: kBlueLight),
+                  // SvgPicture.asset(nctBannerBlueBlack, width: 250, color: kBlueLight),
+                  Image.asset(nct_logo_black, width: 200),
             
                   // Button - takes us to the login page
                   const Spacer(flex: 2,),
@@ -41,18 +43,16 @@ class WelcomeScreen extends StatelessWidget {
             
                   // Link - access courses
                   const SizedBox(height: 50),
-                  TextLink(
-                    title: 'Access Virtual Course',
-                    color: kBlack70,
-                    press: (_) => Navigator.pushNamed(context, '/' + ComingSoonScreen.screenName)
+                  GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, '/' + ComingSoonScreen.screenName),
+                    child: Text('Access Virtual Course', style: Theme.of(context).textTheme.bodySmall,),
                   ),
             
                   // Link - certificate validation
                   const Spacer(flex: 1),
-                  TextLink(
-                    title: 'Certificate Validation',
-                    color: kBlack70,
-                    press: (_) => Navigator.pushNamed(context, '/' + ComingSoonScreen.screenName)
+                  GestureDetector(
+                    onTap: () => Navigator.pushNamed(context, '/' + ComingSoonScreen.screenName),
+                    child: Text('Certificate Validation', style: Theme.of(context).textTheme.bodySmall,),
                   ),
                   const SizedBox(height: 50,)
                 ],
