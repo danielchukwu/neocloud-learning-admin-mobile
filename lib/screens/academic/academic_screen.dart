@@ -7,6 +7,7 @@ import 'package:neocloud_mobile/components/Lists/faculty_list.dart';
 import 'package:neocloud_mobile/components/bottom_navbar/apps_bottom_navbar.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/screens/academic/components/DisplayOptions.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Options.dart';
@@ -31,8 +32,6 @@ class _AcademicScreenState extends State<AcademicScreen> {
         // App Bar
         buildSliverAppBar(
             title: AcademicScreen.screenName,
-            bgColor: kWhite,
-            isDark: true,
             showLeading: false,
             showAction1: false,
             showAction2: false),
@@ -50,7 +49,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
                 padding: const EdgeInsets.only(bottom: 5),
                 decoration: BoxDecoration(
                     border:
-                        Border(bottom: BorderSide(color: kBlack50, width: .2))),
+                        Border(bottom: BorderSide(color: Theme.of(context).canvasColor.withOpacity(.5), width: .2))),
                 child: DisplayOptions(
                   items: AcademicOptions.items,
                   getSelectedIndex: AcademicOptions.getSelectedIndex,
@@ -61,7 +60,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
               // Underneath Background Layer Separator
               Container(
                 height: 7,
-                color: kBlack.withOpacity(.03),
+                color: Theme.of(context).canvasColor.withOpacity(.03),
               ),
 
               // Header - Classes, Count (styled background)
@@ -123,10 +122,10 @@ class _AcademicScreenState extends State<AcademicScreen> {
                         Container(
                           margin: screenPadding,
                           padding: const EdgeInsets.symmetric(vertical: 10),
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              color: Colors.white),
+                                  const BorderRadius.all(Radius.circular(20)),
+                              color: getColorOpposite(Theme.of(context).canvasColor)),
                           child: Column(
                             children: [
                               buildButton(
@@ -155,7 +154,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
           );
         },
         backgroundColor: kBlue,
-        child: Icon(Icons.add, color: kWhite),
+        child: Icon(Icons.add, color: getColorOpposite(Theme.of(context).canvasColor)),
       ),
     );
   }
@@ -172,7 +171,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           TextMedium(
             title: title,
-            color: kBlack70,
+            color: Theme.of(context).canvasColor.withOpacity(.7),
             weight: FontWeight.w600,
           )
         ]),

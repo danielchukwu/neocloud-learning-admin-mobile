@@ -4,57 +4,15 @@ import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/stacks.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
+import 'package:neocloud_mobile/core/entities/class_entity.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
-import 'package:neocloud_mobile/models/Class.dart';
-import 'package:neocloud_mobile/models/Students.dart';
 import 'package:neocloud_mobile/screens/Profile/profile_sceen.dart';
 import 'package:neocloud_mobile/screens/class/class_screen.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
 
-class UserTile extends StatelessWidget {
-  const UserTile({
-    super.key,
-    required this.user,
-    this.trailing,
-  });
-
-  final UserModel user;
-  final Widget? trailing;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.transparent,
-      padding: EdgeInsets.only(bottom: defaultSize * 2),
-      child: Row(
-        children: <Widget>[
-          // Avatar
-          CircleAvatar(
-              backgroundImage: AssetImage(user.avatar ?? 'img'), radius: defaultSize * 2.8),
-          // StackedImageAndDot(img: avatar, text: "1"),
-          SizedBox(width: defaultSize * 2),
-          // Name and Role
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextMedium(
-                  title: user.name, weight: FontWeight.w600, color: kBlack90),
-              TextMedium(
-                  title: user.role!.name, weight: FontWeight.w500, color: kBlack50),
-            ],
-          ),
-
-          const Spacer(),
-
-          // trailing != null ? trailing! : const SizedBox(),
-        ],
-      ),
-    );
-  }
-}
 
 class ClassTile extends StatelessWidget {
   const ClassTile({
@@ -62,7 +20,7 @@ class ClassTile extends StatelessWidget {
     required this.clas,
   });
 
-  final ClassModel clas;
+  final ClassEntity clas;
 
   @override
   Widget build(BuildContext context) {
@@ -92,16 +50,16 @@ class ClassTile extends StatelessWidget {
                 TextCustomMaxLine(
                   title: '${clas.name!}',
                   weight: FontWeight.w600,
-                  color: kBlack90,
+                  color: Theme.of(context).canvasColor.withOpacity(.9),
                   fontSize: defaultSize * 1.8,
                   maxLines: 2,
                 ),
 
                 // Avatar and Name
                 SizedBox(height: defaultSize * .5),
-                buildAvatarAndName(
+                CircularAvartarAndName(
                   avatar: clas.educators != null && clas.educators!.length > 0 
-                    ? clas.educators![0].avatar ?? '' : '',
+                    ? clas.educators![0].avatar : '',
                   name: clas.educators != null && clas.educators!.length > 0 
                     ? clas.educators![0].name : 'daniel',
                   imgSize: defaultSize * 2.5,
@@ -116,7 +74,7 @@ class ClassTile extends StatelessWidget {
                   icon: Icons.watch_later_rounded,
                   fontSize: defaultSize * 1.4,
                   iconSize: defaultSize * 1.6,
-                  iconColor: kBlack70,
+                  iconColor: Theme.of(context).canvasColor.withOpacity(.7),
                 ),
 
                 SizedBox(height: defaultSize * 2),
@@ -148,7 +106,7 @@ class UserActivityTile extends StatelessWidget {
       child: Row(
         children: <Widget>[
           // Images
-          StackedImageAndDot(img: user.avatar!, text: "2"),
+          StackedImageAndDot(img: user.avatar, text: "2"),
           // Users name and Live - Time
           SizedBox(width: defaultSize * 1.5),
           Column(
@@ -163,7 +121,7 @@ class UserActivityTile extends StatelessWidget {
               // ),
               IconText(
                 title: user.name,
-                color: kBlack80,
+                color: Theme.of(context).canvasColor.withOpacity(.8),
                 fontWeight: FontWeight.w600,
                 fontSize: defaultSize * 1.6,
                 iconIsLeft: false,
@@ -178,7 +136,7 @@ class UserActivityTile extends StatelessWidget {
                 text1FontSize: defaultSize * 1.4,
                 text2FontSize: defaultSize * 1.4,
                 text1Color: kBlue,
-                text2Color: kBlack50,
+                text2Color: Theme.of(context).canvasColor.withOpacity(.5),
                 text1FontWeight: FontWeight.w700,
               ),
             ],
@@ -253,8 +211,8 @@ class _UserSelectionTileState extends State<UserSelectionTile> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextMedium(title: widget.user.name, weight: FontWeight.w600, color: kBlack80),
-                    const TextSmall(title: '{widget.user.role.name}', color: Colors.black54)
+                    TextMedium(title: widget.user.name, weight: FontWeight.w600, color: Theme.of(context).canvasColor.withOpacity(.8)),
+                    TextSmall(title: '{widget.user.role.name}', color: Theme.of(context).canvasColor.withOpacity(.5))
                   ],
                 )
               ],
@@ -322,8 +280,8 @@ class _FacultySelectionTileState extends State<FacultySelectionTile> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextMedium(title: widget.faculty.name, weight: FontWeight.w600, color: kBlack80),
-                const TextSmall(title: '{widget.faculty.hod.name} (HOD)', color: Colors.black54)
+                TextMedium(title: widget.faculty.name, weight: FontWeight.w600, color: Theme.of(context).canvasColor.withOpacity(.8)),
+                TextSmall(title: '{widget.faculty.hod.name} (HOD)', color: Theme.of(context).canvasColor.withOpacity(.5))
               ],
             )
           ],
@@ -363,7 +321,7 @@ class _TitleAndSetTimeTileState extends State<TitleAndSetTimeTile> {
         // Title
         TextMedium(
           title: widget.daytime.title,
-          color: Colors.grey[800],
+          color: Theme.of(context).canvasColor.withOpacity(.4),
           weight: FontWeight.w600,
         ),
         
@@ -391,14 +349,14 @@ class _TitleAndSetTimeTileState extends State<TitleAndSetTimeTile> {
             width: 120,
             height: 30,
             decoration: BoxDecoration(
-              color: timeIsSet(widget.daytime) ? Colors.white : kBlueLight,
-              border: Border.all(color: Colors.black26, width: 1),
+              color: timeIsSet(widget.daytime) ? getColorOpposite(Theme.of(context).canvasColor) : kBlueLight,
+              border: Border.all(color: Theme.of(context).canvasColor.withOpacity(.3), width: 1),
               borderRadius: const BorderRadius.all(Radius.circular(5))
             ),
             child: Center(
               child: TextMedium(
                 title: timeIsSet(widget.daytime) ? getTimeFormat(widget.daytime) : 'Set Time',
-                color: timeIsSet(widget.daytime) ? Colors.black87 : Colors.white,
+                color: timeIsSet(widget.daytime) ? Theme.of(context).canvasColor.withOpacity(.7) : getColorOpposite(Theme.of(context).canvasColor),
                 textAlign: TextAlign.center,
               ),
             ),

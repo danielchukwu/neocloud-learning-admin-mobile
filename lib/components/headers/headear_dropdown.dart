@@ -37,7 +37,7 @@ class HeaderWithDropdown extends StatelessWidget {
             Expanded(
               child: TextCustom(
                 title: title,
-                color: color ?? kBlack80,
+                color: color ?? Theme.of(context).canvasColor.withOpacity(.8),
                 fontSize: fontSize ?? defaultSize * 1.8,
                 weight: weight,
               ),
@@ -46,9 +46,8 @@ class HeaderWithDropdown extends StatelessWidget {
               margin: EdgeInsets.only(left: defaultSize * 3),
               child: AnimatedRotation(
                 turns: turns,
-                duration: Duration(milliseconds: 100),
-                child: Icon(icon ?? Icons.arrow_drop_up, color: iconColor ?? kBlack70),
-                // child: Icon(Icons.arrow_drop_down_sharp, color: kBlack70),
+                duration: const Duration(milliseconds: 100),
+                child: Icon(icon ?? Icons.arrow_drop_up, color: iconColor ?? Theme.of(context).canvasColor.withOpacity(.7)),
               ),
             ),
           ],

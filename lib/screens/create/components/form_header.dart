@@ -18,11 +18,11 @@ class FormHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // Title
-          TextExtraLarge(title: title, weight: FontWeight.w600, color: kBlack80),
+          Text(title, style: TextStyle(fontWeight: FontWeight.w600, color: Theme.of(context).canvasColor.withOpacity(.8))),
           // Cancel Button
           GestureDetector(
             onTap: () => Navigator.pop(context),
-            child: Icon(Icons.close, color: Colors.black87, size: 30,)),
+            child: Icon(Icons.close, color: Theme.of(context).canvasColor.withOpacity(.8), size: 30,)),
         ],
       ),
     );

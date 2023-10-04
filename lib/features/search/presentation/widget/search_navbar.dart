@@ -23,6 +23,7 @@ class SearchScreenNavbar extends StatelessWidget {
                     onTap: () => _onPressNavbarItem(
                         context: context, event: SearchNavbarAllEvent()),
                     child: _buildNavItem(
+                        context: context,
                         state: SearchNavbarAllState(),
                         isSelected: state is SearchNavbarAllState),
                   ),
@@ -32,6 +33,7 @@ class SearchScreenNavbar extends StatelessWidget {
                     onTap: () => _onPressNavbarItem(
                         context: context, event: SearchNavbarEducatorsEvent()),
                     child: _buildNavItem(
+                        context: context,
                         state: SearchNavbarEducatorsState(),
                         isSelected: state is SearchNavbarEducatorsState),
                   ),
@@ -41,6 +43,7 @@ class SearchScreenNavbar extends StatelessWidget {
                     onTap: () => _onPressNavbarItem(
                         context: context, event: SearchNavbarStudentsEvent()),
                     child: _buildNavItem(
+                        context: context,
                         state: SearchNavbarStudentsState(),
                         isSelected: state is SearchNavbarStudentsState),
                   ),
@@ -50,13 +53,14 @@ class SearchScreenNavbar extends StatelessWidget {
                     onTap: () => _onPressNavbarItem(
                         context: context, event: SearchNavbarClassesEvent()),
                     child: _buildNavItem(
+                        context: context,
                         state: SearchNavbarClassesState(),
                         isSelected: state is SearchNavbarClassesState),
                   ),
                 ],
               ),
             ),
-            Divider(color: kBlack.withOpacity(.3)),
+            Divider(color: Theme.of(context).canvasColor.withOpacity(.3)),
           ],
         );
       },
@@ -64,7 +68,9 @@ class SearchScreenNavbar extends StatelessWidget {
   }
 
   Container _buildNavItem(
-      {required SearchNavbarState state, required bool isSelected}) {
+      {required BuildContext context,
+      required SearchNavbarState state,
+      required bool isSelected}) {
     return Container(
       color: Colors.transparent,
       margin: const EdgeInsets.only(top: 10),
@@ -73,7 +79,9 @@ class SearchScreenNavbar extends StatelessWidget {
           : const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
       child: TextMedium(
         title: state.title,
-        color: isSelected ? kBlack90 : kBlack50,
+        color: isSelected
+            ? Theme.of(context).canvasColor.withOpacity(.9)
+            : Theme.of(context).canvasColor.withOpacity(.5),
         weight: isSelected ? FontWeight.w600 : FontWeight.w500,
       ),
     );

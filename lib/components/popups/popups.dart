@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
@@ -46,7 +47,7 @@ showTopAlertDialog({required String text, bool isError = true}) {
                 color:  isError ? const Color(0xFFeb4d4b) : const Color(0xFF1dd1a1),
                 borderRadius: BorderRadius.all(Radius.circular(defaultSize * .8))
               ),
-              child: TextMedium(title: text, color: kWhite, textAlign: TextAlign.center),
+              child: TextMedium(title: text, color: getColorOpposite(Theme.of(context).canvasColor), textAlign: TextAlign.center),
             ),
           ),
         ),

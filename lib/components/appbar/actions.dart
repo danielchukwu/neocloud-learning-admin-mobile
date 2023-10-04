@@ -8,7 +8,6 @@ class actionUserButton extends StatelessWidget {
     super.key,
     this.icon,
     this.svg,
-    this.isDark = false,
     this.routeWidget,
   });
 
@@ -16,9 +15,6 @@ class actionUserButton extends StatelessWidget {
   // to be displayed
   final IconData? icon;
   final String? svg;
-  // action button is dark when this <isDark> is true and white when <isDark>
-  // is false
-  final bool isDark;
   // the route to be navigated to when this action button is clicked on
   final String routeName;
   // 
@@ -41,8 +37,8 @@ class actionUserButton extends StatelessWidget {
           color: Colors.transparent,
           padding: EdgeInsets.symmetric(horizontal: defaultSize * 2),
           child: svg != null
-            ? IconOrSvg(svg: svg!, color: isDark ? kBlack80 : kWhite, size: defaultSize * 2.5,)
-            : IconOrSvg(icon: icon!, color: isDark ? kBlack80 : kWhite, size: defaultSize * 2.5),
+            ? IconOrSvg(svg: svg!, size: defaultSize * 2.5,)
+            : IconOrSvg(icon: icon!, size: defaultSize * 2.5),
         )
     );
   }

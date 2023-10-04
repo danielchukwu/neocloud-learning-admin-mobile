@@ -26,7 +26,7 @@ class ComingSoonScreen extends StatelessWidget {
                 title: 'Coming Soon',
                 fontSize: 25,
                 weight: FontWeight.w600,
-                color: kBlue,
+                color: Theme.of(context).primaryColor,
               ),
               const SizedBox(height: 30),
               WelcomeButton(title: 'Go Back', press: () => Navigator.pop(context))

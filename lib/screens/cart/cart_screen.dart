@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/cart_card.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
 
 // @RoutePage()
@@ -18,7 +19,7 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: buildAppBar(
         title: screenName,
-        bgColor: kWhite,
+        bgColor: getColorOpposite(Theme.of(context).canvasColor),
         isDark: true,
         showLeading: true,
         showAction: false,
@@ -36,13 +37,13 @@ class CartScreen extends StatelessWidget {
                   (index) => CartCard(course: coursesList[index])),
             ),
 
-            Divider(color: kBlack50, height: 2),
+            Divider(color: Theme.of(context).canvasColor.withOpacity(.5), height: 2),
 
             // Wishlist items
             const SizedBox(height: 20),
             TextExtraLarge(
               title: "Wishlist",
-              color: kBlack80,
+              color: Theme.of(context).canvasColor.withOpacity(.8),
               weight: FontWeight.w500,
             ),
             const SizedBox(height: 40),

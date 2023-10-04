@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/ratings.dart';
-import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/models/Courses.dart';
 
@@ -16,11 +15,7 @@ class ReviewCard extends StatelessWidget {
       children: <Widget>[
         // name
         SizedBox(height: defaultSize * 2),
-        TextLarge(
-          title: review.name,
-          weight: FontWeight.w500,
-          color: kBlack80,
-        ),
+        Text(review.name, style: Theme.of(context).textTheme.labelMedium),
 
         // ratings
         SizedBox(height: defaultSize * .5),
@@ -33,7 +28,8 @@ class ReviewCard extends StatelessWidget {
 
         // content
         SizedBox(height: defaultSize * .5),
-        TextMedium(title: review.content, color: kBlack70),
+        // TextMedium(title: review.content, color: Theme.of(context).canvasColor.withOpacity(.7)),
+        Text(review.content, style: Theme.of(context).textTheme.bodyMedium,)
       ],
     );
   }

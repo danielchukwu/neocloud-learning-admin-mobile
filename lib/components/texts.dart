@@ -22,7 +22,7 @@ class TextSmall extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color ?? kBlack70,
+        color: color ?? Theme.of(context).canvasColor.withOpacity(.7),
         fontSize: 14,
         fontWeight: weight,
       ),
@@ -50,7 +50,7 @@ class TextMedium extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color ?? kBlack70,
+        color: color ?? Theme.of(context).canvasColor.withOpacity(.7),
         fontSize: 16,
         fontWeight: weight,
         decoration: TextDecoration.none
@@ -79,7 +79,7 @@ class TextLarge extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color ?? kBlack70,
+        color: color ?? Theme.of(context).canvasColor.withOpacity(.7),
         fontSize: 18,
         fontWeight: weight,
       ),
@@ -107,7 +107,7 @@ class TextExtraLarge extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color ?? kBlack70,
+        color: color ?? Theme.of(context).canvasColor.withOpacity(.7),
         fontSize: 20,
         fontWeight: weight,
       ),
@@ -137,7 +137,7 @@ class TextCustom extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color ?? kBlack70,
+        color: color ?? Theme.of(context).canvasColor.withOpacity(.7),
         fontSize: fontSize,
         fontWeight: weight,
       ),
@@ -174,7 +174,7 @@ class TextCustomMaxLine extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         fontFamily: 'Poppins',
-        color: color ?? kBlack70,
+        color: color ?? Theme.of(context).canvasColor.withOpacity(.7),
         fontSize: fontSize,
         fontWeight: weight,
         height: lineHeight,
@@ -191,10 +191,11 @@ class IconText extends StatelessWidget {
     required this.title,
     this.icon,
     this.svg,
+    this.color,
+    this.textOpacity = 1,
     this.iconSize = 16,
     this.spaceBetweenSize = 5,
     this.iconColor,
-    this.color,
     this.fontSize = 16,
     this.fontWeight = FontWeight.w400,
     this.iconIsLeft = true,
@@ -205,8 +206,9 @@ class IconText extends StatelessWidget {
   final String title;
   final double iconSize;
   final double spaceBetweenSize;
+  final double textOpacity;
+  final Color ? color;
   final Color? iconColor;
-  final Color? color;
   final double fontSize;
   final FontWeight fontWeight;
   final bool iconIsLeft;
@@ -221,7 +223,6 @@ class IconText extends StatelessWidget {
             ? IconOrSvg(
                 svg: svg,
                 icon: icon,
-                color: iconColor,
                 size: iconSize,
               )
             : SizedBox(),
@@ -230,7 +231,7 @@ class IconText extends StatelessWidget {
         iconIsLeft ? SizedBox(width: spaceBetweenSize) : SizedBox(),
         TextCustom(
           title: title,
-          color: color ?? kBlack70,
+          color: color ?? Theme.of(context).canvasColor.withOpacity(textOpacity),
           fontSize: fontSize,
           weight: fontWeight,
         ),
@@ -241,7 +242,6 @@ class IconText extends StatelessWidget {
             ? IconOrSvg(
                 svg: svg,
                 icon: icon,
-                color: iconColor,
                 size: iconSize,
               )
             : SizedBox(),
@@ -282,7 +282,7 @@ class AppsTextRich extends StatelessWidget {
       TextSpan(
         text: text1,
         style: appsTextStyle(
-            color: text1Color ?? kBlack80,
+            color: text1Color ?? Theme.of(context).canvasColor.withOpacity(.8),
             fontSize: text1FontSize,
             fontWeight: text1FontWeight,
             decoration: text1Decoration),
@@ -290,7 +290,7 @@ class AppsTextRich extends StatelessWidget {
           TextSpan(
             text: text2,
             style: appsTextStyle(
-              color: text2Color ?? kBlack70,
+              color: text2Color ?? Theme.of(context).canvasColor.withOpacity(.7),
               fontSize: text2FontSize,
               fontWeight: text2FontWeight,
               decoration: text2Decoration,
@@ -333,7 +333,7 @@ class _TextSeeMoreState extends State<TextSeeMore> {
         TextCustomMaxLine(
           title: widget.text,
           fontSize: widget.fontSize,
-          color: widget.color ?? kBlack70,
+          color: widget.color ?? Theme.of(context).canvasColor.withOpacity(.7),
           maxLines: !showMore ? widget.maxLines : 200,
         ),
         SizedBox(
@@ -378,7 +378,7 @@ class TextLink extends StatelessWidget {
         title: title,
         fontSize: fontSize,
         weight: weight,
-        color: color ?? kBlack70,
+        color: color ?? Theme.of(context).canvasColor.withOpacity(.7),
       ),
     );
   }
@@ -398,7 +398,7 @@ class TextLink extends StatelessWidget {
     
 //     return IconText(
 //       title: title,
-//       color: color ?? kBlack80,
+//       color: color ?? Theme.of(context).canvasColor.withOpacity(.8),
 //       fontWeight: weight,
 //       fontSize: fontSize,
 //       iconIsLeft: false,

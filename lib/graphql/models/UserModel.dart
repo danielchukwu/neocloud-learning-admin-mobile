@@ -1,5 +1,6 @@
 // : (){} "" <> ? _ ! *
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/constants/constants.dart';
 import 'package:neocloud_mobile/graphql/models/RoleModel.dart';
 
 class UserModel {

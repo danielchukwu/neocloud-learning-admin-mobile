@@ -20,9 +20,9 @@ class FormDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Icon
-        const Padding(
-          padding: EdgeInsets.only(top: 12),
-          child: Icon(Icons.short_text, color: Colors.black54),
+        Padding(
+          padding: const EdgeInsets.only(top: 12),
+          child: Icon(Icons.short_text, color: Theme.of(context).canvasColor.withOpacity(.5),),
         ),
       
          // TextArea

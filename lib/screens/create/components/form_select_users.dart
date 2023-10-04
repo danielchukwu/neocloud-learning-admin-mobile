@@ -4,6 +4,7 @@ import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/screens/create/select_user_screen.dart';
 
@@ -79,22 +80,24 @@ class _FormSelectUsersState extends State<FormSelectUsers> {
         const SizedBox(width: 15),
         Expanded(
           child: _selectedUsers.isEmpty
-              ? avatarStack()
+              ? avatarStack(context)
               : showSelectedUsersAvatars(),
         ),
       ],
     );
   }
 
-  Stack avatarStack() {
+  Stack avatarStack(BuildContext context) {
     return Stack(
       children: [
         // Avatar - +
         Positioned(
           left: 25,
           child: AvatarInsertWidget(
-            backgroundColor: kBlack50,
-            widget: const Icon(Icons.add, color: Colors.white),
+            // backgroundColor: kBlack50,
+            backgroundColor: Theme.of(context).canvasColor.withOpacity(.5),
+            widget: Icon(Icons.add,
+                color: getColorOpposite(Theme.of(context).canvasColor)),
           ),
         ),
 
@@ -102,9 +105,10 @@ class _FormSelectUsersState extends State<FormSelectUsers> {
         AvatarInsertWidget(
           backgroundColor: kBlue,
           widget: TextMedium(
-              title: widget.avatarText,
-              weight: FontWeight.w600,
-              color: Colors.white),
+            title: widget.avatarText,
+            weight: FontWeight.w600,
+            color: getColorOpposite(Theme.of(context).canvasColor),
+          ),
         ),
       ],
     );

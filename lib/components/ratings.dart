@@ -36,7 +36,7 @@ class Ratings extends StatelessWidget {
         showRatingsText 
         ? TextCustom(
             title: getRatingFormat(rating),
-            color: color ?? kBlack70,
+            color: color ?? Theme.of(context).canvasColor.withOpacity(.7),
             weight: FontWeight.w600,
             fontSize: fontSize ?? defaultSize * 1.6)
         : SizedBox(),

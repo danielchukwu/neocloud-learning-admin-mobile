@@ -3,6 +3,7 @@ import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/ratings.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/models/Students.dart';
 // import 'package:neocloud_mobile/screens/course/course_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
@@ -20,15 +21,15 @@ class EducatorInfo extends StatelessWidget {
         TextLarge(
           title: "Educator",
           weight: FontWeight.w600,
-          color: kBlack80,
+          color: Theme.of(context).canvasColor.withOpacity(.8),
         ),
 
         // Educator gradient card info
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         EducatorCard(user: user),
 
         // About Educator
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         TextSeeMore(text: user.about),
       ],
     );
@@ -49,34 +50,34 @@ class EducatorCard extends StatelessWidget {
       child: Row(
         children: <Widget>[
           // Avatar
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           buildAvatar(),
 
           // User Info
-          SizedBox(width: 20),
+          const SizedBox(width: 20),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(right: 20),
+              padding: const EdgeInsets.only(right: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Spacer(),
+                  const Spacer(),
                   // Users full name
-                  buildName(),
+                  buildName(context),
 
                   // Ratings
-                  SizedBox(height: 5),
-                  buildRatings(),
+                  const SizedBox(height: 5),
+                  buildRatings(context),
 
                   // Row (reviews & courses)
-                  SizedBox(height: 15),
-                  buildReviesCoursesCount(),
+                  const SizedBox(height: 15),
+                  buildReviesCoursesCount(context),
 
                   // Students
-                  SizedBox(height: 5),
-                  buildStudentsCount(),
+                  const SizedBox(height: 5),
+                  buildStudentsCount(context),
 
-                  Spacer(),
+                  const Spacer(),
                 ],
               ),
             ),
@@ -86,15 +87,15 @@ class EducatorCard extends StatelessWidget {
     );
   }
 
-  Widget buildStudentsCount() {
+  Widget buildStudentsCount(BuildContext context) {
     return TextMedium(
       title:
           "${user.students_count} ${getPluralOrSingular(count: user.students_count, word: 'student')}",
-      color: kWhite,
+      color: getColorOpposite(Theme.of(context).canvasColor),
     );
   }
 
-  Widget buildReviesCoursesCount() {
+  Widget buildReviesCoursesCount(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -102,35 +103,35 @@ class EducatorCard extends StatelessWidget {
         TextMedium(
           title:
               "${user.reviews_count} ${getPluralOrSingular(count: user.reviews_count, word: 'review')}",
-          color: kWhite,
+          color: getColorOpposite(Theme.of(context).canvasColor),
         ),
 
         // {count} courses
         TextMedium(
           title:
               "${user.reviews_count} ${getPluralOrSingular(count: user.courses_count, word: 'course')}",
-          color: kWhite,
+          color: getColorOpposite(Theme.of(context).canvasColor),
         ),
       ],
     );
   }
 
-  Widget buildRatings() {
+  Widget buildRatings(BuildContext context) {
     return Ratings(
       rating: user.ratings,
       reviewsCount: user.reviews_count,
       fontSize: 15,
       iconSize: 20,
-      color: kWhite,
+      color: getColorOpposite(Theme.of(context).canvasColor),
       showReviews: false,
     );
   }
 
-  Widget buildName() {
+  Widget buildName(BuildContext context) {
     return TextExtraLarge(
       title: user.fullName,
       weight: FontWeight.w600,
-      color: kWhite,
+      color: getColorOpposite(Theme.of(context).canvasColor),
     );
   }
 

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/screens/create/components/form_add_cover.dart';
 import 'package:neocloud_mobile/screens/create/components/form_modules.dart';
 import 'package:neocloud_mobile/screens/create/components/form_select_faculty.dart';
@@ -38,7 +39,8 @@ class CreateClassScreen extends StatelessWidget {
       backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          // color: Colors.white,
+          color: getColorOpposite(Theme.of(context).canvasColor),
           borderRadius: BorderRadius.circular(20)
         ),
         child: Column(

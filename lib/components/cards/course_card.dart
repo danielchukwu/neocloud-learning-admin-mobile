@@ -37,11 +37,9 @@ class CourseCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Title
-                TextCustom(
-                  title: course.title,
-                  fontSize: defaultSize * 2.2,
-                  color: kBlack80,
-                  weight: FontWeight.w700,
+                Text(
+                  course.title,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
 
                 // Name and Ratings
@@ -50,10 +48,10 @@ class CourseCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     // Name
-                    TextMedium(title: course.user.fullName, color: kBlack70),
+                    Text(course.user.fullName, style: Theme.of(context).textTheme.bodyMedium),
                     const Spacer(),
                     // Ratings
-                    TextMedium(title: getRatingFormat(course.rating)),
+                    Text(getRatingFormat(course.rating), style: Theme.of(context).textTheme.bodyMedium),
                     SizedBox(width: defaultSize),
                     Icon(
                       Icons.star,
@@ -64,11 +62,10 @@ class CourseCard extends StatelessWidget {
 
                 // Price
                 SizedBox(height: defaultSize * .5),
-                TextExtraLarge(
-                  title: "N ${getMoneyFormat(course.price)}",
-                  color: kBlack80,
-                  weight: FontWeight.w600,
-                ),
+                Text(
+                  "N ${getMoneyFormat(course.price)}",
+                  style: Theme.of(context).textTheme.titleLarge,
+                )
               ],
             ),
           ),

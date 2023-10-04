@@ -3,10 +3,10 @@ import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/cards/components/tablets.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
-import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
-import 'package:neocloud_mobile/models/Class.dart';
+import 'package:neocloud_mobile/core/entities/class_entity.dart';
 import 'package:neocloud_mobile/screens/class/class_screen.dart';
 import 'package:neocloud_mobile/utils/utils.dart';
+import 'package:skeletons/skeletons.dart';
 
 class ClassCard extends StatelessWidget {
   const ClassCard({
@@ -19,7 +19,7 @@ class ClassCard extends StatelessWidget {
     this.showBottomBorder = true,
   });
 
-  final ClassModel clas;
+  final ClassEntity clas;
   final bool allowSeeMore;
   final double bodySeparationSize;
   // we use this because we use this card in the class screen and
@@ -72,7 +72,7 @@ class ClassCard extends StatelessWidget {
                   TextCustom(
                     title: clas.name!,
                     fontSize: defaultSize * 2.2,
-                    color: kBlack80,
+                    color: Theme.of(context).canvasColor.withOpacity(.8),
                     weight: FontWeight.w700,
                   ),
 
@@ -84,9 +84,9 @@ class ClassCard extends StatelessWidget {
                       // Name
                       SizedBox(height: defaultSize),
                       Expanded(
-                        child: buildAvatarAndName(
+                        child: CircularAvartarAndName(
                             avatar: clas.educators != null && clas.educators!.length > 0 
-                              ? clas.educators![0].avatar ?? '' : '',
+                              ? clas.educators![0].avatar : '',
                             name: clas.educators != null && clas.educators!.length > 0 
                               ? clas.educators![0].name : 'daniel',
                             fontSize: defaultSize * 1.6,
@@ -112,13 +112,13 @@ class ClassCard extends StatelessWidget {
                   allowSeeMore
                       ? TextSeeMore(
                           text: clas.about ?? '',
-                          color: kBlack70,
+                          color: Theme.of(context).canvasColor.withOpacity(.7),
                           fontSize: defaultSize * 1.6,
                           maxLines: 2,
                         )
                       : TextCustomMaxLine(
                           title: clas.about ?? '',
-                          color: kBlack70,
+                          color: Theme.of(context).canvasColor.withOpacity(.7),
                           fontSize: defaultSize * 1.6,
                           maxLines: 3,
                         ),
@@ -147,3 +147,114 @@ class ClassCard extends StatelessWidget {
     );
   }
 }
+
+
+class ClassCardSkeleton extends StatelessWidget {
+  const ClassCardSkeleton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SkeletonItem(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Cover
+          const SkeletonLine(
+            style: SkeletonLineStyle(height: 220),
+          ),
+
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Title
+                const SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 18,
+                      width: 200,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                ),
+
+                // Row (Avatar, Name)
+                const SizedBox(height: 17),
+                Row(
+                  children: const [
+                    // avatar
+                    SkeletonAvatar(
+                      style: SkeletonAvatarStyle(
+                        width: 30,
+                        height: 30,
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                      ),
+                    ),
+
+                    // name
+                    SizedBox(width: 18),
+                    SkeletonLine(
+                      style: SkeletonLineStyle(
+                          height: 14,
+                          width: 120,
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                    ),
+                  ],
+                ),
+
+                // Description
+                const SizedBox(height: 17),
+                const SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 12,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                ),
+                const SizedBox(height: 10),
+                const SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 12,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                ),
+                const SizedBox(height: 10),
+
+                const SkeletonLine(
+                  style: SkeletonLineStyle(
+                      height: 12,
+                      width: 140,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                ),
+
+                // Tablets (Faculty, Hod)
+                const SizedBox(height: 20),
+                Row(
+                  children: const [
+                    // Faculty
+                    SkeletonLine(
+                      style: SkeletonLineStyle(
+                          height: 30,
+                          width: 100,
+                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                    ),
+
+                    // Hod
+                    SizedBox(width: 10),
+                    SkeletonLine(
+                      style: SkeletonLineStyle(
+                          height: 30,
+                          width: 120,
+                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+}
+

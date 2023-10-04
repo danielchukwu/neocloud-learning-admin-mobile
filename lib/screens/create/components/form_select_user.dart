@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/popups/popups.dart';
-import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/constants/constants.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/screens/create/select_user_screen.dart';
 
@@ -61,11 +60,12 @@ class FormSelectUser extends StatelessWidget {
 
         // Selected User Name
         const SizedBox(width: 10),
-        TextMedium(
-            title: selectedUsers.isNotEmpty
-                ? selectedUsers[0].name
-                : 'John Doe ...',
-            color: Colors.black54)
+        Text(
+          selectedUsers.isNotEmpty ? selectedUsers[0].name : 'John Doe ...',
+          style: TextStyle(
+            color: Theme.of(context).canvasColor.withOpacity(.5),
+          ),
+        )
       ],
     );
   }

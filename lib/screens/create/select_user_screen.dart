@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/components/tile/tiles.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_footer.dart';
 import 'package:neocloud_mobile/screens/create/components/form_header.dart';
@@ -64,6 +66,7 @@ class _SelectUsersScreenState extends State<SelectUsersScreen> {
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
       child: Material(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
+        color: getColorOpposite(Theme.of(context).canvasColor),
         child: Column(
           children: [
             // Row - Title and Cancel Icon
@@ -80,17 +83,12 @@ class _SelectUsersScreenState extends State<SelectUsersScreen> {
               child: Column(
                 children: [
                   // Search
-                  buildSearchTextField(
-                    press: (value) => {},
-                    onChangePress: (value) {
-                      setState(() {
-                        usersToSelectFrom = widget.users
-                            .where((user) => user.name
-                                .toLowerCase()
-                                .contains(value.toLowerCase()))
-                            .toList();
-                      });
-                    }, controller: TextEditingController(),
+                  AppsTextField(
+                    prefixIcon: Icons.search,
+                    hintText: "Search",
+                    controller: TextEditingController(),
+                    onSubmitPress: (_) => {},
+                    onChangePress: _onSearchChange,
                   ),
 
                   // Selected Count
@@ -154,6 +152,16 @@ class _SelectUsersScreenState extends State<SelectUsersScreen> {
       ),
     );
   }
+
+  _onSearchChange(value) {
+                    setState(() {
+                      usersToSelectFrom = widget.users
+                          .where((user) => user.name
+                              .toLowerCase()
+                              .contains(value.toLowerCase()))
+                          .toList();
+                    });
+                  }
 
   int? getUserIndexInSelectedUsers(UserModel user) {
     for (var i = 0; i < widget.selectedUsers.length; i++) {

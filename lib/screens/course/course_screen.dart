@@ -1,5 +1,6 @@
 // import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/appbar/appbar.dart';
 import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/ratings.dart';
 import 'package:neocloud_mobile/components/texts.dart';
@@ -24,10 +25,8 @@ class CourseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(slivers: <Widget>[
-        buildSliverAppBar(
+        AppsSliverAppBar(
           title: "",
-          bgColor: kWhite,
-          isDark: true,
           showLeading: true,
           routeName1: getRouteName(CartScreen.screenName),
           actionIcon1: Icons.shopping_cart_outlined,
@@ -189,7 +188,6 @@ class CourseScreen extends StatelessWidget {
           title: getMoneyFormat(course.price),
           fontSize: 25,
           fontWeight: FontWeight.w600,
-          color: kBlack80,
           iconColor: kBlack80,
         )
       ],
@@ -202,7 +200,6 @@ class CourseScreen extends StatelessWidget {
       title:
           "${course.duration} ${getPluralOrSingular(count: course.duration!, word: 'hour')} on demand",
       fontSize: 16,
-      color: kBlack70,
       iconColor: kBlack70,
     );
   }
@@ -217,7 +214,6 @@ class CourseScreen extends StatelessWidget {
           title:
               "${course.students_count} ${getPluralOrSingular(count: course.students_count!, word: 'student')}",
           fontSize: 16,
-          color: kBlack70,
           iconColor: kBlack70,
         ),
 

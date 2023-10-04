@@ -49,9 +49,9 @@ class _FacultyListState extends State<FacultyList> {
     //     (index) => FacultyCard(faculty: facultiesList[index])),
     // );
     return dataList == null
-        ? spinnerScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
+        ? spinnerScreen(context: context, screenMaxHeight: widget.spinnerScreeMaxHeight)
         : dataList!.isEmpty
-            ? nothingWasFoundScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
+            ? nothingWasFoundScreen(context: context, screenMaxHeight: widget.spinnerScreeMaxHeight)
             : Column(
                 children: List.generate(
                   facultiesList.length,

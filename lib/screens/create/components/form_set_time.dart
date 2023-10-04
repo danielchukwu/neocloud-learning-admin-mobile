@@ -4,6 +4,7 @@ import 'package:neocloud_mobile/components/buttons.dart';
 import 'package:neocloud_mobile/components/set_time_widget.dart';
 import 'package:neocloud_mobile/components/time_slider.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_header.dart';
 import 'package:neocloud_mobile/utils/time.dart';
@@ -58,7 +59,7 @@ class FormSetTime extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Material(
         borderRadius: BorderRadius.circular(16),
-        color: Colors.white,
+        color: getColorOpposite(Theme.of(context).canvasColor),
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -171,19 +172,19 @@ class _TimeDifference extends StatelessWidget {
         ),
         child: Text.rich(
           TextSpan(
-            style: appsTextStyle(fontWeight: FontWeight.w700, color: timeIsValid() ? Colors.black38 : Colors.white70),
+            style: appsTextStyle(fontWeight: FontWeight.w700, color: timeIsValid() ? Theme.of(context).canvasColor.withOpacity(.4) : getColorOpposite(Theme.of(context).canvasColor).withOpacity(.7)),
             children: [
               // Hour
               TextSpan(
                 text: '${getHour()}',
-                style: appsTextStyle(color: timeIsValid() ? kBlueLight : Colors.white, fontWeight: FontWeight.w700),
+                style: appsTextStyle(color: timeIsValid() ? kBlueLight : getColorOpposite(Theme.of(context).canvasColor), fontWeight: FontWeight.w700),
               ),
               // Text - h
               const TextSpan(text: 'h  '),
               // Minute
               TextSpan(
                 text: '${getMinute()}',
-                style: appsTextStyle(color: timeIsValid() ? kBlueLight : Colors.white, fontWeight: FontWeight.w700),
+                style: appsTextStyle(color: timeIsValid() ? kBlueLight : getColorOpposite(Theme.of(context).canvasColor), fontWeight: FontWeight.w700),
               ),
               // Text - m
               const TextSpan(text: 'm'),

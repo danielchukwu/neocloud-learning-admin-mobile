@@ -92,11 +92,10 @@ class _FormModulesState extends State<FormModules> {
         // Class Modules
         IconText(
           title: 'Modules',
-          color: Colors.black54,
           fontWeight: FontWeight.w500,
           icon: Icons.schema_outlined,
           // icon: Icons.subject_sharp,
-          iconColor: kBlack60,
+          iconColor: Theme.of(context).canvasColor.withOpacity(.6),
           iconSize: 18,
           spaceBetweenSize: 10,
         ),

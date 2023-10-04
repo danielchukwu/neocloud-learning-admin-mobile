@@ -57,8 +57,7 @@ class _FormModuleTileState extends State<FormModuleTile> {
           SizedBox(
             width: 30,
             child: _editMode == false
-                ? TextMedium(
-                    title: '${widget.index + 1}', color: Colors.black54)
+                ? Text('${widget.index + 1}', style: Theme.of(context).textTheme.bodyMedium)
                 : const SizedBox(),
           ),
 
@@ -81,13 +80,10 @@ class _FormModuleTileState extends State<FormModuleTile> {
         children: [
           // title
           _editMode == false
-              ? TextMedium(
-                  title: widget.module.title,
-                  color: kBlack80,
-                  weight: FontWeight.w500)
+              ? Text(widget.module.title, style: Theme.of(context).textTheme.labelMedium)
               : FormUpdateOrDeleteInputField(
                   fontSize: 16,
-                  textColor: kBlack80,
+                  textColor: Theme.of(context).canvasColor.withOpacity(.8),
                   fontWeight: FontWeight.w500,
                   hintText: 'Schedule Title',
                   initialValue: widget.module.title,
@@ -101,9 +97,11 @@ class _FormModuleTileState extends State<FormModuleTile> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // schedules count
-              TextSmall(
-                title: '${widget.module.classSchedules?.length ?? 0} Schedules',
-                color: Colors.black54,
+              Text(
+                '${widget.module.classSchedules?.length ?? 0} Schedules',
+                style: TextStyle(
+                  color: Theme.of(context).canvasColor.withOpacity(.5)
+                ),
               ),
 
               // view schedules
@@ -121,9 +119,11 @@ class _FormModuleTileState extends State<FormModuleTile> {
                     ),
                   );
                 },
-                child: const TextSmall(
-                  title: 'View Schedules',
-                  color: Colors.black54,
+                child: Text(
+                  'View Schedules',
+                  style: TextStyle(
+                    color: Theme.of(context).canvasColor.withOpacity(.5)
+                  ),
                 ),
               )
             ],

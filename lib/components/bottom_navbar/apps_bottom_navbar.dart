@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/providers/NavItem.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,7 @@ class AppsBottomNavBar extends StatelessWidget {
       builder: (context, navItems, child) => Container(
         decoration: BoxDecoration(
           border: Border(
-            top: BorderSide(color: kBlack.withOpacity(.5), width: .2),
+            top: BorderSide(color: Theme.of(context).canvasColor.withOpacity(.5), width: .2),
           ),
         ),
         child: Row(
@@ -33,8 +34,8 @@ class AppsBottomNavBar extends StatelessWidget {
                     navItems.changeNavIndex(index);
                   }
                 },
-                highlightColor: kWhite,
-                splashColor: appsSplashColor,
+                highlightColor: getColorOpposite(Theme.of(context).canvasColor),
+                splashColor: Theme.of(context).canvasColor,
                 radius: appsSplashRadius,
                 child: Container(
                   padding: EdgeInsets.only(
@@ -47,7 +48,7 @@ class AppsBottomNavBar extends StatelessWidget {
                         : item.svgInactive,
                     color: navItems.getSelectedIndex() == index
                         ? kBlue
-                        : kBlack50,
+                        : Theme.of(context).canvasColor.withOpacity(.5),
                   ),
                 ),
               ),

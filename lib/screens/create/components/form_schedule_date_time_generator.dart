@@ -6,6 +6,7 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/components/tile/tiles.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_header.dart';
@@ -48,9 +49,9 @@ class _FormScheduleTimeGeneratorState extends State<FormScheduleTimeGenerator> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+          decoration: BoxDecoration(
+            color: getColorOpposite(Theme.of(context).canvasColor),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +87,8 @@ class _FormScheduleTimeGeneratorState extends State<FormScheduleTimeGenerator> {
                 child: AppsButton(
                   title: 'Generate', 
                   isLoading: _isGenerating,
-                  bgColorLoading: Colors.black12,
+                  // bgColorLoading: Colors.black12,
+                  bgColorLoading: Theme.of(context).canvasColor.withOpacity(.1),
                   press: generateSchedulesDateAndTime
                 ),
               ),
@@ -216,14 +218,15 @@ class _FormScheduleTimeGeneratorState extends State<FormScheduleTimeGenerator> {
           TextMedium(
             title: 'Class Starts',
             weight: FontWeight.w600,
-            color: Colors.grey[500],
+            // color: Colors.grey[500],
+            color: Theme.of(context).canvasColor.withOpacity(.2),
           ),
     
           const SizedBox(height: 15),
     
           SelectPillsWithLimit(
             selectionLimit: 1, 
-            selectionBgColor: Colors.black87, 
+            selectionBgColor: Theme.of(context).canvasColor.withOpacity(.8), 
             items: _classStartsList,
             pressAdd: (indexes) {
               _classStartsIndex = indexes[0];
@@ -287,10 +290,12 @@ class _AddScheduleDateAndTimeState extends State<AddScheduleDateAndTime> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Title
-          TextMedium(
-            title: 'Classes Holds On',
-            weight: FontWeight.w600,
-            color: Colors.grey[500],
+          Text(
+            'Classes Holds On',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).canvasColor.withOpacity(.2)
+            ),
           ),
       
           // Options

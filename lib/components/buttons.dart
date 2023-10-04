@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 
 // Welcome Button
 class WelcomeButton extends StatelessWidget {
@@ -21,15 +22,17 @@ class WelcomeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: press,
-      style: buildButtonStyle(),
+      style: buildButtonStyle(context),
       child: Container(
         // width: defaultSize * 22,
         padding: EdgeInsets.symmetric(vertical: defaultSize * 1),
         child: Stack(
           children: [
             Center(
-              child: TextSmall(
-                  title: title, color: Colors.white, weight: FontWeight.w500),
+              child: Text(title,
+                  style: TextStyle(
+                      color: getColorOpposite(Theme.of(context).canvasColor),
+                      fontWeight: FontWeight.w500)),
             ),
             // Arrow
 
@@ -39,7 +42,7 @@ class WelcomeButton extends StatelessWidget {
                     top: defaultSize * .2,
                     child: Icon(
                       Icons.arrow_back_ios,
-                      color: Colors.white,
+                      color: getColorOpposite(Theme.of(context).canvasColor),
                       size: defaultSize * 1.6,
                     ),
                   )
@@ -48,7 +51,7 @@ class WelcomeButton extends StatelessWidget {
                     top: defaultSize * .2,
                     child: Icon(
                       Icons.arrow_forward_ios,
-                      color: Colors.white,
+                      color: getColorOpposite(Theme.of(context).canvasColor),
                       size: defaultSize * 1.6,
                     ),
                   ),
@@ -58,9 +61,10 @@ class WelcomeButton extends StatelessWidget {
     );
   }
 
-  ButtonStyle buildButtonStyle() {
+  ButtonStyle buildButtonStyle(BuildContext context) {
     return ButtonStyle(
-      backgroundColor: MaterialStatePropertyAll<Color>(kBlueLight),
+      backgroundColor:
+          MaterialStatePropertyAll<Color>(Theme.of(context).primaryColor),
       shape: const MaterialStatePropertyAll(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
@@ -74,67 +78,90 @@ class WelcomeButton extends StatelessWidget {
 
 // Apps Main Button
 class AppsButton extends StatelessWidget {
-  const AppsButton({
+  AppsButton({
     super.key,
     required this.title,
     required this.press,
     this.icon,
-    this.color = Colors.white,
-    this.iconColor = Colors.white,
+    this.color,
+    this.iconColor,
     this.bgColor = Colors.blueAccent,
     this.bgColorLoading = Colors.blue,
     this.border = 0,
     this.borderRadius = 10,
+    this.fontSize = 16,
     this.textIconSeperationSize = 5,
     this.padTopBottom = 6,
-    this.padLeftRight = 6, 
+    this.padLeftRight = 6,
     this.weight = FontWeight.w400,
     this.isLoading = false,
+    this.minButtonHeight = 40,
+    this.maxButtonHeight = 60,
   });
 
   final String title;
-  final Color color;
+  late Color? color;
   final Color bgColor;
   final Color bgColorLoading;
-  final Color iconColor;
+  late Color? iconColor;
   final IconData? icon;
   final double border;
   final double borderRadius;
+  final double fontSize;
   final double textIconSeperationSize;
   final Function(BuildContext context) press;
   final double padTopBottom;
   final double padLeftRight;
   final FontWeight weight;
   final bool isLoading;
+  final double minButtonHeight;
+  final double maxButtonHeight;
 
   @override
   Widget build(BuildContext context) {
+    color ??= Colors.white;
+    iconColor ??= getColorOpposite(Theme.of(context).canvasColor);
+
     return TextButton(
       onPressed: !isLoading ? () => press(context) : null,
-      style: buildButtonStyle(),
+      style: buildButtonStyle(context),
       child: Container(
-        constraints: BoxConstraints(minHeight: defaultSize * 4, maxHeight: defaultSize * 4),    
+        constraints: BoxConstraints(
+            minHeight: minButtonHeight, maxHeight: maxButtonHeight),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             icon != null ? Icon(icon, color: iconColor) : const SizedBox(),
-            icon != null ? SizedBox(width: textIconSeperationSize) : const SizedBox(),
+            icon != null
+                ? SizedBox(width: textIconSeperationSize)
+                : const SizedBox(),
             isLoading
-              ? SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: kWhite, strokeWidth: 3))
-              : TextMedium(title: title, color: color, weight: weight),
+                ? const SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 3,
+                    ),
+                  )
+                : Text(title,
+                    style: TextStyle(fontFamily: 'Poppins', color: color, fontWeight: weight, fontSize: fontSize)),
           ],
         ),
       ),
     );
   }
 
-  ButtonStyle buildButtonStyle() {
+  ButtonStyle buildButtonStyle(BuildContext context) {
     return ButtonStyle(
-      backgroundColor: MaterialStatePropertyAll<Color>(!isLoading ? bgColor : bgColorLoading),
+      backgroundColor: MaterialStatePropertyAll<Color>(
+          !isLoading ? bgColor : bgColorLoading),
       shape: MaterialStatePropertyAll(
         RoundedRectangleBorder(
           side: border > 0
-              ? BorderSide(width: border, color: kBlack50)
+              ? BorderSide(
+                  width: border,
+                  color: Theme.of(context).canvasColor.withOpacity(.5))
               : const BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.all(
             Radius.circular(borderRadius),
@@ -150,7 +177,7 @@ class AppsIconButton extends AppsButton {
     super.title = "",
     required super.press,
     super.icon,
-    super.iconColor = Colors.black87,
+    super.iconColor,
     super.bgColor,
     super.borderRadius,
     super.padTopBottom = 18,
@@ -159,6 +186,8 @@ class AppsIconButton extends AppsButton {
 
   @override
   Widget build(BuildContext context) {
+    iconColor ??= Theme.of(context).canvasColor.withOpacity(.8);
+
     return InkWell(
       onTap: () => press(context),
       borderRadius: BorderRadius.circular(borderRadius),
@@ -171,36 +200,12 @@ class AppsIconButton extends AppsButton {
           borderRadius: BorderRadius.circular(borderRadius),
           color: bgColor,
         ),
-        child: Center(child: Icon(icon, color: iconColor,)),
+        child: Center(
+            child: Icon(
+          icon,
+          color: iconColor,
+        )),
       ),
-    );
-  }
-}
-
-
-// Option Button
-class OptionButton extends StatelessWidget {
-  const OptionButton({
-    Key? key,
-    required this.title,
-    required this.press,
-    this.bgColor = Colors.transparent,
-  }) : super(key: key);
-
-  final String title;
-  final Color bgColor;
-  final Function() press;
-
-  @override
-  Widget build(BuildContext context) {
-    return AppsButton(
-      title: title,
-      borderRadius: buttonBorderRadius,
-      bgColor: bgColor,
-      color: bgColor == kBlueLight? kWhite : kBlack70,
-      press: (context) => press(),
-      padTopBottom: .5,
-      weight: bgColor == kBlueLight? FontWeight.w600 : FontWeight.w400,
     );
   }
 }
@@ -247,8 +252,12 @@ class _AppsDropdownButtonState extends State<AppsDropdownButton> {
       underline: Container(height: 0),
       items: widget.list.map((String month) {
         return DropdownMenuItem(
-          child:
-              TextSmall(title: month, color: kBlack50, weight: FontWeight.w500),
+          child: Text(
+            month,
+            style: TextStyle(
+                color: Theme.of(context).canvasColor.withOpacity(.5),
+                fontWeight: FontWeight.w500),
+          ),
           value: month,
         );
       }).toList(),
@@ -256,59 +265,65 @@ class _AppsDropdownButtonState extends State<AppsDropdownButton> {
   }
 }
 
-
 // Icon Text Button
 class IconTextButton extends StatelessWidget {
-  const IconTextButton(this.text, {
+  IconTextButton(
+    this.text, {
     super.key,
     this.icon = Icons.add,
-    this.iconColor = Colors.black54,
-    this.textColor = Colors.black38,
+    this.iconColor,
+    this.textColor,
     this.backgroundColor = Colors.blue,
     this.borderWidth = 1.5,
-    this.borderColor = Colors.black,
+    this.borderColor,
     this.fullWidth = false,
     required this.press,
   });
-  
+
   final String text;
   final IconData? icon;
-  final Color iconColor;
-  final Color textColor;
+  late Color? iconColor;
+  late Color? textColor;
   final Color backgroundColor;
   final double borderWidth;
-  final Color borderColor;
+  late Color? borderColor;
   final bool fullWidth;
   final Function() press;
 
   @override
   Widget build(BuildContext context) {
+    borderColor ??= Theme.of(context).canvasColor;
+    iconColor ??= Theme.of(context).canvasColor.withOpacity(.5);
+    textColor ??= Theme.of(context).canvasColor.withOpacity(.4);
     return Container(
       height: defaultSize * 4.5,
       decoration: BoxDecoration(
-        color: backgroundColor,
-        border: Border.all(width: borderWidth, color: borderColor),
-        borderRadius: BorderRadius.circular(defaultSize)
-      ),
+          color: backgroundColor,
+          border: Border.all(width: borderWidth, color: borderColor!),
+          borderRadius: BorderRadius.circular(defaultSize)),
       child: TextButton(
         onPressed: press,
         style: ButtonStyle(
-          padding: MaterialStatePropertyAll<EdgeInsets>(
-            EdgeInsets.symmetric(horizontal: defaultSize * .7, vertical: 0)
-          )
-          
-        ),
+            padding: MaterialStatePropertyAll<EdgeInsets>(EdgeInsets.symmetric(
+                horizontal: defaultSize * .7, vertical: 0))),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: fullWidth ? MainAxisSize.max : MainAxisSize.min,
           children: [
-            Icon(icon, color: Colors.black38, size: 30),
+            Icon(icon,
+                color: Theme.of(context).canvasColor.withOpacity(.4), size: 30),
             const SizedBox(width: 5),
-            TextLarge(title: text, weight: FontWeight.w500, color: textColor),
-            const SizedBox(width: 5),
+            Text(
+              text,
+              style: TextStyle(
+                color: textColor,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            // const SizedBox(width: 5),
           ],
         ),
-        ),
-      );
+      ),
+    );
   }
 }

@@ -40,9 +40,9 @@ class _ClassSchedulesListState extends State<ClassSchedulesList> {
   @override
   Widget build(BuildContext context) {
     return dataList == null
-        ? spinnerScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
+        ? spinnerScreen(context: context, screenMaxHeight: widget.spinnerScreeMaxHeight)
         : dataList!.isEmpty
-            ? nothingWasFoundScreen(screenMaxHeight: widget.spinnerScreeMaxHeight)
+            ? nothingWasFoundScreen(context: context, screenMaxHeight: widget.spinnerScreeMaxHeight)
             : Column(
                 children: List.generate(
                   dataList!.length,

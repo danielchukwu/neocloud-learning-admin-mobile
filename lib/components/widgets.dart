@@ -3,31 +3,31 @@ import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/size_config.dart';
 
-Widget appsCircularProgressIndicator() {
+Widget appsCircularProgressIndicator(BuildContext context) {
   return SizedBox(
     width: defaultSize * 2,
     height: defaultSize * 2,
     child:
-        const CircularProgressIndicator(strokeWidth: 3, color: Colors.black38),
+        CircularProgressIndicator(strokeWidth: 3, color: Theme.of(context).canvasColor.withOpacity(.4)),
   );
 }
 
-Widget spinnerScreen({double? screenMaxHeight}){
+Widget spinnerScreen({required BuildContext context, double? screenMaxHeight}){
   screenMaxHeight ??= SizeConfig.screenHeight! / 2;
   
   return Container(
     // color: Colors.red,
     constraints: BoxConstraints(maxHeight: screenMaxHeight),
-    child: Center(child: appsCircularProgressIndicator()),
+    child: Center(child: appsCircularProgressIndicator(context)),
   );
 }
 
-Widget nothingWasFoundScreen({double? screenMaxHeight}){
+Widget nothingWasFoundScreen({required BuildContext context, double? screenMaxHeight}){
   screenMaxHeight ??= SizeConfig.screenHeight! / 2;
   
   return Container(
     constraints: BoxConstraints(maxHeight: screenMaxHeight),
-    child: const Center(child: TextExtraLarge(title: 'Nothing was found', color: Colors.black38, weight: FontWeight.w600,)),
+    child: Center(child: TextExtraLarge(title: 'Nothing was found', color: Theme.of(context).canvasColor.withOpacity(.4), weight: FontWeight.w600,)),
   );
 }
 
@@ -39,7 +39,7 @@ class HorizontalRule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color ruleColor = kBlack.withOpacity(.2);
+    Color ruleColor = Theme.of(context).canvasColor.withOpacity(.2);
 
     return Container(
       decoration: BoxDecoration(

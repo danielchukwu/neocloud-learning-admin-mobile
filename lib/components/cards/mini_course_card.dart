@@ -46,7 +46,7 @@ class MiniCourseCard extends StatelessWidget {
             TextCustomMaxLine(
               title: course.title,
               fontSize: fontSize,
-              color: kBlack80,
+              color: Theme.of(context).canvasColor.withOpacity(.8),
               maxLines: 3,
               lineHeight: 1.4,
               weight: FontWeight.w600,
@@ -56,7 +56,7 @@ class MiniCourseCard extends StatelessWidget {
             SizedBox(height: defaultSize * .5),
             TextCustomMaxLine(
               title: course.user.fullName,
-              color: kBlack50,
+              color: Theme.of(context).canvasColor.withOpacity(.5),
               fontSize: fontSize - 2,
               maxLines: 1,
             ),
@@ -69,16 +69,19 @@ class MiniCourseCard extends StatelessWidget {
               fontSize: fontSize - 2,
               iconSize: defaultSize * 1.6,
               showReviews: false,
-              color: kBlack70,
+              color: Theme.of(context).canvasColor.withOpacity(.7),
             ),
 
             // Cost
             SizedBox(height: defaultSize * .5),
-            TextCustom(
-              title: "NGN ${getMoneyFormat(course.price)}",
-              weight: FontWeight.w600,
-              color: kBlack70,
+            Text(
+              "NGN ${getMoneyFormat(course.price)}",
+              style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: Theme.of(context).canvasColor.withOpacity(.7),
               fontSize: fontSize,
+                
+              )
             ),
           ],
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 
 class DisplayAssetImage extends StatelessWidget {
   final String icon;
@@ -41,9 +42,9 @@ class RoundBoxAvatar extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
-        border: Border.all(color: kWhite, width: defaultSize * borderSize),
+        border: Border.all(color: getColorOpposite(Theme.of(context).canvasColor), width: defaultSize * borderSize),
         shape: BoxShape.circle,
-        color: kBlack.withOpacity(.05),
+        color: Theme.of(context).canvasColor.withOpacity(.05),
       ),
     );
   }
@@ -65,15 +66,16 @@ class RoundBoxIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var canvasColor = Theme.of(context).canvasColor;
     return Container(
       width: width,
       height: height,
       decoration: BoxDecoration(
         border: Border.all(color: kWhite, width: defaultSize * borderSize),
         shape: BoxShape.circle,
-        color: kBlack.withOpacity(.05),
+        color: getColorOpposite(canvasColor),
       ),
-      child: Icon(icon, color: kBlack50),
+      child: Icon(icon, color: canvasColor.withOpacity(.5)),
     );
   }
 }
@@ -95,7 +97,7 @@ class RectangularBoxImage extends StatelessWidget {
     return Container(
       height: height,
       decoration: BoxDecoration(
-        color: kBlack.withOpacity(.2),
+        color: Theme.of(context).canvasColor.withOpacity(.2),
         image: DecorationImage(
           image: AssetImage(img),
           fit: BoxFit.cover,
@@ -107,38 +109,31 @@ class RectangularBoxImage extends StatelessWidget {
 }
 
 class IconOrSvg extends StatelessWidget {
-  const IconOrSvg(
-      {Key? key,
-      this.svg,
-      this.icon,
-      this.color = Colors.black87,
-      this.size = 20})
+  const IconOrSvg({Key? key, this.svg, this.icon, this.size = 20})
       : super(key: key);
 
   final String? svg;
   final IconData? icon;
-  final Color? color;
   final double size;
 
   @override
   Widget build(BuildContext context) {
     if (svg != null) {
-      return SvgPicture.asset(svg!, width: size, color: color);
+      return SvgPicture.asset(svg!,
+          width: size, color: Theme.of(context).canvasColor);
     } else {
-      return Icon(icon, color: color, size: size);
+      return Icon(icon, size: size);
     }
   }
 }
 
-
-// This widget is basically basically a circle that displays any provided widget in its center 
+// This widget is basically basically a circle that displays any provided widget in its center
 class AvatarInsertWidget extends StatelessWidget {
-  const AvatarInsertWidget({
-    super.key,
-    required this.widget,
-    this.size = 35,
-    this.backgroundColor = Colors.blue
-  });
+  const AvatarInsertWidget(
+      {super.key,
+      required this.widget,
+      this.size = 35,
+      this.backgroundColor = Colors.blue});
 
   final double size;
   final Widget widget;
@@ -150,12 +145,8 @@ class AvatarInsertWidget extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(size)
-      ),
-      child: Center(
-        child: widget
-      ),
+          color: backgroundColor, borderRadius: BorderRadius.circular(size)),
+      child: Center(child: widget),
     );
   }
 }

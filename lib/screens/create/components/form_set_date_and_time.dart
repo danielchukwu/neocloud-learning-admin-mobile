@@ -4,6 +4,7 @@ import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_footer.dart';
 import 'package:neocloud_mobile/screens/create/components/form_header.dart';
@@ -29,9 +30,9 @@ class FormSetDateAndTime extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+          decoration: BoxDecoration(
+            color: getColorOpposite(Theme.of(context).canvasColor),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +51,7 @@ class FormSetDateAndTime extends StatelessWidget {
 
               // Days (MO  TU  WE  TH  FR  SA  SU)
               const SizedBox(height: 10),
-              buildDays(weekdaysName),
+              buildDays(context, weekdaysName),
 
               const HorizontalRule(),
 
@@ -72,7 +73,7 @@ class FormSetDateAndTime extends StatelessWidget {
     );
   }
 
-  Container buildDays(List<String> weekdaysName) {
+  Container buildDays(BuildContext context, List<String> weekdaysName) {
     return Container(
       height: 50,
       padding: screenPadding,
@@ -80,7 +81,7 @@ class FormSetDateAndTime extends StatelessWidget {
         crossAxisCount: 7, 
         children: List.generate(
           weekdaysName.length, 
-          (index) => Center(child: TextMedium(title: weekdaysName[index], weight: FontWeight.w600, color: Colors.grey[600],)),
+          (index) => Center(child: TextMedium(title: weekdaysName[index], weight: FontWeight.w600, color: Theme.of(context).canvasColor.withOpacity(.3),)),
         ),
       ),
     );
@@ -196,32 +197,33 @@ class _TitleAndTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var hColor = disabled == false ? highlightedColor ?? kBlueLight : kBlack.withOpacity(.15);
+    var hColor = disabled == false ? highlightedColor ?? kBlueLight : Theme.of(context).canvasColor.withOpacity(.15);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Text
-        TextSmall(title: title, color:  highlighted || disabled ? hColor :Colors.grey[700]),
+        Text(title, style: TextStyle(color: highlighted || disabled ? hColor : Theme.of(context).canvasColor.withOpacity(.4))),
 
         // Btn
         const SizedBox(height: 5),
         TextButton(
           onPressed: disabled ? null : press,
           style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(kBlack.withOpacity(.05)),
+            backgroundColor: MaterialStatePropertyAll(Theme.of(context).canvasColor.withOpacity(.05)),
             shape: MaterialStatePropertyAll<OutlinedBorder>(
-              RoundedRectangleBorder(borderRadius: const BorderRadius.all(Radius.circular(10)), side: BorderSide(width: 1.5, color:  highlighted || disabled ? hColor : Colors.black26))
+              RoundedRectangleBorder(borderRadius: const BorderRadius.all(Radius.circular(10)), side: BorderSide(width: 1.5, color:  highlighted || disabled ? hColor : Theme.of(context).canvasColor.withOpacity(.2),),)
             )
           ),
           child: Padding(
             padding: const EdgeInsets.all(4),
             child: Row(
               children: [
-                TextMedium(title: 'Set time', weight: FontWeight.w500, color: highlighted || disabled ? hColor : Colors.grey[600]),
+                // TextMedium(title: 'Set time', weight: FontWeight.w500, color: highlighted || disabled ? hColor : Colors.grey[600]),
+                Text('Set time', style: TextStyle(fontWeight: FontWeight.w500, color: highlighted || disabled ? hColor : Theme.of(context).canvasColor.withOpacity(.3))),
                 SizedBox(width: SizeConfig.screenWidth! / 9),
                 done 
                 ? Icon(Icons.check, color:  Colors.green[500], size: 25)
-                : Icon(Icons.add, color:  highlighted || disabled ? hColor :Colors.grey[600], size: 25),
+                : Icon(Icons.add, color:  highlighted || disabled ? hColor :Theme.of(context).canvasColor.withOpacity(.3), size: 25),
               ],
             ),
           ),

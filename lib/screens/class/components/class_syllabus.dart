@@ -83,17 +83,17 @@ class _ClassSyllabusState extends State<ClassSyllabus> {
             title:
                 'Weeks (${classModulesList != null ? classModulesList!.length : 0})',
             icon: Icons.dataset,
-            iconColor: kBlack70,
+            iconColor: Theme.of(context).canvasColor.withOpacity(.7),
             fontSize: 14),
         IconText(
             title: 'Meetups (68)',
             icon: Icons.messenger_outlined,
-            iconColor: kBlack70,
+            iconColor: Theme.of(context).canvasColor.withOpacity(.7),
             fontSize: 14),
         IconText(
             title: 'CWs (14)',
             icon: Icons.timer,
-            iconColor: kBlack70,
+            iconColor: Theme.of(context).canvasColor.withOpacity(.7),
             fontSize: 14)
       ],
     );

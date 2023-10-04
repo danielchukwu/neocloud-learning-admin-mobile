@@ -4,6 +4,7 @@ import 'package:neocloud_mobile/components/images.dart';
 import 'package:neocloud_mobile/components/popups/popups.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/constants/constants.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/screens/create/select_faculty_screen.dart';
 import 'package:neocloud_mobile/size_config.dart';
@@ -61,7 +62,7 @@ class FormSelectFaculty extends StatelessWidget {
           title: selectedFacultyList.isNotEmpty
               ? selectedFacultyList[0].name
               : 'Faculty Name ...',
-          color: Colors.black54,
+          color: Theme.of(context).canvasColor.withOpacity(.5),
         )
       ],
     );

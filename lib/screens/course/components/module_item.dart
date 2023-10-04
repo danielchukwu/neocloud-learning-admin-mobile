@@ -26,7 +26,7 @@ class _ModuleItemState extends State<ModuleItem> {
         const SizedBox(height: 10),
         HeaderWithDropdown(
           title: "Module ${widget.index + 1} - ${widget.module.title}",
-          color: kBlack50,
+          color: Theme.of(context).canvasColor.withOpacity(.5),
           fontSize: 16,
           icon: Icons.add,
           press: () => setState(() => showContent = !showContent),
@@ -75,14 +75,14 @@ class _ModuleItemState extends State<ModuleItem> {
           TextMedium(
             title: material.title,
             weight: FontWeight.w500,
-            color: kBlack,
+            color: Theme.of(context).canvasColor,
           ),
 
           // Type - Duration
           const SizedBox(height: 5),
           TextSmall(
             title: "${material.type} - ${material.duration} mins",
-            color: kBlack70,
+            color: Theme.of(context).canvasColor.withOpacity(.7),
           )
         ],
       ),

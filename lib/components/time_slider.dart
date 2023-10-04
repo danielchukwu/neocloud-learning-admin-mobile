@@ -80,7 +80,7 @@ class _TimeSliderState extends State<TimeSlider> {
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     child: TextMedium(
                       title: '$title', 
-                      color: selectedIndex == widget.items.indexOf(t) ? kBlue : Colors.grey[800],
+                      color: selectedIndex == widget.items.indexOf(t) ? kBlue : Theme.of(context).canvasColor.withOpacity(.4),
                       weight: selectedIndex == widget.items.indexOf(t) ? FontWeight.w600 : FontWeight.w400,
                       textAlign: TextAlign.center,
                     )

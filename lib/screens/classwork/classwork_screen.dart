@@ -18,8 +18,6 @@ class ClassWorkScreen extends StatelessWidget {
       body: CustomScrollView(slivers: <Widget>[
         buildSliverAppBar(
           title: ClassWorkScreen.screenName,
-          bgColor: kWhite,
-          isDark: true,
           showLeading: true,
           showAction1: false,
         ),

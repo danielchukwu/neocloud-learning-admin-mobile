@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/components/tile/tiles.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/FacultyModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_footer.dart';
 import 'package:neocloud_mobile/screens/create/components/form_header.dart';
@@ -60,14 +62,13 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10 , vertical: 30),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
       child: Material(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
+        color: getColorOpposite(Theme.of(context).canvasColor),
         child: Column(
           children: [
-
             // Row - Title and Cancel Icon
             const FormHeader(),
 
@@ -79,27 +80,25 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-                  // Search
-                  buildSearchTextField(
-                    press: (value) => {}, 
-                    onChangePress: (value) {
-                      setState(() {
-                        facultiesToSelectFrom = widget.faculties.where((fac) => fac.name.toLowerCase().contains(value.toLowerCase())).toList();
-                      });
-                    }, controller: TextEditingController(),
+                  AppsTextField(
+                    prefixIcon: Icons.search,
+                    hintText: "Search",
+                    controller: TextEditingController(),
+                    onSubmitPress: (_) {},
+                    onChangePress: _onSearchChange,
                   ),
-                  
+
                   // Selected Count
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       AppsTextRich(
-                        text1: '${widget.selectedFaculties.length}', 
-                        text2: ' Selected', 
-                        text1Color: kBlack70, 
-                        text1FontWeight: FontWeight.w600, 
-                        text1FontSize: 14, 
+                        text1: '${widget.selectedFaculties.length}',
+                        text2: ' Selected',
+                        text1Color: kBlack70,
+                        text1FontWeight: FontWeight.w600,
+                        text1FontSize: 14,
                         text2Color: Colors.black54,
                         text2FontWeight: FontWeight.w500,
                         text2FontSize: 14,
@@ -118,32 +117,46 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
                   padding: screenPadding,
                   decoration: const BoxDecoration(),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: List.generate(
-                      facultiesToSelectFrom.length, 
-                      (index) => Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: FacultySelectionTile(
-                          faculty: facultiesToSelectFrom[index],
-                          isSelected: facultyIsSelected(facultiesToSelectFrom[index]),
-                          disableSelection: selectionLimitExceeded() ? true : false,
-                          press: addOrRemoveFaculty,
-                        ),
-                      )
-                    ).toList()
-                  ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: List.generate(
+                          facultiesToSelectFrom.length,
+                          (index) => Padding(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: FacultySelectionTile(
+                                  faculty: facultiesToSelectFrom[index],
+                                  isSelected: facultyIsSelected(
+                                      facultiesToSelectFrom[index]),
+                                  disableSelection:
+                                      selectionLimitExceeded() ? true : false,
+                                  press: addOrRemoveFaculty,
+                                ),
+                              )).toList()),
                 ),
               ),
             ),
 
             const HorizontalRule(),
 
-            FormFooter(title: 'Done', formKey: GlobalKey<FormState>(), press: () => Navigator.pop(context),)
+            FormFooter(
+              title: 'Done',
+              formKey: GlobalKey<FormState>(),
+              press: () => Navigator.pop(context),
+            )
           ],
         ),
       ),
     );
   }
+
+  _onSearchChange(value) {
+                    setState(() {
+                      facultiesToSelectFrom = widget.faculties
+                          .where((fac) => fac.name
+                              .toLowerCase()
+                              .contains(value.toLowerCase()))
+                          .toList();
+                    });
+                  }
 
   int? getfacultyIndexInSelectedUsers(FacultyModel user) {
     for (var i = 0; i < widget.selectedFaculties.length; i++) {
@@ -154,7 +167,7 @@ class _SelectFacultyScreenState extends State<SelectFacultyScreen> {
     }
     return null;
   }
-  
+
   bool facultyIsSelected(FacultyModel user) {
     for (var u in widget.selectedFaculties) {
       if (u.id == user.id) {

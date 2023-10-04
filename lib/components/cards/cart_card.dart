@@ -32,34 +32,34 @@ class CartCard extends StatelessWidget {
 
             // Item Details
             SizedBox(width: defaultSize * 2),
-            buildCartInfo(),
+            buildCartInfo(context),
           ],
         ),
       ),
     );
   }
 
-  Widget buildCartInfo() {
+  Widget buildCartInfo(BuildContext context) {
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           // Title
           TextExtraLarge(
-              title: course.title, weight: FontWeight.w600, color: kBlack80),
+              title: course.title, weight: FontWeight.w600, color: Theme.of(context).canvasColor.withOpacity(.8)),
 
           // Educator
           SizedBox(height: defaultSize * .5),
           TextSmall(
             title: course.user.fullName,
-            color: kBlack50,
+            color: Theme.of(context).canvasColor.withOpacity(.5),
           ),
 
           // {percentage} discount
           SizedBox(height: defaultSize * .5),
           TextSmall(
             title: "${course.discount}% discount",
-            color: kBlack70,
+            color: Theme.of(context).canvasColor.withOpacity(.7),
             weight: FontWeight.w500,
           ),
 
@@ -72,7 +72,7 @@ class CartCard extends StatelessWidget {
             text1FontSize: defaultSize * 1.4,
             text1Decoration: TextDecoration.lineThrough,
             text2FontWeight: FontWeight.w600,
-            text2Color: kBlack80,
+            text2Color: Theme.of(context).canvasColor.withOpacity(.8),
           ),
 
           // Move to / Remove
@@ -105,7 +105,7 @@ class CartCard extends StatelessWidget {
             title: "Purchase",
             press: (_) => print("Purchase Button clicked ..."),
             padTopBottom: defaultSize * .3,
-            bgColor: kBlack80,
+            bgColor: Theme.of(context).canvasColor.withOpacity(.8),
             borderRadius: defaultSize * .5,
           )
         ],

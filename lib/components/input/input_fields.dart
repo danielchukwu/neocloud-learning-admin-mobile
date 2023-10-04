@@ -48,11 +48,9 @@ class _LoginInputFieldState extends State<LoginInputField> {
   // Style - our form fields input decoration
   InputDecoration buildInputDecoration() {
     return InputDecoration(
-      labelText: widget.labelText,
-      labelStyle: appsTextStyle(color: kBlack50),
       filled: true,
-      fillColor: kBlack.withOpacity(.05),
-      border: InputBorder.none,
+      fillColor: Theme.of(context).canvasColor.withOpacity(.1),
+      labelText: widget.labelText,
     );
   }
 
@@ -61,7 +59,7 @@ class _LoginInputFieldState extends State<LoginInputField> {
     return TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.w500,
-      color: kBlack60,
+      color: Theme.of(context).canvasColor.withOpacity(.6),
     );
   }
   
@@ -127,13 +125,15 @@ class AppsTextField extends StatefulWidget {
     this.hintText = "",
     this.borderRadius = 10,
     required this.onSubmitPress,
-    this.onChangePress,
+    required this.controller,
+    this.onChangePress, 
   }) : super(key: key);
 
   final IconData? prefixIcon;
   final bool showCancel;
   final String hintText;
   final double borderRadius;
+  final TextEditingController controller;
   final Function(String value) onSubmitPress;
   final Function(String value)? onChangePress;
 
@@ -142,34 +142,21 @@ class AppsTextField extends StatefulWidget {
 }
 
 class _AppsTextFieldState extends State<AppsTextField> {
-  var _controller = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController(text: "");
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 
   late bool hideCancel = true;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: _controller,
+      controller: widget.controller,
       maxLines: 1,
       textInputAction: TextInputAction.search,
-      style: appsTextStyle(fontWeight: FontWeight.w400, color: kBlack80),
+      style: appsTextStyle(fontWeight: FontWeight.w400, color: Theme.of(context).canvasColor.withOpacity(.8)),
       onSubmitted: widget.onSubmitPress,
       onChanged: (String value) { 
         hideOrRevealCancel();
         if (widget.onChangePress != null){
-          widget.onChangePress!(_controller.text);
+          widget.onChangePress!(widget.controller.text);
         }
       },
       decoration: buildDecoration(),
@@ -185,17 +172,17 @@ class _AppsTextFieldState extends State<AppsTextField> {
           ? IconButton(
               icon: const Icon(Icons.cancel, size: 20),
               onPressed: () {
-                _controller.clear();
+                widget.controller.clear();
                 setState(() {
                   hideCancel = true;
                 });
               },
             )
           : const SizedBox(),
-      prefixIconColor: kBlack50,
-      suffixIconColor: kBlack50,
+      prefixIconColor: Theme.of(context).canvasColor.withOpacity(.5),
+      suffixIconColor: Theme.of(context).canvasColor.withOpacity(.5),
       hintText: widget.hintText,
-      fillColor: kBlack.withOpacity(.05),
+      fillColor: Theme.of(context).canvasColor.withOpacity(.05),
       filled: true,
       border: OutlineInputBorder(
         borderSide: BorderSide.none,
@@ -205,7 +192,7 @@ class _AppsTextFieldState extends State<AppsTextField> {
   }
 
   void hideOrRevealCancel() {
-    if (_controller.text.length != 0) {
+    if (widget.controller.text.length != 0) {
       setState(() {
         hideCancel = false;
       });
@@ -243,11 +230,11 @@ class FormInputField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       enabled: isEnabled,
-      style: appsTextStyle(fontSize: fontSize, color: Colors.black87, fontWeight: fontWeight),
+      style: appsTextStyle(fontSize: fontSize, color: Theme.of(context).canvasColor.withOpacity(.8), fontWeight: fontWeight),
       decoration: InputDecoration(
         hintText: hintText,
         contentPadding: EdgeInsets.zero,
-        hintStyle: appsTextStyle(fontSize: fontSize, color: Colors.black38),
+        hintStyle: appsTextStyle(fontSize: fontSize, color: Theme.of(context).canvasColor.withOpacity(.4)),
         border: const OutlineInputBorder(borderSide: BorderSide.none)
       ),
       validator: validator,
@@ -257,12 +244,12 @@ class FormInputField extends StatelessWidget {
 }
 
 class FormTextarea extends StatelessWidget {
-  const FormTextarea({
+  FormTextarea({
     super.key,
     this.initialValue,
     this.fontSize = 14,
     this.fontWeight = FontWeight.w400,
-    this.textColor = Colors.black87,
+    this.textColor,
     this.hintText = 'Textarea', 
     this.maxLines = 10,
     required this.validator,
@@ -275,7 +262,7 @@ class FormTextarea extends StatelessWidget {
 
   final double fontSize;
   final FontWeight fontWeight;
-  final Color textColor;
+  late Color ? textColor;
   final String? initialValue;
   final String hintText;
   final int maxLines;
@@ -289,6 +276,7 @@ class FormTextarea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // controller?.text = initialValue ?? '';
+    textColor ??= Theme.of(context).canvasColor.withOpacity(.8);
 
     return TextFormField(
       autofocus: autoFocus,
@@ -298,11 +286,11 @@ class FormTextarea extends StatelessWidget {
       onTapOutside: onTapOutside,
       textInputAction: pressOnKeyboardDone != null ? TextInputAction.done : null,  // Display done in keyboard
       onEditingComplete: pressOnKeyboardDone,   // execute function when done is clicked on the keyboard
-      style: appsTextStyle(color: textColor, fontSize: fontSize, fontWeight: fontWeight),
+      style: appsTextStyle(color: textColor!, fontSize: fontSize, fontWeight: fontWeight),
       decoration: InputDecoration(
         hintText: hintText,
         contentPadding: const EdgeInsets.symmetric(vertical: 15),
-        hintStyle: appsTextStyle(color: textColor.withOpacity(.7), fontSize: fontSize, fontWeight: fontWeight),
+        hintStyle: appsTextStyle(color: textColor!.withOpacity(.7), fontSize: fontSize, fontWeight: fontWeight),
         border: const OutlineInputBorder(borderSide: BorderSide.none)
       ),
       validator: validator,

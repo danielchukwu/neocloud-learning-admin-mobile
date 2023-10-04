@@ -74,13 +74,13 @@ class _CoursePerksState extends State<CoursePerks> {
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Padding(
           padding: const EdgeInsets.only(top: 6),
-          child: Icon(Icons.circle, size: 8, color: kBlack50),
+          child: Icon(Icons.circle, size: 8, color: Theme.of(context).canvasColor.withOpacity(.5)),
         ),
         const SizedBox(
           width: 15,
         ),
         Expanded(
-          child: TextSmall(title: widget.list[index], color: kBlack70),
+          child: TextSmall(title: widget.list[index], color: Theme.of(context).canvasColor.withOpacity(.7)),
         ),
       ]),
     );

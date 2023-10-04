@@ -4,7 +4,6 @@ import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/core/entities/user_entity.dart';
 import 'package:skeletons/skeletons.dart';
 
-
 class UserTile extends StatelessWidget {
   const UserTile({
     super.key,
@@ -18,23 +17,34 @@ class UserTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color.fromARGB(0, 52, 51, 51),
+      // color: const Color.fromARGB(0, 52, 51, 51),
+      color: Theme.of(context).canvasColor.withOpacity(.4),
       padding: EdgeInsets.only(bottom: defaultSize * 2),
       child: Row(
         children: <Widget>[
           // Avatar
           CircleAvatar(
-              backgroundImage: AssetImage(user.avatar ?? 'img'), radius: defaultSize * 2.8),
+              backgroundImage: AssetImage(user.avatar ?? 'img'),
+              radius: defaultSize * 2.8),
           // StackedImageAndDot(img: avatar, text: "1"),
           SizedBox(width: defaultSize * 2),
           // Name and Role
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextMedium(
-                  title: user.name!, weight: FontWeight.w600, color: kBlack90),
-              TextMedium(
-                  title: user.role != null ? user.role!.name : 'unassigned', weight: FontWeight.w500, color: kBlack50),
+              Text(
+                user.name!,
+                style: TextStyle(
+                    color: Theme.of(context).canvasColor.withOpacity(.8),
+                    fontWeight: FontWeight.w600),
+              ),
+              Text(
+                user.role != null ? user.role!.name : 'unassigned',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).canvasColor.withOpacity(.5),
+                ),
+              ),
             ],
           ),
 
@@ -46,7 +56,6 @@ class UserTile extends StatelessWidget {
     );
   }
 }
-
 
 class UserTileSkeleton extends StatelessWidget {
   const UserTileSkeleton({
@@ -92,4 +101,3 @@ class UserTileSkeleton extends StatelessWidget {
     );
   }
 }
-

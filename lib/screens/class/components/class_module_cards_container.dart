@@ -29,7 +29,7 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
         // e.g Module 1 - Introduction to Networking
         HeaderWithDropdown(
           title: "Module ${widget.index + 1} - ${widget.module.title}",
-          color: kBlack70,
+          color: Theme.of(context).canvasColor.withOpacity(.7),
           fontSize: 16,
           icon: Icons.add,
           press: () => setState(() => showContent = !showContent),
@@ -81,14 +81,14 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
                 TextMedium(
                   title: clas.title,
                   weight: FontWeight.w500,
-                  color: kBlack90,
+                  color: Theme.of(context).canvasColor.withOpacity(.9),
                 ),
 
                 // Type - Duration
                 const SizedBox(height: 5),
                 TextSmall(
                   title: clas.description ?? 'This is a description',
-                  color: kBlack70,
+                  color: Theme.of(context).canvasColor.withOpacity(.7),
                 ),
 
                 // Duration
@@ -101,7 +101,7 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
                       icon: Icons.watch_later_rounded,
                       fontSize: 14,
                       iconSize: 16,
-                      iconColor: kBlack70,
+                      iconColor: Theme.of(context).canvasColor.withOpacity(.7),
                     ),
 
                     // Classworks
@@ -123,9 +123,8 @@ class _ClassModuleCardsContainerState extends State<ClassModuleCardsContainer> {
           Padding(
             padding: const EdgeInsets.only(top: 1),
             child: TextSmall(
-              // title: clas.date,
               title: 'Mon',
-              color: kBlack50,
+              color: Theme.of(context).canvasColor.withOpacity(.5),
             ),
           )
         ],

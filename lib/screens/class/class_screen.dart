@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/class_card.dart';
 import 'package:neocloud_mobile/constraints.dart';
 import 'package:neocloud_mobile/core/entities/class_entity.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModel.dart';
 import 'package:neocloud_mobile/models/Class.dart';
 import 'package:neocloud_mobile/screens/class/components/class_syllabus.dart';
@@ -26,8 +27,6 @@ class _ClassScreenState extends State<ClassScreen> {
       body: CustomScrollView(slivers: <Widget>[
         buildSliverAppBar(
           title: ClassScreen.screenName,
-          bgColor: kWhite,
-          isDark: true,
           showLeading: true,
           showAction1: false,
         ),
@@ -57,7 +56,7 @@ class _ClassScreenState extends State<ClassScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: kBlue,
-        child: Icon(Icons.add, color: kWhite),
+        child: Icon(Icons.add, color: getColorOpposite(Theme.of(context).canvasColor),),
       ),
     );
   }

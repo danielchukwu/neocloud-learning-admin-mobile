@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 
 
 class SelectPillsWithLimit extends StatefulWidget {
@@ -36,8 +37,8 @@ class _SelectPillsWithLimitState extends State<SelectPillsWithLimit> {
         (index) => TextPill(
           index: index,
           text: widget.items[index],
-          bgColor: _selectedItems.contains(index) ? Colors.black87 : Colors.white,
-          textColor: _selectedItems.contains(index) ? Colors.white : Colors.black87,
+          bgColor: _selectedItems.contains(index) ? Theme.of(context).canvasColor.withOpacity(.8) : getColorOpposite(Theme.of(context).canvasColor),
+          textColor: _selectedItems.contains(index) ? getColorOpposite(Theme.of(context).canvasColor) : Theme.of(context).canvasColor.withOpacity(.8),
           press: (index) {
             if (_selectedItems.contains(index)){
               setState(() => _selectedItems.remove(index!));
@@ -85,7 +86,7 @@ class SelectPillsWrap extends StatelessWidget {
         (index) => SelectionPill(
           text: items[index],
           selectionBgColor: selectionBgColor ?? kBlueLight,
-          textColor: textColor ?? Colors.white,
+          textColor: textColor ?? getColorOpposite(Theme.of(context).canvasColor),
           index: index,
           pressAdd: pressAdd,
           pressRemove: pressRemove,
@@ -97,23 +98,24 @@ class SelectPillsWrap extends StatelessWidget {
 
 
 class TextPill extends StatelessWidget {
-  const TextPill({
+  TextPill({
     super.key,
     required this.text,
     this.index,
     this.press,
     this.bgColor = Colors.blue,
-    this.textColor = Colors.white,
+    this.textColor,
   });
 
   final int? index;
   final String text;
   final Color bgColor;
-  final Color textColor;
+  late Color ? textColor;
   final Function(int? index)? press;
 
   @override
   Widget build(BuildContext context) {
+    textColor ??= getColorOpposite(Theme.of(context).canvasColor);
     return InkWell(
       onTap: () {
         if (press != null) {
@@ -123,7 +125,7 @@ class TextPill extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
         constraints: const BoxConstraints(minWidth: 50),
-        decoration: buildDecoration(),
+        decoration: buildDecoration(context),
         child: TextMedium(
           title: text,
           color: textColor,
@@ -133,11 +135,11 @@ class TextPill extends StatelessWidget {
     );
   }
 
-  BoxDecoration buildDecoration() {
+  BoxDecoration buildDecoration(BuildContext context) {
     return BoxDecoration(
       color: bgColor,
       borderRadius: const BorderRadius.all(Radius.circular(20)),
-      border: Border.all(color: Colors.black26, width: 1),
+      border: Border.all(color: Theme.of(context).canvasColor.withOpacity(.3), width: 1),
     );
   }
 }
@@ -194,8 +196,8 @@ class _SelectionPillState extends State<SelectionPill> {
         child: TextMedium(
           title: widget.text,
           color: isSelected 
-            ? widget.textColor ?? Colors.white 
-            : Colors.black87,
+            ? widget.textColor ?? getColorOpposite(Theme.of(context).canvasColor) 
+            : Theme.of(context).canvasColor.withOpacity(.8),
           textAlign: TextAlign.center,
         ),
       ),
@@ -206,9 +208,9 @@ class _SelectionPillState extends State<SelectionPill> {
     return BoxDecoration(
       color: isSelected
           ? widget.selectionBgColor ?? kBlueLight
-          : Colors.white,
+          : getColorOpposite(Theme.of(context).canvasColor),
       borderRadius: const BorderRadius.all(Radius.circular(20)),
-      border: Border.all(color: Colors.black26, width: 1),
+      border: Border.all(color: Theme.of(context).canvasColor.withOpacity(.3), width: 1),
     );
   }
 }

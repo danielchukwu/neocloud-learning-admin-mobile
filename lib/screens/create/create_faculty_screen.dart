@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/input/input_fields.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/constants/constants.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/UserModel.dart';
 import 'package:neocloud_mobile/utils/validation.dart';
 import 'components/form_description.dart';
@@ -56,7 +58,8 @@ class _CreateFacultyScreenState extends State<CreateFacultyScreen> {
       backgroundColor: Colors.transparent,
       body: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          // color: Colors.white,
+          color: getColorOpposite(Theme.of(context).canvasColor),
           borderRadius: BorderRadius.circular(20)
         ),
         child: Column(

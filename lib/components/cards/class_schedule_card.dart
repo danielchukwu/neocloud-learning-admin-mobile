@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neocloud_mobile/components/cards/components/tablets.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/constants/constants.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 
 class ClassScheduleCard extends StatelessWidget {
@@ -18,14 +19,14 @@ class ClassScheduleCard extends StatelessWidget {
     return Container(
       padding: screenPadding,
       decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: kBlack50, width: .2))),
+          border: Border(bottom: BorderSide(color: Theme.of(context).canvasColor.withOpacity(.5), width: .2))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           // Educator {Avatar - Name}
           SizedBox(height: defaultSize * 2),
           // TODO: use actual educators when a form that connects everything has been used to connect things up
-          buildAvatarAndName(
+          CircularAvartarAndName(
             // avatar: classwork.clas!.educators![0].avatar,
             // name: classwork.clas!.educators![0].name,
             avatar: defaultProfileAvatar,
@@ -42,7 +43,7 @@ class ClassScheduleCard extends StatelessWidget {
           SizedBox(height: defaultSize * 1.5),
           TextSmall(
             title: classSchedule.description ?? '',
-            color: kBlack70,
+            color: Theme.of(context).canvasColor.withOpacity(.7),
             // weight: FontWeight.w400,
           ),
 
@@ -53,13 +54,13 @@ class ClassScheduleCard extends StatelessWidget {
               IconText(
                   title: 'August 12',
                   icon: Icons.calendar_month,
-                  iconColor: kBlack70,
+                  iconColor: Theme.of(context).canvasColor.withOpacity(.7),
                   fontSize: defaultSize * 1.4),
               SizedBox(width: defaultSize * 2,),
               IconText(
                   title: '9:30 am - 12:30pm',
                   icon: Icons.timer,
-                  iconColor: kBlack70,
+                  iconColor: Theme.of(context).canvasColor.withOpacity(.7),
                   fontSize: defaultSize * 1.4),
             ],
           ),

@@ -57,17 +57,18 @@ class _FormScheduleTileState extends State<FormScheduleTile> {
           if (_editTitleMode == false)
             SizedBox(
                 width: 30,
-                child: TextMedium(
-                    title: '${widget.index + 1}', color: Colors.black54)),
+                child: Text('${widget.index + 1}',
+                    style: TextStyle(
+                        color: Theme.of(context).canvasColor.withOpacity(.5)))),
 
           // Column - Title, Row (schedules Index, add schedules btn)
-          Expanded(child: buildBody())
+          Expanded(child: _buildBody(context))
         ],
       ),
     );
   }
 
-  Widget buildBody() {
+  Widget _buildBody(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -79,14 +80,15 @@ class _FormScheduleTileState extends State<FormScheduleTile> {
                     setState(() => _editTitleMode = true);
                   }
                 },
-                child: TextMedium(
-                    title: widget.schedule.title,
-                    color: kBlack80,
-                    weight: FontWeight.w500),
+                child: Text(
+                  widget.schedule.title,
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
               )
             : FormUpdateOrDeleteInputField(
                 fontSize: 16,
-                textColor: kBlack80,
+                // textColor: kBlack80,
+                textColor: Theme.of(context).canvasColor.withOpacity(.8),
                 fontWeight: FontWeight.w500,
                 hintText: 'Schedule Title',
                 initialValue: widget.schedule.title,
@@ -113,7 +115,8 @@ class _FormScheduleTileState extends State<FormScheduleTile> {
                 : const SizedBox()
             : FormUpdateOrDeleteInputField(
                 fontSize: 14,
-                textColor: kBlack70,
+                // textColor: kBlack70,
+                textColor: Theme.of(context).canvasColor.withOpacity(.7),
                 hintText: 'Description',
                 press: () => setState(() => _editDescriptionMode = false),
                 initialValue: widget.schedule.description,
@@ -131,14 +134,12 @@ class _FormScheduleTileState extends State<FormScheduleTile> {
                   setState(() => _editDescriptionMode = true);
                 },
                 child: widget.schedule.description == null
-                    ? TextSmall(
-                        title: 'Add Description',
-                        color: Colors.black54,
+                    ? Text('Add Description',
+                    style: TextStyle(color: Theme.of(context).canvasColor.withOpacity(.5),),
                       )
                     : IconText(
                         title: 'Description Set',
                         fontSize: 14,
-                        color: Colors.black54,
                         icon: Icons.mark_chat_read_rounded,
                         iconColor: Colors.green[500],
                       ),
@@ -154,14 +155,13 @@ class _FormScheduleTileState extends State<FormScheduleTile> {
               GestureDetector(
                 onTap: showClassworkDialog,
                 child: widget.schedule.classwork == null
-                    ? const TextSmall(
+                    ? TextSmall(
                         title: 'Add Classwork',
-                        color: Colors.black54,
+                        color: Theme.of(context).canvasColor.withOpacity(.5),
                       )
                     : IconText(
                         title: 'Classwork Set',
                         fontSize: 14,
-                        color: Colors.black54,
                         icon: Icons.task,
                         iconColor: Colors.green[500]),
               ),
@@ -185,7 +185,7 @@ class _FormScheduleTileState extends State<FormScheduleTile> {
                     title: 'Set Date and Time',
                     icon: Icons.edit_calendar_outlined,
                     spaceBetweenSize: 7,
-                    iconColor: Colors.grey[700],
+                    iconColor: Theme.of(context).canvasColor.withOpacity(.4),
                     fontSize: 14,
                     iconSize: 16,
                   ),

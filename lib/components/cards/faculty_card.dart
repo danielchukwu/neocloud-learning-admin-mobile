@@ -28,11 +28,6 @@ class FacultyCard extends StatelessWidget {
             ).join(' ')}'
         : '';
     String bigText = facultyTitleList[0];
-    // List<Map> tabletData = [
-    //   {'count': 'faculty.educatorsCount', 'type': 'Educator', 'color': kOrange},
-    //   {'count': 'faculty.classesCount', 'type': 'Class', 'color': kRed},
-    //   {'count': 'faculty.studentsCount', 'type': 'Student', 'color': kGreen},
-    // ];
     List<Map> tabletData = [
       {'count': 3, 'type': 'Educator', 'color': kOrange},
       {'count': 3, 'type': 'Class', 'color': kRed},
@@ -51,7 +46,7 @@ class FacultyCard extends StatelessWidget {
           child: Container(
             padding: screenPadding,
             decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: kBlack50, width: .2))),
+                border: Border(bottom: BorderSide(color: Theme.of(context).canvasColor.withOpacity(.5), width: .2))),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -68,8 +63,8 @@ class FacultyCard extends StatelessWidget {
 
                 // Faculty Owner
                 SizedBox(height: defaultSize),
-                buildAvatarAndName(
-                    avatar: faculty.hod!.avatar ?? 'assets/dps/1.jpg',
+                CircularAvartarAndName(
+                    avatar: faculty.hod!.avatar,
                     name: faculty.hod!.name,
                     fontSize: defaultSize * 1.6,
                     weight: FontWeight.w600),
@@ -78,7 +73,7 @@ class FacultyCard extends StatelessWidget {
                 SizedBox(height: defaultSize * 2),
                 TextCustomMaxLine(
                   title: faculty.about ?? 'about not found',
-                  color: kBlack70,
+                  color: Theme.of(context).canvasColor.withOpacity(.7),
                   fontSize: defaultSize * 1.6,
                   maxLines: 2,
                 ),

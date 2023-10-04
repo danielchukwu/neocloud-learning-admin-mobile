@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/components/widgets.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/graphql/models/ClassModuleModel.dart';
 import 'package:neocloud_mobile/graphql/models/ClassScheduleModel.dart';
 import 'package:neocloud_mobile/screens/create/components/form_footer.dart';
@@ -69,9 +70,9 @@ class _FormSchedulesState extends State<FormSchedules> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(20)),
+          decoration: BoxDecoration(
+            color: getColorOpposite(Theme.of(context).canvasColor),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,10 +157,9 @@ class _FormSchedulesState extends State<FormSchedules> {
   Widget buildScheduleListHeader() {
     return IconText(
       title: 'Schedules',
-      color: Colors.black54,
       fontWeight: FontWeight.w500,
       icon: Icons.view_agenda_outlined,
-      iconColor: kBlack60,
+      iconColor: Theme.of(context).canvasColor.withOpacity(.6),
       iconSize: 18,
       spaceBetweenSize: 10,
     );

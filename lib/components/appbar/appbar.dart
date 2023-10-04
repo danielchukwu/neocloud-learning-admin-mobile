@@ -3,13 +3,13 @@ import 'package:neocloud_mobile/components/appbar/actions.dart';
 import 'package:neocloud_mobile/components/appbar/leading.dart';
 import 'package:neocloud_mobile/components/texts.dart';
 import 'package:neocloud_mobile/constraints.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 
 class AppsAppBar extends StatelessWidget {
   AppsAppBar({
     super.key,
     required this.title,
-    this.bgColor = Colors.white,
-    this.isDark = true,
+    this.bgColor,
     this.showLeading = true,
     this.elevation = 0,
 
@@ -31,13 +31,7 @@ class AppsAppBar extends StatelessWidget {
   final String title;
 
   // the background color of the appbar
-  final Color bgColor;
-
-  // this decides what the color of the title and the icons of the appbar
-  // are going to be.
-  // if isDark=true then the title, left icon and right icon are going to
-  // be {black}, else if isDark=false then they are all going to be {white}
-  final bool isDark;
+  final Color ? bgColor;
 
   // if this is true then the left icon is displayed, else it is not displayed
   final bool showLeading;
@@ -55,13 +49,12 @@ class AppsAppBar extends StatelessWidget {
   // SvgPicture.asset() and
   // We expect either <actionIcon> field above or the <actionSvg> field to be
   // null, so that the other can render
-  final String? actionSvg1;
-  final String? actionSvg2;
+  String? actionSvg1;
+  String? actionSvg2;
 
   // Replacement
   // this is a callback function that is called when the action icon or svg
   // Function(BuildContext context)? pressAction;
-
 
   // the elevation of the appBar
   final double elevation;
@@ -72,37 +65,35 @@ class AppsAppBar extends StatelessWidget {
   final String routeName1;
   final String routeName2;
 
-  // routeWidget to be navigated to using push. Allows us to pass data to 
+  // routeWidget to be navigated to using push. Allows us to pass data to
   // screens whose constructors requires passed in valued
   final Widget? routeWidget1;
   final Widget? routeWidget2;
 
   @override
   Widget build(BuildContext context) {
+    bgColor ?? getColorOpposite(Theme.of(context).canvasColor);
+
     return AppBar(
       backgroundColor: bgColor,
       leadingWidth: defaultSize * 6,
       elevation: elevation,
-      leading:
-          showLeading ? LeadingBackButton(isDark: isDark) : const SizedBox(),
-      title: TextLarge(
-        title: title,
-        weight: FontWeight.w600,
-        color: isDark ? kBlack80 : Colors.white,
+      leading: showLeading ? LeadingBackButton() : const SizedBox(),
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.titleSmall,
       ),
       actions: showAction1
           ? <Widget>[
               actionUserButton(
                 icon: actionIcon1,
                 svg: actionSvg2,
-                isDark: isDark,
                 routeName: routeName2,
                 routeWidget: routeWidget2,
               ),
               actionUserButton(
                 icon: actionIcon1,
                 svg: actionSvg1,
-                isDark: isDark,
                 routeName: routeName1,
                 routeWidget: routeWidget1,
               ),
@@ -115,8 +106,6 @@ class AppsAppBar extends StatelessWidget {
 class AppsSliverAppBar extends AppsAppBar {
   AppsSliverAppBar({
     required super.title,
-    super.bgColor,
-    super.isDark,
     super.actionIcon1,
     super.actionIcon2 = Icons.search,
     super.actionSvg1,
@@ -133,25 +122,26 @@ class AppsSliverAppBar extends AppsAppBar {
 
   @override
   Widget build(BuildContext context) {
+    // if neither actionSvg or actionIcon was provided, then we want to
+    // set a default actionSvg value (to be displayed)
+    super.actionSvg1 = actionSvg1 == null && actionIcon1 == null
+        ? 'assets/icons/account.svg'
+        : null;
     return SliverAppBar(
-      backgroundColor: bgColor,
       leadingWidth: 60,
       elevation: elevation,
       floating: true,
       snap: true,
-      leading:
-          showLeading ? LeadingBackButton(isDark: isDark) : const SizedBox(),
-      title: TextLarge(
-        title: title,
-        weight: FontWeight.w600,
-        color: isDark ? kBlack80 : Colors.white,
+      leading: showLeading ? LeadingBackButton() : const SizedBox(),
+      title: Text(
+        title,
+        style: Theme.of(context).textTheme.titleSmall,
       ),
       actions: <Widget>[
         showAction2
             ? actionUserButton(
                 icon: actionIcon2,
                 svg: actionSvg2,
-                isDark: isDark,
                 routeName: routeName2,
                 routeWidget: routeWidget2,
               )
@@ -160,7 +150,6 @@ class AppsSliverAppBar extends AppsAppBar {
             ? actionUserButton(
                 icon: actionIcon1,
                 svg: actionSvg1,
-                isDark: isDark,
                 routeName: routeName1,
                 routeWidget: routeWidget1,
               )

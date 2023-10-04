@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neocloud_mobile/components/texts.dart';
+import 'package:neocloud_mobile/core/utils/utils.dart';
 import 'package:neocloud_mobile/utils/flutter_storage.dart';
 import 'package:neocloud_mobile/utils/image_helper.dart';
 import 'package:neocloud_mobile/utils/locator.dart';
@@ -55,28 +56,35 @@ class _FormAddCoverState extends State<FormAddCover> {
         height: 200,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color: Colors.grey[200],
+          // color: Colors.grey[200],
+          color: Theme.of(context).canvasColor.withOpacity(.05),
           image: widget.defaultImage != null && _selectedImage == null
-          ? DecorationImage(image: NetworkImage(widget.defaultImage!), fit: BoxFit.cover)
-          : _selectedImage != null
               ? DecorationImage(
-                  image: FileImage(_selectedImage!), fit: BoxFit.cover)
-              : null,
+                  image: NetworkImage(widget.defaultImage!), fit: BoxFit.cover)
+              : _selectedImage != null
+                  ? DecorationImage(
+                      image: FileImage(_selectedImage!), fit: BoxFit.cover)
+                  : null,
         ),
         child: _selectedImage == null && widget.defaultImage == null
             ? Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     // Image
-                    SizedBox(height: 15),
-                    Icon(Icons.image, color: Colors.black38, size: 40),
+                    const SizedBox(height: 15),
+                    Icon(
+                      Icons.image,
+                      // color: Colors.black38,
+                      color: Theme.of(context).canvasColor.withOpacity(.4),
+                      size: 40,
+                    ),
                     // Text
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     TextMedium(
                       title: 'Add Cover',
                       weight: FontWeight.w600,
-                      color: Colors.black26,
+                      color: Theme.of(context).canvasColor.withOpacity(.2),
                     ),
                   ],
                 ),

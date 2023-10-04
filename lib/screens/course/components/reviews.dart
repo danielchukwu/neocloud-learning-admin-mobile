@@ -18,7 +18,7 @@ class Reviews extends StatelessWidget {
         TextLarge(
           title: "Reviews",
           weight: FontWeight.w600,
-          color: kBlack80,
+          color: Theme.of(context).canvasColor.withOpacity(.8),
         ),
 
         // List of Reviews
